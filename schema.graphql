@@ -1,0 +1,573 @@
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `FipsCodeCounty`."""
+  allFipsCodeCounties(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `FipsCodeCounty`."""
+    orderBy: [FipsCodeCountiesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FipsCodeCountyCondition
+  ): FipsCodeCountiesConnection
+
+  """Reads and enables pagination through a set of `FipsCodeState`."""
+  allFipsCodeStates(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `FipsCodeState`."""
+    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FipsCodeStateCondition
+  ): FipsCodeStatesConnection
+  fipsCodeStateByStateFipsCode(stateFipsCode: String!): FipsCodeState
+
+  """Reads a single `FipsCodeState` using its globally unique `ID`."""
+  fipsCodeState(
+    """
+    The globally unique `ID` to be used in selecting a single `FipsCodeState`.
+    """
+    nodeId: ID!
+  ): FipsCodeState
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""A connection to a list of `FipsCodeCounty` values."""
+type FipsCodeCountiesConnection {
+  """A list of `FipsCodeCounty` objects."""
+  nodes: [FipsCodeCounty]!
+
+  """
+  A list of edges which contains the `FipsCodeCounty` and cursor to aid in pagination.
+  """
+  edges: [FipsCodeCountiesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `FipsCodeCounty` you could get from the connection."""
+  totalCount: Int!
+}
+
+type FipsCodeCounty {
+  summaryLevel: String
+  summaryLevelName: String
+  stateFipsCode: String
+  countyFipsCode: String
+  countySubdivisionFipsCode: String
+  placeFipsCode: String
+  consolidatedCityFipsCode: String
+  areaName: String
+
+  """
+  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+}
+
+type FipsCodeState implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  stateFipsCode: String!
+  statePostalAbbreviation: String
+  stateName: String
+  stateGnisid: String
+
+  """Reads and enables pagination through a set of `FipsCodeCounty`."""
+  fipsCodeCountiesByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `FipsCodeCounty`."""
+    orderBy: [FipsCodeCountiesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FipsCodeCountyCondition
+  ): FipsCodeCountiesConnection!
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Methods to use when ordering `FipsCodeCounty`."""
+enum FipsCodeCountiesOrderBy {
+  NATURAL
+  SUMMARY_LEVEL_ASC
+  SUMMARY_LEVEL_DESC
+  SUMMARY_LEVEL_NAME_ASC
+  SUMMARY_LEVEL_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  COUNTY_SUBDIVISION_FIPS_CODE_ASC
+  COUNTY_SUBDIVISION_FIPS_CODE_DESC
+  PLACE_FIPS_CODE_ASC
+  PLACE_FIPS_CODE_DESC
+  CONSOLIDATED_CITY_FIPS_CODE_ASC
+  CONSOLIDATED_CITY_FIPS_CODE_DESC
+  AREA_NAME_ASC
+  AREA_NAME_DESC
+}
+
+"""
+A condition to be used against `FipsCodeCounty` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input FipsCodeCountyCondition {
+  """Checks for equality with the object’s `summaryLevel` field."""
+  summaryLevel: String
+
+  """Checks for equality with the object’s `summaryLevelName` field."""
+  summaryLevelName: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """
+  Checks for equality with the object’s `countySubdivisionFipsCode` field.
+  """
+  countySubdivisionFipsCode: String
+
+  """Checks for equality with the object’s `placeFipsCode` field."""
+  placeFipsCode: String
+
+  """
+  Checks for equality with the object’s `consolidatedCityFipsCode` field.
+  """
+  consolidatedCityFipsCode: String
+
+  """Checks for equality with the object’s `areaName` field."""
+  areaName: String
+}
+
+"""A `FipsCodeCounty` edge in the connection."""
+type FipsCodeCountiesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FipsCodeCounty` at the end of the edge."""
+  node: FipsCodeCounty
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""A connection to a list of `FipsCodeState` values."""
+type FipsCodeStatesConnection {
+  """A list of `FipsCodeState` objects."""
+  nodes: [FipsCodeState]!
+
+  """
+  A list of edges which contains the `FipsCodeState` and cursor to aid in pagination.
+  """
+  edges: [FipsCodeStatesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `FipsCodeState` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `FipsCodeState` edge in the connection."""
+type FipsCodeStatesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FipsCodeState` at the end of the edge."""
+  node: FipsCodeState
+}
+
+"""Methods to use when ordering `FipsCodeState`."""
+enum FipsCodeStatesOrderBy {
+  NATURAL
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  STATE_POSTAL_ABBREVIATION_ASC
+  STATE_POSTAL_ABBREVIATION_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_GNISID_ASC
+  STATE_GNISID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `FipsCodeState` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input FipsCodeStateCondition {
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `statePostalAbbreviation` field."""
+  statePostalAbbreviation: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateGnisid` field."""
+  stateGnisid: String
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `FipsCodeCounty`."""
+  createFipsCodeCounty(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateFipsCodeCountyInput!
+  ): CreateFipsCodeCountyPayload
+
+  """Creates a single `FipsCodeState`."""
+  createFipsCodeState(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateFipsCodeStateInput!
+  ): CreateFipsCodeStatePayload
+
+  """
+  Updates a single `FipsCodeState` using its globally unique id and a patch.
+  """
+  updateFipsCodeState(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFipsCodeStateInput!
+  ): UpdateFipsCodeStatePayload
+
+  """Updates a single `FipsCodeState` using a unique key and a patch."""
+  updateFipsCodeStateByStateFipsCode(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFipsCodeStateByStateFipsCodeInput!
+  ): UpdateFipsCodeStatePayload
+
+  """Deletes a single `FipsCodeState` using its globally unique id."""
+  deleteFipsCodeState(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFipsCodeStateInput!
+  ): DeleteFipsCodeStatePayload
+
+  """Deletes a single `FipsCodeState` using a unique key."""
+  deleteFipsCodeStateByStateFipsCode(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFipsCodeStateByStateFipsCodeInput!
+  ): DeleteFipsCodeStatePayload
+}
+
+"""The output of our create `FipsCodeCounty` mutation."""
+type CreateFipsCodeCountyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeCounty` that was created by this mutation."""
+  fipsCodeCounty: FipsCodeCounty
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
+  fipsCodeCountyEdge(
+    """The method to use when ordering `FipsCodeCounty`."""
+    orderBy: [FipsCodeCountiesOrderBy!] = [NATURAL]
+  ): FipsCodeCountiesEdge
+}
+
+"""All input for the create `FipsCodeCounty` mutation."""
+input CreateFipsCodeCountyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeCounty` to be created by this mutation."""
+  fipsCodeCounty: FipsCodeCountyInput!
+}
+
+"""An input for mutations affecting `FipsCodeCounty`"""
+input FipsCodeCountyInput {
+  summaryLevel: String
+  summaryLevelName: String
+  stateFipsCode: String
+  countyFipsCode: String
+  countySubdivisionFipsCode: String
+  placeFipsCode: String
+  consolidatedCityFipsCode: String
+  areaName: String
+}
+
+"""The output of our create `FipsCodeState` mutation."""
+type CreateFipsCodeStatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeState` that was created by this mutation."""
+  fipsCodeState: FipsCodeState
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `FipsCodeState`. May be used by Relay 1."""
+  fipsCodeStateEdge(
+    """The method to use when ordering `FipsCodeState`."""
+    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FipsCodeStatesEdge
+}
+
+"""All input for the create `FipsCodeState` mutation."""
+input CreateFipsCodeStateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeState` to be created by this mutation."""
+  fipsCodeState: FipsCodeStateInput!
+}
+
+"""An input for mutations affecting `FipsCodeState`"""
+input FipsCodeStateInput {
+  stateFipsCode: String!
+  statePostalAbbreviation: String
+  stateName: String
+  stateGnisid: String
+}
+
+"""The output of our update `FipsCodeState` mutation."""
+type UpdateFipsCodeStatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeState` that was updated by this mutation."""
+  fipsCodeState: FipsCodeState
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `FipsCodeState`. May be used by Relay 1."""
+  fipsCodeStateEdge(
+    """The method to use when ordering `FipsCodeState`."""
+    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FipsCodeStatesEdge
+}
+
+"""All input for the `updateFipsCodeState` mutation."""
+input UpdateFipsCodeStateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `FipsCodeState` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `FipsCodeState` being updated.
+  """
+  fipsCodeStatePatch: FipsCodeStatePatch!
+}
+
+"""
+Represents an update to a `FipsCodeState`. Fields that are set will be updated.
+"""
+input FipsCodeStatePatch {
+  stateFipsCode: String
+  statePostalAbbreviation: String
+  stateName: String
+  stateGnisid: String
+}
+
+"""All input for the `updateFipsCodeStateByStateFipsCode` mutation."""
+input UpdateFipsCodeStateByStateFipsCodeInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `FipsCodeState` being updated.
+  """
+  fipsCodeStatePatch: FipsCodeStatePatch!
+  stateFipsCode: String!
+}
+
+"""The output of our delete `FipsCodeState` mutation."""
+type DeleteFipsCodeStatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeState` that was deleted by this mutation."""
+  fipsCodeState: FipsCodeState
+  deletedFipsCodeStateId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `FipsCodeState`. May be used by Relay 1."""
+  fipsCodeStateEdge(
+    """The method to use when ordering `FipsCodeState`."""
+    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FipsCodeStatesEdge
+}
+
+"""All input for the `deleteFipsCodeState` mutation."""
+input DeleteFipsCodeStateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `FipsCodeState` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteFipsCodeStateByStateFipsCode` mutation."""
+input DeleteFipsCodeStateByStateFipsCodeInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  stateFipsCode: String!
+}

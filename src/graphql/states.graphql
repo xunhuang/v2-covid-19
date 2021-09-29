@@ -1,0 +1,14 @@
+query States {
+  allFipsCodeStates {
+    nodes {
+      statePostalAbbreviation
+      stateName
+      stateGnisid
+      fipsCodeCountiesByStateFipsCode {
+        nodes {
+          areaName
+        }
+      }
+    }
+  }
+}
