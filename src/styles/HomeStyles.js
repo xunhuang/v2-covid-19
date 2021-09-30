@@ -98,3 +98,7 @@ export const AppHeader = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const FullDiv = styled.div`
+width:100%
+`;

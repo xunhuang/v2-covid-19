@@ -15,12 +15,16 @@
     "@types/styled-components": "^5.1.14",
     "deepcopy": "^2.1.0",
     "firebase": "^8.6.1",
+    "moment": "^2.29.1",
+    "moving-average": "^1.0.1",
+    "moving-averages": "^4.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
     "react-tabs": "^3.2.2",
+    "recharts": "^2.1.4",
     "recoil": "^0.4.1",
     "styled-components": "^5.3.1",
     "typescript": "^4.2.4",
@@ -58,11 +62,15 @@
     "@graphql-codegen/typescript": "^2.2.2",
     "@graphql-codegen/typescript-operations": "^2.1.4",
     "@graphql-codegen/typescript-react-apollo": "^3.1.4",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@types/material-ui": "^0.21.9",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-select": "^4.0.17",
     "@types/react-tap-event-plugin": "^0.0.31",
     "dayjs": "^1.10.6",
-    "graphql": "^15.6.0"
+    "graphql": "^15.6.0",
+    "short-number": "^1.0.7",
+    "simple-statistics": "^7.7.0"
   }
 }
