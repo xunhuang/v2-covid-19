@@ -6,6 +6,7 @@ import {
   useStatesQuery,
   StatesQuery,
   useStateByFipsQuery,
+  useUsCasesQuery,
 } from "./generated/graphql";
 import Rechart from "./Rechart";
 import { FullDiv } from "./styles/HomeStyles";
@@ -34,7 +35,6 @@ type QueryResultProp = {
 
 // Components are typed with props
 const QueryResultComponent = ({ result }: QueryResultProp) => {
-  console.log(result);
   const nodes = result.allFipsCodeStates?.nodes;
   return (
     <div>
@@ -79,6 +79,45 @@ const ExampleGraph = () => (
   />
 );
 
+const UsCasesGraph = () => {
+  const { data, loading } = useUsCasesQuery();
+  console.log(data);
+  return (
+    <div>
+      {loading && <div>loading</div>}
+      {data && (
+        <AdvancedGraph
+          title="US Cases"
+          serieses={[
+            {
+              series: DataSeries.fromGraphQLQueryNodes(
+                "Confirmed",
+                data.allUsCasesAlls?.nodes! as object[],
+                "confirmedCases"
+              ),
+              color: "red",
+              // rightAxis: false,
+              // covidspecial: true,
+              showMovingAverage: true,
+            },
+            {
+              series: DataSeries.fromGraphQLQueryNodes(
+                "Death",
+                data.allUsCasesAlls?.nodes! as object[],
+                "deaths"
+              ),
+              color: "blue",
+              rightAxis: true,
+              // covidspecial: true,
+              showMovingAverage: true,
+            },
+          ]}
+        />
+      )}
+    </div>
+  );
+};
+
 const App: React.FunctionComponent<IApplicationProps> = (props) => {
   const { data, loading } = useStatesQuery();
   const result = useStateByFipsQuery({
@@ -92,6 +131,9 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
       <header className="App-header">
         <Rechart data={chartdata} />
         <FullDiv>
+          <UsCasesGraph />
+        </FullDiv>
+        <FullDiv>
           <ExampleGraph></ExampleGraph>
         </FullDiv>
         {loading && <div>loading</div>}
@@ -100,5 +142,8 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
     </div>
   );
 };
+
+
+
 
 export default App;

@@ -1,0 +1,9 @@
+query UsCases {
+  allUsCasesAlls {
+    nodes {
+      date
+      confirmedCases
+      deaths
+    }
+  }
+}

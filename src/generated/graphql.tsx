@@ -3510,6 +3510,11 @@ export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type StatesQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, fipsCodeCountiesByStateFipsCode: { __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', areaName?: Maybe<string> }>> } }>> }> };
 
+export type UsCasesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsCasesQuery = { __typename?: 'Query', allUsCasesAlls?: Maybe<{ __typename?: 'UsCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'UsCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> };
+
 
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
@@ -3593,3 +3598,41 @@ export function useStatesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Sta
 export type StatesQueryHookResult = ReturnType<typeof useStatesQuery>;
 export type StatesLazyQueryHookResult = ReturnType<typeof useStatesLazyQuery>;
 export type StatesQueryResult = Apollo.QueryResult<StatesQuery, StatesQueryVariables>;
+export const UsCasesDocument = gql`
+    query UsCases {
+  allUsCasesAlls {
+    nodes {
+      date
+      confirmedCases
+      deaths
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsCasesQuery__
+ *
+ * To run a query within a React component, call `useUsCasesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsCasesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsCasesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsCasesQuery(baseOptions?: Apollo.QueryHookOptions<UsCasesQuery, UsCasesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsCasesQuery, UsCasesQueryVariables>(UsCasesDocument, options);
+      }
+export function useUsCasesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsCasesQuery, UsCasesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsCasesQuery, UsCasesQueryVariables>(UsCasesDocument, options);
+        }
+export type UsCasesQueryHookResult = ReturnType<typeof useUsCasesQuery>;
+export type UsCasesLazyQueryHookResult = ReturnType<typeof useUsCasesLazyQuery>;
+export type UsCasesQueryResult = Apollo.QueryResult<UsCasesQuery, UsCasesQueryVariables>;

@@ -17,6 +17,64 @@ type Query implements Node {
     nodeId: ID!
   ): Node
 
+  """Reads and enables pagination through a set of `CountiesSummary`."""
+  allCountiesSummaries(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountiesSummary`."""
+    orderBy: [CountiesSummariesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountiesSummaryCondition
+  ): CountiesSummariesConnection
+
+  """Reads and enables pagination through a set of `CountyCasesAll`."""
+  allCountyCasesAlls(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyCasesAll`."""
+    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyCasesAllCondition
+  ): CountyCasesAllsConnection
+
   """Reads and enables pagination through a set of `FipsCodeCounty`."""
   allFipsCodeCounties(
     """Only read the first `n` values of the set."""
@@ -38,7 +96,7 @@ type Query implements Node {
     after: Cursor
 
     """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [NATURAL]
+    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
 
     """
     A condition to be used in determining which values should be returned by the collection.
@@ -74,7 +132,306 @@ type Query implements Node {
     """
     condition: FipsCodeStateCondition
   ): FipsCodeStatesConnection
+
+  """Reads and enables pagination through a set of `MsaCasesAll`."""
+  allMsaCasesAlls(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaCasesAll`."""
+    orderBy: [MsaCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaCasesAllCondition
+  ): MsaCasesAllsConnection
+
+  """Reads and enables pagination through a set of `MsaDefinition`."""
+  allMsaDefinitions(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaDefinition`."""
+    orderBy: [MsaDefinitionsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaDefinitionCondition
+  ): MsaDefinitionsConnection
+
+  """Reads and enables pagination through a set of `StateCasesAll`."""
+  allStateCasesAlls(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StateCasesAll`."""
+    orderBy: [StateCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StateCasesAllCondition
+  ): StateCasesAllsConnection
+
+  """Reads and enables pagination through a set of `StatesHospitalization`."""
+  allStatesHospitalizations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatesHospitalization`."""
+    orderBy: [StatesHospitalizationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatesHospitalizationCondition
+  ): StatesHospitalizationsConnection
+
+  """Reads and enables pagination through a set of `StatesSummary`."""
+  allStatesSummaries(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatesSummary`."""
+    orderBy: [StatesSummariesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatesSummaryCondition
+  ): StatesSummariesConnection
+
+  """Reads and enables pagination through a set of `StatesTesting`."""
+  allStatesTestings(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatesTesting`."""
+    orderBy: [StatesTestingsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatesTestingCondition
+  ): StatesTestingsConnection
+
+  """Reads and enables pagination through a set of `UsCasesAll`."""
+  allUsCasesAlls(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UsCasesAll`."""
+    orderBy: [UsCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UsCasesAllCondition
+  ): UsCasesAllsConnection
+
+  """Reads and enables pagination through a set of `UsHospitalization`."""
+  allUsHospitalizations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UsHospitalization`."""
+    orderBy: [UsHospitalizationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UsHospitalizationCondition
+  ): UsHospitalizationsConnection
+
+  """Reads and enables pagination through a set of `UsSummary`."""
+  allUsSummaries(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UsSummary`."""
+    orderBy: [UsSummariesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UsSummaryCondition
+  ): UsSummariesConnection
+
+  """Reads and enables pagination through a set of `UsTesting`."""
+  allUsTestings(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UsTesting`."""
+    orderBy: [UsTestingsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UsTestingCondition
+  ): UsTestingsConnection
+  fipsCodeCountyByCountyFipsCode(countyFipsCode: String!): FipsCodeCounty
   fipsCodeStateByStateFipsCode(stateFipsCode: String!): FipsCodeState
+
+  """Reads a single `FipsCodeCounty` using its globally unique `ID`."""
+  fipsCodeCounty(
+    """
+    The globally unique `ID` to be used in selecting a single `FipsCodeCounty`.
+    """
+    nodeId: ID!
+  ): FipsCodeCounty
 
   """Reads a single `FipsCodeState` using its globally unique `ID`."""
   fipsCodeState(
@@ -93,28 +450,179 @@ interface Node {
   nodeId: ID!
 }
 
-"""A connection to a list of `FipsCodeCounty` values."""
-type FipsCodeCountiesConnection {
-  """A list of `FipsCodeCounty` objects."""
-  nodes: [FipsCodeCounty]!
+"""A connection to a list of `CountiesSummary` values."""
+type CountiesSummariesConnection {
+  """A list of `CountiesSummary` objects."""
+  nodes: [CountiesSummary]!
 
   """
-  A list of edges which contains the `FipsCodeCounty` and cursor to aid in pagination.
+  A list of edges which contains the `CountiesSummary` and cursor to aid in pagination.
   """
-  edges: [FipsCodeCountiesEdge!]!
+  edges: [CountiesSummariesEdge!]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `FipsCodeCounty` you could get from the connection."""
+  """
+  The count of *all* `CountiesSummary` you could get from the connection.
+  """
   totalCount: Int!
 }
 
-type FipsCodeCounty {
+type CountiesSummary {
+  stateFipsCode: String
+  countyFipsCode: String
+  state: String
+  county: String
+  confirmedCases: Int
+  deaths: Int
+  test7DayTotal: Int
+  positivity7DayAvg: Float
+  community: String
+  school: String
+  reportDate: String
+  healthwebsites: String
+}
+
+"""A `CountiesSummary` edge in the connection."""
+type CountiesSummariesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountiesSummary` at the end of the edge."""
+  node: CountiesSummary
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Methods to use when ordering `CountiesSummary`."""
+enum CountiesSummariesOrderBy {
+  NATURAL
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_ASC
+  STATE_DESC
+  COUNTY_ASC
+  COUNTY_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+  TEST_7DAY_TOTAL_ASC
+  TEST_7DAY_TOTAL_DESC
+  POSITIVITY_7DAY_AVG_ASC
+  POSITIVITY_7DAY_AVG_DESC
+  COMMUNITY_ASC
+  COMMUNITY_DESC
+  SCHOOL_ASC
+  SCHOOL_DESC
+  REPORT_DATE_ASC
+  REPORT_DATE_DESC
+  HEALTHWEBSITES_ASC
+  HEALTHWEBSITES_DESC
+}
+
+"""
+A condition to be used against `CountiesSummary` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountiesSummaryCondition {
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `county` field."""
+  county: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+
+  """Checks for equality with the object’s `test7DayTotal` field."""
+  test7DayTotal: Int
+
+  """Checks for equality with the object’s `positivity7DayAvg` field."""
+  positivity7DayAvg: Float
+
+  """Checks for equality with the object’s `community` field."""
+  community: String
+
+  """Checks for equality with the object’s `school` field."""
+  school: String
+
+  """Checks for equality with the object’s `reportDate` field."""
+  reportDate: String
+
+  """Checks for equality with the object’s `healthwebsites` field."""
+  healthwebsites: String
+}
+
+"""A connection to a list of `CountyCasesAll` values."""
+type CountyCasesAllsConnection {
+  """A list of `CountyCasesAll` objects."""
+  nodes: [CountyCasesAll]!
+
+  """
+  A list of edges which contains the `CountyCasesAll` and cursor to aid in pagination.
+  """
+  edges: [CountyCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CountyCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type CountyCasesAll {
+  date: String
+  county: String
+  stateName: String
+  stateFipsCode: String
+  countyFipsCode: String
+  confirmedCases: Int
+  deaths: Int
+
+  """
+  Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`.
+  """
+  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
+}
+
+type FipsCodeCounty implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
   summaryLevel: String
   summaryLevelName: String
   stateFipsCode: String
-  countyFipsCode: String
+  countyFipsCode: String!
   countySubdivisionFipsCode: String
   placeFipsCode: String
   consolidatedCityFipsCode: String
@@ -124,6 +632,35 @@ type FipsCodeCounty {
   Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
   """
   fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """Reads and enables pagination through a set of `CountyCasesAll`."""
+  countyCasesAllsByCountyFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyCasesAll`."""
+    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyCasesAllCondition
+  ): CountyCasesAllsConnection!
 }
 
 type FipsCodeState implements Node {
@@ -157,17 +694,69 @@ type FipsCodeState implements Node {
     after: Cursor
 
     """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [NATURAL]
+    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: FipsCodeCountyCondition
   ): FipsCodeCountiesConnection!
+
+  """Reads and enables pagination through a set of `StateCasesAll`."""
+  stateCasesAllsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StateCasesAll`."""
+    orderBy: [StateCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StateCasesAllCondition
+  ): StateCasesAllsConnection!
 }
 
-"""A location in a connection that can be used for resuming pagination."""
-scalar Cursor
+"""A connection to a list of `FipsCodeCounty` values."""
+type FipsCodeCountiesConnection {
+  """A list of `FipsCodeCounty` objects."""
+  nodes: [FipsCodeCounty]!
+
+  """
+  A list of edges which contains the `FipsCodeCounty` and cursor to aid in pagination.
+  """
+  edges: [FipsCodeCountiesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `FipsCodeCounty` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `FipsCodeCounty` edge in the connection."""
+type FipsCodeCountiesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FipsCodeCounty` at the end of the edge."""
+  node: FipsCodeCounty
+}
 
 """Methods to use when ordering `FipsCodeCounty`."""
 enum FipsCodeCountiesOrderBy {
@@ -188,6 +777,8 @@ enum FipsCodeCountiesOrderBy {
   CONSOLIDATED_CITY_FIPS_CODE_DESC
   AREA_NAME_ASC
   AREA_NAME_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
 }
 
 """
@@ -224,28 +815,134 @@ input FipsCodeCountyCondition {
   areaName: String
 }
 
-"""A `FipsCodeCounty` edge in the connection."""
-type FipsCodeCountiesEdge {
+"""A connection to a list of `StateCasesAll` values."""
+type StateCasesAllsConnection {
+  """A list of `StateCasesAll` objects."""
+  nodes: [StateCasesAll]!
+
+  """
+  A list of edges which contains the `StateCasesAll` and cursor to aid in pagination.
+  """
+  edges: [StateCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `StateCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type StateCasesAll {
+  date: String
+  stateName: String
+  stateFipsCode: String
+  confirmedCases: Int
+  deaths: Int
+
+  """
+  Reads a single `FipsCodeState` that is related to this `StateCasesAll`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+}
+
+"""A `StateCasesAll` edge in the connection."""
+type StateCasesAllsEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `FipsCodeCounty` at the end of the edge."""
-  node: FipsCodeCounty
+  """The `StateCasesAll` at the end of the edge."""
+  node: StateCasesAll
 }
 
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
+"""Methods to use when ordering `StateCasesAll`."""
+enum StateCasesAllsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
 
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
+"""
+A condition to be used against `StateCasesAll` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StateCasesAllCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
 
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
 
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""Methods to use when ordering `CountyCasesAll`."""
+enum CountyCasesAllsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  COUNTY_ASC
+  COUNTY_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `CountyCasesAll` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountyCasesAllCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `county` field."""
+  county: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""A `CountyCasesAll` edge in the connection."""
+type CountyCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyCasesAll` at the end of the edge."""
+  node: CountyCasesAll
 }
 
 """A connection to a list of `FipsCodeState` values."""
@@ -307,10 +1004,930 @@ input FipsCodeStateCondition {
   stateGnisid: String
 }
 
+"""A connection to a list of `MsaCasesAll` values."""
+type MsaCasesAllsConnection {
+  """A list of `MsaCasesAll` objects."""
+  nodes: [MsaCasesAll]!
+
+  """
+  A list of edges which contains the `MsaCasesAll` and cursor to aid in pagination.
+  """
+  edges: [MsaCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MsaCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type MsaCasesAll {
+  msdId: String
+  date: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""A `MsaCasesAll` edge in the connection."""
+type MsaCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MsaCasesAll` at the end of the edge."""
+  node: MsaCasesAll
+}
+
+"""Methods to use when ordering `MsaCasesAll`."""
+enum MsaCasesAllsOrderBy {
+  NATURAL
+  MSD_ID_ASC
+  MSD_ID_DESC
+  DATE_ASC
+  DATE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `MsaCasesAll` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MsaCasesAllCondition {
+  """Checks for equality with the object’s `msdId` field."""
+  msdId: String
+
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""A connection to a list of `MsaDefinition` values."""
+type MsaDefinitionsConnection {
+  """A list of `MsaDefinition` objects."""
+  nodes: [MsaDefinition]!
+
+  """
+  A list of edges which contains the `MsaDefinition` and cursor to aid in pagination.
+  """
+  edges: [MsaDefinitionsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MsaDefinition` you could get from the connection."""
+  totalCount: Int!
+}
+
+type MsaDefinition {
+  id: String
+  urlName: String
+  friendly: String
+  stateFipsCode: String
+  countyFipsCode: String
+  state: String
+  stateName: String
+  name: String
+  countyName: String
+  centerState: String
+  centerStateFipsCode: String
+}
+
+"""A `MsaDefinition` edge in the connection."""
+type MsaDefinitionsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MsaDefinition` at the end of the edge."""
+  node: MsaDefinition
+}
+
+"""Methods to use when ordering `MsaDefinition`."""
+enum MsaDefinitionsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  URL_NAME_ASC
+  URL_NAME_DESC
+  FRIENDLY_ASC
+  FRIENDLY_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_ASC
+  STATE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  NAME_ASC
+  NAME_DESC
+  COUNTY_NAME_ASC
+  COUNTY_NAME_DESC
+  CENTER_STATE_ASC
+  CENTER_STATE_DESC
+  CENTER_STATE_FIPS_CODE_ASC
+  CENTER_STATE_FIPS_CODE_DESC
+}
+
+"""
+A condition to be used against `MsaDefinition` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input MsaDefinitionCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+
+  """Checks for equality with the object’s `urlName` field."""
+  urlName: String
+
+  """Checks for equality with the object’s `friendly` field."""
+  friendly: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+
+  """Checks for equality with the object’s `countyName` field."""
+  countyName: String
+
+  """Checks for equality with the object’s `centerState` field."""
+  centerState: String
+
+  """Checks for equality with the object’s `centerStateFipsCode` field."""
+  centerStateFipsCode: String
+}
+
+"""A connection to a list of `StatesHospitalization` values."""
+type StatesHospitalizationsConnection {
+  """A list of `StatesHospitalization` objects."""
+  nodes: [StatesHospitalization]!
+
+  """
+  A list of edges which contains the `StatesHospitalization` and cursor to aid in pagination.
+  """
+  edges: [StatesHospitalizationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `StatesHospitalization` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type StatesHospitalization {
+  date: String
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+  state: String
+  statePostalAbbreviation: String
+  stateName: String
+  stateGnisid: String
+  stateFipsCode: String
+}
+
+"""A `StatesHospitalization` edge in the connection."""
+type StatesHospitalizationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StatesHospitalization` at the end of the edge."""
+  node: StatesHospitalization
+}
+
+"""Methods to use when ordering `StatesHospitalization`."""
+enum StatesHospitalizationsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  ADULT_ICU_BED_USED_ASC
+  ADULT_ICU_BED_USED_DESC
+  IN_ICU_CURRENTLY_ASC
+  IN_ICU_CURRENTLY_DESC
+  HOSPITALIZED_CURRENTLY_ASC
+  HOSPITALIZED_CURRENTLY_DESC
+  ADULT_ICU_BEDS_CAPACITY_ASC
+  ADULT_ICU_BEDS_CAPACITY_DESC
+  INPATIENT_BEDS_USED_ASC
+  INPATIENT_BEDS_USED_DESC
+  INPATIENT_BEDS_CAPACITY_ASC
+  INPATIENT_BEDS_CAPACITY_DESC
+  STATE_ASC
+  STATE_DESC
+  STATE_POSTAL_ABBREVIATION_ASC
+  STATE_POSTAL_ABBREVIATION_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_GNISID_ASC
+  STATE_GNISID_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+}
+
+"""
+A condition to be used against `StatesHospitalization` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input StatesHospitalizationCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `adultIcuBedUsed` field."""
+  adultIcuBedUsed: Int
+
+  """Checks for equality with the object’s `inIcuCurrently` field."""
+  inIcuCurrently: Int
+
+  """Checks for equality with the object’s `hospitalizedCurrently` field."""
+  hospitalizedCurrently: Int
+
+  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
+  adultIcuBedsCapacity: Int
+
+  """Checks for equality with the object’s `inpatientBedsUsed` field."""
+  inpatientBedsUsed: Int
+
+  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
+  inpatientBedsCapacity: Int
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `statePostalAbbreviation` field."""
+  statePostalAbbreviation: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateGnisid` field."""
+  stateGnisid: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+}
+
+"""A connection to a list of `StatesSummary` values."""
+type StatesSummariesConnection {
+  """A list of `StatesSummary` objects."""
+  nodes: [StatesSummary]!
+
+  """
+  A list of edges which contains the `StatesSummary` and cursor to aid in pagination.
+  """
+  edges: [StatesSummariesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `StatesSummary` you could get from the connection."""
+  totalCount: Int!
+}
+
+type StatesSummary {
+  stateName: String
+  stateFipsCode: String
+  confirmedCases: Int
+  confirmedIncrease: Int
+  confirmedIncrease14Days: Int
+  totalTestResults: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  positiveIncrease: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+}
+
+"""A `StatesSummary` edge in the connection."""
+type StatesSummariesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StatesSummary` at the end of the edge."""
+  node: StatesSummary
+}
+
+"""Methods to use when ordering `StatesSummary`."""
+enum StatesSummariesOrderBy {
+  NATURAL
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  CONFIRMED_INCREASE_ASC
+  CONFIRMED_INCREASE_DESC
+  CONFIRMED_INCREASE_14DAYS_ASC
+  CONFIRMED_INCREASE_14DAYS_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  TOTAL_TEST_RESULTS_INCREASE_ASC
+  TOTAL_TEST_RESULTS_INCREASE_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  IN_ICU_CURRENTLY_ASC
+  IN_ICU_CURRENTLY_DESC
+  HOSPITALIZED_CURRENTLY_ASC
+  HOSPITALIZED_CURRENTLY_DESC
+  ADULT_ICU_BEDS_CAPACITY_ASC
+  ADULT_ICU_BEDS_CAPACITY_DESC
+  INPATIENT_BEDS_USED_ASC
+  INPATIENT_BEDS_USED_DESC
+  INPATIENT_BEDS_CAPACITY_ASC
+  INPATIENT_BEDS_CAPACITY_DESC
+}
+
+"""
+A condition to be used against `StatesSummary` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StatesSummaryCondition {
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `confirmedIncrease` field."""
+  confirmedIncrease: Int
+
+  """Checks for equality with the object’s `confirmedIncrease14Days` field."""
+  confirmedIncrease14Days: Int
+
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """
+  Checks for equality with the object’s `totalTestResultsIncrease` field.
+  """
+  totalTestResultsIncrease: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `inIcuCurrently` field."""
+  inIcuCurrently: Int
+
+  """Checks for equality with the object’s `hospitalizedCurrently` field."""
+  hospitalizedCurrently: Int
+
+  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
+  adultIcuBedsCapacity: Int
+
+  """Checks for equality with the object’s `inpatientBedsUsed` field."""
+  inpatientBedsUsed: Int
+
+  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
+  inpatientBedsCapacity: Int
+}
+
+"""A connection to a list of `StatesTesting` values."""
+type StatesTestingsConnection {
+  """A list of `StatesTesting` objects."""
+  nodes: [StatesTesting]!
+
+  """
+  A list of edges which contains the `StatesTesting` and cursor to aid in pagination.
+  """
+  edges: [StatesTestingsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `StatesTesting` you could get from the connection."""
+  totalCount: Int!
+}
+
+type StatesTesting {
+  date: String
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  stateName: String
+  negative: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+  state: String
+  stateFipsCode: String
+}
+
+"""A `StatesTesting` edge in the connection."""
+type StatesTestingsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StatesTesting` at the end of the edge."""
+  node: StatesTesting
+}
+
+"""Methods to use when ordering `StatesTesting`."""
+enum StatesTestingsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  TOTAL_TEST_RESULTS_INCREASE_ASC
+  TOTAL_TEST_RESULTS_INCREASE_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  INCONCLUSIVE_ASC
+  INCONCLUSIVE_DESC
+  INCONCLUSIVE_INCREASE_ASC
+  INCONCLUSIVE_INCREASE_DESC
+  STATE_ASC
+  STATE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+}
+
+"""
+A condition to be used against `StatesTesting` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StatesTestingCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """
+  Checks for equality with the object’s `totalTestResultsIncrease` field.
+  """
+  totalTestResultsIncrease: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `inconclusive` field."""
+  inconclusive: Int
+
+  """Checks for equality with the object’s `inconclusiveIncrease` field."""
+  inconclusiveIncrease: Int
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+}
+
+"""A connection to a list of `UsCasesAll` values."""
+type UsCasesAllsConnection {
+  """A list of `UsCasesAll` objects."""
+  nodes: [UsCasesAll]!
+
+  """
+  A list of edges which contains the `UsCasesAll` and cursor to aid in pagination.
+  """
+  edges: [UsCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `UsCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type UsCasesAll {
+  date: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""A `UsCasesAll` edge in the connection."""
+type UsCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UsCasesAll` at the end of the edge."""
+  node: UsCasesAll
+}
+
+"""Methods to use when ordering `UsCasesAll`."""
+enum UsCasesAllsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `UsCasesAll` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input UsCasesAllCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""A connection to a list of `UsHospitalization` values."""
+type UsHospitalizationsConnection {
+  """A list of `UsHospitalization` objects."""
+  nodes: [UsHospitalization]!
+
+  """
+  A list of edges which contains the `UsHospitalization` and cursor to aid in pagination.
+  """
+  edges: [UsHospitalizationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `UsHospitalization` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type UsHospitalization {
+  date: String
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+}
+
+"""A `UsHospitalization` edge in the connection."""
+type UsHospitalizationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UsHospitalization` at the end of the edge."""
+  node: UsHospitalization
+}
+
+"""Methods to use when ordering `UsHospitalization`."""
+enum UsHospitalizationsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  ADULT_ICU_BED_USED_ASC
+  ADULT_ICU_BED_USED_DESC
+  IN_ICU_CURRENTLY_ASC
+  IN_ICU_CURRENTLY_DESC
+  HOSPITALIZED_CURRENTLY_ASC
+  HOSPITALIZED_CURRENTLY_DESC
+  ADULT_ICU_BEDS_CAPACITY_ASC
+  ADULT_ICU_BEDS_CAPACITY_DESC
+  INPATIENT_BEDS_USED_ASC
+  INPATIENT_BEDS_USED_DESC
+  INPATIENT_BEDS_CAPACITY_ASC
+  INPATIENT_BEDS_CAPACITY_DESC
+}
+
+"""
+A condition to be used against `UsHospitalization` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input UsHospitalizationCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `adultIcuBedUsed` field."""
+  adultIcuBedUsed: Int
+
+  """Checks for equality with the object’s `inIcuCurrently` field."""
+  inIcuCurrently: Int
+
+  """Checks for equality with the object’s `hospitalizedCurrently` field."""
+  hospitalizedCurrently: Int
+
+  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
+  adultIcuBedsCapacity: Int
+
+  """Checks for equality with the object’s `inpatientBedsUsed` field."""
+  inpatientBedsUsed: Int
+
+  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
+  inpatientBedsCapacity: Int
+}
+
+"""A connection to a list of `UsSummary` values."""
+type UsSummariesConnection {
+  """A list of `UsSummary` objects."""
+  nodes: [UsSummary]!
+
+  """
+  A list of edges which contains the `UsSummary` and cursor to aid in pagination.
+  """
+  edges: [UsSummariesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `UsSummary` you could get from the connection."""
+  totalCount: Int!
+}
+
+type UsSummary {
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  negative: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+  confirmedCases: Int
+  confirmedIncrease: Int
+  confirmedIncrease14Days: Int
+}
+
+"""A `UsSummary` edge in the connection."""
+type UsSummariesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UsSummary` at the end of the edge."""
+  node: UsSummary
+}
+
+"""Methods to use when ordering `UsSummary`."""
+enum UsSummariesOrderBy {
+  NATURAL
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  INCONCLUSIVE_ASC
+  INCONCLUSIVE_DESC
+  INCONCLUSIVE_INCREASE_ASC
+  INCONCLUSIVE_INCREASE_DESC
+  ADULT_ICU_BED_USED_ASC
+  ADULT_ICU_BED_USED_DESC
+  IN_ICU_CURRENTLY_ASC
+  IN_ICU_CURRENTLY_DESC
+  HOSPITALIZED_CURRENTLY_ASC
+  HOSPITALIZED_CURRENTLY_DESC
+  ADULT_ICU_BEDS_CAPACITY_ASC
+  ADULT_ICU_BEDS_CAPACITY_DESC
+  INPATIENT_BEDS_USED_ASC
+  INPATIENT_BEDS_USED_DESC
+  INPATIENT_BEDS_CAPACITY_ASC
+  INPATIENT_BEDS_CAPACITY_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  CONFIRMED_INCREASE_ASC
+  CONFIRMED_INCREASE_DESC
+  CONFIRMED_INCREASE_14DAYS_ASC
+  CONFIRMED_INCREASE_14DAYS_DESC
+}
+
+"""
+A condition to be used against `UsSummary` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input UsSummaryCondition {
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `inconclusive` field."""
+  inconclusive: Int
+
+  """Checks for equality with the object’s `inconclusiveIncrease` field."""
+  inconclusiveIncrease: Int
+
+  """Checks for equality with the object’s `adultIcuBedUsed` field."""
+  adultIcuBedUsed: Int
+
+  """Checks for equality with the object’s `inIcuCurrently` field."""
+  inIcuCurrently: Int
+
+  """Checks for equality with the object’s `hospitalizedCurrently` field."""
+  hospitalizedCurrently: Int
+
+  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
+  adultIcuBedsCapacity: Int
+
+  """Checks for equality with the object’s `inpatientBedsUsed` field."""
+  inpatientBedsUsed: Int
+
+  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
+  inpatientBedsCapacity: Int
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `confirmedIncrease` field."""
+  confirmedIncrease: Int
+
+  """Checks for equality with the object’s `confirmedIncrease14Days` field."""
+  confirmedIncrease14Days: Int
+}
+
+"""A connection to a list of `UsTesting` values."""
+type UsTestingsConnection {
+  """A list of `UsTesting` objects."""
+  nodes: [UsTesting]!
+
+  """
+  A list of edges which contains the `UsTesting` and cursor to aid in pagination.
+  """
+  edges: [UsTestingsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `UsTesting` you could get from the connection."""
+  totalCount: Int!
+}
+
+type UsTesting {
+  date: String
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  stateName: String
+  negative: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+}
+
+"""A `UsTesting` edge in the connection."""
+type UsTestingsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UsTesting` at the end of the edge."""
+  node: UsTesting
+}
+
+"""Methods to use when ordering `UsTesting`."""
+enum UsTestingsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  TOTAL_TEST_RESULTS_INCREASE_ASC
+  TOTAL_TEST_RESULTS_INCREASE_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  INCONCLUSIVE_ASC
+  INCONCLUSIVE_DESC
+  INCONCLUSIVE_INCREASE_ASC
+  INCONCLUSIVE_INCREASE_DESC
+}
+
+"""
+A condition to be used against `UsTesting` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input UsTestingCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """
+  Checks for equality with the object’s `totalTestResultsIncrease` field.
+  """
+  totalTestResultsIncrease: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `inconclusive` field."""
+  inconclusive: Int
+
+  """Checks for equality with the object’s `inconclusiveIncrease` field."""
+  inconclusiveIncrease: Int
+}
+
 """
 The root mutation type which contains root level fields which mutate data.
 """
 type Mutation {
+  """Creates a single `CountiesSummary`."""
+  createCountiesSummary(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCountiesSummaryInput!
+  ): CreateCountiesSummaryPayload
+
+  """Creates a single `CountyCasesAll`."""
+  createCountyCasesAll(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCountyCasesAllInput!
+  ): CreateCountyCasesAllPayload
+
   """Creates a single `FipsCodeCounty`."""
   createFipsCodeCounty(
     """
@@ -326,6 +1943,104 @@ type Mutation {
     """
     input: CreateFipsCodeStateInput!
   ): CreateFipsCodeStatePayload
+
+  """Creates a single `MsaCasesAll`."""
+  createMsaCasesAll(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMsaCasesAllInput!
+  ): CreateMsaCasesAllPayload
+
+  """Creates a single `MsaDefinition`."""
+  createMsaDefinition(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMsaDefinitionInput!
+  ): CreateMsaDefinitionPayload
+
+  """Creates a single `StateCasesAll`."""
+  createStateCasesAll(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateStateCasesAllInput!
+  ): CreateStateCasesAllPayload
+
+  """Creates a single `StatesHospitalization`."""
+  createStatesHospitalization(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateStatesHospitalizationInput!
+  ): CreateStatesHospitalizationPayload
+
+  """Creates a single `StatesSummary`."""
+  createStatesSummary(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateStatesSummaryInput!
+  ): CreateStatesSummaryPayload
+
+  """Creates a single `StatesTesting`."""
+  createStatesTesting(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateStatesTestingInput!
+  ): CreateStatesTestingPayload
+
+  """Creates a single `UsCasesAll`."""
+  createUsCasesAll(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUsCasesAllInput!
+  ): CreateUsCasesAllPayload
+
+  """Creates a single `UsHospitalization`."""
+  createUsHospitalization(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUsHospitalizationInput!
+  ): CreateUsHospitalizationPayload
+
+  """Creates a single `UsSummary`."""
+  createUsSummary(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUsSummaryInput!
+  ): CreateUsSummaryPayload
+
+  """Creates a single `UsTesting`."""
+  createUsTesting(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUsTestingInput!
+  ): CreateUsTestingPayload
+
+  """
+  Updates a single `FipsCodeCounty` using its globally unique id and a patch.
+  """
+  updateFipsCodeCounty(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFipsCodeCountyInput!
+  ): UpdateFipsCodeCountyPayload
+
+  """Updates a single `FipsCodeCounty` using a unique key and a patch."""
+  updateFipsCodeCountyByCountyFipsCode(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFipsCodeCountyByCountyFipsCodeInput!
+  ): UpdateFipsCodeCountyPayload
 
   """
   Updates a single `FipsCodeState` using its globally unique id and a patch.
@@ -345,6 +2060,22 @@ type Mutation {
     input: UpdateFipsCodeStateByStateFipsCodeInput!
   ): UpdateFipsCodeStatePayload
 
+  """Deletes a single `FipsCodeCounty` using its globally unique id."""
+  deleteFipsCodeCounty(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFipsCodeCountyInput!
+  ): DeleteFipsCodeCountyPayload
+
+  """Deletes a single `FipsCodeCounty` using a unique key."""
+  deleteFipsCodeCountyByCountyFipsCode(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFipsCodeCountyByCountyFipsCodeInput!
+  ): DeleteFipsCodeCountyPayload
+
   """Deletes a single `FipsCodeState` using its globally unique id."""
   deleteFipsCodeState(
     """
@@ -360,6 +2091,108 @@ type Mutation {
     """
     input: DeleteFipsCodeStateByStateFipsCodeInput!
   ): DeleteFipsCodeStatePayload
+}
+
+"""The output of our create `CountiesSummary` mutation."""
+type CreateCountiesSummaryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `CountiesSummary` that was created by this mutation."""
+  countiesSummary: CountiesSummary
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `CountiesSummary`. May be used by Relay 1."""
+  countiesSummaryEdge(
+    """The method to use when ordering `CountiesSummary`."""
+    orderBy: [CountiesSummariesOrderBy!] = [NATURAL]
+  ): CountiesSummariesEdge
+}
+
+"""All input for the create `CountiesSummary` mutation."""
+input CreateCountiesSummaryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `CountiesSummary` to be created by this mutation."""
+  countiesSummary: CountiesSummaryInput!
+}
+
+"""An input for mutations affecting `CountiesSummary`"""
+input CountiesSummaryInput {
+  stateFipsCode: String
+  countyFipsCode: String
+  state: String
+  county: String
+  confirmedCases: Int
+  deaths: Int
+  test7DayTotal: Int
+  positivity7DayAvg: Float
+  community: String
+  school: String
+  reportDate: String
+  healthwebsites: String
+}
+
+"""The output of our create `CountyCasesAll` mutation."""
+type CreateCountyCasesAllPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `CountyCasesAll` that was created by this mutation."""
+  countyCasesAll: CountyCasesAll
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`.
+  """
+  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
+
+  """An edge for our `CountyCasesAll`. May be used by Relay 1."""
+  countyCasesAllEdge(
+    """The method to use when ordering `CountyCasesAll`."""
+    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
+  ): CountyCasesAllsEdge
+}
+
+"""All input for the create `CountyCasesAll` mutation."""
+input CreateCountyCasesAllInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `CountyCasesAll` to be created by this mutation."""
+  countyCasesAll: CountyCasesAllInput!
+}
+
+"""An input for mutations affecting `CountyCasesAll`"""
+input CountyCasesAllInput {
+  date: String
+  county: String
+  stateName: String
+  stateFipsCode: String
+  countyFipsCode: String
+  confirmedCases: Int
+  deaths: Int
 }
 
 """The output of our create `FipsCodeCounty` mutation."""
@@ -386,7 +2219,7 @@ type CreateFipsCodeCountyPayload {
   """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
   fipsCodeCountyEdge(
     """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [NATURAL]
+    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
   ): FipsCodeCountiesEdge
 }
 
@@ -407,7 +2240,7 @@ input FipsCodeCountyInput {
   summaryLevel: String
   summaryLevelName: String
   stateFipsCode: String
-  countyFipsCode: String
+  countyFipsCode: String!
   countySubdivisionFipsCode: String
   placeFipsCode: String
   consolidatedCityFipsCode: String
@@ -455,6 +2288,571 @@ input FipsCodeStateInput {
   statePostalAbbreviation: String
   stateName: String
   stateGnisid: String
+}
+
+"""The output of our create `MsaCasesAll` mutation."""
+type CreateMsaCasesAllPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MsaCasesAll` that was created by this mutation."""
+  msaCasesAll: MsaCasesAll
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MsaCasesAll`. May be used by Relay 1."""
+  msaCasesAllEdge(
+    """The method to use when ordering `MsaCasesAll`."""
+    orderBy: [MsaCasesAllsOrderBy!] = [NATURAL]
+  ): MsaCasesAllsEdge
+}
+
+"""All input for the create `MsaCasesAll` mutation."""
+input CreateMsaCasesAllInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MsaCasesAll` to be created by this mutation."""
+  msaCasesAll: MsaCasesAllInput!
+}
+
+"""An input for mutations affecting `MsaCasesAll`"""
+input MsaCasesAllInput {
+  msdId: String
+  date: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""The output of our create `MsaDefinition` mutation."""
+type CreateMsaDefinitionPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MsaDefinition` that was created by this mutation."""
+  msaDefinition: MsaDefinition
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MsaDefinition`. May be used by Relay 1."""
+  msaDefinitionEdge(
+    """The method to use when ordering `MsaDefinition`."""
+    orderBy: [MsaDefinitionsOrderBy!] = [NATURAL]
+  ): MsaDefinitionsEdge
+}
+
+"""All input for the create `MsaDefinition` mutation."""
+input CreateMsaDefinitionInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MsaDefinition` to be created by this mutation."""
+  msaDefinition: MsaDefinitionInput!
+}
+
+"""An input for mutations affecting `MsaDefinition`"""
+input MsaDefinitionInput {
+  id: String
+  urlName: String
+  friendly: String
+  stateFipsCode: String
+  countyFipsCode: String
+  state: String
+  stateName: String
+  name: String
+  countyName: String
+  centerState: String
+  centerStateFipsCode: String
+}
+
+"""The output of our create `StateCasesAll` mutation."""
+type CreateStateCasesAllPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `StateCasesAll` that was created by this mutation."""
+  stateCasesAll: StateCasesAll
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeState` that is related to this `StateCasesAll`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """An edge for our `StateCasesAll`. May be used by Relay 1."""
+  stateCasesAllEdge(
+    """The method to use when ordering `StateCasesAll`."""
+    orderBy: [StateCasesAllsOrderBy!] = [NATURAL]
+  ): StateCasesAllsEdge
+}
+
+"""All input for the create `StateCasesAll` mutation."""
+input CreateStateCasesAllInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `StateCasesAll` to be created by this mutation."""
+  stateCasesAll: StateCasesAllInput!
+}
+
+"""An input for mutations affecting `StateCasesAll`"""
+input StateCasesAllInput {
+  date: String
+  stateName: String
+  stateFipsCode: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""The output of our create `StatesHospitalization` mutation."""
+type CreateStatesHospitalizationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `StatesHospitalization` that was created by this mutation."""
+  statesHospitalization: StatesHospitalization
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `StatesHospitalization`. May be used by Relay 1."""
+  statesHospitalizationEdge(
+    """The method to use when ordering `StatesHospitalization`."""
+    orderBy: [StatesHospitalizationsOrderBy!] = [NATURAL]
+  ): StatesHospitalizationsEdge
+}
+
+"""All input for the create `StatesHospitalization` mutation."""
+input CreateStatesHospitalizationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `StatesHospitalization` to be created by this mutation."""
+  statesHospitalization: StatesHospitalizationInput!
+}
+
+"""An input for mutations affecting `StatesHospitalization`"""
+input StatesHospitalizationInput {
+  date: String
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+  state: String
+  statePostalAbbreviation: String
+  stateName: String
+  stateGnisid: String
+  stateFipsCode: String
+}
+
+"""The output of our create `StatesSummary` mutation."""
+type CreateStatesSummaryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `StatesSummary` that was created by this mutation."""
+  statesSummary: StatesSummary
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `StatesSummary`. May be used by Relay 1."""
+  statesSummaryEdge(
+    """The method to use when ordering `StatesSummary`."""
+    orderBy: [StatesSummariesOrderBy!] = [NATURAL]
+  ): StatesSummariesEdge
+}
+
+"""All input for the create `StatesSummary` mutation."""
+input CreateStatesSummaryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `StatesSummary` to be created by this mutation."""
+  statesSummary: StatesSummaryInput!
+}
+
+"""An input for mutations affecting `StatesSummary`"""
+input StatesSummaryInput {
+  stateName: String
+  stateFipsCode: String
+  confirmedCases: Int
+  confirmedIncrease: Int
+  confirmedIncrease14Days: Int
+  totalTestResults: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  positiveIncrease: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+}
+
+"""The output of our create `StatesTesting` mutation."""
+type CreateStatesTestingPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `StatesTesting` that was created by this mutation."""
+  statesTesting: StatesTesting
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `StatesTesting`. May be used by Relay 1."""
+  statesTestingEdge(
+    """The method to use when ordering `StatesTesting`."""
+    orderBy: [StatesTestingsOrderBy!] = [NATURAL]
+  ): StatesTestingsEdge
+}
+
+"""All input for the create `StatesTesting` mutation."""
+input CreateStatesTestingInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `StatesTesting` to be created by this mutation."""
+  statesTesting: StatesTestingInput!
+}
+
+"""An input for mutations affecting `StatesTesting`"""
+input StatesTestingInput {
+  date: String
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  stateName: String
+  negative: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+  state: String
+  stateFipsCode: String
+}
+
+"""The output of our create `UsCasesAll` mutation."""
+type CreateUsCasesAllPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UsCasesAll` that was created by this mutation."""
+  usCasesAll: UsCasesAll
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `UsCasesAll`. May be used by Relay 1."""
+  usCasesAllEdge(
+    """The method to use when ordering `UsCasesAll`."""
+    orderBy: [UsCasesAllsOrderBy!] = [NATURAL]
+  ): UsCasesAllsEdge
+}
+
+"""All input for the create `UsCasesAll` mutation."""
+input CreateUsCasesAllInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UsCasesAll` to be created by this mutation."""
+  usCasesAll: UsCasesAllInput!
+}
+
+"""An input for mutations affecting `UsCasesAll`"""
+input UsCasesAllInput {
+  date: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""The output of our create `UsHospitalization` mutation."""
+type CreateUsHospitalizationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UsHospitalization` that was created by this mutation."""
+  usHospitalization: UsHospitalization
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `UsHospitalization`. May be used by Relay 1."""
+  usHospitalizationEdge(
+    """The method to use when ordering `UsHospitalization`."""
+    orderBy: [UsHospitalizationsOrderBy!] = [NATURAL]
+  ): UsHospitalizationsEdge
+}
+
+"""All input for the create `UsHospitalization` mutation."""
+input CreateUsHospitalizationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UsHospitalization` to be created by this mutation."""
+  usHospitalization: UsHospitalizationInput!
+}
+
+"""An input for mutations affecting `UsHospitalization`"""
+input UsHospitalizationInput {
+  date: String
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+}
+
+"""The output of our create `UsSummary` mutation."""
+type CreateUsSummaryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UsSummary` that was created by this mutation."""
+  usSummary: UsSummary
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `UsSummary`. May be used by Relay 1."""
+  usSummaryEdge(
+    """The method to use when ordering `UsSummary`."""
+    orderBy: [UsSummariesOrderBy!] = [NATURAL]
+  ): UsSummariesEdge
+}
+
+"""All input for the create `UsSummary` mutation."""
+input CreateUsSummaryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UsSummary` to be created by this mutation."""
+  usSummary: UsSummaryInput!
+}
+
+"""An input for mutations affecting `UsSummary`"""
+input UsSummaryInput {
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  negative: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+  confirmedCases: Int
+  confirmedIncrease: Int
+  confirmedIncrease14Days: Int
+}
+
+"""The output of our create `UsTesting` mutation."""
+type CreateUsTestingPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UsTesting` that was created by this mutation."""
+  usTesting: UsTesting
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `UsTesting`. May be used by Relay 1."""
+  usTestingEdge(
+    """The method to use when ordering `UsTesting`."""
+    orderBy: [UsTestingsOrderBy!] = [NATURAL]
+  ): UsTestingsEdge
+}
+
+"""All input for the create `UsTesting` mutation."""
+input CreateUsTestingInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UsTesting` to be created by this mutation."""
+  usTesting: UsTestingInput!
+}
+
+"""An input for mutations affecting `UsTesting`"""
+input UsTestingInput {
+  date: String
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  stateName: String
+  negative: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+}
+
+"""The output of our update `FipsCodeCounty` mutation."""
+type UpdateFipsCodeCountyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeCounty` that was updated by this mutation."""
+  fipsCodeCounty: FipsCodeCounty
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
+  fipsCodeCountyEdge(
+    """The method to use when ordering `FipsCodeCounty`."""
+    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FipsCodeCountiesEdge
+}
+
+"""All input for the `updateFipsCodeCounty` mutation."""
+input UpdateFipsCodeCountyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `FipsCodeCounty` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `FipsCodeCounty` being updated.
+  """
+  fipsCodeCountyPatch: FipsCodeCountyPatch!
+}
+
+"""
+Represents an update to a `FipsCodeCounty`. Fields that are set will be updated.
+"""
+input FipsCodeCountyPatch {
+  summaryLevel: String
+  summaryLevelName: String
+  stateFipsCode: String
+  countyFipsCode: String
+  countySubdivisionFipsCode: String
+  placeFipsCode: String
+  consolidatedCityFipsCode: String
+  areaName: String
+}
+
+"""All input for the `updateFipsCodeCountyByCountyFipsCode` mutation."""
+input UpdateFipsCodeCountyByCountyFipsCodeInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `FipsCodeCounty` being updated.
+  """
+  fipsCodeCountyPatch: FipsCodeCountyPatch!
+  countyFipsCode: String!
 }
 
 """The output of our update `FipsCodeState` mutation."""
@@ -522,6 +2920,59 @@ input UpdateFipsCodeStateByStateFipsCodeInput {
   """
   fipsCodeStatePatch: FipsCodeStatePatch!
   stateFipsCode: String!
+}
+
+"""The output of our delete `FipsCodeCounty` mutation."""
+type DeleteFipsCodeCountyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FipsCodeCounty` that was deleted by this mutation."""
+  fipsCodeCounty: FipsCodeCounty
+  deletedFipsCodeCountyId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
+  fipsCodeCountyEdge(
+    """The method to use when ordering `FipsCodeCounty`."""
+    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FipsCodeCountiesEdge
+}
+
+"""All input for the `deleteFipsCodeCounty` mutation."""
+input DeleteFipsCodeCountyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `FipsCodeCounty` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteFipsCodeCountyByCountyFipsCode` mutation."""
+input DeleteFipsCodeCountyByCountyFipsCodeInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  countyFipsCode: String!
 }
 
 """The output of our delete `FipsCodeState` mutation."""
