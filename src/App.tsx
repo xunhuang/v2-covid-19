@@ -52,10 +52,6 @@ const QueryResultComponent = ({ result }: QueryResultProp) => {
 const ExampleGraph = () => (
   <AdvancedGraph
     title="hey graph"
-    subtitle="hey graph"
-    className="hey graph"
-    showControls={false}
-    yAxisFormatter={(n: number) => ""}
     serieses={[
       {
         series: new DataSeries("hello", [
@@ -64,9 +60,9 @@ const ExampleGraph = () => (
           [1633039407, 100],
         ]),
         color: "red",
-        rightAxis: false,
-        covidspecial: true,
-        showMovingAverage: true,
+        // rightAxis: false,
+        // covidspecial: true,
+        // showMovingAverage: true,
       },
       {
         series: new DataSeries("world", [
@@ -76,8 +72,8 @@ const ExampleGraph = () => (
         ]),
         color: "blue",
         rightAxis: true,
-        covidspecial: true,
-        showMovingAverage: true,
+        // covidspecial: true,
+        // showMovingAverage: true,
       },
     ]}
   />
