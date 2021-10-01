@@ -44,6 +44,7 @@ CREATE TABLE county_cases_all (
     "county_fips_code" text,
     "confirmed_cases" integer,
     "deaths" integer,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code),
     CONSTRAINT fk_county_fips FOREIGN KEY (county_fips_code) REFERENCES fips_code_county (county_fips_code)
 );
 
@@ -55,14 +56,6 @@ CREATE TABLE us_cases_all (
     "deaths" integer
 );
 
-DROP TABLE IF EXISTS msa_cases_all;
-
-CREATE TABLE msa_cases_all (
-    "msd_id" text,
-    "date" text,
-    "confirmed_cases" integer,
-    "deaths" integer
-);
 
 DROP TABLE IF EXISTS states_hospitalization;
 
@@ -78,7 +71,8 @@ CREATE TABLE states_hospitalization (
     "state_postal_abbreviation" text,
     "state_name" text,
     "state_gnisid" text,
-    "state_fips_code" text
+    "state_fips_code" text,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
 DROP TABLE IF EXISTS us_hospitalization;
@@ -108,7 +102,8 @@ CREATE TABLE states_testing (
     "inconclusive" integer,
     "inconclusiveIncrease" integer,
     "state" text,
-    "state_fips_code" text
+    "state_fips_code" text,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
 DROP TABLE IF EXISTS us_testing;
@@ -142,7 +137,8 @@ CREATE TABLE states_summary (
     "hospitalizedCurrently" integer,
     "adult_icu_beds_capacity" integer,
     "inpatient_beds_used" integer,
-    "inpatient_beds_capacity" integer
+    "inpatient_beds_capacity" integer,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
 DROP TABLE IF EXISTS us_summary;
@@ -180,10 +176,12 @@ CREATE TABLE counties_summary (
     "community" text,
     "school" text,
     "report_date" text,
-    "healthwebsites" text
+    "healthwebsites" text,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code),
+    CONSTRAINT fk_county_fips FOREIGN KEY (county_fips_code) REFERENCES fips_code_county (county_fips_code)
 );
 
-DROP TABLE IF EXISTS msa_definition;
+DROP TABLE IF EXISTS msa_definition CASCADE;
 
 CREATE TABLE msa_definition (
     "ID" text,
@@ -196,7 +194,16 @@ CREATE TABLE msa_definition (
     "Name" text,
     "county_name" text,
     "CenterState" text,
-    "center_state_fips_code" text
+    "center_state_fips_code" text,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code),
+    CONSTRAINT fk_county_fips FOREIGN KEY (county_fips_code) REFERENCES fips_code_county (county_fips_code)
 );
 
+DROP TABLE IF EXISTS msa_cases_all;
 
+CREATE TABLE msa_cases_all (
+    "msd_id" text,
+    "date" text,
+    "confirmed_cases" integer,
+    "deaths" integer
+);
