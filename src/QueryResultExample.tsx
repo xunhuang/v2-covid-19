@@ -1,4 +1,3 @@
-import React from "react";
 import { useStatesQuery } from "./generated/graphql";
 
 // Components are typed with props
