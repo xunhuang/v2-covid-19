@@ -283,7 +283,7 @@ function expandSeriesesToMap(serieses: GraphSeriesType[]) {
         let original = {
           ...s,
           series: s.series,
-          // derived: true,
+          derived: true,
           stipple: true,
         };
         result.push(original);
@@ -594,3 +594,33 @@ function useStickyState({
 }
 
 */
+
+export const ExampleGraph = () => (
+  <AdvancedGraph
+    title="hey graph"
+    serieses={[
+      {
+        series: new DataSeries("hello", [
+          [1632891804, 20],
+          [1632978204, 50],
+          [1633039407, 100],
+        ]),
+        color: "red",
+        // rightAxis: false,
+        // covidspecial: true,
+        // showMovingAverage: true,
+      },
+      {
+        series: new DataSeries("world", [
+          [1632891804, 10],
+          [1632978204, 40],
+          [1633039407, 110],
+        ]),
+        color: "blue",
+        rightAxis: true,
+        // covidspecial: true,
+        // showMovingAverage: true,
+      },
+    ]}
+  />
+);

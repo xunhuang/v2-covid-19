@@ -2,7 +2,6 @@
 // const moment = require("moment");
 import { Moment } from "moment";
 import moment from "moment";
-import { printSchema } from "graphql";
 const { linearRegression } = require("simple-statistics");
 const ma = require("moving-averages");
 
