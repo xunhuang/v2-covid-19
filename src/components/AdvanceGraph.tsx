@@ -1,27 +1,16 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
-
 import React from "react";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { Line } from "recharts";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import { scaleSymlog } from "d3-scale";
-// import { DateRangeSlider } from "./DateRangeSlider";
+import { makeStyles } from "@material-ui/core/styles";
+import { DateRangeSlider } from "./DateRangeSlider";
 import { SectionHeader } from "./SectionHeader";
 import Typography from "@material-ui/core/Typography";
-
 import { DataSeries } from "./DataSeries";
-import { strictEqual } from "assert";
 import { Chart, LineSpec, RefLineType } from "./Chart";
+import { Legend } from "./Legend";
+
 var shortNumber = require("short-number");
 const moment = require("moment");
-// const logScale = scaleSymlog().domain([0, "dataMax"]);
 
-const TimestampFormatter = (timestamp: number) =>
-  moment.unix(timestamp).format("M/D");
-
-interface GraphSeriesType {
+export interface GraphSeriesType {
   series: DataSeries;
   derived?: boolean;
   color?: string;
@@ -31,72 +20,6 @@ interface GraphSeriesType {
   stipple?: boolean;
   initial?: string;
 }
-/*
-
-export enum axisScales {
-  linear = "Linear",
-  log = "Log",
-}
-
-  */
-
-const useLegendStyles = makeStyles((theme) => ({
-  serieses: {
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    display: "flex",
-    flexWrap: "wrap",
-    maxWidth: "500px",
-  },
-  series: {
-    border: "none",
-    color: fade(theme.palette.action.active, 0.12),
-    "&.selected": {
-      backgroundColor: "initial",
-      color: fade(theme.palette.action.active, 0.8),
-      fontWeight: "initial",
-    },
-    height: "initial",
-    textTransform: "initial",
-  },
-  icon: {
-    paddingRight: "4px",
-  },
-}));
-
-type LegendProps = {
-  spec: [string, GraphSeriesType][];
-  selected: string[];
-  onChange: (desired: any) => void;
-};
-
-const Legend = (props: LegendProps) => {
-  const classes = useLegendStyles();
-  return (
-    <ToggleButtonGroup
-      value={props.selected}
-      onChange={(event, desired) => props.onChange(desired)}
-      className={classes.serieses}
-    >
-      {props.spec
-        .filter(([label, { derived }]) => !derived)
-        .map(([label, { color, stipple }]) => (
-          <ToggleButton
-            key={label}
-            value={label}
-            classes={{ root: classes.series, selected: "selected" }}
-          >
-            <span
-              className={classes.icon}
-              style={props.selected.includes(label) ? { color } : {}}
-            >
-              {stipple ? "···" : "—"}
-            </span>
-            {label}
-          </ToggleButton>
-        ))}
-    </ToggleButtonGroup>
-  );
-};
 
 const useStyles = makeStyles((theme) => ({
   options: {
@@ -138,36 +61,17 @@ export const AdvancedGraph = (props: AdvancedGraphProps) => {
 
   const classes = useStyles();
 
-  console.log(showControls);
+  const [showPastDays, setShowPastDays] = React.useState(30);
 
-  // const handleSliderValueChange = (value) => {
-  //   let newstate = { ...state, showPastDays: value };
-  //   setStateSticky(newstate);
-  // };
+  const handleSliderValueChange = (value: number) => {
+    setShowPastDays(value);
+  };
 
-  // function filterData(data) {
-  //   const cutoff = moment().subtract(state.showPastDays, "days").unix();
-  //   const future = moment().add(14, "days").unix();
-  //   return data.filter((p) => p.timestamp >= cutoff && p.timestamp <= future);
-  // }
-
-  // const scales = new Map([
-  //   [
-  //     "Linear",
-  //     {
-  //       label: "Linear",
-  //       scale: "Linear",
-  //     },
-  //   ],
-  //   [
-  //     "Log",
-  //     {
-  //       label: "Log",
-  //       scale: "Log",
-  //     },
-  //   ],
-  // ]);
-  // const scale = state.verticalScale;
+  function filterData(data: any[]) {
+    const cutoff = moment().subtract(showPastDays, "days").unix();
+    const future = moment().add(14, "days").unix();
+    return data.filter((p) => p.timestamp >= cutoff && p.timestamp <= future);
+  }
 
   // Expands series that are supposed to have trend lines into an entry for the
   // original series and one for the trend line.
@@ -229,23 +133,18 @@ export const AdvancedGraph = (props: AdvancedGraphProps) => {
           </Typography>
         </SectionHeader>
       )}
-      YOYOY
       {showControls && (
         <div className={classes.options}>
-          {/* <Display
-            displays={scales}
-            selected={scale}
-            onChange={handleLogScaleToggle}
-          />
           <div className={classes.slider}>
             <div>Date:</div>
             <DateRangeSlider
               currentDate={moment()}
               startDate={moment("02/01/2020", "MM/DD/YYYY")}
               valueChanged={handleSliderValueChange}
-              defaultValue={state.showPastDays}
+              defaultValue={showPastDays}
+              minOffset={30}
             />
-          </div> */}
+          </div>
           <div className={classes.expand} />
           <Legend
             spec={seriesesAndEnvelopes}
@@ -257,9 +156,7 @@ export const AdvancedGraph = (props: AdvancedGraphProps) => {
         </div>
       )}
       <Chart
-        // data={filterData(data)}
-        data={data}
-        // scale={scales.get(scale).scale}
+        data={filterData(data)}
         timestampFormatter={timestampFormatter}
         yAxisFormatter={yAxisFormatter}
         specs={seriesesAndEnvelopes
@@ -295,7 +192,6 @@ function expandSeriesesToMap(serieses: GraphSeriesType[]) {
       let main = {
         ...s,
         series: s_for_display.dropLastPoint(),
-        // derived: true,
         stipple: false,
       };
       let last = {
