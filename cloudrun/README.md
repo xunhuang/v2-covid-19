@@ -1,0 +1,1 @@
+gcloud run deploy helloworld --source . --region us-central1

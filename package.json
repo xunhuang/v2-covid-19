@@ -37,6 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "db": "npx postgraphile -c postgres://postgres:mysecretpassword@localhost:5432 --watch --enhance-graphiql --dynamic-json   --export-schema-graphql schema.graphql -o ",
+    "db_2": "npx postgraphile -c postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe  --watch --enhance-graphiql --dynamic-json   --export-schema-graphql schema.graphql -o",
     "generate": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
