@@ -9,6 +9,8 @@ b="\
  fips_code_state(state_fips_code,state_postal_abbreviation,state_name,state_gnisid)^covid-special-states.csv\
  fips_code_county(summary_level,summary_level_name,state_fips_code,county_fips_code,county_subdivision_fips_code,place_fips_code,consolidated_city_fips_code,area_name)^mydataset2.fips_code_county.csv\
  fips_code_county(summary_level,summary_level_name,state_fips_code,county_fips_code,county_subdivision_fips_code,place_fips_code,consolidated_city_fips_code,area_name)^covid-special-counties.csv\
+ county_population(county_fips_code,state_fips_code,pop2020)^county-population-2020.csv\
+ state_population(state_fips_code,pop2020)^state-population-2020.csv\
  msa_definition(\"ID\",\"UrlName\",\"Friendly\",state_fips_code,county_fips_code,state,state_name,\"Name\",county_name,\"CenterState\",center_state_fips_code)^mydataset2.msa_definition_clean.csv\
  county_cases_all(date,county,state_name,state_fips_code,county_fips_code,confirmed_cases,deaths)^official.county-cases-all.csv\
  state_cases_all(date,state_name,state_fips_code,confirmed_cases,deaths)^official.state-cases-all.csv\
@@ -45,4 +47,6 @@ init_views() {
    psql -Atx $CONN < views/county_summary_view.sql 
 }
 
+#init_schema 
+#init_data
 init_views

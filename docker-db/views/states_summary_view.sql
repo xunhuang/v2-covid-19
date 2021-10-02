@@ -1,13 +1,12 @@
-DROP MATERIALIZED VIEW if exists state_summary_view;
-CREATE MATERIALIZED VIEW state_summary_view AS 
-
+DROP MATERIALIZED VIEW if exists state_summary_view;CREATE MATERIALIZED VIEW state_summary_view AS
 SELECT
     cases.state_name as state_name,
     cases.state_fips_code as state_fips_code,
     cases.confirmed_cases as confirmed_cases,
     cases.confirmed_increase as confirmed_increase,
     cases.deaths as deaths,
-    cases.deaths_increase as death_increase
+    cases.deaths_increase as death_increase,
+    pop.pop2020 as population
 from
     (
         SELECT
@@ -28,7 +27,13 @@ from
                 from
                     state_cases_all
             )
-    ) as cases ;
-
-comment on materialized view state_summary_view is 
-E'@foreignKey (state_fips_code) references fips_code_state(state_fips_code)'
+    ) as cases
+    JOIN (
+        select
+            state_fips_code,
+            pop2020
+        from
+            state_population
+    ) as pop ON cases.state_fips_code = pop.state_fips_code;
+    
+comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references fips_code_state(state_fips_code)'

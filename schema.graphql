@@ -75,6 +75,35 @@ type Query implements Node {
     condition: CountyCasesAllCondition
   ): CountyCasesAllsConnection
 
+  """Reads and enables pagination through a set of `CountyPopulation`."""
+  allCountyPopulations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyPopulation`."""
+    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyPopulationCondition
+  ): CountyPopulationsConnection
+
   """Reads and enables pagination through a set of `CountySummaryView`."""
   allCountySummaryViews(
     """Only read the first `n` values of the set."""
@@ -248,6 +277,35 @@ type Query implements Node {
     """
     condition: StateCasesAllCondition
   ): StateCasesAllsConnection
+
+  """Reads and enables pagination through a set of `StatePopulation`."""
+  allStatePopulations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatePopulation`."""
+    orderBy: [StatePopulationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatePopulationCondition
+  ): StatePopulationsConnection
 
   """Reads and enables pagination through a set of `StateSummaryView`."""
   allStateSummaryViews(
@@ -509,35 +567,6 @@ type Query implements Node {
     """
     condition: UsTestingCondition
   ): UsTestingsConnection
-
-  """Reads and enables pagination through a set of `V2`."""
-  allV2S(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `V2`."""
-    orderBy: [V2SOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: V2Condition
-  ): V2SConnection
   fipsCodeCountyByCountyFipsCode(countyFipsCode: String!): FipsCodeCounty
   fipsCodeStateByStateFipsCode(stateFipsCode: String!): FipsCodeState
 
@@ -648,6 +677,64 @@ type FipsCodeState implements Node {
     """
     condition: FipsCodeCountyCondition
   ): FipsCodeCountiesConnection!
+
+  """Reads and enables pagination through a set of `CountyPopulation`."""
+  countyPopulationsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyPopulation`."""
+    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyPopulationCondition
+  ): CountyPopulationsConnection!
+
+  """Reads and enables pagination through a set of `StatePopulation`."""
+  statePopulationsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatePopulation`."""
+    orderBy: [StatePopulationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatePopulationCondition
+  ): StatePopulationsConnection!
 
   """Reads and enables pagination through a set of `StateCasesAll`."""
   stateCasesAllsByStateFipsCode(
@@ -918,6 +1005,35 @@ type FipsCodeCounty implements Node {
   """
   fipsCodeStateByStateFipsCode: FipsCodeState
 
+  """Reads and enables pagination through a set of `CountyPopulation`."""
+  countyPopulationsByCountyFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyPopulation`."""
+    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyPopulationCondition
+  ): CountyPopulationsConnection!
+
   """Reads and enables pagination through a set of `CountyCasesAll`."""
   countyCasesAllsByCountyFipsCode(
     """Only read the first `n` values of the set."""
@@ -1035,6 +1151,94 @@ type FipsCodeCounty implements Node {
   ): CountySummaryViewsConnection!
 }
 
+"""A connection to a list of `CountyPopulation` values."""
+type CountyPopulationsConnection {
+  """A list of `CountyPopulation` objects."""
+  nodes: [CountyPopulation]!
+
+  """
+  A list of edges which contains the `CountyPopulation` and cursor to aid in pagination.
+  """
+  edges: [CountyPopulationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CountyPopulation` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type CountyPopulation {
+  countyFipsCode: String
+  stateFipsCode: String
+  pop2020: Int
+
+  """
+  Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`.
+  """
+  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
+
+  """
+  Reads a single `FipsCodeState` that is related to this `CountyPopulation`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+}
+
+"""A `CountyPopulation` edge in the connection."""
+type CountyPopulationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyPopulation` at the end of the edge."""
+  node: CountyPopulation
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Methods to use when ordering `CountyPopulation`."""
+enum CountyPopulationsOrderBy {
+  NATURAL
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  POP2020_ASC
+  POP2020_DESC
+}
+
+"""
+A condition to be used against `CountyPopulation` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountyPopulationCondition {
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `pop2020` field."""
+  pop2020: Int
+}
+
 """A connection to a list of `CountyCasesAll` values."""
 type CountyCasesAllsConnection {
   """A list of `CountyCasesAll` objects."""
@@ -1079,24 +1283,6 @@ type CountyCasesAllsEdge {
 
   """The `CountyCasesAll` at the end of the edge."""
   node: CountyCasesAll
-}
-
-"""A location in a connection that can be used for resuming pagination."""
-scalar Cursor
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
 }
 
 """Methods to use when ordering `CountyCasesAll`."""
@@ -1485,6 +1671,65 @@ input FipsCodeCountyCondition {
 
   """Checks for equality with the object’s `areaName` field."""
   areaName: String
+}
+
+"""A connection to a list of `StatePopulation` values."""
+type StatePopulationsConnection {
+  """A list of `StatePopulation` objects."""
+  nodes: [StatePopulation]!
+
+  """
+  A list of edges which contains the `StatePopulation` and cursor to aid in pagination.
+  """
+  edges: [StatePopulationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `StatePopulation` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type StatePopulation {
+  stateFipsCode: String
+  pop2020: Int
+
+  """
+  Reads a single `FipsCodeState` that is related to this `StatePopulation`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+}
+
+"""A `StatePopulation` edge in the connection."""
+type StatePopulationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StatePopulation` at the end of the edge."""
+  node: StatePopulation
+}
+
+"""Methods to use when ordering `StatePopulation`."""
+enum StatePopulationsOrderBy {
+  NATURAL
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  POP2020_ASC
+  POP2020_DESC
+}
+
+"""
+A condition to be used against `StatePopulation` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StatePopulationCondition {
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `pop2020` field."""
+  pop2020: Int
 }
 
 """A connection to a list of `StateCasesAll` values."""
@@ -1957,6 +2202,7 @@ type StateSummaryView {
   confirmedIncrease: Int
   deaths: Int
   deathIncrease: Int
+  population: Int
 
   """
   Reads a single `FipsCodeState` that is related to this `StateSummaryView`.
@@ -1988,6 +2234,8 @@ enum StateSummaryViewsOrderBy {
   DEATHS_DESC
   DEATH_INCREASE_ASC
   DEATH_INCREASE_DESC
+  POPULATION_ASC
+  POPULATION_DESC
 }
 
 """
@@ -2012,6 +2260,9 @@ input StateSummaryViewCondition {
 
   """Checks for equality with the object’s `deathIncrease` field."""
   deathIncrease: Int
+
+  """Checks for equality with the object’s `population` field."""
+  population: Int
 }
 
 """A `CountiesSummary` edge in the connection."""
@@ -2584,87 +2835,6 @@ input UsTestingCondition {
   inconclusiveIncrease: Int
 }
 
-"""A connection to a list of `V2` values."""
-type V2SConnection {
-  """A list of `V2` objects."""
-  nodes: [V2]!
-
-  """
-  A list of edges which contains the `V2` and cursor to aid in pagination.
-  """
-  edges: [V2SEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `V2` you could get from the connection."""
-  totalCount: Int!
-}
-
-type V2 {
-  stateName: String
-  countyName: String
-  countyFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  deaths: Int
-  deathIncrease: Int
-}
-
-"""A `V2` edge in the connection."""
-type V2SEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `V2` at the end of the edge."""
-  node: V2
-}
-
-"""Methods to use when ordering `V2`."""
-enum V2SOrderBy {
-  NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
-}
-
-"""
-A condition to be used against `V2` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input V2Condition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
-}
-
 """
 The root mutation type which contains root level fields which mutate data.
 """
@@ -2684,6 +2854,14 @@ type Mutation {
     """
     input: CreateCountyCasesAllInput!
   ): CreateCountyCasesAllPayload
+
+  """Creates a single `CountyPopulation`."""
+  createCountyPopulation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCountyPopulationInput!
+  ): CreateCountyPopulationPayload
 
   """Creates a single `FipsCodeCounty`."""
   createFipsCodeCounty(
@@ -2724,6 +2902,14 @@ type Mutation {
     """
     input: CreateStateCasesAllInput!
   ): CreateStateCasesAllPayload
+
+  """Creates a single `StatePopulation`."""
+  createStatePopulation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateStatePopulationInput!
+  ): CreateStatePopulationPayload
 
   """Creates a single `StatesHospitalization`."""
   createStatesHospitalization(
@@ -2965,6 +3151,58 @@ input CountyCasesAllInput {
   countyFipsCode: String
   confirmedCases: Int
   deaths: Int
+}
+
+"""The output of our create `CountyPopulation` mutation."""
+type CreateCountyPopulationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `CountyPopulation` that was created by this mutation."""
+  countyPopulation: CountyPopulation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`.
+  """
+  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
+
+  """
+  Reads a single `FipsCodeState` that is related to this `CountyPopulation`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """An edge for our `CountyPopulation`. May be used by Relay 1."""
+  countyPopulationEdge(
+    """The method to use when ordering `CountyPopulation`."""
+    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
+  ): CountyPopulationsEdge
+}
+
+"""All input for the create `CountyPopulation` mutation."""
+input CreateCountyPopulationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `CountyPopulation` to be created by this mutation."""
+  countyPopulation: CountyPopulationInput!
+}
+
+"""An input for mutations affecting `CountyPopulation`"""
+input CountyPopulationInput {
+  countyFipsCode: String
+  stateFipsCode: String
+  pop2020: Int
 }
 
 """The output of our create `FipsCodeCounty` mutation."""
@@ -3212,6 +3450,52 @@ input StateCasesAllInput {
   stateFipsCode: String
   confirmedCases: Int
   deaths: Int
+}
+
+"""The output of our create `StatePopulation` mutation."""
+type CreateStatePopulationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `StatePopulation` that was created by this mutation."""
+  statePopulation: StatePopulation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `FipsCodeState` that is related to this `StatePopulation`.
+  """
+  fipsCodeStateByStateFipsCode: FipsCodeState
+
+  """An edge for our `StatePopulation`. May be used by Relay 1."""
+  statePopulationEdge(
+    """The method to use when ordering `StatePopulation`."""
+    orderBy: [StatePopulationsOrderBy!] = [NATURAL]
+  ): StatePopulationsEdge
+}
+
+"""All input for the create `StatePopulation` mutation."""
+input CreateStatePopulationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `StatePopulation` to be created by this mutation."""
+  statePopulation: StatePopulationInput!
+}
+
+"""An input for mutations affecting `StatePopulation`"""
+input StatePopulationInput {
+  stateFipsCode: String
+  pop2020: Int
 }
 
 """The output of our create `StatesHospitalization` mutation."""

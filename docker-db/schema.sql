@@ -23,7 +23,23 @@ CREATE TABLE fips_code_county (
     CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
-DROP TABLE IF EXISTS state_cases_all;
+DROP TABLE IF EXISTS county_population CASCADE;
+CREATE TABLE county_population (
+    "county_fips_code" text,
+    "state_fips_code" text,
+    "pop2020" INT,
+    CONSTRAINT fk_county_fips FOREIGN KEY (county_fips_code) REFERENCES fips_code_county (county_fips_code),
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
+);
+
+DROP TABLE IF EXISTS state_population CASCADE;
+CREATE TABLE state_population (
+    "state_fips_code" text,
+    "pop2020" INT,
+    CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
+);
+
+DROP TABLE IF EXISTS state_cases_all CASCADE;
 
 CREATE TABLE state_cases_all (
     "date" text,
@@ -34,7 +50,7 @@ CREATE TABLE state_cases_all (
     CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
-DROP TABLE IF EXISTS county_cases_all;
+DROP TABLE IF EXISTS county_cases_all CASCADE;
 
 CREATE TABLE county_cases_all (
     "date" text,
@@ -48,14 +64,13 @@ CREATE TABLE county_cases_all (
     CONSTRAINT fk_county_fips FOREIGN KEY (county_fips_code) REFERENCES fips_code_county (county_fips_code)
 );
 
-DROP TABLE IF EXISTS us_cases_all;
+DROP TABLE IF EXISTS us_cases_all CASCADE;
 
 CREATE TABLE us_cases_all (
     "date" text,
     "confirmed_cases" integer,
     "deaths" integer
 );
-
 
 DROP TABLE IF EXISTS states_hospitalization;
 
