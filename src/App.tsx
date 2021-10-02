@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { ExampleGraph } from "./components/AdvanceGraph";
-import { QueryResultExample } from "./QueryResultExample";
+// import { ExampleGraph } from "./components/AdvanceGraph";
+// import { QueryResultExample } from "./QueryResultExample";
 import { FullDiv } from "./styles/HomeStyles";
 import { UsCasesGraph } from "./UsCasesGraph";
 
@@ -14,10 +14,10 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
         <FullDiv>
           <UsCasesGraph />
         </FullDiv>
-        <FullDiv>
+        {/* <FullDiv>
           <ExampleGraph></ExampleGraph>
-        </FullDiv>
-        <QueryResultExample />
+        </FullDiv> */}
+        {/* <QueryResultExample /> */}
       </header>
     </div>
   );

@@ -25,10 +25,24 @@ b="\
 
 CONN=postgres://postgres:mysecretpassword@localhost/postgres
 # CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
-psql -Atx $CONN < schema.sql
+
+init_schema () {
+   psql -Atx $CONN < schema.sql
+}
+
+init_data() {
 for i in $b; do 
     IFS='^' read table file <<< "${i}"
     echo ----
     echo "${table}  " and " ${file}"
     psql -Atx $CONN -c "\copy $table from '$file' with delimiter as ',' csv header quote as '\"' "
 done
+}
+
+init_views() {
+   psql -Atx $CONN < views/us_summary.sql
+   psql -Atx $CONN < views/states_summary_view.sql 
+   psql -Atx $CONN < views/county_summary_view.sql 
+}
+
+init_views
