@@ -1,0 +1,13 @@
+query USStatesCasesTable {
+  allStateSummaryViews {
+    nodes {
+      stateName
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      population
+    }
+  }
+}

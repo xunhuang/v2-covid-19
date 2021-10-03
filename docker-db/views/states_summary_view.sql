@@ -28,7 +28,7 @@ from
                     state_cases_all
             )
     ) as cases
-    JOIN (
+    LEFT OUTER JOIN (
         select
             state_fips_code,
             pop2020

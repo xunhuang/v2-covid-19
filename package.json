@@ -68,10 +68,12 @@
     "@types/material-ui": "^0.21.9",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-select": "^4.0.17",
+    "@types/react-table": "^7.7.5",
     "@types/react-tap-event-plugin": "^0.0.31",
     "dayjs": "^1.10.6",
     "graphql": "^15.6.0",
     "react-device-detect": "^2.0.0",
+    "react-table": "^7.7.0",
     "short-number": "^1.0.7",
     "simple-statistics": "^7.7.0"
   }

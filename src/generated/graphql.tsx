@@ -12,12 +12,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A floating point number that requires more precision than IEEE 754 binary 64 */
-  BigFloat: any;
   /** A location in a connection that can be used for resuming pagination. */
   Cursor: any;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: any;
 };
 
 /** A connection to a list of `CountiesSummary` values. */
@@ -78,6 +74,10 @@ export type CountiesSummary = {
   county?: Maybe<Scalars['String']>;
   countyFipsCode?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountiesSummary`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `CountiesSummary`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   healthwebsites?: Maybe<Scalars['String']>;
   positivity7DayAvg?: Maybe<Scalars['Float']>;
   reportDate?: Maybe<Scalars['String']>;
@@ -141,6 +141,10 @@ export type CountyCasesAll = {
   countyFipsCode?: Maybe<Scalars['String']>;
   date?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `CountyCasesAll`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
 };
@@ -218,6 +222,145 @@ export enum CountyCasesAllsOrderBy {
   StateNameDesc = 'STATE_NAME_DESC'
 }
 
+export type CountyPopulation = {
+  __typename?: 'CountyPopulation';
+  countyFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `CountyPopulation`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  pop2020?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/**
+ * A condition to be used against `CountyPopulation` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type CountyPopulationCondition = {
+  /** Checks for equality with the object’s `countyFipsCode` field. */
+  countyFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `pop2020` field. */
+  pop2020?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateFipsCode` field. */
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** An input for mutations affecting `CountyPopulation` */
+export type CountyPopulationInput = {
+  countyFipsCode?: Maybe<Scalars['String']>;
+  pop2020?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `CountyPopulation` values. */
+export type CountyPopulationsConnection = {
+  __typename?: 'CountyPopulationsConnection';
+  /** A list of edges which contains the `CountyPopulation` and cursor to aid in pagination. */
+  edges: Array<CountyPopulationsEdge>;
+  /** A list of `CountyPopulation` objects. */
+  nodes: Array<Maybe<CountyPopulation>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `CountyPopulation` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `CountyPopulation` edge in the connection. */
+export type CountyPopulationsEdge = {
+  __typename?: 'CountyPopulationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `CountyPopulation` at the end of the edge. */
+  node?: Maybe<CountyPopulation>;
+};
+
+/** Methods to use when ordering `CountyPopulation`. */
+export enum CountyPopulationsOrderBy {
+  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
+  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
+  Natural = 'NATURAL',
+  Pop2020Asc = 'POP2020_ASC',
+  Pop2020Desc = 'POP2020_DESC',
+  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC'
+}
+
+export type CountySummaryView = {
+  __typename?: 'CountySummaryView';
+  confirmedCases?: Maybe<Scalars['Int']>;
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  countyFipsCode?: Maybe<Scalars['String']>;
+  countyName?: Maybe<Scalars['String']>;
+  deathIncrease?: Maybe<Scalars['Int']>;
+  deaths?: Maybe<Scalars['Int']>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountySummaryView`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  stateName?: Maybe<Scalars['String']>;
+};
+
+/**
+ * A condition to be used against `CountySummaryView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type CountySummaryViewCondition = {
+  /** Checks for equality with the object’s `confirmedCases` field. */
+  confirmedCases?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `confirmedIncrease` field. */
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `countyFipsCode` field. */
+  countyFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `countyName` field. */
+  countyName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `deathIncrease` field. */
+  deathIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `deaths` field. */
+  deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateName` field. */
+  stateName?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `CountySummaryView` values. */
+export type CountySummaryViewsConnection = {
+  __typename?: 'CountySummaryViewsConnection';
+  /** A list of edges which contains the `CountySummaryView` and cursor to aid in pagination. */
+  edges: Array<CountySummaryViewsEdge>;
+  /** A list of `CountySummaryView` objects. */
+  nodes: Array<Maybe<CountySummaryView>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `CountySummaryView` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `CountySummaryView` edge in the connection. */
+export type CountySummaryViewsEdge = {
+  __typename?: 'CountySummaryViewsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `CountySummaryView` at the end of the edge. */
+  node?: Maybe<CountySummaryView>;
+};
+
+/** Methods to use when ordering `CountySummaryView`. */
+export enum CountySummaryViewsOrderBy {
+  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
+  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
+  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
+  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
+  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
+  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
+  CountyNameAsc = 'COUNTY_NAME_ASC',
+  CountyNameDesc = 'COUNTY_NAME_DESC',
+  DeathsAsc = 'DEATHS_ASC',
+  DeathsDesc = 'DEATHS_DESC',
+  DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
+  DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  Natural = 'NATURAL',
+  StateNameAsc = 'STATE_NAME_ASC',
+  StateNameDesc = 'STATE_NAME_DESC'
+}
+
 /** All input for the create `CountiesSummary` mutation. */
 export type CreateCountiesSummaryInput = {
   /**
@@ -241,6 +384,10 @@ export type CreateCountiesSummaryPayload = {
   countiesSummary?: Maybe<CountiesSummary>;
   /** An edge for our `CountiesSummary`. May be used by Relay 1. */
   countiesSummaryEdge?: Maybe<CountiesSummariesEdge>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountiesSummary`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `CountiesSummary`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -274,6 +421,10 @@ export type CreateCountyCasesAllPayload = {
   countyCasesAll?: Maybe<CountyCasesAll>;
   /** An edge for our `CountyCasesAll`. May be used by Relay 1. */
   countyCasesAllEdge?: Maybe<CountyCasesAllsEdge>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `CountyCasesAll`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -284,37 +435,41 @@ export type CreateCountyCasesAllPayloadCountyCasesAllEdgeArgs = {
   orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
 };
 
-/** All input for the create `Customer` mutation. */
-export type CreateCustomerInput = {
+/** All input for the create `CountyPopulation` mutation. */
+export type CreateCountyPopulationInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `Customer` to be created by this mutation. */
-  customer: CustomerInput;
+  /** The `CountyPopulation` to be created by this mutation. */
+  countyPopulation: CountyPopulationInput;
 };
 
-/** The output of our create `Customer` mutation. */
-export type CreateCustomerPayload = {
-  __typename?: 'CreateCustomerPayload';
+/** The output of our create `CountyPopulation` mutation. */
+export type CreateCountyPopulationPayload = {
+  __typename?: 'CreateCountyPopulationPayload';
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `Customer` that was created by this mutation. */
-  customer?: Maybe<Customer>;
-  /** An edge for our `Customer`. May be used by Relay 1. */
-  customerEdge?: Maybe<CustomersEdge>;
+  /** The `CountyPopulation` that was created by this mutation. */
+  countyPopulation?: Maybe<CountyPopulation>;
+  /** An edge for our `CountyPopulation`. May be used by Relay 1. */
+  countyPopulationEdge?: Maybe<CountyPopulationsEdge>;
+  /** Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `CountyPopulation`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
 
 
-/** The output of our create `Customer` mutation. */
-export type CreateCustomerPayloadCustomerEdgeArgs = {
-  orderBy?: Maybe<Array<CustomersOrderBy>>;
+/** The output of our create `CountyPopulation` mutation. */
+export type CreateCountyPopulationPayloadCountyPopulationEdgeArgs = {
+  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
 };
 
 /** All input for the create `FipsCodeCounty` mutation. */
@@ -385,39 +540,6 @@ export type CreateFipsCodeStatePayloadFipsCodeStateEdgeArgs = {
   orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
 };
 
-/** All input for the create `JsonTable` mutation. */
-export type CreateJsonTableInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `JsonTable` to be created by this mutation. */
-  jsonTable: JsonTableInput;
-};
-
-/** The output of our create `JsonTable` mutation. */
-export type CreateJsonTablePayload = {
-  __typename?: 'CreateJsonTablePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `JsonTable` that was created by this mutation. */
-  jsonTable?: Maybe<JsonTable>;
-  /** An edge for our `JsonTable`. May be used by Relay 1. */
-  jsonTableEdge?: Maybe<JsonTablesEdge>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our create `JsonTable` mutation. */
-export type CreateJsonTablePayloadJsonTableEdgeArgs = {
-  orderBy?: Maybe<Array<JsonTablesOrderBy>>;
-};
-
 /** All input for the create `MsaCasesAll` mutation. */
 export type CreateMsaCasesAllInput = {
   /**
@@ -470,6 +592,10 @@ export type CreateMsaDefinitionPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeCounty` that is related to this `MsaDefinition`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `MsaDefinition`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** The `MsaDefinition` that was created by this mutation. */
   msaDefinition?: Maybe<MsaDefinition>;
   /** An edge for our `MsaDefinition`. May be used by Relay 1. */
@@ -503,6 +629,8 @@ export type CreateStateCasesAllPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StateCasesAll`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `StateCasesAll` that was created by this mutation. */
@@ -515,6 +643,41 @@ export type CreateStateCasesAllPayload = {
 /** The output of our create `StateCasesAll` mutation. */
 export type CreateStateCasesAllPayloadStateCasesAllEdgeArgs = {
   orderBy?: Maybe<Array<StateCasesAllsOrderBy>>;
+};
+
+/** All input for the create `StatePopulation` mutation. */
+export type CreateStatePopulationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `StatePopulation` to be created by this mutation. */
+  statePopulation: StatePopulationInput;
+};
+
+/** The output of our create `StatePopulation` mutation. */
+export type CreateStatePopulationPayload = {
+  __typename?: 'CreateStatePopulationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatePopulation`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `StatePopulation` that was created by this mutation. */
+  statePopulation?: Maybe<StatePopulation>;
+  /** An edge for our `StatePopulation`. May be used by Relay 1. */
+  statePopulationEdge?: Maybe<StatePopulationsEdge>;
+};
+
+
+/** The output of our create `StatePopulation` mutation. */
+export type CreateStatePopulationPayloadStatePopulationEdgeArgs = {
+  orderBy?: Maybe<Array<StatePopulationsOrderBy>>;
 };
 
 /** All input for the create `StatesHospitalization` mutation. */
@@ -536,6 +699,8 @@ export type CreateStatesHospitalizationPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatesHospitalization`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `StatesHospitalization` that was created by this mutation. */
@@ -569,6 +734,8 @@ export type CreateStatesSummaryPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatesSummary`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `StatesSummary` that was created by this mutation. */
@@ -602,6 +769,8 @@ export type CreateStatesTestingPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatesTesting`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `StatesTesting` that was created by this mutation. */
@@ -614,39 +783,6 @@ export type CreateStatesTestingPayload = {
 /** The output of our create `StatesTesting` mutation. */
 export type CreateStatesTestingPayloadStatesTestingEdgeArgs = {
   orderBy?: Maybe<Array<StatesTestingsOrderBy>>;
-};
-
-/** All input for the create `T` mutation. */
-export type CreateTInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `T` to be created by this mutation. */
-  t: TInput;
-};
-
-/** The output of our create `T` mutation. */
-export type CreateTPayload = {
-  __typename?: 'CreateTPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `T` that was created by this mutation. */
-  t?: Maybe<T>;
-  /** An edge for our `T`. May be used by Relay 1. */
-  tEdge?: Maybe<TsEdge>;
-};
-
-
-/** The output of our create `T` mutation. */
-export type CreateTPayloadTEdgeArgs = {
-  orderBy?: Maybe<Array<TsOrderBy>>;
 };
 
 /** All input for the create `UsCasesAll` mutation. */
@@ -680,39 +816,6 @@ export type CreateUsCasesAllPayload = {
 /** The output of our create `UsCasesAll` mutation. */
 export type CreateUsCasesAllPayloadUsCasesAllEdgeArgs = {
   orderBy?: Maybe<Array<UsCasesAllsOrderBy>>;
-};
-
-/** All input for the create `UsCounty` mutation. */
-export type CreateUsCountyInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `UsCounty` to be created by this mutation. */
-  usCounty: UsCountyInput;
-};
-
-/** The output of our create `UsCounty` mutation. */
-export type CreateUsCountyPayload = {
-  __typename?: 'CreateUsCountyPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `UsCounty` that was created by this mutation. */
-  usCounty?: Maybe<UsCounty>;
-  /** An edge for our `UsCounty`. May be used by Relay 1. */
-  usCountyEdge?: Maybe<UsCountiesEdge>;
-};
-
-
-/** The output of our create `UsCounty` mutation. */
-export type CreateUsCountyPayloadUsCountyEdgeArgs = {
-  orderBy?: Maybe<Array<UsCountiesOrderBy>>;
 };
 
 /** All input for the create `UsHospitalization` mutation. */
@@ -814,185 +917,50 @@ export type CreateUsTestingPayloadUsTestingEdgeArgs = {
   orderBy?: Maybe<Array<UsTestingsOrderBy>>;
 };
 
-/** All input for the create `Yotable2` mutation. */
-export type CreateYotable2Input = {
+/** All input for the `deleteFipsCodeCountyByCountyFipsCode` mutation. */
+export type DeleteFipsCodeCountyByCountyFipsCodeInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `Yotable2` to be created by this mutation. */
-  yotable2: Yotable2Input;
+  countyFipsCode: Scalars['String'];
 };
 
-/** The output of our create `Yotable2` mutation. */
-export type CreateYotable2Payload = {
-  __typename?: 'CreateYotable2Payload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `Yotable2` that was created by this mutation. */
-  yotable2?: Maybe<Yotable2>;
-  /** An edge for our `Yotable2`. May be used by Relay 1. */
-  yotable2Edge?: Maybe<Yotable2SEdge>;
-};
-
-
-/** The output of our create `Yotable2` mutation. */
-export type CreateYotable2PayloadYotable2EdgeArgs = {
-  orderBy?: Maybe<Array<Yotable2SOrderBy>>;
-};
-
-/** All input for the create `Yotable` mutation. */
-export type CreateYotableInput = {
+/** All input for the `deleteFipsCodeCounty` mutation. */
+export type DeleteFipsCodeCountyInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `Yotable` to be created by this mutation. */
-  yotable: YotableInput;
-};
-
-/** The output of our create `Yotable` mutation. */
-export type CreateYotablePayload = {
-  __typename?: 'CreateYotablePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `Yotable` that was created by this mutation. */
-  yotable?: Maybe<Yotable>;
-  /** An edge for our `Yotable`. May be used by Relay 1. */
-  yotableEdge?: Maybe<YotablesEdge>;
-};
-
-
-/** The output of our create `Yotable` mutation. */
-export type CreateYotablePayloadYotableEdgeArgs = {
-  orderBy?: Maybe<Array<YotablesOrderBy>>;
-};
-
-export type Customer = Node & {
-  __typename?: 'Customer';
-  comment?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  /** The globally unique `ID` which will identify a single `FipsCodeCounty` to be deleted. */
   nodeId: Scalars['ID'];
 };
 
-/**
- * A condition to be used against `Customer` object types. All fields are tested
- * for equality and combined with a logical ‘and.’
- */
-export type CustomerCondition = {
-  /** Checks for equality with the object’s `comment` field. */
-  comment?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `id` field. */
-  id?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `name` field. */
-  name?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `Customer` */
-export type CustomerInput = {
-  comment?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  name: Scalars['String'];
-};
-
-/** Represents an update to a `Customer`. Fields that are set will be updated. */
-export type CustomerPatch = {
-  comment?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** A connection to a list of `Customer` values. */
-export type CustomersConnection = {
-  __typename?: 'CustomersConnection';
-  /** A list of edges which contains the `Customer` and cursor to aid in pagination. */
-  edges: Array<CustomersEdge>;
-  /** A list of `Customer` objects. */
-  nodes: Array<Maybe<Customer>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `Customer` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `Customer` edge in the connection. */
-export type CustomersEdge = {
-  __typename?: 'CustomersEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `Customer` at the end of the edge. */
-  node?: Maybe<Customer>;
-};
-
-/** Methods to use when ordering `Customer`. */
-export enum CustomersOrderBy {
-  CommentAsc = 'COMMENT_ASC',
-  CommentDesc = 'COMMENT_DESC',
-  IdAsc = 'ID_ASC',
-  IdDesc = 'ID_DESC',
-  NameAsc = 'NAME_ASC',
-  NameDesc = 'NAME_DESC',
-  Natural = 'NATURAL',
-  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
-  PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
-}
-
-/** All input for the `deleteCustomerById` mutation. */
-export type DeleteCustomerByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-};
-
-/** All input for the `deleteCustomer` mutation. */
-export type DeleteCustomerInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `Customer` to be deleted. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our delete `Customer` mutation. */
-export type DeleteCustomerPayload = {
-  __typename?: 'DeleteCustomerPayload';
+/** The output of our delete `FipsCodeCounty` mutation. */
+export type DeleteFipsCodeCountyPayload = {
+  __typename?: 'DeleteFipsCodeCountyPayload';
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `Customer` that was deleted by this mutation. */
-  customer?: Maybe<Customer>;
-  /** An edge for our `Customer`. May be used by Relay 1. */
-  customerEdge?: Maybe<CustomersEdge>;
-  deletedCustomerId?: Maybe<Scalars['ID']>;
+  deletedFipsCodeCountyId?: Maybe<Scalars['ID']>;
+  /** The `FipsCodeCounty` that was deleted by this mutation. */
+  fipsCodeCounty?: Maybe<FipsCodeCounty>;
+  /** An edge for our `FipsCodeCounty`. May be used by Relay 1. */
+  fipsCodeCountyEdge?: Maybe<FipsCodeCountiesEdge>;
+  /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
 
 
-/** The output of our delete `Customer` mutation. */
-export type DeleteCustomerPayloadCustomerEdgeArgs = {
-  orderBy?: Maybe<Array<CustomersOrderBy>>;
+/** The output of our delete `FipsCodeCounty` mutation. */
+export type DeleteFipsCodeCountyPayloadFipsCodeCountyEdgeArgs = {
+  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
 };
 
 /** All input for the `deleteFipsCodeStateByStateFipsCode` mutation. */
@@ -1039,94 +1007,6 @@ export type DeleteFipsCodeStatePayloadFipsCodeStateEdgeArgs = {
   orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
 };
 
-/** All input for the `deleteJsonTableById` mutation. */
-export type DeleteJsonTableByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-};
-
-/** All input for the `deleteJsonTable` mutation. */
-export type DeleteJsonTableInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `JsonTable` to be deleted. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our delete `JsonTable` mutation. */
-export type DeleteJsonTablePayload = {
-  __typename?: 'DeleteJsonTablePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  deletedJsonTableId?: Maybe<Scalars['ID']>;
-  /** The `JsonTable` that was deleted by this mutation. */
-  jsonTable?: Maybe<JsonTable>;
-  /** An edge for our `JsonTable`. May be used by Relay 1. */
-  jsonTableEdge?: Maybe<JsonTablesEdge>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our delete `JsonTable` mutation. */
-export type DeleteJsonTablePayloadJsonTableEdgeArgs = {
-  orderBy?: Maybe<Array<JsonTablesOrderBy>>;
-};
-
-/** All input for the `deleteYotableById` mutation. */
-export type DeleteYotableByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-};
-
-/** All input for the `deleteYotable` mutation. */
-export type DeleteYotableInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `Yotable` to be deleted. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our delete `Yotable` mutation. */
-export type DeleteYotablePayload = {
-  __typename?: 'DeleteYotablePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  deletedYotableId?: Maybe<Scalars['ID']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `Yotable` that was deleted by this mutation. */
-  yotable?: Maybe<Yotable>;
-  /** An edge for our `Yotable`. May be used by Relay 1. */
-  yotableEdge?: Maybe<YotablesEdge>;
-};
-
-
-/** The output of our delete `Yotable` mutation. */
-export type DeleteYotablePayloadYotableEdgeArgs = {
-  orderBy?: Maybe<Array<YotablesOrderBy>>;
-};
-
 /** A connection to a list of `FipsCodeCounty` values. */
 export type FipsCodeCountiesConnection = {
   __typename?: 'FipsCodeCountiesConnection';
@@ -1162,6 +1042,8 @@ export enum FipsCodeCountiesOrderBy {
   Natural = 'NATURAL',
   PlaceFipsCodeAsc = 'PLACE_FIPS_CODE_ASC',
   PlaceFipsCodeDesc = 'PLACE_FIPS_CODE_DESC',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   SummaryLevelAsc = 'SUMMARY_LEVEL_ASC',
@@ -1170,18 +1052,85 @@ export enum FipsCodeCountiesOrderBy {
   SummaryLevelNameDesc = 'SUMMARY_LEVEL_NAME_DESC'
 }
 
-export type FipsCodeCounty = {
+export type FipsCodeCounty = Node & {
   __typename?: 'FipsCodeCounty';
   areaName?: Maybe<Scalars['String']>;
   consolidatedCityFipsCode?: Maybe<Scalars['String']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `CountiesSummary`. */
+  countiesSummariesByCountyFipsCode: CountiesSummariesConnection;
+  /** Reads and enables pagination through a set of `CountyCasesAll`. */
+  countyCasesAllsByCountyFipsCode: CountyCasesAllsConnection;
+  countyFipsCode: Scalars['String'];
+  /** Reads and enables pagination through a set of `CountyPopulation`. */
+  countyPopulationsByCountyFipsCode: CountyPopulationsConnection;
   countySubdivisionFipsCode?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  countySummaryViewsByCountyFipsCode: CountySummaryViewsConnection;
   /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
   fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  /** Reads and enables pagination through a set of `MsaDefinition`. */
+  msaDefinitionsByCountyFipsCode: MsaDefinitionsConnection;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
   placeFipsCode?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   summaryLevel?: Maybe<Scalars['String']>;
   summaryLevelName?: Maybe<Scalars['String']>;
+};
+
+
+export type FipsCodeCountyCountiesSummariesByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountiesSummaryCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountiesSummariesOrderBy>>;
+};
+
+
+export type FipsCodeCountyCountyCasesAllsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
+};
+
+
+export type FipsCodeCountyCountyPopulationsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyPopulationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
+};
+
+
+export type FipsCodeCountyCountySummaryViewsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
+
+export type FipsCodeCountyMsaDefinitionsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaDefinitionCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaDefinitionsOrderBy>>;
 };
 
 /**
@@ -1211,6 +1160,18 @@ export type FipsCodeCountyCondition = {
 export type FipsCodeCountyInput = {
   areaName?: Maybe<Scalars['String']>;
   consolidatedCityFipsCode?: Maybe<Scalars['String']>;
+  countyFipsCode: Scalars['String'];
+  countySubdivisionFipsCode?: Maybe<Scalars['String']>;
+  placeFipsCode?: Maybe<Scalars['String']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+  summaryLevel?: Maybe<Scalars['String']>;
+  summaryLevelName?: Maybe<Scalars['String']>;
+};
+
+/** Represents an update to a `FipsCodeCounty`. Fields that are set will be updated. */
+export type FipsCodeCountyPatch = {
+  areaName?: Maybe<Scalars['String']>;
+  consolidatedCityFipsCode?: Maybe<Scalars['String']>;
   countyFipsCode?: Maybe<Scalars['String']>;
   countySubdivisionFipsCode?: Maybe<Scalars['String']>;
   placeFipsCode?: Maybe<Scalars['String']>;
@@ -1221,14 +1182,67 @@ export type FipsCodeCountyInput = {
 
 export type FipsCodeState = Node & {
   __typename?: 'FipsCodeState';
+  /** Reads and enables pagination through a set of `CountiesSummary`. */
+  countiesSummariesByStateFipsCode: CountiesSummariesConnection;
+  /** Reads and enables pagination through a set of `CountyCasesAll`. */
+  countyCasesAllsByStateFipsCode: CountyCasesAllsConnection;
+  /** Reads and enables pagination through a set of `CountyPopulation`. */
+  countyPopulationsByStateFipsCode: CountyPopulationsConnection;
   /** Reads and enables pagination through a set of `FipsCodeCounty`. */
   fipsCodeCountiesByStateFipsCode: FipsCodeCountiesConnection;
+  /** Reads and enables pagination through a set of `MsaDefinition`. */
+  msaDefinitionsByStateFipsCode: MsaDefinitionsConnection;
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars['ID'];
+  /** Reads and enables pagination through a set of `StateCasesAll`. */
+  stateCasesAllsByStateFipsCode: StateCasesAllsConnection;
   stateFipsCode: Scalars['String'];
   stateGnisid?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `StatePopulation`. */
+  statePopulationsByStateFipsCode: StatePopulationsConnection;
   statePostalAbbreviation?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `StateSummaryView`. */
+  stateSummaryViewsByStateFipsCode: StateSummaryViewsConnection;
+  /** Reads and enables pagination through a set of `StatesHospitalization`. */
+  statesHospitalizationsByStateFipsCode: StatesHospitalizationsConnection;
+  /** Reads and enables pagination through a set of `StatesSummary`. */
+  statesSummariesByStateFipsCode: StatesSummariesConnection;
+  /** Reads and enables pagination through a set of `StatesTesting`. */
+  statesTestingsByStateFipsCode: StatesTestingsConnection;
+};
+
+
+export type FipsCodeStateCountiesSummariesByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountiesSummaryCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountiesSummariesOrderBy>>;
+};
+
+
+export type FipsCodeStateCountyCasesAllsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
+};
+
+
+export type FipsCodeStateCountyPopulationsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyPopulationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
 };
 
 
@@ -1240,6 +1254,83 @@ export type FipsCodeStateFipsCodeCountiesByStateFipsCodeArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
+};
+
+
+export type FipsCodeStateMsaDefinitionsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaDefinitionCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaDefinitionsOrderBy>>;
+};
+
+
+export type FipsCodeStateStateCasesAllsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateCasesAllsOrderBy>>;
+};
+
+
+export type FipsCodeStateStatePopulationsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatePopulationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatePopulationsOrderBy>>;
+};
+
+
+export type FipsCodeStateStateSummaryViewsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateSummaryViewsOrderBy>>;
+};
+
+
+export type FipsCodeStateStatesHospitalizationsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatesHospitalizationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatesHospitalizationsOrderBy>>;
+};
+
+
+export type FipsCodeStateStatesSummariesByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatesSummaryCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatesSummariesOrderBy>>;
+};
+
+
+export type FipsCodeStateStatesTestingsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatesTestingCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatesTestingsOrderBy>>;
 };
 
 /**
@@ -1308,98 +1399,6 @@ export enum FipsCodeStatesOrderBy {
   StateNameDesc = 'STATE_NAME_DESC',
   StatePostalAbbreviationAsc = 'STATE_POSTAL_ABBREVIATION_ASC',
   StatePostalAbbreviationDesc = 'STATE_POSTAL_ABBREVIATION_DESC'
-}
-
-export type JsonTable = Node & {
-  __typename?: 'JsonTable';
-  boolCol?: Maybe<Scalars['Boolean']>;
-  floatCol?: Maybe<Scalars['BigFloat']>;
-  id: Scalars['String'];
-  intCol?: Maybe<Scalars['Int']>;
-  jsonCol?: Maybe<Scalars['JSON']>;
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'];
-  strCol?: Maybe<Scalars['String']>;
-};
-
-/**
- * A condition to be used against `JsonTable` object types. All fields are tested
- * for equality and combined with a logical ‘and.’
- */
-export type JsonTableCondition = {
-  /** Checks for equality with the object’s `boolCol` field. */
-  boolCol?: Maybe<Scalars['Boolean']>;
-  /** Checks for equality with the object’s `floatCol` field. */
-  floatCol?: Maybe<Scalars['BigFloat']>;
-  /** Checks for equality with the object’s `id` field. */
-  id?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `intCol` field. */
-  intCol?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `jsonCol` field. */
-  jsonCol?: Maybe<Scalars['JSON']>;
-  /** Checks for equality with the object’s `strCol` field. */
-  strCol?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `JsonTable` */
-export type JsonTableInput = {
-  boolCol?: Maybe<Scalars['Boolean']>;
-  floatCol?: Maybe<Scalars['BigFloat']>;
-  id: Scalars['String'];
-  intCol?: Maybe<Scalars['Int']>;
-  jsonCol?: Maybe<Scalars['JSON']>;
-  strCol?: Maybe<Scalars['String']>;
-};
-
-/** Represents an update to a `JsonTable`. Fields that are set will be updated. */
-export type JsonTablePatch = {
-  boolCol?: Maybe<Scalars['Boolean']>;
-  floatCol?: Maybe<Scalars['BigFloat']>;
-  id?: Maybe<Scalars['String']>;
-  intCol?: Maybe<Scalars['Int']>;
-  jsonCol?: Maybe<Scalars['JSON']>;
-  strCol?: Maybe<Scalars['String']>;
-};
-
-/** A connection to a list of `JsonTable` values. */
-export type JsonTablesConnection = {
-  __typename?: 'JsonTablesConnection';
-  /** A list of edges which contains the `JsonTable` and cursor to aid in pagination. */
-  edges: Array<JsonTablesEdge>;
-  /** A list of `JsonTable` objects. */
-  nodes: Array<Maybe<JsonTable>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `JsonTable` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `JsonTable` edge in the connection. */
-export type JsonTablesEdge = {
-  __typename?: 'JsonTablesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `JsonTable` at the end of the edge. */
-  node?: Maybe<JsonTable>;
-};
-
-/** Methods to use when ordering `JsonTable`. */
-export enum JsonTablesOrderBy {
-  BoolColAsc = 'BOOL_COL_ASC',
-  BoolColDesc = 'BOOL_COL_DESC',
-  FloatColAsc = 'FLOAT_COL_ASC',
-  FloatColDesc = 'FLOAT_COL_DESC',
-  IdAsc = 'ID_ASC',
-  IdDesc = 'ID_DESC',
-  IntColAsc = 'INT_COL_ASC',
-  IntColDesc = 'INT_COL_DESC',
-  JsonColAsc = 'JSON_COL_ASC',
-  JsonColDesc = 'JSON_COL_DESC',
-  Natural = 'NATURAL',
-  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
-  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
-  StrColAsc = 'STR_COL_ASC',
-  StrColDesc = 'STR_COL_DESC'
 }
 
 export type MsaCasesAll = {
@@ -1474,6 +1473,10 @@ export type MsaDefinition = {
   centerStateFipsCode?: Maybe<Scalars['String']>;
   countyFipsCode?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeCounty` that is related to this `MsaDefinition`. */
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
+  /** Reads a single `FipsCodeState` that is related to this `MsaDefinition`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   friendly?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -1583,74 +1586,50 @@ export type Mutation = {
   createCountiesSummary?: Maybe<CreateCountiesSummaryPayload>;
   /** Creates a single `CountyCasesAll`. */
   createCountyCasesAll?: Maybe<CreateCountyCasesAllPayload>;
-  /** Creates a single `Customer`. */
-  createCustomer?: Maybe<CreateCustomerPayload>;
+  /** Creates a single `CountyPopulation`. */
+  createCountyPopulation?: Maybe<CreateCountyPopulationPayload>;
   /** Creates a single `FipsCodeCounty`. */
   createFipsCodeCounty?: Maybe<CreateFipsCodeCountyPayload>;
   /** Creates a single `FipsCodeState`. */
   createFipsCodeState?: Maybe<CreateFipsCodeStatePayload>;
-  /** Creates a single `JsonTable`. */
-  createJsonTable?: Maybe<CreateJsonTablePayload>;
   /** Creates a single `MsaCasesAll`. */
   createMsaCasesAll?: Maybe<CreateMsaCasesAllPayload>;
   /** Creates a single `MsaDefinition`. */
   createMsaDefinition?: Maybe<CreateMsaDefinitionPayload>;
   /** Creates a single `StateCasesAll`. */
   createStateCasesAll?: Maybe<CreateStateCasesAllPayload>;
+  /** Creates a single `StatePopulation`. */
+  createStatePopulation?: Maybe<CreateStatePopulationPayload>;
   /** Creates a single `StatesHospitalization`. */
   createStatesHospitalization?: Maybe<CreateStatesHospitalizationPayload>;
   /** Creates a single `StatesSummary`. */
   createStatesSummary?: Maybe<CreateStatesSummaryPayload>;
   /** Creates a single `StatesTesting`. */
   createStatesTesting?: Maybe<CreateStatesTestingPayload>;
-  /** Creates a single `T`. */
-  createT?: Maybe<CreateTPayload>;
   /** Creates a single `UsCasesAll`. */
   createUsCasesAll?: Maybe<CreateUsCasesAllPayload>;
-  /** Creates a single `UsCounty`. */
-  createUsCounty?: Maybe<CreateUsCountyPayload>;
   /** Creates a single `UsHospitalization`. */
   createUsHospitalization?: Maybe<CreateUsHospitalizationPayload>;
   /** Creates a single `UsSummary`. */
   createUsSummary?: Maybe<CreateUsSummaryPayload>;
   /** Creates a single `UsTesting`. */
   createUsTesting?: Maybe<CreateUsTestingPayload>;
-  /** Creates a single `Yotable`. */
-  createYotable?: Maybe<CreateYotablePayload>;
-  /** Creates a single `Yotable2`. */
-  createYotable2?: Maybe<CreateYotable2Payload>;
-  /** Deletes a single `Customer` using its globally unique id. */
-  deleteCustomer?: Maybe<DeleteCustomerPayload>;
-  /** Deletes a single `Customer` using a unique key. */
-  deleteCustomerById?: Maybe<DeleteCustomerPayload>;
+  /** Deletes a single `FipsCodeCounty` using its globally unique id. */
+  deleteFipsCodeCounty?: Maybe<DeleteFipsCodeCountyPayload>;
+  /** Deletes a single `FipsCodeCounty` using a unique key. */
+  deleteFipsCodeCountyByCountyFipsCode?: Maybe<DeleteFipsCodeCountyPayload>;
   /** Deletes a single `FipsCodeState` using its globally unique id. */
   deleteFipsCodeState?: Maybe<DeleteFipsCodeStatePayload>;
   /** Deletes a single `FipsCodeState` using a unique key. */
   deleteFipsCodeStateByStateFipsCode?: Maybe<DeleteFipsCodeStatePayload>;
-  /** Deletes a single `JsonTable` using its globally unique id. */
-  deleteJsonTable?: Maybe<DeleteJsonTablePayload>;
-  /** Deletes a single `JsonTable` using a unique key. */
-  deleteJsonTableById?: Maybe<DeleteJsonTablePayload>;
-  /** Deletes a single `Yotable` using its globally unique id. */
-  deleteYotable?: Maybe<DeleteYotablePayload>;
-  /** Deletes a single `Yotable` using a unique key. */
-  deleteYotableById?: Maybe<DeleteYotablePayload>;
-  /** Updates a single `Customer` using its globally unique id and a patch. */
-  updateCustomer?: Maybe<UpdateCustomerPayload>;
-  /** Updates a single `Customer` using a unique key and a patch. */
-  updateCustomerById?: Maybe<UpdateCustomerPayload>;
+  /** Updates a single `FipsCodeCounty` using its globally unique id and a patch. */
+  updateFipsCodeCounty?: Maybe<UpdateFipsCodeCountyPayload>;
+  /** Updates a single `FipsCodeCounty` using a unique key and a patch. */
+  updateFipsCodeCountyByCountyFipsCode?: Maybe<UpdateFipsCodeCountyPayload>;
   /** Updates a single `FipsCodeState` using its globally unique id and a patch. */
   updateFipsCodeState?: Maybe<UpdateFipsCodeStatePayload>;
   /** Updates a single `FipsCodeState` using a unique key and a patch. */
   updateFipsCodeStateByStateFipsCode?: Maybe<UpdateFipsCodeStatePayload>;
-  /** Updates a single `JsonTable` using its globally unique id and a patch. */
-  updateJsonTable?: Maybe<UpdateJsonTablePayload>;
-  /** Updates a single `JsonTable` using a unique key and a patch. */
-  updateJsonTableById?: Maybe<UpdateJsonTablePayload>;
-  /** Updates a single `Yotable` using its globally unique id and a patch. */
-  updateYotable?: Maybe<UpdateYotablePayload>;
-  /** Updates a single `Yotable` using a unique key and a patch. */
-  updateYotableById?: Maybe<UpdateYotablePayload>;
 };
 
 
@@ -1667,8 +1646,8 @@ export type MutationCreateCountyCasesAllArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateCustomerArgs = {
-  input: CreateCustomerInput;
+export type MutationCreateCountyPopulationArgs = {
+  input: CreateCountyPopulationInput;
 };
 
 
@@ -1681,12 +1660,6 @@ export type MutationCreateFipsCodeCountyArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateFipsCodeStateArgs = {
   input: CreateFipsCodeStateInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateJsonTableArgs = {
-  input: CreateJsonTableInput;
 };
 
 
@@ -1709,6 +1682,12 @@ export type MutationCreateStateCasesAllArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateStatePopulationArgs = {
+  input: CreateStatePopulationInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateStatesHospitalizationArgs = {
   input: CreateStatesHospitalizationInput;
 };
@@ -1727,20 +1706,8 @@ export type MutationCreateStatesTestingArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateTArgs = {
-  input: CreateTInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateUsCasesAllArgs = {
   input: CreateUsCasesAllInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateUsCountyArgs = {
-  input: CreateUsCountyInput;
 };
 
 
@@ -1763,26 +1730,14 @@ export type MutationCreateUsTestingArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateYotableArgs = {
-  input: CreateYotableInput;
+export type MutationDeleteFipsCodeCountyArgs = {
+  input: DeleteFipsCodeCountyInput;
 };
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateYotable2Args = {
-  input: CreateYotable2Input;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteCustomerArgs = {
-  input: DeleteCustomerInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteCustomerByIdArgs = {
-  input: DeleteCustomerByIdInput;
+export type MutationDeleteFipsCodeCountyByCountyFipsCodeArgs = {
+  input: DeleteFipsCodeCountyByCountyFipsCodeInput;
 };
 
 
@@ -1799,38 +1754,14 @@ export type MutationDeleteFipsCodeStateByStateFipsCodeArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteJsonTableArgs = {
-  input: DeleteJsonTableInput;
+export type MutationUpdateFipsCodeCountyArgs = {
+  input: UpdateFipsCodeCountyInput;
 };
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteJsonTableByIdArgs = {
-  input: DeleteJsonTableByIdInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteYotableArgs = {
-  input: DeleteYotableInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteYotableByIdArgs = {
-  input: DeleteYotableByIdInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateCustomerArgs = {
-  input: UpdateCustomerInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateCustomerByIdArgs = {
-  input: UpdateCustomerByIdInput;
+export type MutationUpdateFipsCodeCountyByCountyFipsCodeArgs = {
+  input: UpdateFipsCodeCountyByCountyFipsCodeInput;
 };
 
 
@@ -1843,30 +1774,6 @@ export type MutationUpdateFipsCodeStateArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateFipsCodeStateByStateFipsCodeArgs = {
   input: UpdateFipsCodeStateByStateFipsCodeInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateJsonTableArgs = {
-  input: UpdateJsonTableInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateJsonTableByIdArgs = {
-  input: UpdateJsonTableByIdInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateYotableArgs = {
-  input: UpdateYotableInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateYotableByIdArgs = {
-  input: UpdateYotableByIdInput;
 };
 
 /** An object with a globally unique `ID`. */
@@ -1895,51 +1802,46 @@ export type Query = Node & {
   allCountiesSummaries?: Maybe<CountiesSummariesConnection>;
   /** Reads and enables pagination through a set of `CountyCasesAll`. */
   allCountyCasesAlls?: Maybe<CountyCasesAllsConnection>;
-  /** Reads and enables pagination through a set of `Customer`. */
-  allCustomers?: Maybe<CustomersConnection>;
+  /** Reads and enables pagination through a set of `CountyPopulation`. */
+  allCountyPopulations?: Maybe<CountyPopulationsConnection>;
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  allCountySummaryViews?: Maybe<CountySummaryViewsConnection>;
   /** Reads and enables pagination through a set of `FipsCodeCounty`. */
   allFipsCodeCounties?: Maybe<FipsCodeCountiesConnection>;
   /** Reads and enables pagination through a set of `FipsCodeState`. */
   allFipsCodeStates?: Maybe<FipsCodeStatesConnection>;
-  /** Reads and enables pagination through a set of `JsonTable`. */
-  allJsonTables?: Maybe<JsonTablesConnection>;
   /** Reads and enables pagination through a set of `MsaCasesAll`. */
   allMsaCasesAlls?: Maybe<MsaCasesAllsConnection>;
   /** Reads and enables pagination through a set of `MsaDefinition`. */
   allMsaDefinitions?: Maybe<MsaDefinitionsConnection>;
   /** Reads and enables pagination through a set of `StateCasesAll`. */
   allStateCasesAlls?: Maybe<StateCasesAllsConnection>;
+  /** Reads and enables pagination through a set of `StatePopulation`. */
+  allStatePopulations?: Maybe<StatePopulationsConnection>;
+  /** Reads and enables pagination through a set of `StateSummaryView`. */
+  allStateSummaryViews?: Maybe<StateSummaryViewsConnection>;
   /** Reads and enables pagination through a set of `StatesHospitalization`. */
   allStatesHospitalizations?: Maybe<StatesHospitalizationsConnection>;
   /** Reads and enables pagination through a set of `StatesSummary`. */
   allStatesSummaries?: Maybe<StatesSummariesConnection>;
   /** Reads and enables pagination through a set of `StatesTesting`. */
   allStatesTestings?: Maybe<StatesTestingsConnection>;
-  /** Reads and enables pagination through a set of `T`. */
-  allTs?: Maybe<TsConnection>;
   /** Reads and enables pagination through a set of `UsCasesAll`. */
   allUsCasesAlls?: Maybe<UsCasesAllsConnection>;
-  /** Reads and enables pagination through a set of `UsCounty`. */
-  allUsCounties?: Maybe<UsCountiesConnection>;
   /** Reads and enables pagination through a set of `UsHospitalization`. */
   allUsHospitalizations?: Maybe<UsHospitalizationsConnection>;
   /** Reads and enables pagination through a set of `UsSummary`. */
   allUsSummaries?: Maybe<UsSummariesConnection>;
+  /** Reads and enables pagination through a set of `UsSummaryView`. */
+  allUsSummaryViews?: Maybe<UsSummaryViewsConnection>;
   /** Reads and enables pagination through a set of `UsTesting`. */
   allUsTestings?: Maybe<UsTestingsConnection>;
-  /** Reads and enables pagination through a set of `Yotable2`. */
-  allYotable2S?: Maybe<Yotable2SConnection>;
-  /** Reads and enables pagination through a set of `Yotable`. */
-  allYotables?: Maybe<YotablesConnection>;
-  /** Reads a single `Customer` using its globally unique `ID`. */
-  customer?: Maybe<Customer>;
-  customerById?: Maybe<Customer>;
+  /** Reads a single `FipsCodeCounty` using its globally unique `ID`. */
+  fipsCodeCounty?: Maybe<FipsCodeCounty>;
+  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
   /** Reads a single `FipsCodeState` using its globally unique `ID`. */
   fipsCodeState?: Maybe<FipsCodeState>;
   fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Reads a single `JsonTable` using its globally unique `ID`. */
-  jsonTable?: Maybe<JsonTable>;
-  jsonTableById?: Maybe<JsonTable>;
   /** Fetches an object given its globally unique `ID`. */
   node?: Maybe<Node>;
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
@@ -1949,9 +1851,6 @@ export type Query = Node & {
    * which can only query top level fields if they are in a particular form.
    */
   query: Query;
-  /** Reads a single `Yotable` using its globally unique `ID`. */
-  yotable?: Maybe<Yotable>;
-  yotableById?: Maybe<Yotable>;
 };
 
 
@@ -1980,14 +1879,26 @@ export type QueryAllCountyCasesAllsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllCustomersArgs = {
+export type QueryAllCountyPopulationsArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CustomerCondition>;
+  condition?: Maybe<CountyPopulationCondition>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CustomersOrderBy>>;
+  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllCountySummaryViewsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
 };
 
 
@@ -2012,18 +1923,6 @@ export type QueryAllFipsCodeStatesArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllJsonTablesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<JsonTableCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<JsonTablesOrderBy>>;
 };
 
 
@@ -2064,6 +1963,30 @@ export type QueryAllStateCasesAllsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllStatePopulationsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatePopulationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatePopulationsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllStateSummaryViewsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateSummaryViewsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllStatesHospitalizationsArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
@@ -2100,18 +2023,6 @@ export type QueryAllStatesTestingsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllTsArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<TCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<TsOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
 export type QueryAllUsCasesAllsArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
@@ -2120,18 +2031,6 @@ export type QueryAllUsCasesAllsArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<UsCasesAllsOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllUsCountiesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<UsCountyCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<UsCountiesOrderBy>>;
 };
 
 
@@ -2160,6 +2059,18 @@ export type QueryAllUsSummariesArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllUsSummaryViewsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<UsSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<UsSummaryViewsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllUsTestingsArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
@@ -2172,38 +2083,14 @@ export type QueryAllUsTestingsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllYotable2SArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<Yotable2Condition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Yotable2SOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllYotablesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<YotableCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<YotablesOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryCustomerArgs = {
+export type QueryFipsCodeCountyArgs = {
   nodeId: Scalars['ID'];
 };
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryCustomerByIdArgs = {
-  id: Scalars['Int'];
+export type QueryFipsCodeCountyByCountyFipsCodeArgs = {
+  countyFipsCode: Scalars['String'];
 };
 
 
@@ -2220,32 +2107,8 @@ export type QueryFipsCodeStateByStateFipsCodeArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryJsonTableArgs = {
-  nodeId: Scalars['ID'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryJsonTableByIdArgs = {
-  id: Scalars['String'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
   nodeId: Scalars['ID'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryYotableArgs = {
-  nodeId: Scalars['ID'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryYotableByIdArgs = {
-  id: Scalars['Int'];
 };
 
 export type StateCasesAll = {
@@ -2253,6 +2116,8 @@ export type StateCasesAll = {
   confirmedCases?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
+  /** Reads a single `FipsCodeState` that is related to this `StateCasesAll`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
 };
@@ -2320,11 +2185,144 @@ export enum StateCasesAllsOrderBy {
   StateNameDesc = 'STATE_NAME_DESC'
 }
 
+export type StatePopulation = {
+  __typename?: 'StatePopulation';
+  /** Reads a single `FipsCodeState` that is related to this `StatePopulation`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  pop2020?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/**
+ * A condition to be used against `StatePopulation` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type StatePopulationCondition = {
+  /** Checks for equality with the object’s `pop2020` field. */
+  pop2020?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateFipsCode` field. */
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** An input for mutations affecting `StatePopulation` */
+export type StatePopulationInput = {
+  pop2020?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `StatePopulation` values. */
+export type StatePopulationsConnection = {
+  __typename?: 'StatePopulationsConnection';
+  /** A list of edges which contains the `StatePopulation` and cursor to aid in pagination. */
+  edges: Array<StatePopulationsEdge>;
+  /** A list of `StatePopulation` objects. */
+  nodes: Array<Maybe<StatePopulation>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `StatePopulation` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `StatePopulation` edge in the connection. */
+export type StatePopulationsEdge = {
+  __typename?: 'StatePopulationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `StatePopulation` at the end of the edge. */
+  node?: Maybe<StatePopulation>;
+};
+
+/** Methods to use when ordering `StatePopulation`. */
+export enum StatePopulationsOrderBy {
+  Natural = 'NATURAL',
+  Pop2020Asc = 'POP2020_ASC',
+  Pop2020Desc = 'POP2020_DESC',
+  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC'
+}
+
+export type StateSummaryView = {
+  __typename?: 'StateSummaryView';
+  confirmedCases?: Maybe<Scalars['Int']>;
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  deathIncrease?: Maybe<Scalars['Int']>;
+  deaths?: Maybe<Scalars['Int']>;
+  /** Reads a single `FipsCodeState` that is related to this `StateSummaryView`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  population?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+  stateName?: Maybe<Scalars['String']>;
+};
+
+/**
+ * A condition to be used against `StateSummaryView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type StateSummaryViewCondition = {
+  /** Checks for equality with the object’s `confirmedCases` field. */
+  confirmedCases?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `confirmedIncrease` field. */
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `deathIncrease` field. */
+  deathIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `deaths` field. */
+  deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `population` field. */
+  population?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateFipsCode` field. */
+  stateFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `stateName` field. */
+  stateName?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `StateSummaryView` values. */
+export type StateSummaryViewsConnection = {
+  __typename?: 'StateSummaryViewsConnection';
+  /** A list of edges which contains the `StateSummaryView` and cursor to aid in pagination. */
+  edges: Array<StateSummaryViewsEdge>;
+  /** A list of `StateSummaryView` objects. */
+  nodes: Array<Maybe<StateSummaryView>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `StateSummaryView` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `StateSummaryView` edge in the connection. */
+export type StateSummaryViewsEdge = {
+  __typename?: 'StateSummaryViewsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `StateSummaryView` at the end of the edge. */
+  node?: Maybe<StateSummaryView>;
+};
+
+/** Methods to use when ordering `StateSummaryView`. */
+export enum StateSummaryViewsOrderBy {
+  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
+  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
+  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
+  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
+  DeathsAsc = 'DEATHS_ASC',
+  DeathsDesc = 'DEATHS_DESC',
+  DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
+  DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  Natural = 'NATURAL',
+  PopulationAsc = 'POPULATION_ASC',
+  PopulationDesc = 'POPULATION_DESC',
+  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
+  StateNameAsc = 'STATE_NAME_ASC',
+  StateNameDesc = 'STATE_NAME_DESC'
+}
+
 export type StatesHospitalization = {
   __typename?: 'StatesHospitalization';
   adultIcuBedUsed?: Maybe<Scalars['Int']>;
   adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatesHospitalization`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   hospitalizedCurrently?: Maybe<Scalars['Int']>;
   inIcuCurrently?: Maybe<Scalars['Int']>;
   inpatientBedsCapacity?: Maybe<Scalars['Int']>;
@@ -2495,6 +2493,8 @@ export type StatesSummary = {
   confirmedCases?: Maybe<Scalars['Int']>;
   confirmedIncrease?: Maybe<Scalars['Int']>;
   confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatesSummary`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   hospitalizedCurrently?: Maybe<Scalars['Int']>;
   inIcuCurrently?: Maybe<Scalars['Int']>;
   inpatientBedsCapacity?: Maybe<Scalars['Int']>;
@@ -2563,6 +2563,8 @@ export type StatesSummaryInput = {
 export type StatesTesting = {
   __typename?: 'StatesTesting';
   date?: Maybe<Scalars['String']>;
+  /** Reads a single `FipsCodeState` that is related to this `StatesTesting`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   inconclusive?: Maybe<Scalars['Int']>;
   inconclusiveIncrease?: Maybe<Scalars['Int']>;
   negative?: Maybe<Scalars['Int']>;
@@ -2674,96 +2676,53 @@ export enum StatesTestingsOrderBy {
   TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
 }
 
-export type T = {
-  __typename?: 'T';
-  j?: Maybe<Scalars['JSON']>;
-};
-
-/** A condition to be used against `T` object types. All fields are tested for equality and combined with a logical ‘and.’ */
-export type TCondition = {
-  /** Checks for equality with the object’s `j` field. */
-  j?: Maybe<Scalars['JSON']>;
-};
-
-/** An input for mutations affecting `T` */
-export type TInput = {
-  j?: Maybe<Scalars['JSON']>;
-};
-
-/** A connection to a list of `T` values. */
-export type TsConnection = {
-  __typename?: 'TsConnection';
-  /** A list of edges which contains the `T` and cursor to aid in pagination. */
-  edges: Array<TsEdge>;
-  /** A list of `T` objects. */
-  nodes: Array<Maybe<T>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `T` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `T` edge in the connection. */
-export type TsEdge = {
-  __typename?: 'TsEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `T` at the end of the edge. */
-  node?: Maybe<T>;
-};
-
-/** Methods to use when ordering `T`. */
-export enum TsOrderBy {
-  JAsc = 'J_ASC',
-  JDesc = 'J_DESC',
-  Natural = 'NATURAL'
-}
-
-/** All input for the `updateCustomerById` mutation. */
-export type UpdateCustomerByIdInput = {
+/** All input for the `updateFipsCodeCountyByCountyFipsCode` mutation. */
+export type UpdateFipsCodeCountyByCountyFipsCodeInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** An object where the defined keys will be set on the `Customer` being updated. */
-  customerPatch: CustomerPatch;
-  id: Scalars['Int'];
+  countyFipsCode: Scalars['String'];
+  /** An object where the defined keys will be set on the `FipsCodeCounty` being updated. */
+  fipsCodeCountyPatch: FipsCodeCountyPatch;
 };
 
-/** All input for the `updateCustomer` mutation. */
-export type UpdateCustomerInput = {
+/** All input for the `updateFipsCodeCounty` mutation. */
+export type UpdateFipsCodeCountyInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** An object where the defined keys will be set on the `Customer` being updated. */
-  customerPatch: CustomerPatch;
-  /** The globally unique `ID` which will identify a single `Customer` to be updated. */
+  /** An object where the defined keys will be set on the `FipsCodeCounty` being updated. */
+  fipsCodeCountyPatch: FipsCodeCountyPatch;
+  /** The globally unique `ID` which will identify a single `FipsCodeCounty` to be updated. */
   nodeId: Scalars['ID'];
 };
 
-/** The output of our update `Customer` mutation. */
-export type UpdateCustomerPayload = {
-  __typename?: 'UpdateCustomerPayload';
+/** The output of our update `FipsCodeCounty` mutation. */
+export type UpdateFipsCodeCountyPayload = {
+  __typename?: 'UpdateFipsCodeCountyPayload';
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `Customer` that was updated by this mutation. */
-  customer?: Maybe<Customer>;
-  /** An edge for our `Customer`. May be used by Relay 1. */
-  customerEdge?: Maybe<CustomersEdge>;
+  /** The `FipsCodeCounty` that was updated by this mutation. */
+  fipsCodeCounty?: Maybe<FipsCodeCounty>;
+  /** An edge for our `FipsCodeCounty`. May be used by Relay 1. */
+  fipsCodeCountyEdge?: Maybe<FipsCodeCountiesEdge>;
+  /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
+  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
 
 
-/** The output of our update `Customer` mutation. */
-export type UpdateCustomerPayloadCustomerEdgeArgs = {
-  orderBy?: Maybe<Array<CustomersOrderBy>>;
+/** The output of our update `FipsCodeCounty` mutation. */
+export type UpdateFipsCodeCountyPayloadFipsCodeCountyEdgeArgs = {
+  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
 };
 
 /** All input for the `updateFipsCodeStateByStateFipsCode` mutation. */
@@ -2811,100 +2770,6 @@ export type UpdateFipsCodeStatePayload = {
 /** The output of our update `FipsCodeState` mutation. */
 export type UpdateFipsCodeStatePayloadFipsCodeStateEdgeArgs = {
   orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
-};
-
-/** All input for the `updateJsonTableById` mutation. */
-export type UpdateJsonTableByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  /** An object where the defined keys will be set on the `JsonTable` being updated. */
-  jsonTablePatch: JsonTablePatch;
-};
-
-/** All input for the `updateJsonTable` mutation. */
-export type UpdateJsonTableInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** An object where the defined keys will be set on the `JsonTable` being updated. */
-  jsonTablePatch: JsonTablePatch;
-  /** The globally unique `ID` which will identify a single `JsonTable` to be updated. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our update `JsonTable` mutation. */
-export type UpdateJsonTablePayload = {
-  __typename?: 'UpdateJsonTablePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `JsonTable` that was updated by this mutation. */
-  jsonTable?: Maybe<JsonTable>;
-  /** An edge for our `JsonTable`. May be used by Relay 1. */
-  jsonTableEdge?: Maybe<JsonTablesEdge>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our update `JsonTable` mutation. */
-export type UpdateJsonTablePayloadJsonTableEdgeArgs = {
-  orderBy?: Maybe<Array<JsonTablesOrderBy>>;
-};
-
-/** All input for the `updateYotableById` mutation. */
-export type UpdateYotableByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  /** An object where the defined keys will be set on the `Yotable` being updated. */
-  yotablePatch: YotablePatch;
-};
-
-/** All input for the `updateYotable` mutation. */
-export type UpdateYotableInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `Yotable` to be updated. */
-  nodeId: Scalars['ID'];
-  /** An object where the defined keys will be set on the `Yotable` being updated. */
-  yotablePatch: YotablePatch;
-};
-
-/** The output of our update `Yotable` mutation. */
-export type UpdateYotablePayload = {
-  __typename?: 'UpdateYotablePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `Yotable` that was updated by this mutation. */
-  yotable?: Maybe<Yotable>;
-  /** An edge for our `Yotable`. May be used by Relay 1. */
-  yotableEdge?: Maybe<YotablesEdge>;
-};
-
-
-/** The output of our update `Yotable` mutation. */
-export type UpdateYotablePayloadYotableEdgeArgs = {
-  orderBy?: Maybe<Array<YotablesOrderBy>>;
 };
 
 export type UsCasesAll = {
@@ -2966,84 +2831,6 @@ export enum UsCasesAllsOrderBy {
   DeathsDesc = 'DEATHS_DESC',
   Natural = 'NATURAL'
 }
-
-/** A connection to a list of `UsCounty` values. */
-export type UsCountiesConnection = {
-  __typename?: 'UsCountiesConnection';
-  /** A list of edges which contains the `UsCounty` and cursor to aid in pagination. */
-  edges: Array<UsCountiesEdge>;
-  /** A list of `UsCounty` objects. */
-  nodes: Array<Maybe<UsCounty>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `UsCounty` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `UsCounty` edge in the connection. */
-export type UsCountiesEdge = {
-  __typename?: 'UsCountiesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `UsCounty` at the end of the edge. */
-  node?: Maybe<UsCounty>;
-};
-
-/** Methods to use when ordering `UsCounty`. */
-export enum UsCountiesOrderBy {
-  CasesAsc = 'CASES_ASC',
-  CasesDesc = 'CASES_DESC',
-  CountyAsc = 'COUNTY_ASC',
-  CountyDesc = 'COUNTY_DESC',
-  DateAsc = 'DATE_ASC',
-  DateDesc = 'DATE_DESC',
-  DeathsAsc = 'DEATHS_ASC',
-  DeathsDesc = 'DEATHS_DESC',
-  FipsAsc = 'FIPS_ASC',
-  FipsDesc = 'FIPS_DESC',
-  Natural = 'NATURAL',
-  StateAsc = 'STATE_ASC',
-  StateDesc = 'STATE_DESC'
-}
-
-export type UsCounty = {
-  __typename?: 'UsCounty';
-  cases?: Maybe<Scalars['Int']>;
-  county?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['String']>;
-  deaths?: Maybe<Scalars['Int']>;
-  fips?: Maybe<Scalars['String']>;
-  state?: Maybe<Scalars['String']>;
-};
-
-/**
- * A condition to be used against `UsCounty` object types. All fields are tested
- * for equality and combined with a logical ‘and.’
- */
-export type UsCountyCondition = {
-  /** Checks for equality with the object’s `cases` field. */
-  cases?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `county` field. */
-  county?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `date` field. */
-  date?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `deaths` field. */
-  deaths?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `fips` field. */
-  fips?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `state` field. */
-  state?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `UsCounty` */
-export type UsCountyInput = {
-  cases?: Maybe<Scalars['Int']>;
-  county?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['String']>;
-  deaths?: Maybe<Scalars['Int']>;
-  fips?: Maybe<Scalars['String']>;
-  state?: Maybe<Scalars['String']>;
-};
 
 export type UsHospitalization = {
   __typename?: 'UsHospitalization';
@@ -3267,6 +3054,59 @@ export type UsSummaryInput = {
   totalTestResults?: Maybe<Scalars['Int']>;
 };
 
+export type UsSummaryView = {
+  __typename?: 'UsSummaryView';
+  confirmedCases?: Maybe<Scalars['Int']>;
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+};
+
+/**
+ * A condition to be used against `UsSummaryView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type UsSummaryViewCondition = {
+  /** Checks for equality with the object’s `confirmedCases` field. */
+  confirmedCases?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `confirmedIncrease` field. */
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `confirmedIncrease14Days` field. */
+  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+};
+
+/** A connection to a list of `UsSummaryView` values. */
+export type UsSummaryViewsConnection = {
+  __typename?: 'UsSummaryViewsConnection';
+  /** A list of edges which contains the `UsSummaryView` and cursor to aid in pagination. */
+  edges: Array<UsSummaryViewsEdge>;
+  /** A list of `UsSummaryView` objects. */
+  nodes: Array<Maybe<UsSummaryView>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `UsSummaryView` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `UsSummaryView` edge in the connection. */
+export type UsSummaryViewsEdge = {
+  __typename?: 'UsSummaryViewsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `UsSummaryView` at the end of the edge. */
+  node?: Maybe<UsSummaryView>;
+};
+
+/** Methods to use when ordering `UsSummaryView`. */
+export enum UsSummaryViewsOrderBy {
+  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
+  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
+  ConfirmedIncrease_14DaysAsc = 'CONFIRMED_INCREASE_14DAYS_ASC',
+  ConfirmedIncrease_14DaysDesc = 'CONFIRMED_INCREASE_14DAYS_DESC',
+  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
+  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
+  Natural = 'NATURAL'
+}
+
 export type UsTesting = {
   __typename?: 'UsTesting';
   date?: Maybe<Scalars['String']>;
@@ -3369,135 +3209,6 @@ export enum UsTestingsOrderBy {
   TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
 }
 
-export type Yotable = Node & {
-  __typename?: 'Yotable';
-  fips?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'];
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-export type Yotable2 = {
-  __typename?: 'Yotable2';
-  fips?: Maybe<Scalars['String']>;
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-/**
- * A condition to be used against `Yotable2` object types. All fields are tested
- * for equality and combined with a logical ‘and.’
- */
-export type Yotable2Condition = {
-  /** Checks for equality with the object’s `fips` field. */
-  fips?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `provinceState` field. */
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `Yotable2` */
-export type Yotable2Input = {
-  fips?: Maybe<Scalars['String']>;
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-/** A connection to a list of `Yotable2` values. */
-export type Yotable2SConnection = {
-  __typename?: 'Yotable2SConnection';
-  /** A list of edges which contains the `Yotable2` and cursor to aid in pagination. */
-  edges: Array<Yotable2SEdge>;
-  /** A list of `Yotable2` objects. */
-  nodes: Array<Maybe<Yotable2>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `Yotable2` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `Yotable2` edge in the connection. */
-export type Yotable2SEdge = {
-  __typename?: 'Yotable2SEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `Yotable2` at the end of the edge. */
-  node?: Maybe<Yotable2>;
-};
-
-/** Methods to use when ordering `Yotable2`. */
-export enum Yotable2SOrderBy {
-  FipsAsc = 'FIPS_ASC',
-  FipsDesc = 'FIPS_DESC',
-  Natural = 'NATURAL',
-  ProvinceStateAsc = 'PROVINCE_STATE_ASC',
-  ProvinceStateDesc = 'PROVINCE_STATE_DESC'
-}
-
-/** A condition to be used against `Yotable` object types. All fields are tested for equality and combined with a logical ‘and.’ */
-export type YotableCondition = {
-  /** Checks for equality with the object’s `fips` field. */
-  fips?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `id` field. */
-  id?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `name` field. */
-  name?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `provinceState` field. */
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `Yotable` */
-export type YotableInput = {
-  fips?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-/** Represents an update to a `Yotable`. Fields that are set will be updated. */
-export type YotablePatch = {
-  fips?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  provinceState?: Maybe<Scalars['String']>;
-};
-
-/** A connection to a list of `Yotable` values. */
-export type YotablesConnection = {
-  __typename?: 'YotablesConnection';
-  /** A list of edges which contains the `Yotable` and cursor to aid in pagination. */
-  edges: Array<YotablesEdge>;
-  /** A list of `Yotable` objects. */
-  nodes: Array<Maybe<Yotable>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `Yotable` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `Yotable` edge in the connection. */
-export type YotablesEdge = {
-  __typename?: 'YotablesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `Yotable` at the end of the edge. */
-  node?: Maybe<Yotable>;
-};
-
-/** Methods to use when ordering `Yotable`. */
-export enum YotablesOrderBy {
-  FipsAsc = 'FIPS_ASC',
-  FipsDesc = 'FIPS_DESC',
-  IdAsc = 'ID_ASC',
-  IdDesc = 'ID_DESC',
-  NameAsc = 'NAME_ASC',
-  NameDesc = 'NAME_DESC',
-  Natural = 'NATURAL',
-  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
-  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
-  ProvinceStateAsc = 'PROVINCE_STATE_ASC',
-  ProvinceStateDesc = 'PROVINCE_STATE_DESC'
-}
-
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
 }>;
@@ -3514,6 +3225,11 @@ export type UsCasesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UsCasesQuery = { __typename?: 'Query', allUsCasesAlls?: Maybe<{ __typename?: 'UsCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'UsCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> };
+
+export type UsStatesCasesTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsStatesCasesTableQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }> };
 
 
 export const StateByFipsDocument = gql`
@@ -3636,3 +3352,45 @@ export function useUsCasesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Us
 export type UsCasesQueryHookResult = ReturnType<typeof useUsCasesQuery>;
 export type UsCasesLazyQueryHookResult = ReturnType<typeof useUsCasesLazyQuery>;
 export type UsCasesQueryResult = Apollo.QueryResult<UsCasesQuery, UsCasesQueryVariables>;
+export const UsStatesCasesTableDocument = gql`
+    query USStatesCasesTable {
+  allStateSummaryViews {
+    nodes {
+      stateName
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      population
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsStatesCasesTableQuery__
+ *
+ * To run a query within a React component, call `useUsStatesCasesTableQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsStatesCasesTableQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsStatesCasesTableQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsStatesCasesTableQuery(baseOptions?: Apollo.QueryHookOptions<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>(UsStatesCasesTableDocument, options);
+      }
+export function useUsStatesCasesTableLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>(UsStatesCasesTableDocument, options);
+        }
+export type UsStatesCasesTableQueryHookResult = ReturnType<typeof useUsStatesCasesTableQuery>;
+export type UsStatesCasesTableLazyQueryHookResult = ReturnType<typeof useUsStatesCasesTableLazyQuery>;
+export type UsStatesCasesTableQueryResult = Apollo.QueryResult<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>;

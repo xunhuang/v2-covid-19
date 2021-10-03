@@ -230,7 +230,7 @@ function expandSeriesesToMap(serieses: GraphSeriesType[]) {
   );
 }
 
-function myShortNumber(n: any) {
+export function myShortNumber(n: any) {
   if (!n) {
     return "0";
   }

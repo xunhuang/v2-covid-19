@@ -4,6 +4,7 @@ import "./App.css";
 // import { QueryResultExample } from "./QueryResultExample";
 import { FullDiv } from "./styles/HomeStyles";
 import { UsCasesGraph } from "./UsCasesGraph";
+import { USStateCasesTable } from "./USStatesCaseTable";
 
 export interface IApplicationProps {}
 
@@ -18,6 +19,7 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
           <ExampleGraph></ExampleGraph>
         </FullDiv> */}
         {/* <QueryResultExample /> */}
+        <USStateCasesTable />
       </header>
     </div>
   );
