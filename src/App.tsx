@@ -20,30 +20,27 @@ function TabPanel(props:any) {
   const { children, value, index, ...other } = props;
   return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
 }
-export function App1() {
+export function USTableTabs() {
   const [value, setValue] = React.useState(0);
-  const handleChange = (event:any, newValue:number) => {
+  const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
   };
   return (
     <>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label="Item One" wrapped />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
+          <Tab label="Cases" />
+          <Tab label="Capita" />
+          <Tab label="Testing" />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Item One
         <USStateCasesTable />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
         <USStateCasesCapita />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
         <USStateTestingTable />
       </TabPanel>
     </>
@@ -54,16 +51,10 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <App1/>
         <FullDiv>
           <UsCasesGraph />
         </FullDiv>
-        {/* <FullDiv>
-          <ExampleGraph></ExampleGraph>
-        </FullDiv> */}
-        {/* <QueryResultExample /> */}
-
-        <USStateCasesTable />
+        <USTableTabs />
       </header>
     </div>
   );
