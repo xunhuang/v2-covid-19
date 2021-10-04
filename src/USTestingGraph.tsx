@@ -53,29 +53,30 @@ export const UsTestingEffortGraph = () => {
 export const UsTest7DayPositivityEffortGraph = () => {
   const { data, loading } = useUsTestingQuery();
 
-  let positiveDaily = DataSeries.fromGraphQLQueryNodes(
-    "Positives",
-    data?.allUsTestings?.nodes! as object[],
-    "positive"
-  )
-    .change()
-    .nDayAverage(7);
+  if (data) {
+    let positiveDaily = DataSeries.fromGraphQLQueryNodes(
+      "Positives",
+      data?.allUsTestings?.nodes! as object[],
+      "positive"
+    )
+      .change()
+      .nDayAverage(7);
+    let testedDaily = DataSeries.fromGraphQLQueryNodes(
+      "daily",
+      data?.allUsTestings?.nodes! as object[],
+      "totalTestResults"
+    )
+      .change()
+      .nDayAverage(7);
 
-  let testedDaily = DataSeries.fromGraphQLQueryNodes(
-    "daily",
-    data?.allUsTestings?.nodes! as object[],
-    "totalTestResults"
-  )
-    .change()
-    .nDayAverage(7);
+    let rate = positiveDaily
+      .divide(testedDaily)
+      .setLabel("Positive Rate 7-days");
 
-  let rate = positiveDaily.divide(testedDaily).setLabel("Positive Rate 7-days");
-
-  return (
-    <div>
-      {loading && <div>loading</div>}
-      {data && (
-        <>
+    return (
+      <div>
+        {loading && <div>loading</div>}
+        {data && (
           <AdvancedGraph
             title="US 7-Day Positivity Rate"
             serieses={[
@@ -86,8 +87,10 @@ export const UsTest7DayPositivityEffortGraph = () => {
             ]}
             initNumberOfDays={360}
           />
-        </>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
+  }
+
+  return <div>loading</div>;
 };
