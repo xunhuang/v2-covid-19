@@ -3261,6 +3261,11 @@ export type UsStatesCasesTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsStatesCasesTableQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }> };
 
+export type UsSubRegionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsSubRegionsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
+
 
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
@@ -3467,3 +3472,50 @@ export function useUsStatesCasesTableLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type UsStatesCasesTableQueryHookResult = ReturnType<typeof useUsStatesCasesTableQuery>;
 export type UsStatesCasesTableLazyQueryHookResult = ReturnType<typeof useUsStatesCasesTableLazyQuery>;
 export type UsStatesCasesTableQueryResult = Apollo.QueryResult<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>;
+export const UsSubRegionsDocument = gql`
+    query USSubRegions {
+  allFipsCodeStates {
+    nodes {
+      statePostalAbbreviation
+      stateName
+      stateGnisid
+      stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 180) {
+        nodes {
+          date
+          stateName
+          stateFipsCode
+          confirmedCases
+          deaths
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsSubRegionsQuery__
+ *
+ * To run a query within a React component, call `useUsSubRegionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsSubRegionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsSubRegionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsSubRegionsQuery(baseOptions?: Apollo.QueryHookOptions<UsSubRegionsQuery, UsSubRegionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsSubRegionsQuery, UsSubRegionsQueryVariables>(UsSubRegionsDocument, options);
+      }
+export function useUsSubRegionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsSubRegionsQuery, UsSubRegionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsSubRegionsQuery, UsSubRegionsQueryVariables>(UsSubRegionsDocument, options);
+        }
+export type UsSubRegionsQueryHookResult = ReturnType<typeof useUsSubRegionsQuery>;
+export type UsSubRegionsLazyQueryHookResult = ReturnType<typeof useUsSubRegionsLazyQuery>;
+export type UsSubRegionsQueryResult = Apollo.QueryResult<UsSubRegionsQuery, UsSubRegionsQueryVariables>;

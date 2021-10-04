@@ -49,6 +49,7 @@ type AdvancedGraphProps = {
   showControls?: boolean;
   vRefLines?: RefLineType[];
   hRefLines?: RefLineType[];
+  initNumberOfDays?: number;
 };
 
 export const AdvancedGraph = (props: AdvancedGraphProps) => {
@@ -57,11 +58,12 @@ export const AdvancedGraph = (props: AdvancedGraphProps) => {
     yAxisFormatter = (n: number) => myShortNumber(n),
     subtitle = "",
     className = "",
+    initNumberOfDays = 30,
   } = props; // this is how default is set
 
   const classes = useStyles();
 
-  const [showPastDays, setShowPastDays] = React.useState(30);
+  const [showPastDays, setShowPastDays] = React.useState(initNumberOfDays);
 
   const handleSliderValueChange = (value: number) => {
     setShowPastDays(value);

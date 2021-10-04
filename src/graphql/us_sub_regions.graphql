@@ -1,0 +1,18 @@
+query USSubRegions {
+  allFipsCodeStates {
+    nodes {
+      statePostalAbbreviation
+      stateName
+      stateGnisid
+      stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 180) {
+        nodes {
+          date
+          stateName
+          stateFipsCode
+          confirmedCases
+          deaths
+        }
+      }
+    }
+  }
+}
