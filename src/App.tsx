@@ -20,7 +20,11 @@ import { UsTestingEffortGraph, USTestingGraphs } from "./USTestingGraph";
 export interface IApplicationProps {}
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
-  return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
+  return (
+    <FullDiv {...other}>
+      {value === index && <Box p={3}>{children}</Box>}
+    </FullDiv>
+  );
 }
 
 export function USTableTabs() {

@@ -1,6 +1,7 @@
 import { useTable, useSortBy, Column } from "react-table";
 import React from "react";
 import { myShortNumber } from "./components/AdvanceGraph";
+import { FullDiv, FullTable } from "./styles/HomeStyles";
 
 export const shortNumber = ({ cell }: any) => {
   return <div>{myShortNumber(cell.value)}</div>;
@@ -34,8 +35,8 @@ export const Table: React.FC<Props> = ({ columns, data }) => {
   const firstPageRows = rows;
 
   return (
-    <>
-      <table {...getTableProps()}>
+    <FullDiv>
+      <FullTable {...getTableProps()} width={"100%"}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -67,9 +68,9 @@ export const Table: React.FC<Props> = ({ columns, data }) => {
             );
           })}
         </tbody>
-      </table>
+      </FullTable>
       {/* <br />
             <div>Showing the first 20 results of {rows.length} rows</div> */}
-    </>
+    </FullDiv>
   );
 };
