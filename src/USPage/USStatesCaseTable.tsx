@@ -1,7 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { useUsStatesCasesTableQuery } from '../generated/graphql';
 import { shortNumber, Table } from '../NewSortableTable';
+
+export const stateLink = ({ cell }: any) => {
+  return (
+    <Link to={`state/${cell.row.original.stateFipsCode}`}>{cell.value}</Link>
+  );
+};
 
 export const USStateCasesTable = () => {
   const { data, loading } = useUsStatesCasesTableQuery();
@@ -15,6 +22,7 @@ export const USStateCasesTable = () => {
       {
         Header: "States",
         accessor: "stateName",
+        Cell: stateLink,
       },
       {
         Header: "Total",

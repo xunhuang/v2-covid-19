@@ -3244,7 +3244,14 @@ export type StateByFipsQueryVariables = Exact<{
 }>;
 
 
-export type StateByFipsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string> }>> }> };
+export type StateByFipsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, stateGnisid?: Maybe<string> }>> }> };
+
+export type StateByFipsDetailsQueryVariables = Exact<{
+  fips?: Maybe<Scalars['String']>;
+}>;
+
+
+export type StateByFipsDetailsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, nodeId: string, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3328,6 +3335,7 @@ export const StateByFipsDocument = gql`
     nodes {
       statePostalAbbreviation
       stateName
+      stateFipsCode
       stateGnisid
     }
   }
@@ -3361,6 +3369,53 @@ export function useStateByFipsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type StateByFipsQueryHookResult = ReturnType<typeof useStateByFipsQuery>;
 export type StateByFipsLazyQueryHookResult = ReturnType<typeof useStateByFipsLazyQuery>;
 export type StateByFipsQueryResult = Apollo.QueryResult<StateByFipsQuery, StateByFipsQueryVariables>;
+export const StateByFipsDetailsDocument = gql`
+    query StateByFipsDetails($fips: String) {
+  allFipsCodeStates(condition: {stateFipsCode: $fips}) {
+    nodes {
+      statePostalAbbreviation
+      stateName
+      stateFipsCode
+      nodeId
+      cases: stateCasesAllsByStateFipsCode {
+        nodes {
+          date
+          confirmedCases
+          deaths
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useStateByFipsDetailsQuery__
+ *
+ * To run a query within a React component, call `useStateByFipsDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStateByFipsDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStateByFipsDetailsQuery({
+ *   variables: {
+ *      fips: // value for 'fips'
+ *   },
+ * });
+ */
+export function useStateByFipsDetailsQuery(baseOptions?: Apollo.QueryHookOptions<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>(StateByFipsDetailsDocument, options);
+      }
+export function useStateByFipsDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>(StateByFipsDetailsDocument, options);
+        }
+export type StateByFipsDetailsQueryHookResult = ReturnType<typeof useStateByFipsDetailsQuery>;
+export type StateByFipsDetailsLazyQueryHookResult = ReturnType<typeof useStateByFipsDetailsLazyQuery>;
+export type StateByFipsDetailsQueryResult = Apollo.QueryResult<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>;
 export const StatesDocument = gql`
     query States {
   allFipsCodeStates {

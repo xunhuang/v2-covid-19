@@ -1,0 +1,17 @@
+query StateByFipsDetails($fips: String) {
+  allFipsCodeStates(condition: { stateFipsCode: $fips }) {
+    nodes {
+      statePostalAbbreviation
+      stateName
+      stateFipsCode
+      nodeId
+      cases: stateCasesAllsByStateFipsCode {
+        nodes {
+          date
+          confirmedCases
+          deaths
+        }
+      }
+    }
+  }
+}

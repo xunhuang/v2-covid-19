@@ -10,11 +10,10 @@ export const USSubRegions = () => {
       {loading && <div>loading</div>}
       {nodes?.map((state) => (
         <div>
-          {state?.stateName}, {state?.statePostalAbbreviation},{" "}
           {state?.stateCasesAllsByStateFipsCode.nodes &&
             state?.stateCasesAllsByStateFipsCode.nodes.length > 100 && (
               <AdvancedGraph
-                title="US Confirmed Cases"
+                title={state?.stateName! + " Confirmed Cases"}
                 serieses={[
                   {
                     series: DataSeries.fromGraphQLQueryNodes(

@@ -1,9 +1,10 @@
 
 query StateByFips($fips: String) {
-  allFipsCodeStates(condition: {stateFipsCode: $fips}) {
+  allFipsCodeStates(condition: { stateFipsCode: $fips }) {
     nodes {
       statePostalAbbreviation
       stateName
+      stateFipsCode
       stateGnisid
     }
   }
