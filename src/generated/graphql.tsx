@@ -3234,6 +3234,11 @@ export enum UsTestingsOrderBy {
   TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
 }
 
+export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, stateName?: Maybe<string>, negative?: Maybe<number>, totalTestResultsIncrease?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
+
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
 }>;
@@ -3261,12 +3266,62 @@ export type UsStatesCasesTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsStatesCasesTableQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }> };
 
+export type UsHopitalizationQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsHopitalizationQuery = { __typename?: 'Query', allUsHospitalizations?: Maybe<{ __typename?: 'UsHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'UsHospitalization', date?: Maybe<string>, adultIcuBedUsed?: Maybe<number>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number>, adultIcuBedsCapacity?: Maybe<number>, inpatientBedsUsed?: Maybe<number>, inpatientBedsCapacity?: Maybe<number> }>> }> };
+
 export type UsSubRegionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UsSubRegionsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 
+export const UsTestingDocument = gql`
+    query USTesting {
+  allUsTestings {
+    nodes {
+      date
+      totalTestResults
+      negativeIncrease
+      positiveIncrease
+      stateName
+      negative
+      totalTestResultsIncrease
+      positive
+      inconclusive
+      inconclusiveIncrease
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsTestingQuery__
+ *
+ * To run a query within a React component, call `useUsTestingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsTestingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsTestingQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsTestingQuery(baseOptions?: Apollo.QueryHookOptions<UsTestingQuery, UsTestingQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsTestingQuery, UsTestingQueryVariables>(UsTestingDocument, options);
+      }
+export function useUsTestingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsTestingQuery, UsTestingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsTestingQuery, UsTestingQueryVariables>(UsTestingDocument, options);
+        }
+export type UsTestingQueryHookResult = ReturnType<typeof useUsTestingQuery>;
+export type UsTestingLazyQueryHookResult = ReturnType<typeof useUsTestingLazyQuery>;
+export type UsTestingQueryResult = Apollo.QueryResult<UsTestingQuery, UsTestingQueryVariables>;
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
   allFipsCodeStates(condition: {stateFipsCode: $fips}) {
@@ -3472,6 +3527,48 @@ export function useUsStatesCasesTableLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type UsStatesCasesTableQueryHookResult = ReturnType<typeof useUsStatesCasesTableQuery>;
 export type UsStatesCasesTableLazyQueryHookResult = ReturnType<typeof useUsStatesCasesTableLazyQuery>;
 export type UsStatesCasesTableQueryResult = Apollo.QueryResult<UsStatesCasesTableQuery, UsStatesCasesTableQueryVariables>;
+export const UsHopitalizationDocument = gql`
+    query USHopitalization {
+  allUsHospitalizations {
+    nodes {
+      date
+      adultIcuBedUsed
+      inIcuCurrently
+      hospitalizedCurrently
+      adultIcuBedsCapacity
+      inpatientBedsUsed
+      inpatientBedsCapacity
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsHopitalizationQuery__
+ *
+ * To run a query within a React component, call `useUsHopitalizationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsHopitalizationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsHopitalizationQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsHopitalizationQuery(baseOptions?: Apollo.QueryHookOptions<UsHopitalizationQuery, UsHopitalizationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsHopitalizationQuery, UsHopitalizationQueryVariables>(UsHopitalizationDocument, options);
+      }
+export function useUsHopitalizationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsHopitalizationQuery, UsHopitalizationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsHopitalizationQuery, UsHopitalizationQueryVariables>(UsHopitalizationDocument, options);
+        }
+export type UsHopitalizationQueryHookResult = ReturnType<typeof useUsHopitalizationQuery>;
+export type UsHopitalizationLazyQueryHookResult = ReturnType<typeof useUsHopitalizationLazyQuery>;
+export type UsHopitalizationQueryResult = Apollo.QueryResult<UsHopitalizationQuery, UsHopitalizationQueryVariables>;
 export const UsSubRegionsDocument = gql`
     query USSubRegions {
   allFipsCodeStates {

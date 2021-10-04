@@ -1,0 +1,13 @@
+query USHopitalization {
+  allUsHospitalizations {
+    nodes {
+      date
+      adultIcuBedUsed
+      inIcuCurrently
+      hospitalizedCurrently
+      adultIcuBedsCapacity
+      inpatientBedsUsed
+      inpatientBedsCapacity
+    }
+  }
+}

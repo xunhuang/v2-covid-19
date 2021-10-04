@@ -14,6 +14,8 @@ import { USStateCasesCapita } from "./USStatesCaseCapita";
 import { USStateTestingTable } from "./USStatesTestingTable";
 import { USSubRegions } from "./USSubRegions";
 import { UsDailyGraph } from "./USDailyGraph";
+import { UsHospitalizationGraph } from "./USHopitalizationGraph";
+import { UsTestingEffortGraph } from "./USTestingGraph";
 
 export interface IApplicationProps {}
 function TabPanel(props: any) {
@@ -59,6 +61,7 @@ export function USGraphTabs() {
           <Tab label="Daily" />
           <Tab label="Cases" />
           <Tab label="Sub-Regions" />
+          <Tab label="Hospitalization" />
           <Tab label="Testing" />
         </Tabs>
       </AppBar>
@@ -72,7 +75,10 @@ export function USGraphTabs() {
         <USSubRegions />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        TBD
+        <UsHospitalizationGraph />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <UsTestingEffortGraph />
       </TabPanel>
     </>
   );

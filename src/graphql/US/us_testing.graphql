@@ -1,0 +1,16 @@
+query USTesting {
+  allUsTestings {
+    nodes {
+      date
+      totalTestResults
+      negativeIncrease
+      positiveIncrease
+      stateName
+      negative
+      totalTestResultsIncrease
+      positive
+      inconclusive
+      inconclusiveIncrease
+    }
+  }
+}
