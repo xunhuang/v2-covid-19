@@ -7,7 +7,6 @@ export const USSubRegions = () => {
   const nodes = data?.allFipsCodeStates?.nodes;
   return (
     <div>
-      <p>Hello </p>
       {loading && <div>loading</div>}
       {nodes?.map((state) => (
         <div>

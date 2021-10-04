@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 // import { ExampleGraph } from "./components/AdvanceGraph";
-import { QueryResultExample } from "./QueryResultExample";
 import { FullDiv } from "./styles/HomeStyles";
 import { UsCasesGraph } from "./UsCasesGraph";
 import { USStateCasesTable } from "./USStatesCaseTable";
@@ -14,6 +13,7 @@ import Box from "@material-ui/core/Box";
 import { USStateCasesCapita } from "./USStatesCaseCapita";
 import { USStateTestingTable } from "./USStatesTestingTable";
 import { USSubRegions } from "./USSubRegions";
+import { UsDailyGraph } from "./USDailyGraph";
 
 export interface IApplicationProps {}
 function TabPanel(props: any) {
@@ -56,18 +56,22 @@ export function USGraphTabs() {
     <>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label="Sub-Regions" />
+          <Tab label="Daily" />
           <Tab label="Cases" />
+          <Tab label="Sub-Regions" />
           <Tab label="Testing" />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <USSubRegions />
+        <UsDailyGraph />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <UsCasesGraph />
       </TabPanel>
       <TabPanel value={value} index={2}>
+        <USSubRegions />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
         TBD
       </TabPanel>
     </>

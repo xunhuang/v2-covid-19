@@ -32,6 +32,7 @@ export const UsCasesGraph = () => {
                 showMovingAverage: true,
               },
             ]}
+            initNumberOfDays={360}
           />
           <AdvancedGraph
             title="US Deaths"
@@ -56,6 +57,7 @@ export const UsCasesGraph = () => {
                 showMovingAverage: true,
               },
             ]}
+            initNumberOfDays={360}
           />
         </>
       )}
