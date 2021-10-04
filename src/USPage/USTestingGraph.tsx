@@ -1,6 +1,6 @@
-import { AdvancedGraph } from "./components/AdvanceGraph";
-import { DataSeries } from "./components/DataSeries";
-import { useUsTestingQuery } from "./generated/graphql";
+import { AdvancedGraph } from '../components/AdvanceGraph';
+import { DataSeries } from '../components/DataSeries';
+import { useUsTestingQuery } from '../generated/graphql';
 
 export const USTestingGraphs = () => {
   return (

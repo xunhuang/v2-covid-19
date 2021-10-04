@@ -1,42 +1,40 @@
-import { AdvancedGraph } from "./components/AdvanceGraph";
-import { DataSeries } from "./components/DataSeries";
-import { useUsCasesQuery } from "./generated/graphql";
+import { AdvancedGraph } from '../components/AdvanceGraph';
+import { DataSeries } from '../components/DataSeries';
+import { useUsHopitalizationQuery } from '../generated/graphql';
 
-export const UsDailyGraph = () => {
-  const { data, loading } = useUsCasesQuery();
+export const UsHospitalizationGraph = () => {
+  const { data, loading } = useUsHopitalizationQuery();
   return (
     <div>
       {loading && <div>loading</div>}
       {data && (
         <>
           <AdvancedGraph
-            title="US Daily"
+            title="US Hospitalization"
             serieses={[
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Confirmed",
-                  data.allUsCasesAlls?.nodes! as object[],
-                  "confirmedCases"
+                  "Hospitalized",
+                  data.allUsHospitalizations?.nodes! as object[],
+                  "hospitalizedCurrently"
                 ).change(),
-                color: "green",
+                color: "blue",
                 covidspecial: true,
                 showMovingAverage: true,
               },
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Deaths",
-                  data.allUsCasesAlls?.nodes! as object[],
-                  "deaths"
+                  "inICU",
+                  data.allUsHospitalizations?.nodes! as object[],
+                  "inIcuCurrently"
                 ).change(),
                 color: "red",
-                rightAxis: true,
                 covidspecial: true,
                 showMovingAverage: true,
               },
             ]}
             initNumberOfDays={360}
           />
-          TODO: NEED HOSPITALIZATION, but not testing.
         </>
       )}
     </div>

@@ -1,6 +1,6 @@
-import { AdvancedGraph } from "./components/AdvanceGraph";
-import { DataSeries } from "./components/DataSeries";
-import { useUsCasesQuery } from "./generated/graphql";
+import { AdvancedGraph } from '../components/AdvanceGraph';
+import { DataSeries } from '../components/DataSeries';
+import { useUsCasesQuery } from '../generated/graphql';
 
 export const UsCasesGraph = () => {
   const { data, loading } = useUsCasesQuery();

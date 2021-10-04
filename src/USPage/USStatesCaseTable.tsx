@@ -1,8 +1,9 @@
-import { useUsStatesCasesTableQuery } from "./generated/graphql";
-import React from "react";
-import { shortNumber, shortWholeNumber, Table } from "./NewSortableTable";
+import React from 'react';
 
-export const USStateCasesCapita = () => {
+import { useUsStatesCasesTableQuery } from '../generated/graphql';
+import { shortNumber, Table } from '../NewSortableTable';
+
+export const USStateCasesTable = () => {
   const { data, loading } = useUsStatesCasesTableQuery();
   const nodes = data?.allStateSummaryViews?.nodes;
   const list =
@@ -21,10 +22,10 @@ export const USStateCasesCapita = () => {
         Cell: shortNumber,
       },
       {
-        Header: "#/Mil.",
-        accessor: ({ confirmedCases, population }: any) =>
-          (confirmedCases * 1000000) / population,
-        Cell: shortWholeNumber,
+        Header: "New",
+        accessor: "confirmedIncrease",
+        Cell: shortNumber,
+        sortDescFirst: true,
       },
       {
         Header: "Deaths",
@@ -32,14 +33,14 @@ export const USStateCasesCapita = () => {
         Cell: shortNumber,
       },
       {
-        Header: "Deaths/Mil",
-        accessor: ({ deaths, population }: any) =>
-          (deaths * 1000000) / population,
-        Cell: shortWholeNumber,
+        Header: "Deaths+",
+        accessor: "deathIncrease",
+        Cell: shortNumber,
       },
       {
-        Header: "Pop.",
-        accessor: "population",
+        Header: "#/Mil.",
+        accessor: ({ confirmedCases, population }: any) =>
+          (confirmedCases * 1000000) / population,
         Cell: shortNumber,
       },
     ],

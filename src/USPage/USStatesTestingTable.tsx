@@ -1,6 +1,7 @@
-import { useUsStatesTestingTableQuery } from "./generated/graphql";
-import React from "react";
-import { percentage1Decimal, shortNumber, Table } from "./NewSortableTable";
+import React from 'react';
+
+import { useUsStatesTestingTableQuery } from '../generated/graphql';
+import { percentage1Decimal, shortNumber, Table } from '../NewSortableTable';
 
 export const USStateTestingTable = () => {
   const { data, loading } = useUsStatesTestingTableQuery();

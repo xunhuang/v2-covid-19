@@ -1,6 +1,6 @@
-import { AdvancedGraph } from "./components/AdvanceGraph";
-import { DataSeries } from "./components/DataSeries";
-import { useUsSubRegionsQuery } from "./generated/graphql";
+import { AdvancedGraph } from '../components/AdvanceGraph';
+import { DataSeries } from '../components/DataSeries';
+import { useUsSubRegionsQuery } from '../generated/graphql';
 
 export const USSubRegions = () => {
   const { data, loading } = useUsSubRegionsQuery();
