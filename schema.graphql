@@ -2202,6 +2202,11 @@ type StateSummaryView {
   confirmedIncrease: Int
   deaths: Int
   deathIncrease: Int
+  totalTestResults: Int
+  positive: Int
+  negative: Int
+  positiveIncrease: Int
+  negativeIncrease: Int
   population: Int
 
   """
@@ -2234,6 +2239,16 @@ enum StateSummaryViewsOrderBy {
   DEATHS_DESC
   DEATH_INCREASE_ASC
   DEATH_INCREASE_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
   POPULATION_ASC
   POPULATION_DESC
 }
@@ -2260,6 +2275,21 @@ input StateSummaryViewCondition {
 
   """Checks for equality with the object’s `deathIncrease` field."""
   deathIncrease: Int
+
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
 
   """Checks for equality with the object’s `population` field."""
   population: Int

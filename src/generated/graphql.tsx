@@ -2249,9 +2249,14 @@ export type StateSummaryView = {
   deaths?: Maybe<Scalars['Int']>;
   /** Reads a single `FipsCodeState` that is related to this `StateSummaryView`. */
   fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  negative?: Maybe<Scalars['Int']>;
+  negativeIncrease?: Maybe<Scalars['Int']>;
   population?: Maybe<Scalars['Int']>;
+  positive?: Maybe<Scalars['Int']>;
+  positiveIncrease?: Maybe<Scalars['Int']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
+  totalTestResults?: Maybe<Scalars['Int']>;
 };
 
 /**
@@ -2267,12 +2272,22 @@ export type StateSummaryViewCondition = {
   deathIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `deaths` field. */
   deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `negative` field. */
+  negative?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `negativeIncrease` field. */
+  negativeIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `population` field. */
   population?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `positive` field. */
+  positive?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `positiveIncrease` field. */
+  positiveIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateName` field. */
   stateName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `totalTestResults` field. */
+  totalTestResults?: Maybe<Scalars['Int']>;
 };
 
 /** A connection to a list of `StateSummaryView` values. */
@@ -2308,12 +2323,22 @@ export enum StateSummaryViewsOrderBy {
   DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
   DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
   Natural = 'NATURAL',
+  NegativeAsc = 'NEGATIVE_ASC',
+  NegativeDesc = 'NEGATIVE_DESC',
+  NegativeIncreaseAsc = 'NEGATIVE_INCREASE_ASC',
+  NegativeIncreaseDesc = 'NEGATIVE_INCREASE_DESC',
   PopulationAsc = 'POPULATION_ASC',
   PopulationDesc = 'POPULATION_DESC',
+  PositiveAsc = 'POSITIVE_ASC',
+  PositiveDesc = 'POSITIVE_DESC',
+  PositiveIncreaseAsc = 'POSITIVE_INCREASE_ASC',
+  PositiveIncreaseDesc = 'POSITIVE_INCREASE_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   StateNameAsc = 'STATE_NAME_ASC',
-  StateNameDesc = 'STATE_NAME_DESC'
+  StateNameDesc = 'STATE_NAME_DESC',
+  TotalTestResultsAsc = 'TOTAL_TEST_RESULTS_ASC',
+  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC'
 }
 
 export type StatesHospitalization = {
@@ -3221,6 +3246,11 @@ export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type StatesQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, fipsCodeCountiesByStateFipsCode: { __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', areaName?: Maybe<string> }>> } }>> }> };
 
+export type UsStatesTestingTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsStatesTestingTableQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, population?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, positiveIncrease?: Maybe<number>, negativeIncrease?: Maybe<number>, totalTestResults?: Maybe<number> }>> }> };
+
 export type UsCasesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3314,6 +3344,49 @@ export function useStatesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Sta
 export type StatesQueryHookResult = ReturnType<typeof useStatesQuery>;
 export type StatesLazyQueryHookResult = ReturnType<typeof useStatesLazyQuery>;
 export type StatesQueryResult = Apollo.QueryResult<StatesQuery, StatesQueryVariables>;
+export const UsStatesTestingTableDocument = gql`
+    query USStatesTestingTable {
+  allStateSummaryViews {
+    nodes {
+      stateName
+      stateFipsCode
+      population
+      negative
+      positive
+      positiveIncrease
+      negativeIncrease
+      totalTestResults
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsStatesTestingTableQuery__
+ *
+ * To run a query within a React component, call `useUsStatesTestingTableQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsStatesTestingTableQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsStatesTestingTableQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsStatesTestingTableQuery(baseOptions?: Apollo.QueryHookOptions<UsStatesTestingTableQuery, UsStatesTestingTableQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsStatesTestingTableQuery, UsStatesTestingTableQueryVariables>(UsStatesTestingTableDocument, options);
+      }
+export function useUsStatesTestingTableLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsStatesTestingTableQuery, UsStatesTestingTableQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsStatesTestingTableQuery, UsStatesTestingTableQueryVariables>(UsStatesTestingTableDocument, options);
+        }
+export type UsStatesTestingTableQueryHookResult = ReturnType<typeof useUsStatesTestingTableQuery>;
+export type UsStatesTestingTableLazyQueryHookResult = ReturnType<typeof useUsStatesTestingTableLazyQuery>;
+export type UsStatesTestingTableQueryResult = Apollo.QueryResult<UsStatesTestingTableQuery, UsStatesTestingTableQueryVariables>;
 export const UsCasesDocument = gql`
     query UsCases {
   allUsCasesAlls {

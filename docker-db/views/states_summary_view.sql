@@ -6,6 +6,11 @@ SELECT
     cases.confirmed_increase as confirmed_increase,
     cases.deaths as deaths,
     cases.deaths_increase as death_increase,
+    "totalTestResults",
+    positive,
+    negative,
+    "positiveIncrease",
+    "negativeIncrease",
     pop.pop2020 as population
 from
     (
@@ -34,6 +39,27 @@ from
             pop2020
         from
             state_population
-    ) as pop ON cases.state_fips_code = pop.state_fips_code;
-    
-comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references fips_code_state(state_fips_code)'
+    ) as pop ON cases.state_fips_code = pop.state_fips_code
+    LEFT OUTER JOIN (
+        select
+            tests.state_fips_code as state_fips_code,
+            "totalTestResults" as "totalTestResults",
+            positive,
+            negative,
+            "positiveIncrease" as "positiveIncrease",
+            "negativeIncrease" as "negativeIncrease"
+        from
+            states_testing as tests
+            join (
+                select
+                    max(date) as date,
+                    state_fips_code
+                from
+                    states_testing
+                group by
+                    state_fips_code
+            ) as maxdate on tests.state_fips_code = maxdate.state_fips_code
+            and tests.date = maxdate.date
+    ) as testing on testing.state_fips_code = cases.state_fips_code;
+
+    comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references fips_code_state(state_fips_code)'

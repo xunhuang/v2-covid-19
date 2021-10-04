@@ -1,0 +1,14 @@
+query USStatesTestingTable {
+  allStateSummaryViews {
+    nodes {
+      stateName
+      stateFipsCode
+      population
+      negative
+      positive
+      positiveIncrease
+      negativeIncrease
+      totalTestResults
+    }
+  }
+}

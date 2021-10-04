@@ -5,6 +5,15 @@ import { myShortNumber } from "./components/AdvanceGraph";
 export const shortNumber = ({ cell }: any) => {
   return <div>{myShortNumber(cell.value)}</div>;
 };
+
+export const percentage1Decimal = ({ cell }: any) => {
+  return <div>{Math.round(cell.value * 1000) / 10}%</div>;
+};
+
+export const shortWholeNumber = ({ cell }: any) => {
+  return <div>{myShortNumber(Math.floor(cell.value))}</div>;
+};
+
 interface Props {
   columns: Array<Column<object>>;
   data: Array<object>;
@@ -37,11 +46,7 @@ export const Table: React.FC<Props> = ({ columns, data }) => {
                   {column.render("Header")}
                   {/* Add a sort direction indicator */}
                   <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
+                    {column.isSorted ? (column.isSortedDesc ? " ↓" : " ↑") : ""}
                   </span>
                 </th>
               ))}
