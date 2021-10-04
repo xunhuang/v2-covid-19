@@ -1,21 +1,20 @@
-import React from "react";
-import "./App.css";
-// import { ExampleGraph } from "./components/AdvanceGraph";
-import { FullDiv } from "./styles/HomeStyles";
-import { UsCasesGraph } from "./UsCasesGraph";
-import { USStateCasesTable } from "./USStatesCaseTable";
+import './App.css';
 
-// import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import { USStateCasesCapita } from "./USStatesCaseCapita";
-import { USStateTestingTable } from "./USStatesTestingTable";
-import { USSubRegions } from "./USSubRegions";
-import { UsDailyGraph } from "./USDailyGraph";
-import { UsHospitalizationGraph } from "./USHopitalizationGraph";
-import { UsTestingEffortGraph, USTestingGraphs } from "./USTestingGraph";
+import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import React from 'react';
+
+import { FullDiv } from './styles/HomeStyles';
+import { UsCasesGraph } from './UsCasesGraph';
+import { UsDailyGraph } from './USDailyGraph';
+import { UsHospitalizationGraph } from './USHopitalizationGraph';
+import { USStateCasesCapita } from './USStatesCaseCapita';
+import { USStateCasesTable } from './USStatesCaseTable';
+import { USStateTestingTable } from './USStatesTestingTable';
+import { USSubRegions } from './USSubRegions';
+import { USTestingGraphs } from './USTestingGraph';
 
 export interface IApplicationProps {}
 function TabPanel(props: any) {
