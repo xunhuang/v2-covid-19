@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import { AppTabs } from './components/AppTab';
 import {
     CountySummaryView,
     FipsCodeState,
@@ -38,24 +39,40 @@ export const StatePage = () => {
   const testing = data?.allFipsCodeStates?.nodes[0]?.testing
     .nodes as unknown as Array<StatesTesting>;
 
+  if (loading) {
+    return <div> loading </div>;
+  }
   return (
     <div>
-      {loading && <div> loading </div>}
-      {state && <StateSubRegions state={state} />}
-      {testing && <StateTestingGraphs state={state!} testing={testing} />}
-      {hospitalization && (
-        <StateHospitalizationGraph
-          state={state!}
-          hospitalization={hospitalization}
-        />
-      )}
-      {cases && <StateCasesGraph state={state!} cases={cases} />}
-      {counties && (
-        <StateCountiesCasesTable state={state!} countiesTable={counties} />
-      )}
-      {counties && (
-        <StateCountiesCapitaTable state={state!} countiesTable={counties} />
-      )}
+      <AppTabs
+        tabs={[
+          ["Cases", <StateCasesGraph state={state!} cases={cases} />],
+          ["Sub Regions", <StateSubRegions state={state} />],
+          ["Testing", <StateTestingGraphs state={state!} testing={testing} />],
+          [
+            "Hospitalization",
+            <StateHospitalizationGraph
+              state={state!}
+              hospitalization={hospitalization}
+            />,
+          ],
+        ]}
+      />
+      <AppTabs
+        tabs={[
+          [
+            "Cases",
+            <StateCountiesCasesTable state={state!} countiesTable={counties} />,
+          ],
+          [
+            "Capita",
+            <StateCountiesCapitaTable
+              state={state!}
+              countiesTable={counties}
+            />,
+          ],
+        ]}
+      />
     </div>
   );
 };

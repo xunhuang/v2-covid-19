@@ -36,7 +36,6 @@ export const UsDailyGraph = () => {
             ]}
             initNumberOfDays={360}
           />
-          TODO: NEED HOSPITALIZATION, but not testing.
         </>
       )}
     </div>
