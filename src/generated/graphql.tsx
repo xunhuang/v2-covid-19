@@ -3259,6 +3259,20 @@ export enum UsTestingsOrderBy {
   TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
 }
 
+export type InfoSummaryByStateFipsQueryVariables = Exact<{
+  state_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type InfoSummaryByStateFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
+
+export type InfoSummaryByCountyFipsQueryVariables = Exact<{
+  county_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, fipsCodeStateByStateFipsCode?: Maybe<{ __typename?: 'FipsCodeState', stateSummaryViewsByStateFipsCode: { __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> } }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
+
 export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3316,6 +3330,105 @@ export type UsSubRegionsQueryVariables = Exact<{ [key: string]: never; }>;
 export type UsSubRegionsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 
+export const InfoSummaryByStateFipsDocument = gql`
+    query InfoSummaryByStateFips($state_fips_code: String) {
+  allCountySummaryViews(
+    condition: {stateFipsCode: $state_fips_code}
+    orderBy: CONFIRMED_CASES_DESC
+    first: 1
+  ) {
+    nodes {
+      countyName
+      countyFipsCode
+      confirmedCases
+      confirmedIncrease
+    }
+  }
+}
+    `;
+
+/**
+ * __useInfoSummaryByStateFipsQuery__
+ *
+ * To run a query within a React component, call `useInfoSummaryByStateFipsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInfoSummaryByStateFipsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInfoSummaryByStateFipsQuery({
+ *   variables: {
+ *      state_fips_code: // value for 'state_fips_code'
+ *   },
+ * });
+ */
+export function useInfoSummaryByStateFipsQuery(baseOptions?: Apollo.QueryHookOptions<InfoSummaryByStateFipsQuery, InfoSummaryByStateFipsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InfoSummaryByStateFipsQuery, InfoSummaryByStateFipsQueryVariables>(InfoSummaryByStateFipsDocument, options);
+      }
+export function useInfoSummaryByStateFipsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InfoSummaryByStateFipsQuery, InfoSummaryByStateFipsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InfoSummaryByStateFipsQuery, InfoSummaryByStateFipsQueryVariables>(InfoSummaryByStateFipsDocument, options);
+        }
+export type InfoSummaryByStateFipsQueryHookResult = ReturnType<typeof useInfoSummaryByStateFipsQuery>;
+export type InfoSummaryByStateFipsLazyQueryHookResult = ReturnType<typeof useInfoSummaryByStateFipsLazyQuery>;
+export type InfoSummaryByStateFipsQueryResult = Apollo.QueryResult<InfoSummaryByStateFipsQuery, InfoSummaryByStateFipsQueryVariables>;
+export const InfoSummaryByCountyFipsDocument = gql`
+    query InfoSummaryByCountyFips($county_fips_code: String) {
+  allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {
+    nodes {
+      countyName
+      confirmedCases
+      confirmedIncrease
+      fipsCodeStateByStateFipsCode {
+        stateSummaryViewsByStateFipsCode {
+          nodes {
+            stateName
+            stateFipsCode
+            confirmedCases
+            confirmedIncrease
+          }
+        }
+      }
+    }
+  }
+  allUsSummaryViews {
+    nodes {
+      confirmedCases
+      confirmedIncrease
+    }
+  }
+}
+    `;
+
+/**
+ * __useInfoSummaryByCountyFipsQuery__
+ *
+ * To run a query within a React component, call `useInfoSummaryByCountyFipsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInfoSummaryByCountyFipsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInfoSummaryByCountyFipsQuery({
+ *   variables: {
+ *      county_fips_code: // value for 'county_fips_code'
+ *   },
+ * });
+ */
+export function useInfoSummaryByCountyFipsQuery(baseOptions?: Apollo.QueryHookOptions<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>(InfoSummaryByCountyFipsDocument, options);
+      }
+export function useInfoSummaryByCountyFipsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>(InfoSummaryByCountyFipsDocument, options);
+        }
+export type InfoSummaryByCountyFipsQueryHookResult = ReturnType<typeof useInfoSummaryByCountyFipsQuery>;
+export type InfoSummaryByCountyFipsLazyQueryHookResult = ReturnType<typeof useInfoSummaryByCountyFipsLazyQuery>;
+export type InfoSummaryByCountyFipsQueryResult = Apollo.QueryResult<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>;
 export const UsTestingDocument = gql`
     query USTesting {
   allUsTestings {
