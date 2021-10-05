@@ -9,12 +9,12 @@ import {
   StatesTesting,
   useStateByFipsDetailsQuery,
 } from './generated/graphql';
+import { InfoTab } from './USPage/InfoTab';
 import { StateCasesGraph } from './USPage/StateCasesGraph';
 import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 import { StateHospitalizationGraph } from './USPage/StateHospitalizationGraph';
 import { StateSubRegions } from './USPage/StateSubRegions';
 import { StateTestingGraphs } from './USPage/StateTestingGraph';
-import { InfoTabByState } from './USPage/USPage';
 
 export type StatePageMainProp = {
   state: FipsCodeState;
@@ -44,7 +44,7 @@ export const StatePage = () => {
   }
   return (
     <div>
-      <InfoTabByState state_fips_code={state_fips_code} />
+      <InfoTab state_fips_code={state_fips_code} />
       <AppTabs
         tabs={[
           ["Cases", <StateCasesGraph state={state!} cases={cases} />],
