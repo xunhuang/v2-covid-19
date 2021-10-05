@@ -4,10 +4,12 @@ SELECT
     cases.state_name as state_name,
 	cases.county_name as county_name,
     cases.county_fips_code as county_fips_code,
+    cases.state_fips_code as state_fips_code,
     cases.confirmed_cases as confirmed_cases,
     cases.confirmed_increase as confirmed_increase,
     cases.deaths as deaths,
-    cases.deaths_increase as death_increase
+    cases.deaths_increase as death_increase,
+    pop.pop2020 as population
 from
     (
         SELECT
@@ -30,7 +32,14 @@ from
                 from
                     county_cases_all
             )
-    ) as cases ;
+    ) as cases 
+        LEFT OUTER JOIN (
+        select
+            county_fips_code,
+            pop2020
+        from
+            county_population
+    ) as pop ON cases.county_fips_code = pop.county_fips_code;
 
 comment on materialized view county_summary_view is
-E'@foreignKey (county_fips_code) references fips_code_county(county_fips_code)'
+E'@foreignKey (county_fips_code) references fips_code_county(county_fips_code)\n@foreignKey (state_fips_code) references fips_code_state(state_fips_code)';

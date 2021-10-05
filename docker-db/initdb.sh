@@ -24,6 +24,13 @@ b="\
  us_summary(\"totalTestResults\",\"negativeIncrease\",\"positiveIncrease\",negative,positive,inconclusive,\"inconclusiveIncrease\",adult_icu_bed_used,\"inIcuCurrently\",\"hospitalizedCurrently\",adult_icu_beds_capacity,inpatient_beds_used,inpatient_beds_capacity,confirmed_cases,confirmed_increase,confirmed_increase_14days)^official.us-summary.csv\
  counties_summary(state_fips_code,county_fips_code,state,county,confirmed_cases,deaths,test_7day_total,positivity_7day_avg,community,school,report_date,healthwebsites)^my_dataset.covid-19-county-official-view.csv\
 "
+# b="\
+ # fips_code_state(state_fips_code,state_postal_abbreviation,state_name,state_gnisid)^mydataset2.fip_codes_states.csv\
+ # fips_code_state(state_fips_code,state_postal_abbreviation,state_name,state_gnisid)^covid-special-states.csv\
+ # fips_code_county(summary_level,summary_level_name,state_fips_code,county_fips_code,county_subdivision_fips_code,place_fips_code,consolidated_city_fips_code,area_name)^mydataset2.fips_code_county.csv\
+ # fips_code_county(summary_level,summary_level_name,state_fips_code,county_fips_code,county_subdivision_fips_code,place_fips_code,consolidated_city_fips_code,area_name)^covid-special-counties.csv\
+ # county_population(county_fips_code,state_fips_code,pop2020)^county-population-2020.csv\
+# "
 
 CONN=postgres://postgres:mysecretpassword@localhost/postgres
 # CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe

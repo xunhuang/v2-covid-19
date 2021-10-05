@@ -1,6 +1,8 @@
 ﻿summary_level,summary_level_name,state_fips_code,county_fips_code,county_subdivision_fips_code,place_fips_code,consolidated_city_fips_code,area_name
 50,state-county,02,02000,,,,Alaska Unknown
 50,state-county,02,02997,,,,"Multicounty, Not Statewide Alaska"
+50,state-county,02,02063,,,,"Chugach Census Area"
+50,state-county,02,02066,,,,"Copper River Census Area"
 50,state-county,02,02998,,,,"Out-of-State, Alaska"
 50,state-county,04,04000,,,,Arizona Unknown
 50,state-county,05,05000,,,,Arkansas Unknown
