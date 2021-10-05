@@ -24,6 +24,22 @@ query StateByFipsDetails($fips: String) {
           deaths
         }
       }
+      hospitalization: statesHospitalizationsByStateFipsCode {
+        nodes {
+          date
+          inIcuCurrently
+          hospitalizedCurrently
+        }
+      }
+      testing: statesTestingsByStateFipsCode {
+        nodes {
+          date
+          totalTestResults
+          negative
+          positive
+          inconclusive
+        }
+      }
     }
   }
 }

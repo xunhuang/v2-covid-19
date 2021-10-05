@@ -16,86 +16,6 @@ export type Scalars = {
   Cursor: any;
 };
 
-export type Aaa = {
-  __typename?: 'Aaa';
-  confirmedCases?: Maybe<Scalars['Int']>;
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
-  countyName?: Maybe<Scalars['String']>;
-  deathIncrease?: Maybe<Scalars['Int']>;
-  deaths?: Maybe<Scalars['Int']>;
-  population?: Maybe<Scalars['Int']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-};
-
-/** A condition to be used against `Aaa` object types. All fields are tested for equality and combined with a logical ‘and.’ */
-export type AaaCondition = {
-  /** Checks for equality with the object’s `confirmedCases` field. */
-  confirmedCases?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedIncrease` field. */
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `countyFipsCode` field. */
-  countyFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `countyName` field. */
-  countyName?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `deathIncrease` field. */
-  deathIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `deaths` field. */
-  deaths?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `population` field. */
-  population?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `stateFipsCode` field. */
-  stateFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `stateName` field. */
-  stateName?: Maybe<Scalars['String']>;
-};
-
-/** A connection to a list of `Aaa` values. */
-export type AaasConnection = {
-  __typename?: 'AaasConnection';
-  /** A list of edges which contains the `Aaa` and cursor to aid in pagination. */
-  edges: Array<AaasEdge>;
-  /** A list of `Aaa` objects. */
-  nodes: Array<Maybe<Aaa>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `Aaa` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `Aaa` edge in the connection. */
-export type AaasEdge = {
-  __typename?: 'AaasEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `Aaa` at the end of the edge. */
-  node?: Maybe<Aaa>;
-};
-
-/** Methods to use when ordering `Aaa`. */
-export enum AaasOrderBy {
-  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
-  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
-  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
-  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
-  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
-  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
-  CountyNameAsc = 'COUNTY_NAME_ASC',
-  CountyNameDesc = 'COUNTY_NAME_DESC',
-  DeathsAsc = 'DEATHS_ASC',
-  DeathsDesc = 'DEATHS_DESC',
-  DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
-  DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
-  Natural = 'NATURAL',
-  PopulationAsc = 'POPULATION_ASC',
-  PopulationDesc = 'POPULATION_DESC',
-  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
-  StateNameAsc = 'STATE_NAME_ASC',
-  StateNameDesc = 'STATE_NAME_DESC'
-}
-
 /** A connection to a list of `CountiesSummary` values. */
 export type CountiesSummariesConnection = {
   __typename?: 'CountiesSummariesConnection';
@@ -1903,8 +1823,6 @@ export type PageInfo = {
 /** The root query type which gives access points into the data universe. */
 export type Query = Node & {
   __typename?: 'Query';
-  /** Reads and enables pagination through a set of `Aaa`. */
-  allAaas?: Maybe<AaasConnection>;
   /** Reads and enables pagination through a set of `CountiesSummary`. */
   allCountiesSummaries?: Maybe<CountiesSummariesConnection>;
   /** Reads and enables pagination through a set of `CountyCasesAll`. */
@@ -1958,18 +1876,6 @@ export type Query = Node & {
    * which can only query top level fields if they are in a particular form.
    */
   query: Query;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllAaasArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<AaaCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<AaasOrderBy>>;
 };
 
 
@@ -3370,7 +3276,7 @@ export type StateByFipsDetailsQueryVariables = Exact<{
 }>;
 
 
-export type StateByFipsDetailsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, countiesTable: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
+export type StateByFipsDetailsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, countiesTable: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, hospitalization: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, testing: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
 
 export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3513,6 +3419,22 @@ export const StateByFipsDetailsDocument = gql`
           date
           confirmedCases
           deaths
+        }
+      }
+      hospitalization: statesHospitalizationsByStateFipsCode {
+        nodes {
+          date
+          inIcuCurrently
+          hospitalizedCurrently
+        }
+      }
+      testing: statesTestingsByStateFipsCode {
+        nodes {
+          date
+          totalTestResults
+          negative
+          positive
+          inconclusive
         }
       }
     }
