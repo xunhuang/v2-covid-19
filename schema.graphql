@@ -17,35 +17,6 @@ type Query implements Node {
     nodeId: ID!
   ): Node
 
-  """Reads and enables pagination through a set of `Aaa`."""
-  allAaas(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Aaa`."""
-    orderBy: [AaasOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AaaCondition
-  ): AaasConnection
-
   """Reads and enables pagination through a set of `CountiesSummary`."""
   allCountiesSummaries(
     """Only read the first `n` values of the set."""
@@ -622,117 +593,6 @@ interface Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-}
-
-"""A connection to a list of `Aaa` values."""
-type AaasConnection {
-  """A list of `Aaa` objects."""
-  nodes: [Aaa]!
-
-  """
-  A list of edges which contains the `Aaa` and cursor to aid in pagination.
-  """
-  edges: [AaasEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Aaa` you could get from the connection."""
-  totalCount: Int!
-}
-
-type Aaa {
-  stateName: String
-  countyName: String
-  countyFipsCode: String
-  stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  deaths: Int
-  deathIncrease: Int
-  population: Int
-}
-
-"""A `Aaa` edge in the connection."""
-type AaasEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Aaa` at the end of the edge."""
-  node: Aaa
-}
-
-"""A location in a connection that can be used for resuming pagination."""
-scalar Cursor
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
-}
-
-"""Methods to use when ordering `Aaa`."""
-enum AaasOrderBy {
-  NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
-  POPULATION_ASC
-  POPULATION_DESC
-}
-
-"""
-A condition to be used against `Aaa` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input AaaCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
 }
 
 """A connection to a list of `CountiesSummary` values."""
@@ -1362,6 +1222,24 @@ type CountyPopulationsEdge {
 
   """The `CountyPopulation` at the end of the edge."""
   node: CountyPopulation
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
 }
 
 """Methods to use when ordering `CountyPopulation`."""

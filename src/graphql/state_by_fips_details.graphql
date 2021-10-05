@@ -4,7 +4,19 @@ query StateByFipsDetails($fips: String) {
       statePostalAbbreviation
       stateName
       stateFipsCode
-      nodeId
+      countiesTable: countySummaryViewsByStateFipsCode {
+        nodes {
+          stateName
+          countyName
+          countyFipsCode
+          stateFipsCode
+          confirmedCases
+          confirmedIncrease
+          deaths
+          deathIncrease
+          population
+        }
+      }
       cases: stateCasesAllsByStateFipsCode {
         nodes {
           date
