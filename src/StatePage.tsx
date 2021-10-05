@@ -6,24 +6,17 @@ import {
     FipsCodeState,
     StateCasesAllsConnection,
     StatesHospitalization,
+    StatesTesting,
     useStateByFipsDetailsQuery,
 } from './generated/graphql';
 import { StateCasesGraph } from './USPage/StateCasesGraph';
 import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 import { StateHospitalizationGraph } from './USPage/StateHospitalizationGraph';
+import { StateSubRegions } from './USPage/StateSubRegions';
+import { StateTestingGraphs } from './USPage/StateTestingGraph';
 
 export type StatePageMainProp = {
   state: FipsCodeState;
-};
-
-const StatePageMain = ({ state }: StatePageMainProp) => {
-  console.log(state);
-  return (
-    <div>
-      {state.stateName} + {state.stateFipsCode} +{" "}
-      {state.statePostalAbbreviation}
-    </div>
-  );
 };
 
 export const StatePage = () => {
@@ -42,25 +35,25 @@ export const StatePage = () => {
     .nodes as unknown as Array<CountySummaryView>;
   const hospitalization = data?.allFipsCodeStates?.nodes[0]?.hospitalization
     .nodes as unknown as Array<StatesHospitalization>;
-
-  if (hospitalization) {
-    console.log(hospitalization);
-  }
+  const testing = data?.allFipsCodeStates?.nodes[0]?.testing
+    .nodes as unknown as Array<StatesTesting>;
 
   return (
     <div>
       {loading && <div> loading </div>}
-      {state && (
+      {state && <StateSubRegions state={state} />}
+      {testing && <StateTestingGraphs state={state!} testing={testing} />}
+      {hospitalization && (
         <StateHospitalizationGraph
           state={state!}
           hospitalization={hospitalization}
         />
       )}
-      {state && <StateCasesGraph state={state!} cases={cases} />}
-      {state && (
+      {cases && <StateCasesGraph state={state!} cases={cases} />}
+      {counties && (
         <StateCountiesCasesTable state={state!} countiesTable={counties} />
       )}
-      {state && (
+      {counties && (
         <StateCountiesCapitaTable state={state!} countiesTable={counties} />
       )}
     </div>

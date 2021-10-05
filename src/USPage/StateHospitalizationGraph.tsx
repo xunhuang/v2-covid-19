@@ -11,7 +11,6 @@ export const StateHospitalizationGraph = ({
   state,
   hospitalization,
 }: StateHospitalizationProp) => {
-  console.log(hospitalization);
   return (
     <AdvancedGraph
       title={`${state.stateName} Hospitalization`}

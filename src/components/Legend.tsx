@@ -1,21 +1,22 @@
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import { GraphSeriesType } from "./AdvanceGraph";
+import { alpha, makeStyles } from '@material-ui/core/styles';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+
+import { GraphSeriesType } from './AdvanceGraph';
 
 const useLegendStyles = makeStyles((theme) => ({
   serieses: {
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
     display: "flex",
     flexWrap: "wrap",
     maxWidth: "500px",
   },
   series: {
     border: "none",
-    color: fade(theme.palette.action.active, 0.12),
+    color: alpha(theme.palette.action.active, 0.12),
     "&.selected": {
       backgroundColor: "initial",
-      color: fade(theme.palette.action.active, 0.8),
+      color: alpha(theme.palette.action.active, 0.8),
       fontWeight: "initial",
     },
     height: "initial",

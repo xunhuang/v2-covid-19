@@ -1,0 +1,14 @@
+query StateSubRegion($state_fips_code: String) {
+  allFipsCodeCounties(condition: { stateFipsCode: $state_fips_code }) {
+    nodes {
+      countyFipsCode
+      areaName
+      countyCasesAllsByCountyFipsCode {
+        nodes {
+          date
+          confirmedCases
+        }
+      }
+    }
+  }
+}

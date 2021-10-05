@@ -1,10 +1,10 @@
-import React, { ChangeEvent } from "react";
-import Slider from "@material-ui/core/Slider";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { isMobile } from "react-device-detect";
-import Grid from "@material-ui/core/Grid";
-import PropTypes from "prop-types";
-import { Moment } from "moment";
+import Grid from '@material-ui/core/Grid';
+import Slider from '@material-ui/core/Slider';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Moment } from 'moment';
+import PropTypes from 'prop-types';
+import React, { ChangeEvent } from 'react';
+import { isMobile } from 'react-device-detect';
 
 const moment = require("moment");
 
@@ -81,7 +81,7 @@ const DateRangeSlider = (props: DateRangeSliderProps) => {
     <Grid
       container={true}
       direction="row"
-      justify="center"
+      justifyContent="center"
       alignItems="flex-end"
       className={`${classes.mobileDiv} ${classes.container}`}
     >
@@ -91,7 +91,7 @@ const DateRangeSlider = (props: DateRangeSliderProps) => {
     <Grid
       container={true}
       direction="row"
-      justify="center"
+      justifyContent="center"
       alignItems="flex-end"
       className={`${classes.webDiv} ${classes.container}`}
     >

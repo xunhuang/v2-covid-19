@@ -3278,6 +3278,13 @@ export type StateByFipsDetailsQueryVariables = Exact<{
 
 export type StateByFipsDetailsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, countiesTable: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, hospitalization: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, testing: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
 
+export type StateSubRegionQueryVariables = Exact<{
+  state_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type StateSubRegionQuery = { __typename?: 'Query', allFipsCodeCounties?: Maybe<{ __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', countyFipsCode: string, areaName?: Maybe<string>, countyCasesAllsByCountyFipsCode: { __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number> }>> } }>> }> };
+
 export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3469,6 +3476,50 @@ export function useStateByFipsDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type StateByFipsDetailsQueryHookResult = ReturnType<typeof useStateByFipsDetailsQuery>;
 export type StateByFipsDetailsLazyQueryHookResult = ReturnType<typeof useStateByFipsDetailsLazyQuery>;
 export type StateByFipsDetailsQueryResult = Apollo.QueryResult<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>;
+export const StateSubRegionDocument = gql`
+    query StateSubRegion($state_fips_code: String) {
+  allFipsCodeCounties(condition: {stateFipsCode: $state_fips_code}) {
+    nodes {
+      countyFipsCode
+      areaName
+      countyCasesAllsByCountyFipsCode {
+        nodes {
+          date
+          confirmedCases
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useStateSubRegionQuery__
+ *
+ * To run a query within a React component, call `useStateSubRegionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStateSubRegionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStateSubRegionQuery({
+ *   variables: {
+ *      state_fips_code: // value for 'state_fips_code'
+ *   },
+ * });
+ */
+export function useStateSubRegionQuery(baseOptions?: Apollo.QueryHookOptions<StateSubRegionQuery, StateSubRegionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StateSubRegionQuery, StateSubRegionQueryVariables>(StateSubRegionDocument, options);
+      }
+export function useStateSubRegionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StateSubRegionQuery, StateSubRegionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StateSubRegionQuery, StateSubRegionQueryVariables>(StateSubRegionDocument, options);
+        }
+export type StateSubRegionQueryHookResult = ReturnType<typeof useStateSubRegionQuery>;
+export type StateSubRegionLazyQueryHookResult = ReturnType<typeof useStateSubRegionLazyQuery>;
+export type StateSubRegionQueryResult = Apollo.QueryResult<StateSubRegionQuery, StateSubRegionQueryVariables>;
 export const StatesDocument = gql`
     query States {
   allFipsCodeStates {
