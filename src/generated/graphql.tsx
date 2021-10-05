@@ -3482,7 +3482,7 @@ export const StateSubRegionDocument = gql`
     nodes {
       countyFipsCode
       areaName
-      countyCasesAllsByCountyFipsCode {
+      countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC, first: 180) {
         nodes {
           date
           confirmedCases
