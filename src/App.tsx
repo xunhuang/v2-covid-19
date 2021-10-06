@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from 'react-router-dom';
 
+import { CountyPage } from './CountyPage';
 import { StatePage } from './StatePage';
 import { USPage } from './USPage/USPage';
 
@@ -21,6 +22,11 @@ const routes: IRoute[] = [
   {
     path: "/state/:state_fips_code",
     component: StatePage,
+    name: "State",
+  },
+  {
+    path: "/county/:county_fips_code",
+    component: CountyPage,
     name: "State",
   },
 ];

@@ -40,12 +40,10 @@ export function USGraphTabs() {
 
 export const USPage = () => {
   return (
-    <>
-      <FullDiv>
-        <InfoTab />
-        <USGraphTabs />
-      </FullDiv>
+    <FullDiv>
+      <InfoTab />
+      <USGraphTabs />
       <USTableTabs />
-    </>
+    </FullDiv>
   );
 };

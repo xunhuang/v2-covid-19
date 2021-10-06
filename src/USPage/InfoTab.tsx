@@ -45,7 +45,7 @@ const InfoTabByCounty = ({
     data?.allCountySummaryViews?.nodes[0]?.fipsCodeStateByStateFipsCode
       ?.stateSummaryViewsByStateFipsCode.nodes[0]?.confirmedIncrease;
 
-  const USName = "United Systems";
+  const USName = "United States";
   const usConfirmed = data?.allUsSummaryViews?.nodes[0]?.confirmedCases;
   const usConfirmedIncreased =
     data?.allUsSummaryViews?.nodes[0]?.confirmedIncrease;

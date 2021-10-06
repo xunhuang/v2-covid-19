@@ -3278,6 +3278,13 @@ export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, stateName?: Maybe<string>, negative?: Maybe<number>, totalTestResultsIncrease?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
 
+export type CountyDetailsByCountyFipsQueryVariables = Exact<{
+  county_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CountyDetailsByCountyFipsQuery = { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, county?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> };
+
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
 }>;
@@ -3474,6 +3481,62 @@ export function useUsTestingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type UsTestingQueryHookResult = ReturnType<typeof useUsTestingQuery>;
 export type UsTestingLazyQueryHookResult = ReturnType<typeof useUsTestingLazyQuery>;
 export type UsTestingQueryResult = Apollo.QueryResult<UsTestingQuery, UsTestingQueryVariables>;
+export const CountyDetailsByCountyFipsDocument = gql`
+    query CountyDetailsByCountyFips($county_fips_code: String) {
+  summary: allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {
+    nodes {
+      stateName
+      countyName
+      countyFipsCode
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      population
+    }
+  }
+  cases: allCountyCasesAlls(condition: {countyFipsCode: $county_fips_code}) {
+    nodes {
+      date
+      county
+      stateName
+      stateFipsCode
+      countyFipsCode
+      confirmedCases
+      deaths
+    }
+  }
+}
+    `;
+
+/**
+ * __useCountyDetailsByCountyFipsQuery__
+ *
+ * To run a query within a React component, call `useCountyDetailsByCountyFipsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCountyDetailsByCountyFipsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountyDetailsByCountyFipsQuery({
+ *   variables: {
+ *      county_fips_code: // value for 'county_fips_code'
+ *   },
+ * });
+ */
+export function useCountyDetailsByCountyFipsQuery(baseOptions?: Apollo.QueryHookOptions<CountyDetailsByCountyFipsQuery, CountyDetailsByCountyFipsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountyDetailsByCountyFipsQuery, CountyDetailsByCountyFipsQueryVariables>(CountyDetailsByCountyFipsDocument, options);
+      }
+export function useCountyDetailsByCountyFipsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountyDetailsByCountyFipsQuery, CountyDetailsByCountyFipsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountyDetailsByCountyFipsQuery, CountyDetailsByCountyFipsQueryVariables>(CountyDetailsByCountyFipsDocument, options);
+        }
+export type CountyDetailsByCountyFipsQueryHookResult = ReturnType<typeof useCountyDetailsByCountyFipsQuery>;
+export type CountyDetailsByCountyFipsLazyQueryHookResult = ReturnType<typeof useCountyDetailsByCountyFipsLazyQuery>;
+export type CountyDetailsByCountyFipsQueryResult = Apollo.QueryResult<CountyDetailsByCountyFipsQuery, CountyDetailsByCountyFipsQueryVariables>;
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
   allFipsCodeStates(condition: {stateFipsCode: $fips}) {

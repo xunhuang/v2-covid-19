@@ -6,7 +6,7 @@ import { shortNumber, Table } from '../NewSortableTable';
 
 export const stateLink = ({ cell }: any) => {
   return (
-    <Link to={`county/${cell.row.original.countyFipsCode}`}>{cell.value}</Link>
+    <Link to={`/county/${cell.row.original.countyFipsCode}`}>{cell.value}</Link>
   );
 };
 
