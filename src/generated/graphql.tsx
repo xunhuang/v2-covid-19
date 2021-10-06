@@ -3262,7 +3262,7 @@ export enum UsTestingsOrderBy {
 export type SearchBarDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, stateName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }>, states?: Maybe<{ __typename?: 'StatesSummariesConnection', nodes: Array<Maybe<{ __typename?: 'StatesSummary', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
+export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, stateName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, state?: Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string> }> }>> }>, states?: Maybe<{ __typename?: 'StatesSummariesConnection', nodes: Array<Maybe<{ __typename?: 'StatesSummary', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
 
 export type InfoSummaryByStateFipsQueryVariables = Exact<{
   state_fips_code?: Maybe<Scalars['String']>;
@@ -3350,6 +3350,9 @@ export const SearchBarDataDocument = gql`
       stateName
       countyFipsCode
       confirmedCases
+      state: fipsCodeStateByStateFipsCode {
+        statePostalAbbreviation
+      }
     }
   }
   states: allStatesSummaries {

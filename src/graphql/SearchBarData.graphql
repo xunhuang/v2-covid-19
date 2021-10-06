@@ -5,6 +5,9 @@ query SearchBarData {
       stateName
       countyFipsCode
       confirmedCases
+      state: fipsCodeStateByStateFipsCode {
+        statePostalAbbreviation
+      }
     }
   }
   states: allStatesSummaries {

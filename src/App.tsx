@@ -55,7 +55,7 @@ const AppHeaderSection = () => {
 
   const counties = data?.counties?.nodes.map((county) => {
     return {
-      label: `${county?.countyName},${county?.stateName}(${county?.confirmedCases})`,
+      label: `${county?.countyName},${county?.state?.statePostalAbbreviation}(${county?.confirmedCases})`,
       county_fips_code: county?.countyFipsCode,
       state_fips_code: null,
       confirmed: county?.confirmedCases,
