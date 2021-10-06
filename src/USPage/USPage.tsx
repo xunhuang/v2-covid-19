@@ -41,8 +41,8 @@ export function USGraphTabs() {
 export const USPage = () => {
   return (
     <>
-      <InfoTab />
       <FullDiv>
+        <InfoTab />
         <USGraphTabs />
       </FullDiv>
       <USTableTabs />
