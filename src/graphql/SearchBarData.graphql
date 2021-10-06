@@ -1,0 +1,17 @@
+query SearchBarData {
+  counties: allCountySummaryViews(condition: {}) {
+    nodes {
+      countyName
+      stateName
+      countyFipsCode
+      confirmedCases
+    }
+  }
+  states: allStatesSummaries {
+    nodes {
+      stateName
+      stateFipsCode
+      confirmedCases
+    }
+  }
+}

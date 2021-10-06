@@ -3259,6 +3259,11 @@ export enum UsTestingsOrderBy {
   TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
 }
 
+export type SearchBarDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, stateName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }>, states?: Maybe<{ __typename?: 'StatesSummariesConnection', nodes: Array<Maybe<{ __typename?: 'StatesSummary', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
+
 export type InfoSummaryByStateFipsQueryVariables = Exact<{
   state_fips_code?: Maybe<Scalars['String']>;
 }>;
@@ -3337,6 +3342,52 @@ export type UsSubRegionsQueryVariables = Exact<{ [key: string]: never; }>;
 export type UsSubRegionsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 
+export const SearchBarDataDocument = gql`
+    query SearchBarData {
+  counties: allCountySummaryViews(condition: {}) {
+    nodes {
+      countyName
+      stateName
+      countyFipsCode
+      confirmedCases
+    }
+  }
+  states: allStatesSummaries {
+    nodes {
+      stateName
+      stateFipsCode
+      confirmedCases
+    }
+  }
+}
+    `;
+
+/**
+ * __useSearchBarDataQuery__
+ *
+ * To run a query within a React component, call `useSearchBarDataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchBarDataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchBarDataQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSearchBarDataQuery(baseOptions?: Apollo.QueryHookOptions<SearchBarDataQuery, SearchBarDataQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchBarDataQuery, SearchBarDataQueryVariables>(SearchBarDataDocument, options);
+      }
+export function useSearchBarDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchBarDataQuery, SearchBarDataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchBarDataQuery, SearchBarDataQueryVariables>(SearchBarDataDocument, options);
+        }
+export type SearchBarDataQueryHookResult = ReturnType<typeof useSearchBarDataQuery>;
+export type SearchBarDataLazyQueryHookResult = ReturnType<typeof useSearchBarDataLazyQuery>;
+export type SearchBarDataQueryResult = Apollo.QueryResult<SearchBarDataQuery, SearchBarDataQueryVariables>;
 export const InfoSummaryByStateFipsDocument = gql`
     query InfoSummaryByStateFips($state_fips_code: String) {
   allCountySummaryViews(

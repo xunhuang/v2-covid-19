@@ -36,7 +36,7 @@
     "deploy": "firebase deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "db": "npx postgraphile -c postgres://postgres:mysecretpassword@localhost:5432 --watch --enhance-graphiql --dynamic-json   --export-schema-graphql schema.graphql -o ",
+    "db": "npx postgraphile -c postgres://postgres:mysecretpassword@localhost:5432 --watch --enhance-graphiql --allow-explain --dynamic-json   --export-schema-graphql schema.graphql -o ",
     "db_2": "npx postgraphile -c postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe  --watch --enhance-graphiql --dynamic-json   --export-schema-graphql schema.graphql -o",
     "generate": "graphql-codegen --config codegen.yml"
   },
@@ -59,12 +59,14 @@
     ]
   },
   "devDependencies": {
+    "@emotion/styled": "^11.3.0",
     "@graphql-codegen/cli": "^2.2.0",
     "@graphql-codegen/typescript": "^2.2.2",
     "@graphql-codegen/typescript-operations": "^2.1.4",
     "@graphql-codegen/typescript-react-apollo": "^3.1.4",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
+    "@mui/material": "^5.0.2",
     "@types/material-ui": "^0.21.9",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-select": "^4.0.17",
