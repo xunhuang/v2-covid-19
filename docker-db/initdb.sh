@@ -57,6 +57,6 @@ init_views() {
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
 }
 
-#init_schema 
-#init_data
+init_schema 
+init_data
 init_views
