@@ -1,9 +1,9 @@
 import { Link, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { FullDiv } from '../styles/HomeStyles';
 import { AppSearchBar } from './AppSearchBar';
 import { SocialMediaButtons } from './SocialMedia';
-import { FullDiv } from './styles/HomeStyles';
 
 const DONATION_URL = "https://ko-fi.com/covid19direct";
 

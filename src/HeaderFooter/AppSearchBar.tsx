@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useSearchBarDataQuery } from './generated/graphql';
+import { useSearchBarDataQuery } from '../generated/graphql';
 
 export const AppSearchBar = () => {
   const { data, loading } = useSearchBarDataQuery();

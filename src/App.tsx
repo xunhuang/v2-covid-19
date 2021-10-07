@@ -4,9 +4,9 @@ import Disqus from 'disqus-react';
 import React from 'react';
 import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from 'react-router-dom';
 
-import { AppHeaderSection } from './AppHeaderSection';
 import { CountyPage } from './CountyPage';
-import { Footer } from './Footer';
+import { AppHeaderSection } from './HeaderFooter/AppHeaderSection';
+import { Footer } from './HeaderFooter/Footer';
 import { StatePage } from './StatePage';
 import { FullDiv } from './styles/HomeStyles';
 import { USPage } from './USPage/USPage';
