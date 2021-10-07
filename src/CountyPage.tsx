@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { AppTabs } from './components/AppTab';
 import { CountyCasesAll, CountySummaryView, FipsCodeState, useCountyDetailsByCountyFipsQuery } from './generated/graphql';
 import { CountyCasesGraph } from './USPage/CountyCasesGraph';
+import { CountyCompareGraph } from './USPage/CountyCompareGraph';
 import { CountyDailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
 
@@ -43,7 +44,7 @@ export const CountyPage = () => {
         tabs={[
           ["At-A-Glance", <CountyCasesGraph county={county} cases={cases} />],
           ["Daily", <CountyDailyGraph county={county} cases={cases} />],
-          // ["Sub Regions", <StateSubRegions state={state} />],
+          ["Compare", <CountyCompareGraph county={county} />],
           // ["Testing", <StateTestingGraphs state={state!} testing={testing} />],
           // [
           //   "Hospitalization",

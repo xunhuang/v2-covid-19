@@ -3289,6 +3289,13 @@ export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, stateName?: Maybe<string>, negative?: Maybe<number>, totalTestResultsIncrease?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
 
+export type CountyCompareToParentsQueryVariables = Exact<{
+  county_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CountyCompareToParentsQuery = { __typename?: 'Query', us: { __typename?: 'Query', cases?: Maybe<{ __typename?: 'UsCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'UsCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }>, poplation?: Maybe<{ __typename?: 'StatePopulationsConnection', nodes: Array<Maybe<{ __typename?: 'StatePopulation', pop2020?: Maybe<number> }>> }> }, county: { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', confirmedCases?: Maybe<number>, deaths?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> }, state: { __typename?: 'Query', allFipsCodeCounties?: Maybe<{ __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', fipsCodeStateByStateFipsCode?: Maybe<{ __typename?: 'FipsCodeState', statePopulationsByStateFipsCode: { __typename?: 'StatePopulationsConnection', nodes: Array<Maybe<{ __typename?: 'StatePopulation', stateFipsCode?: Maybe<string>, pop2020?: Maybe<number> }>> }, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }> }>> }> } };
+
 export type CountyDetailsByCountyFipsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
 }>;
@@ -3605,6 +3612,92 @@ export function useUsTestingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type UsTestingQueryHookResult = ReturnType<typeof useUsTestingQuery>;
 export type UsTestingLazyQueryHookResult = ReturnType<typeof useUsTestingLazyQuery>;
 export type UsTestingQueryResult = Apollo.QueryResult<UsTestingQuery, UsTestingQueryVariables>;
+export const CountyCompareToParentsDocument = gql`
+    query CountyCompareToParents($county_fips_code: String) {
+  us: query {
+    cases: allUsCasesAlls {
+      nodes {
+        date
+        confirmedCases
+        deaths
+      }
+    }
+    poplation: allStatePopulations {
+      nodes {
+        pop2020
+      }
+    }
+  }
+  county: query {
+    summary: allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {
+      nodes {
+        confirmedCases
+        deaths
+        population
+      }
+    }
+    cases: allCountyCasesAlls(condition: {countyFipsCode: $county_fips_code}) {
+      nodes {
+        date
+        countyFipsCode
+        confirmedCases
+        deaths
+      }
+    }
+  }
+  state: query {
+    allFipsCodeCounties(condition: {countyFipsCode: $county_fips_code}) {
+      nodes {
+        fipsCodeStateByStateFipsCode {
+          statePopulationsByStateFipsCode {
+            nodes {
+              stateFipsCode
+              pop2020
+            }
+          }
+          stateCasesAllsByStateFipsCode {
+            nodes {
+              date
+              stateName
+              stateFipsCode
+              confirmedCases
+              deaths
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useCountyCompareToParentsQuery__
+ *
+ * To run a query within a React component, call `useCountyCompareToParentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCountyCompareToParentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountyCompareToParentsQuery({
+ *   variables: {
+ *      county_fips_code: // value for 'county_fips_code'
+ *   },
+ * });
+ */
+export function useCountyCompareToParentsQuery(baseOptions?: Apollo.QueryHookOptions<CountyCompareToParentsQuery, CountyCompareToParentsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountyCompareToParentsQuery, CountyCompareToParentsQueryVariables>(CountyCompareToParentsDocument, options);
+      }
+export function useCountyCompareToParentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountyCompareToParentsQuery, CountyCompareToParentsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountyCompareToParentsQuery, CountyCompareToParentsQueryVariables>(CountyCompareToParentsDocument, options);
+        }
+export type CountyCompareToParentsQueryHookResult = ReturnType<typeof useCountyCompareToParentsQuery>;
+export type CountyCompareToParentsLazyQueryHookResult = ReturnType<typeof useCountyCompareToParentsLazyQuery>;
+export type CountyCompareToParentsQueryResult = Apollo.QueryResult<CountyCompareToParentsQuery, CountyCompareToParentsQueryVariables>;
 export const CountyDetailsByCountyFipsDocument = gql`
     query CountyDetailsByCountyFips($county_fips_code: String) {
   summary: allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {

@@ -1,7 +1,7 @@
 // import { ma } from "moving-averages";
 // const moment = require("moment");
-import { Moment } from "moment";
-import moment from "moment";
+import moment, { Moment } from 'moment';
+
 const { linearRegression } = require("simple-statistics");
 const ma = require("moving-averages");
 
@@ -306,6 +306,16 @@ export class DataSeries {
       result.push([points[i][0], points[i][1] / denominator[i][1]]);
     }
 
+    const series = new DataSeries("division", undefined, result, this.period_);
+    return series;
+  }
+
+  divideByNumber(divisor: number) {
+    const points = this.points();
+    const result = [] as MomentNumber[];
+    for (let i = 0; i < points.length; i++) {
+      result.push([points[i][0], points[i][1] / divisor]);
+    }
     const series = new DataSeries("division", undefined, result, this.period_);
     return series;
   }
