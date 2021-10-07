@@ -1,5 +1,5 @@
 import { Link, Toolbar, Typography } from '@material-ui/core';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { AppSearchBar } from './AppSearchBar';
 import { SocialMediaButtons } from './SocialMedia';
@@ -7,26 +7,12 @@ import { FullDiv } from './styles/HomeStyles';
 
 const DONATION_URL = "https://ko-fi.com/covid19direct";
 
-const RELIEF_COLOR = "#fff";
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    // color: RELIEF_COLOR,
-    background: RELIEF_COLOR,
     display: "flex",
-  },
-  nameAndSearch: {
-    display: "flex",
-    alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
-      display: "initial",
-    },
   },
   appName: {
     overflow: "visible",
-  },
-  search: {
-    marginLeft: theme.spacing(4),
   },
   donations: {
     background: "#00aeef",
@@ -56,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
   socialButton: {
     "&:hover": {
-      filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
       transform: "translateY(-1px)",
     },
   },
@@ -72,17 +57,14 @@ const useStyles = makeStyles((theme) => ({
 
 export const AppHeaderSection = () => {
   const classes = useStyles();
-  const theme = useTheme();
 
   return (
     <FullDiv>
       <Toolbar className={classes.appBar}>
         <div>
-          <div className={classes.nameAndSearch}>
-            <Typography noWrap className={classes.appName} variant="h6">
-              COVID-19.direct
-            </Typography>
-          </div>
+          <Typography noWrap className={classes.appName} variant="h6">
+            COVID-19.direct
+          </Typography>
 
           <SocialMediaButtons
             buttonClassName={classes.socialButton}
