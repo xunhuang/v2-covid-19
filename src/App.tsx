@@ -1,10 +1,12 @@
 import './App.css';
 
+import Disqus from 'disqus-react';
 import React from 'react';
 import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from 'react-router-dom';
 
 import { AppHeaderSection } from './AppHeaderSection';
 import { CountyPage } from './CountyPage';
+import { Footer } from './Footer';
 import { StatePage } from './StatePage';
 import { FullDiv } from './styles/HomeStyles';
 import { USPage } from './USPage/USPage';
@@ -54,9 +56,28 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
               ))}
             </Switch>
           </Router>
+          <FooterSection />
         </FullDiv>
       </header>
     </div>
+  );
+};
+
+const FooterSection = () => {
+  const disqusShortname = "covid19direct";
+  const disqusConfig = {
+    url: "https://covid-19.direct",
+    identifier: "article-id",
+    title: "main page",
+  };
+  return (
+    <FullDiv>
+      <Disqus.DiscussionEmbed
+        shortname={disqusShortname}
+        config={disqusConfig}
+      />
+      <Footer></Footer>
+    </FullDiv>
   );
 };
 
