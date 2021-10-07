@@ -75,6 +75,7 @@
     "dayjs": "^1.10.6",
     "graphql": "^15.6.0",
     "react-device-detect": "^2.0.0",
+    "react-share": "^4.4.0",
     "react-table": "^7.7.0",
     "short-number": "^1.0.7",
     "simple-statistics": "^7.7.0"

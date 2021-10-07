@@ -27,50 +27,90 @@ export const CountyCompareGraph = ({ county }: CountyDailyProp) => {
 
   return (
     <div>
-      {cases && (
-        <AdvancedGraph
-          title={`${county.countyName} Confirmed Cases`}
-          serieses={[
-            {
-              series: DataSeries.fromGraphQLQueryNodes(
-                "Positives",
-                cases,
-                "confirmedCases"
-              )
-                .change()
-                .nDayAverage(7)
-                .divideByNumber(county.population! / 100000)
-                .setLabel(county.countyName!),
-              color: "red",
-            },
-            {
-              series: DataSeries.fromGraphQLQueryNodes(
-                "State Positives",
-                statecases,
-                "confirmedCases"
-              )
-                .change()
-                .nDayAverage(7)
-                .divideByNumber(statePop! / 100000)
-                .setLabel(county.stateName!),
-              color: "green",
-            },
-            {
-              series: DataSeries.fromGraphQLQueryNodes(
-                "State Positives",
-                uscases,
-                "confirmedCases"
-              )
-                .change()
-                .nDayAverage(7)
-                .divideByNumber(uspop! / 100000)
-                .setLabel("US"),
-              color: "blue",
-            },
-          ]}
-          initNumberOfDays={360}
-        />
-      )}
+      <AdvancedGraph
+        title={"New Cases/100K (7-day average)"}
+        serieses={[
+          {
+            series: DataSeries.fromGraphQLQueryNodes(
+              "Positives",
+              cases,
+              "confirmedCases"
+            )
+              .change()
+              .nDayAverage(7)
+              .divideByNumber(county.population! / 100000)
+              .setLabel(county.countyName!),
+            color: "red",
+          },
+          {
+            series: DataSeries.fromGraphQLQueryNodes(
+              "State Positives",
+              statecases,
+              "confirmedCases"
+            )
+              .change()
+              .nDayAverage(7)
+              .divideByNumber(statePop! / 100000)
+              .setLabel(county.stateName!),
+            color: "green",
+          },
+          {
+            series: DataSeries.fromGraphQLQueryNodes(
+              "State Positives",
+              uscases,
+              "confirmedCases"
+            )
+              .change()
+              .nDayAverage(7)
+              .divideByNumber(uspop! / 100000)
+              .setLabel("US"),
+            color: "blue",
+          },
+        ]}
+        initNumberOfDays={360}
+      />
+      <AdvancedGraph
+        title={"Deaths/100K (2-week average)"}
+        serieses={[
+          {
+            series: DataSeries.fromGraphQLQueryNodes(
+              "Positives",
+              cases,
+              "deaths"
+            )
+              .change()
+              .nDayAverage(14)
+              .divideByNumber(county.population! / 100000)
+              .setLabel(county.countyName!),
+            color: "red",
+          },
+          {
+            series: DataSeries.fromGraphQLQueryNodes(
+              "State Positives",
+              statecases,
+              "deaths"
+            )
+              .change()
+              .nDayAverage(14)
+              .divideByNumber(statePop! / 100000)
+              .setLabel(county.stateName!),
+            color: "green",
+          },
+          {
+            series: DataSeries.fromGraphQLQueryNodes(
+              "State Positives",
+              uscases,
+              "deaths"
+            )
+              .change()
+              .nDayAverage(14)
+              .divideByNumber(uspop! / 100000)
+              .setLabel("US"),
+            color: "blue",
+          },
+        ]}
+        initNumberOfDays={360}
+      />
     </div>
   );
 };
