@@ -1,7 +1,8 @@
 DROP MATERIALIZED VIEW if exists state_summary_view;CREATE MATERIALIZED VIEW state_summary_view AS
 SELECT
-    cases.state_name as state_name,
-    cases.state_fips_code as state_fips_code,
+
+    state_meta.state_name as state_name,
+    state_meta.state_fips_code as state_fips_code,
     cases.confirmed_cases as confirmed_cases,
     cases.confirmed_increase as confirmed_increase,
     cases.deaths as deaths,
@@ -11,11 +12,12 @@ SELECT
     negative,
     "positiveIncrease",
     "negativeIncrease",
-    pop.pop2020 as population
+    state_meta.popuplation as population
 from
+state_meta
+left outer join 
     (
         SELECT
-            today.state_name as state_name,
             today.confirmed_cases as confirmed_cases,
             today.confirmed_cases - yesterday.confirmed_cases as confirmed_increase,
             today.deaths as deaths,
@@ -33,13 +35,7 @@ from
                     state_cases_all
             )
     ) as cases
-    LEFT OUTER JOIN (
-        select
-            state_fips_code,
-            pop2020
-        from
-            state_population
-    ) as pop ON cases.state_fips_code = pop.state_fips_code
+on state_meta.state_fips_code = cases.state_fips_code
     LEFT OUTER JOIN (
         select
             tests.state_fips_code as state_fips_code,
@@ -60,6 +56,6 @@ from
                     state_fips_code
             ) as maxdate on tests.state_fips_code = maxdate.state_fips_code
             and tests.date = maxdate.date
-    ) as testing on testing.state_fips_code = cases.state_fips_code;
+    ) as testing on testing.state_fips_code = state_meta.state_fips_code;
 
     comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references fips_code_state(state_fips_code)'

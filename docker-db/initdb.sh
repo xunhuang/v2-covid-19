@@ -21,9 +21,19 @@ b="\
 CONN=postgres://postgres:mysecretpassword@localhost/postgres
 # CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
 
-init_schema () {
-   psql -Atx $CONN < schema.sql
-   psql -Atx $CONN < dbinitdata.sql
+init_schema_meta () {
+   CONN=postgres://postgres:mysecretpassword@localhost/tempdb
+   psql -Atx $CONN -c "drop database postgres WITH (FORCE)"
+   psql -Atx $CONN -c "create database postgres"
+   CONN=postgres://postgres:mysecretpassword@localhost/postgres
+   psql -Atx $CONN < meta/init_data.sql
+   # psql -Atx $CONN < data/fips_code_state.sql
+   # psql -Atx $CONN < data/fips_code_county.sql
+   # psql -Atx $CONN < data/county_population.sql
+   # psql -Atx $CONN < data/state_population.sql
+   # psql -Atx $CONN < data/county_geo.sql
+   # psql -Atx $CONN <  data/msa.sql
+   # psql -Atx $CONN <  data/msa_counties.sql
 }
 
 init_data() {
@@ -38,27 +48,15 @@ done
 init_views() {
    psql -Atx $CONN < views/us_summary.sql
    psql -Atx $CONN < views/states_summary_view.sql 
-   psql -Atx $CONN < views/county_summary_view.sql 
+   # psql -Atx $CONN < views/county_summary_view.sql 
 
-   psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
-   psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
+   # psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
+   # psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
 }
 
-init_schema 
-init_data
+#init_schema_meta
+
+# psql -Atx $CONN < schema.sql
+# init_data
+
 init_views
-
-# pg_dump $CONN -t fips_code_state -t fips_code_county -c -O --no-tablespaces 
-#pg_dump $CONN -t us_summary_view -O --no-tablespaces 
-
-dbbackup() {
-pg_dump $CONN -c -O --no-tablespaces \
-  -t fips_code_state \
-  -t fips_code_county \
-  -t county_population \
-  -t state_population \
-  -t county_geo \
-  -t msa \
-  -t msa_counties\
-  > dbinitdata.sql
-}

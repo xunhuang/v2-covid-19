@@ -75,8 +75,8 @@ type Query implements Node {
     condition: CountyCasesAllCondition
   ): CountyCasesAllsConnection
 
-  """Reads and enables pagination through a set of `CountyGeo`."""
-  allCountyGeos(
+  """Reads and enables pagination through a set of `CountyMeta`."""
+  allCountyMetas(
     """Only read the first `n` values of the set."""
     first: Int
 
@@ -95,159 +95,14 @@ type Query implements Node {
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
-    """The method to use when ordering `CountyGeo`."""
-    orderBy: [CountyGeosOrderBy!] = [NATURAL]
+    """The method to use when ordering `CountyMeta`."""
+    orderBy: [CountyMetasOrderBy!] = [NATURAL]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: CountyGeoCondition
-  ): CountyGeosConnection
-
-  """Reads and enables pagination through a set of `CountyPopulation`."""
-  allCountyPopulations(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountyPopulation`."""
-    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountyPopulationCondition
-  ): CountyPopulationsConnection
-
-  """Reads and enables pagination through a set of `CountySummaryView`."""
-  allCountySummaryViews(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountySummaryView`."""
-    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountySummaryViewCondition
-  ): CountySummaryViewsConnection
-
-  """Reads and enables pagination through a set of `FipsCodeCounty`."""
-  allFipsCodeCounties(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: FipsCodeCountyCondition
-  ): FipsCodeCountiesConnection
-
-  """Reads and enables pagination through a set of `FipsCodeState`."""
-  allFipsCodeStates(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `FipsCodeState`."""
-    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: FipsCodeStateCondition
-  ): FipsCodeStatesConnection
-
-  """Reads and enables pagination through a set of `Msa`."""
-  allMsas(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Msa`."""
-    orderBy: [MsasOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaCondition
-  ): MsasConnection
+    condition: CountyMetaCondition
+  ): CountyMetasConnection
 
   """Reads and enables pagination through a set of `MsaCasesAll`."""
   allMsaCasesAlls(
@@ -278,35 +133,6 @@ type Query implements Node {
     condition: MsaCasesAllCondition
   ): MsaCasesAllsConnection
 
-  """Reads and enables pagination through a set of `MsaCounty`."""
-  allMsaCounties(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `MsaCounty`."""
-    orderBy: [MsaCountiesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaCountyCondition
-  ): MsaCountiesConnection
-
   """Reads and enables pagination through a set of `MsaDefinition`."""
   allMsaDefinitions(
     """Only read the first `n` values of the set."""
@@ -335,6 +161,35 @@ type Query implements Node {
     """
     condition: MsaDefinitionCondition
   ): MsaDefinitionsConnection
+
+  """Reads and enables pagination through a set of `MsaMeta`."""
+  allMsaMetas(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaMeta`."""
+    orderBy: [MsaMetasOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaMetaCondition
+  ): MsaMetasConnection
 
   """Reads and enables pagination through a set of `StateCasesAll`."""
   allStateCasesAlls(
@@ -365,8 +220,8 @@ type Query implements Node {
     condition: StateCasesAllCondition
   ): StateCasesAllsConnection
 
-  """Reads and enables pagination through a set of `StatePopulation`."""
-  allStatePopulations(
+  """Reads and enables pagination through a set of `StateMeta`."""
+  allStateMetas(
     """Only read the first `n` values of the set."""
     first: Int
 
@@ -385,43 +240,14 @@ type Query implements Node {
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
-    """The method to use when ordering `StatePopulation`."""
-    orderBy: [StatePopulationsOrderBy!] = [NATURAL]
+    """The method to use when ordering `StateMeta`."""
+    orderBy: [StateMetasOrderBy!] = [NATURAL]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: StatePopulationCondition
-  ): StatePopulationsConnection
-
-  """Reads and enables pagination through a set of `StateSummaryView`."""
-  allStateSummaryViews(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StateSummaryView`."""
-    orderBy: [StateSummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StateSummaryViewCondition
-  ): StateSummaryViewsConnection
+    condition: StateMetaCondition
+  ): StateMetasConnection
 
   """Reads and enables pagination through a set of `StatesHospitalization`."""
   allStatesHospitalizations(
@@ -654,24 +480,6 @@ type Query implements Node {
     """
     condition: UsTestingCondition
   ): UsTestingsConnection
-  fipsCodeCountyByCountyFipsCode(countyFipsCode: String!): FipsCodeCounty
-  fipsCodeStateByStateFipsCode(stateFipsCode: String!): FipsCodeState
-
-  """Reads a single `FipsCodeCounty` using its globally unique `ID`."""
-  fipsCodeCounty(
-    """
-    The globally unique `ID` to be used in selecting a single `FipsCodeCounty`.
-    """
-    nodeId: ID!
-  ): FipsCodeCounty
-
-  """Reads a single `FipsCodeState` using its globally unique `ID`."""
-  fipsCodeState(
-    """
-    The globally unique `ID` to be used in selecting a single `FipsCodeState`.
-    """
-    nodeId: ID!
-  ): FipsCodeState
 }
 
 """An object with a globally unique `ID`."""
@@ -714,683 +522,15 @@ type CountiesSummary {
   school: String
   reportDate: String
   healthwebsites: String
-
-  """
-  Reads a single `FipsCodeState` that is related to this `CountiesSummary`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountiesSummary`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
 }
 
-type FipsCodeState implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  stateFipsCode: String!
-  statePostalAbbreviation: String
-  stateName: String
-
-  """Reads and enables pagination through a set of `FipsCodeCounty`."""
-  fipsCodeCountiesByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: FipsCodeCountyCondition
-  ): FipsCodeCountiesConnection!
-
-  """Reads and enables pagination through a set of `CountyPopulation`."""
-  countyPopulationsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountyPopulation`."""
-    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountyPopulationCondition
-  ): CountyPopulationsConnection!
-
-  """Reads and enables pagination through a set of `StatePopulation`."""
-  statePopulationsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StatePopulation`."""
-    orderBy: [StatePopulationsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StatePopulationCondition
-  ): StatePopulationsConnection!
-
-  """Reads and enables pagination through a set of `Msa`."""
-  msasByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Msa`."""
-    orderBy: [MsasOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaCondition
-  ): MsasConnection!
-
-  """Reads and enables pagination through a set of `MsaCounty`."""
-  msaCountiesByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `MsaCounty`."""
-    orderBy: [MsaCountiesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaCountyCondition
-  ): MsaCountiesConnection!
-
-  """Reads and enables pagination through a set of `StateCasesAll`."""
-  stateCasesAllsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StateCasesAll`."""
-    orderBy: [StateCasesAllsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StateCasesAllCondition
-  ): StateCasesAllsConnection!
-
-  """Reads and enables pagination through a set of `CountyCasesAll`."""
-  countyCasesAllsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountyCasesAll`."""
-    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountyCasesAllCondition
-  ): CountyCasesAllsConnection!
-
-  """Reads and enables pagination through a set of `StatesHospitalization`."""
-  statesHospitalizationsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StatesHospitalization`."""
-    orderBy: [StatesHospitalizationsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StatesHospitalizationCondition
-  ): StatesHospitalizationsConnection!
-
-  """Reads and enables pagination through a set of `StatesTesting`."""
-  statesTestingsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StatesTesting`."""
-    orderBy: [StatesTestingsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StatesTestingCondition
-  ): StatesTestingsConnection!
-
-  """Reads and enables pagination through a set of `StatesSummary`."""
-  statesSummariesByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StatesSummary`."""
-    orderBy: [StatesSummariesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StatesSummaryCondition
-  ): StatesSummariesConnection!
-
-  """Reads and enables pagination through a set of `CountiesSummary`."""
-  countiesSummariesByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountiesSummary`."""
-    orderBy: [CountiesSummariesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountiesSummaryCondition
-  ): CountiesSummariesConnection!
-
-  """Reads and enables pagination through a set of `MsaDefinition`."""
-  msaDefinitionsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `MsaDefinition`."""
-    orderBy: [MsaDefinitionsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaDefinitionCondition
-  ): MsaDefinitionsConnection!
-
-  """Reads and enables pagination through a set of `CountySummaryView`."""
-  countySummaryViewsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountySummaryView`."""
-    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountySummaryViewCondition
-  ): CountySummaryViewsConnection!
-
-  """Reads and enables pagination through a set of `StateSummaryView`."""
-  stateSummaryViewsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StateSummaryView`."""
-    orderBy: [StateSummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StateSummaryViewCondition
-  ): StateSummaryViewsConnection!
-}
-
-"""A connection to a list of `FipsCodeCounty` values."""
-type FipsCodeCountiesConnection {
-  """A list of `FipsCodeCounty` objects."""
-  nodes: [FipsCodeCounty]!
-
-  """
-  A list of edges which contains the `FipsCodeCounty` and cursor to aid in pagination.
-  """
-  edges: [FipsCodeCountiesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `FipsCodeCounty` you could get from the connection."""
-  totalCount: Int!
-}
-
-type FipsCodeCounty implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  source: String
-  stateFipsCode: String
-  countyFipsCode: String!
-  areaName: String
-
-  """
-  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """Reads and enables pagination through a set of `CountyPopulation`."""
-  countyPopulationsByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountyPopulation`."""
-    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountyPopulationCondition
-  ): CountyPopulationsConnection!
-
-  """Reads and enables pagination through a set of `MsaCounty`."""
-  msaCountiesByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `MsaCounty`."""
-    orderBy: [MsaCountiesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaCountyCondition
-  ): MsaCountiesConnection!
-
-  """Reads and enables pagination through a set of `CountyCasesAll`."""
-  countyCasesAllsByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountyCasesAll`."""
-    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountyCasesAllCondition
-  ): CountyCasesAllsConnection!
-
-  """Reads and enables pagination through a set of `CountiesSummary`."""
-  countiesSummariesByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountiesSummary`."""
-    orderBy: [CountiesSummariesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountiesSummaryCondition
-  ): CountiesSummariesConnection!
-
-  """Reads and enables pagination through a set of `MsaDefinition`."""
-  msaDefinitionsByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `MsaDefinition`."""
-    orderBy: [MsaDefinitionsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaDefinitionCondition
-  ): MsaDefinitionsConnection!
-
-  """Reads and enables pagination through a set of `CountySummaryView`."""
-  countySummaryViewsByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountySummaryView`."""
-    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountySummaryViewCondition
-  ): CountySummaryViewsConnection!
-}
-
-"""A connection to a list of `CountyPopulation` values."""
-type CountyPopulationsConnection {
-  """A list of `CountyPopulation` objects."""
-  nodes: [CountyPopulation]!
-
-  """
-  A list of edges which contains the `CountyPopulation` and cursor to aid in pagination.
-  """
-  edges: [CountyPopulationsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `CountyPopulation` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type CountyPopulation {
-  countyFipsCode: String
-  stateFipsCode: String
-  pop2020: Int
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-
-  """
-  Reads a single `FipsCodeState` that is related to this `CountyPopulation`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-}
-
-"""A `CountyPopulation` edge in the connection."""
-type CountyPopulationsEdge {
+"""A `CountiesSummary` edge in the connection."""
+type CountiesSummariesEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `CountyPopulation` at the end of the edge."""
-  node: CountyPopulation
+  """The `CountiesSummary` at the end of the edge."""
+  node: CountiesSummary
 }
 
 """A location in a connection that can be used for resuming pagination."""
@@ -1409,194 +549,6 @@ type PageInfo {
 
   """When paginating forwards, the cursor to continue."""
   endCursor: Cursor
-}
-
-"""Methods to use when ordering `CountyPopulation`."""
-enum CountyPopulationsOrderBy {
-  NATURAL
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  POP2020_ASC
-  POP2020_DESC
-}
-
-"""
-A condition to be used against `CountyPopulation` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CountyPopulationCondition {
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `pop2020` field."""
-  pop2020: Int
-}
-
-"""A connection to a list of `MsaCounty` values."""
-type MsaCountiesConnection {
-  """A list of `MsaCounty` objects."""
-  nodes: [MsaCounty]!
-
-  """
-  A list of edges which contains the `MsaCounty` and cursor to aid in pagination.
-  """
-  edges: [MsaCountiesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MsaCounty` you could get from the connection."""
-  totalCount: Int!
-}
-
-type MsaCounty {
-  msaId: String
-  countyFipsCode: String
-  countyName: String
-  stateFipsCode: String
-
-  """Reads a single `FipsCodeCounty` that is related to this `MsaCounty`."""
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-
-  """Reads a single `FipsCodeState` that is related to this `MsaCounty`."""
-  fipsCodeStateByStateFipsCode: FipsCodeState
-}
-
-"""A `MsaCounty` edge in the connection."""
-type MsaCountiesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MsaCounty` at the end of the edge."""
-  node: MsaCounty
-}
-
-"""Methods to use when ordering `MsaCounty`."""
-enum MsaCountiesOrderBy {
-  NATURAL
-  MSA_ID_ASC
-  MSA_ID_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `MsaCounty` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input MsaCountyCondition {
-  """Checks for equality with the object’s `msaId` field."""
-  msaId: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-}
-
-"""A connection to a list of `CountyCasesAll` values."""
-type CountyCasesAllsConnection {
-  """A list of `CountyCasesAll` objects."""
-  nodes: [CountyCasesAll]!
-
-  """
-  A list of edges which contains the `CountyCasesAll` and cursor to aid in pagination.
-  """
-  edges: [CountyCasesAllsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CountyCasesAll` you could get from the connection."""
-  totalCount: Int!
-}
-
-type CountyCasesAll {
-  date: String
-  county: String
-  stateName: String
-  stateFipsCode: String
-  countyFipsCode: String
-  confirmedCases: Int
-  deaths: Int
-
-  """
-  Reads a single `FipsCodeState` that is related to this `CountyCasesAll`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-}
-
-"""A `CountyCasesAll` edge in the connection."""
-type CountyCasesAllsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CountyCasesAll` at the end of the edge."""
-  node: CountyCasesAll
-}
-
-"""Methods to use when ordering `CountyCasesAll`."""
-enum CountyCasesAllsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  COUNTY_ASC
-  COUNTY_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-}
-
-"""
-A condition to be used against `CountyCasesAll` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CountyCasesAllCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `county` field."""
-  county: String
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
 }
 
 """Methods to use when ordering `CountiesSummary`."""
@@ -1670,6 +622,246 @@ input CountiesSummaryCondition {
   healthwebsites: String
 }
 
+"""A connection to a list of `CountyCasesAll` values."""
+type CountyCasesAllsConnection {
+  """A list of `CountyCasesAll` objects."""
+  nodes: [CountyCasesAll]!
+
+  """
+  A list of edges which contains the `CountyCasesAll` and cursor to aid in pagination.
+  """
+  edges: [CountyCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CountyCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type CountyCasesAll {
+  date: String
+  county: String
+  stateName: String
+  stateFipsCode: String
+  countyFipsCode: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""A `CountyCasesAll` edge in the connection."""
+type CountyCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyCasesAll` at the end of the edge."""
+  node: CountyCasesAll
+}
+
+"""Methods to use when ordering `CountyCasesAll`."""
+enum CountyCasesAllsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  COUNTY_ASC
+  COUNTY_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `CountyCasesAll` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountyCasesAllCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `county` field."""
+  county: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""A connection to a list of `CountyMeta` values."""
+type CountyMetasConnection {
+  """A list of `CountyMeta` objects."""
+  nodes: [CountyMeta]!
+
+  """
+  A list of edges which contains the `CountyMeta` and cursor to aid in pagination.
+  """
+  edges: [CountyMetasEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CountyMeta` you could get from the connection."""
+  totalCount: Int!
+}
+
+type CountyMeta {
+  countyFipsCode: String
+  stateFipsCode: String
+  popuplation: Int
+  countyName: String
+  stateName: String
+  stateAbbr: String
+  msaId: String
+  msaName: String
+  msaUrlName: String
+}
+
+"""A `CountyMeta` edge in the connection."""
+type CountyMetasEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyMeta` at the end of the edge."""
+  node: CountyMeta
+}
+
+"""Methods to use when ordering `CountyMeta`."""
+enum CountyMetasOrderBy {
+  NATURAL
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  POPUPLATION_ASC
+  POPUPLATION_DESC
+  COUNTY_NAME_ASC
+  COUNTY_NAME_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_ABBR_ASC
+  STATE_ABBR_DESC
+  MSA_ID_ASC
+  MSA_ID_DESC
+  MSA_NAME_ASC
+  MSA_NAME_DESC
+  MSA_URL_NAME_ASC
+  MSA_URL_NAME_DESC
+}
+
+"""
+A condition to be used against `CountyMeta` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input CountyMetaCondition {
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `popuplation` field."""
+  popuplation: Int
+
+  """Checks for equality with the object’s `countyName` field."""
+  countyName: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateAbbr` field."""
+  stateAbbr: String
+
+  """Checks for equality with the object’s `msaId` field."""
+  msaId: String
+
+  """Checks for equality with the object’s `msaName` field."""
+  msaName: String
+
+  """Checks for equality with the object’s `msaUrlName` field."""
+  msaUrlName: String
+}
+
+"""A connection to a list of `MsaCasesAll` values."""
+type MsaCasesAllsConnection {
+  """A list of `MsaCasesAll` objects."""
+  nodes: [MsaCasesAll]!
+
+  """
+  A list of edges which contains the `MsaCasesAll` and cursor to aid in pagination.
+  """
+  edges: [MsaCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MsaCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type MsaCasesAll {
+  msdId: String
+  date: String
+  confirmedCases: Int
+  deaths: Int
+}
+
+"""A `MsaCasesAll` edge in the connection."""
+type MsaCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MsaCasesAll` at the end of the edge."""
+  node: MsaCasesAll
+}
+
+"""Methods to use when ordering `MsaCasesAll`."""
+enum MsaCasesAllsOrderBy {
+  NATURAL
+  MSD_ID_ASC
+  MSD_ID_DESC
+  DATE_ASC
+  DATE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `MsaCasesAll` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MsaCasesAllCondition {
+  """Checks for equality with the object’s `msdId` field."""
+  msdId: String
+
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
 """A connection to a list of `MsaDefinition` values."""
 type MsaDefinitionsConnection {
   """A list of `MsaDefinition` objects."""
@@ -1699,16 +891,6 @@ type MsaDefinition {
   countyName: String
   centerState: String
   centerStateFipsCode: String
-
-  """
-  Reads a single `FipsCodeState` that is related to this `MsaDefinition`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `MsaDefinition`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
 }
 
 """A `MsaDefinition` edge in the connection."""
@@ -1786,277 +968,92 @@ input MsaDefinitionCondition {
   centerStateFipsCode: String
 }
 
-"""A connection to a list of `CountySummaryView` values."""
-type CountySummaryViewsConnection {
-  """A list of `CountySummaryView` objects."""
-  nodes: [CountySummaryView]!
+"""A connection to a list of `MsaMeta` values."""
+type MsaMetasConnection {
+  """A list of `MsaMeta` objects."""
+  nodes: [MsaMeta]!
 
   """
-  A list of edges which contains the `CountySummaryView` and cursor to aid in pagination.
+  A list of edges which contains the `MsaMeta` and cursor to aid in pagination.
   """
-  edges: [CountySummaryViewsEdge!]!
+  edges: [MsaMetasEdge!]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """
-  The count of *all* `CountySummaryView` you could get from the connection.
-  """
+  """The count of *all* `MsaMeta` you could get from the connection."""
   totalCount: Int!
 }
 
-type CountySummaryView {
-  stateName: String
-  countyName: String
-  countyFipsCode: String
+type MsaMeta {
+  msaId: String
+  msaName: String
+  msaUrlName: String
   stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  deaths: Int
-  deathIncrease: Int
-  population: Int
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountySummaryView`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-
-  """
-  Reads a single `FipsCodeState` that is related to this `CountySummaryView`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
+  stateName: String
+  statePostalAbbreviation: String
+  population: BigInt
 }
 
-"""A `CountySummaryView` edge in the connection."""
-type CountySummaryViewsEdge {
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+"""A `MsaMeta` edge in the connection."""
+type MsaMetasEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `CountySummaryView` at the end of the edge."""
-  node: CountySummaryView
+  """The `MsaMeta` at the end of the edge."""
+  node: MsaMeta
 }
 
-"""Methods to use when ordering `CountySummaryView`."""
-enum CountySummaryViewsOrderBy {
+"""Methods to use when ordering `MsaMeta`."""
+enum MsaMetasOrderBy {
   NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
+  MSA_ID_ASC
+  MSA_ID_DESC
+  MSA_NAME_ASC
+  MSA_NAME_DESC
+  MSA_URL_NAME_ASC
+  MSA_URL_NAME_DESC
   STATE_FIPS_CODE_ASC
   STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_POSTAL_ABBREVIATION_ASC
+  STATE_POSTAL_ABBREVIATION_DESC
   POPULATION_ASC
   POPULATION_DESC
 }
 
 """
-A condition to be used against `CountySummaryView` object types. All fields are
-tested for equality and combined with a logical ‘and.’
+A condition to be used against `MsaMeta` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input CountySummaryViewCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
-}
-
-"""A `FipsCodeCounty` edge in the connection."""
-type FipsCodeCountiesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `FipsCodeCounty` at the end of the edge."""
-  node: FipsCodeCounty
-}
-
-"""Methods to use when ordering `FipsCodeCounty`."""
-enum FipsCodeCountiesOrderBy {
-  NATURAL
-  SOURCE_ASC
-  SOURCE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  AREA_NAME_ASC
-  AREA_NAME_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `FipsCodeCounty` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input FipsCodeCountyCondition {
-  """Checks for equality with the object’s `source` field."""
-  source: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `areaName` field."""
-  areaName: String
-}
-
-"""A connection to a list of `StatePopulation` values."""
-type StatePopulationsConnection {
-  """A list of `StatePopulation` objects."""
-  nodes: [StatePopulation]!
-
-  """
-  A list of edges which contains the `StatePopulation` and cursor to aid in pagination.
-  """
-  edges: [StatePopulationsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `StatePopulation` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type StatePopulation {
-  stateFipsCode: String
-  pop2020: Int
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatePopulation`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-}
-
-"""A `StatePopulation` edge in the connection."""
-type StatePopulationsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StatePopulation` at the end of the edge."""
-  node: StatePopulation
-}
-
-"""Methods to use when ordering `StatePopulation`."""
-enum StatePopulationsOrderBy {
-  NATURAL
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  POP2020_ASC
-  POP2020_DESC
-}
-
-"""
-A condition to be used against `StatePopulation` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StatePopulationCondition {
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `pop2020` field."""
-  pop2020: Int
-}
-
-"""A connection to a list of `Msa` values."""
-type MsasConnection {
-  """A list of `Msa` objects."""
-  nodes: [Msa]!
-
-  """
-  A list of edges which contains the `Msa` and cursor to aid in pagination.
-  """
-  edges: [MsasEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Msa` you could get from the connection."""
-  totalCount: Int!
-}
-
-type Msa {
-  msaId: String!
-  urlName: String
-  name: String
-  stateFipsCode: String
-
-  """Reads a single `FipsCodeState` that is related to this `Msa`."""
-  fipsCodeStateByStateFipsCode: FipsCodeState
-}
-
-"""A `Msa` edge in the connection."""
-type MsasEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Msa` at the end of the edge."""
-  node: Msa
-}
-
-"""Methods to use when ordering `Msa`."""
-enum MsasOrderBy {
-  NATURAL
-  MSA_ID_ASC
-  MSA_ID_DESC
-  URL_NAME_ASC
-  URL_NAME_DESC
-  NAME_ASC
-  NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `Msa` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input MsaCondition {
+input MsaMetaCondition {
   """Checks for equality with the object’s `msaId` field."""
   msaId: String
 
-  """Checks for equality with the object’s `urlName` field."""
-  urlName: String
+  """Checks for equality with the object’s `msaName` field."""
+  msaName: String
 
-  """Checks for equality with the object’s `name` field."""
-  name: String
+  """Checks for equality with the object’s `msaUrlName` field."""
+  msaUrlName: String
 
   """Checks for equality with the object’s `stateFipsCode` field."""
   stateFipsCode: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `statePostalAbbreviation` field."""
+  statePostalAbbreviation: String
+
+  """Checks for equality with the object’s `population` field."""
+  population: BigInt
 }
 
 """A connection to a list of `StateCasesAll` values."""
@@ -2082,11 +1079,6 @@ type StateCasesAll {
   stateFipsCode: String
   confirmedCases: Int
   deaths: Int
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StateCasesAll`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 }
 
 """A `StateCasesAll` edge in the connection."""
@@ -2134,6 +1126,70 @@ input StateCasesAllCondition {
   deaths: Int
 }
 
+"""A connection to a list of `StateMeta` values."""
+type StateMetasConnection {
+  """A list of `StateMeta` objects."""
+  nodes: [StateMeta]!
+
+  """
+  A list of edges which contains the `StateMeta` and cursor to aid in pagination.
+  """
+  edges: [StateMetasEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `StateMeta` you could get from the connection."""
+  totalCount: Int!
+}
+
+type StateMeta {
+  stateFipsCode: String
+  stateAbbr: String
+  stateName: String
+  popuplation: Int
+}
+
+"""A `StateMeta` edge in the connection."""
+type StateMetasEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StateMeta` at the end of the edge."""
+  node: StateMeta
+}
+
+"""Methods to use when ordering `StateMeta`."""
+enum StateMetasOrderBy {
+  NATURAL
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  STATE_ABBR_ASC
+  STATE_ABBR_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  POPUPLATION_ASC
+  POPUPLATION_DESC
+}
+
+"""
+A condition to be used against `StateMeta` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input StateMetaCondition {
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `stateAbbr` field."""
+  stateAbbr: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `popuplation` field."""
+  popuplation: Int
+}
+
 """A connection to a list of `StatesHospitalization` values."""
 type StatesHospitalizationsConnection {
   """A list of `StatesHospitalization` objects."""
@@ -2166,11 +1222,6 @@ type StatesHospitalization {
   stateName: String
   stateGnisid: String
   stateFipsCode: String
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatesHospitalization`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 }
 
 """A `StatesHospitalization` edge in the connection."""
@@ -2253,125 +1304,6 @@ input StatesHospitalizationCondition {
   stateFipsCode: String
 }
 
-"""A connection to a list of `StatesTesting` values."""
-type StatesTestingsConnection {
-  """A list of `StatesTesting` objects."""
-  nodes: [StatesTesting]!
-
-  """
-  A list of edges which contains the `StatesTesting` and cursor to aid in pagination.
-  """
-  edges: [StatesTestingsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `StatesTesting` you could get from the connection."""
-  totalCount: Int!
-}
-
-type StatesTesting {
-  date: String
-  totalTestResults: Int
-  negativeIncrease: Int
-  positiveIncrease: Int
-  stateName: String
-  negative: Int
-  totalTestResultsIncrease: Int
-  positive: Int
-  inconclusive: Int
-  inconclusiveIncrease: Int
-  state: String
-  stateFipsCode: String
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatesTesting`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-}
-
-"""A `StatesTesting` edge in the connection."""
-type StatesTestingsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StatesTesting` at the end of the edge."""
-  node: StatesTesting
-}
-
-"""Methods to use when ordering `StatesTesting`."""
-enum StatesTestingsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  TOTAL_TEST_RESULTS_ASC
-  TOTAL_TEST_RESULTS_DESC
-  NEGATIVE_INCREASE_ASC
-  NEGATIVE_INCREASE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  NEGATIVE_ASC
-  NEGATIVE_DESC
-  TOTAL_TEST_RESULTS_INCREASE_ASC
-  TOTAL_TEST_RESULTS_INCREASE_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  INCONCLUSIVE_ASC
-  INCONCLUSIVE_DESC
-  INCONCLUSIVE_INCREASE_ASC
-  INCONCLUSIVE_INCREASE_DESC
-  STATE_ASC
-  STATE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `StatesTesting` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StatesTestingCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `totalTestResults` field."""
-  totalTestResults: Int
-
-  """Checks for equality with the object’s `negativeIncrease` field."""
-  negativeIncrease: Int
-
-  """Checks for equality with the object’s `positiveIncrease` field."""
-  positiveIncrease: Int
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `negative` field."""
-  negative: Int
-
-  """
-  Checks for equality with the object’s `totalTestResultsIncrease` field.
-  """
-  totalTestResultsIncrease: Int
-
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `inconclusive` field."""
-  inconclusive: Int
-
-  """Checks for equality with the object’s `inconclusiveIncrease` field."""
-  inconclusiveIncrease: Int
-
-  """Checks for equality with the object’s `state` field."""
-  state: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-}
-
 """A connection to a list of `StatesSummary` values."""
 type StatesSummariesConnection {
   """A list of `StatesSummary` objects."""
@@ -2404,11 +1336,6 @@ type StatesSummary {
   adultIcuBedsCapacity: Int
   inpatientBedsUsed: Int
   inpatientBedsCapacity: Int
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatesSummary`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 }
 
 """A `StatesSummary` edge in the connection."""
@@ -2503,308 +1430,118 @@ input StatesSummaryCondition {
   inpatientBedsCapacity: Int
 }
 
-"""A connection to a list of `StateSummaryView` values."""
-type StateSummaryViewsConnection {
-  """A list of `StateSummaryView` objects."""
-  nodes: [StateSummaryView]!
+"""A connection to a list of `StatesTesting` values."""
+type StatesTestingsConnection {
+  """A list of `StatesTesting` objects."""
+  nodes: [StatesTesting]!
 
   """
-  A list of edges which contains the `StateSummaryView` and cursor to aid in pagination.
+  A list of edges which contains the `StatesTesting` and cursor to aid in pagination.
   """
-  edges: [StateSummaryViewsEdge!]!
+  edges: [StatesTestingsEdge!]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """
-  The count of *all* `StateSummaryView` you could get from the connection.
-  """
+  """The count of *all* `StatesTesting` you could get from the connection."""
   totalCount: Int!
 }
 
-type StateSummaryView {
-  stateName: String
-  stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  deaths: Int
-  deathIncrease: Int
+type StatesTesting {
+  date: String
   totalTestResults: Int
-  positive: Int
-  negative: Int
-  positiveIncrease: Int
   negativeIncrease: Int
-  population: Int
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StateSummaryView`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
+  positiveIncrease: Int
+  stateName: String
+  negative: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+  state: String
+  stateFipsCode: String
 }
 
-"""A `StateSummaryView` edge in the connection."""
-type StateSummaryViewsEdge {
+"""A `StatesTesting` edge in the connection."""
+type StatesTestingsEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `StateSummaryView` at the end of the edge."""
-  node: StateSummaryView
+  """The `StatesTesting` at the end of the edge."""
+  node: StatesTesting
 }
 
-"""Methods to use when ordering `StateSummaryView`."""
-enum StateSummaryViewsOrderBy {
+"""Methods to use when ordering `StatesTesting`."""
+enum StatesTestingsOrderBy {
   NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
+  DATE_ASC
+  DATE_DESC
   TOTAL_TEST_RESULTS_ASC
   TOTAL_TEST_RESULTS_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  NEGATIVE_ASC
-  NEGATIVE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
   NEGATIVE_INCREASE_ASC
   NEGATIVE_INCREASE_DESC
-  POPULATION_ASC
-  POPULATION_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  TOTAL_TEST_RESULTS_INCREASE_ASC
+  TOTAL_TEST_RESULTS_INCREASE_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  INCONCLUSIVE_ASC
+  INCONCLUSIVE_DESC
+  INCONCLUSIVE_INCREASE_ASC
+  INCONCLUSIVE_INCREASE_DESC
+  STATE_ASC
+  STATE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
 }
 
 """
-A condition to be used against `StateSummaryView` object types. All fields are
+A condition to be used against `StatesTesting` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
-input StateSummaryViewCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
+input StatesTestingCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
 
   """Checks for equality with the object’s `totalTestResults` field."""
   totalTestResults: Int
 
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `negative` field."""
-  negative: Int
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
 
   """Checks for equality with the object’s `positiveIncrease` field."""
   positiveIncrease: Int
 
-  """Checks for equality with the object’s `negativeIncrease` field."""
-  negativeIncrease: Int
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
-}
-
-"""A `CountiesSummary` edge in the connection."""
-type CountiesSummariesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CountiesSummary` at the end of the edge."""
-  node: CountiesSummary
-}
-
-"""A connection to a list of `CountyGeo` values."""
-type CountyGeosConnection {
-  """A list of `CountyGeo` objects."""
-  nodes: [CountyGeo]!
-
-  """
-  A list of edges which contains the `CountyGeo` and cursor to aid in pagination.
-  """
-  edges: [CountyGeosEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CountyGeo` you could get from the connection."""
-  totalCount: Int!
-}
-
-type CountyGeo {
-  intPointLon: Float!
-  intPointLat: Float!
-  countyFipsCode: String!
-}
-
-"""A `CountyGeo` edge in the connection."""
-type CountyGeosEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CountyGeo` at the end of the edge."""
-  node: CountyGeo
-}
-
-"""Methods to use when ordering `CountyGeo`."""
-enum CountyGeosOrderBy {
-  NATURAL
-  INT_POINT_LON_ASC
-  INT_POINT_LON_DESC
-  INT_POINT_LAT_ASC
-  INT_POINT_LAT_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `CountyGeo` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input CountyGeoCondition {
-  """Checks for equality with the object’s `intPointLon` field."""
-  intPointLon: Float
-
-  """Checks for equality with the object’s `intPointLat` field."""
-  intPointLat: Float
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-}
-
-"""A connection to a list of `FipsCodeState` values."""
-type FipsCodeStatesConnection {
-  """A list of `FipsCodeState` objects."""
-  nodes: [FipsCodeState]!
-
-  """
-  A list of edges which contains the `FipsCodeState` and cursor to aid in pagination.
-  """
-  edges: [FipsCodeStatesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `FipsCodeState` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `FipsCodeState` edge in the connection."""
-type FipsCodeStatesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `FipsCodeState` at the end of the edge."""
-  node: FipsCodeState
-}
-
-"""Methods to use when ordering `FipsCodeState`."""
-enum FipsCodeStatesOrderBy {
-  NATURAL
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  STATE_POSTAL_ABBREVIATION_ASC
-  STATE_POSTAL_ABBREVIATION_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `FipsCodeState` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input FipsCodeStateCondition {
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `statePostalAbbreviation` field."""
-  statePostalAbbreviation: String
-
   """Checks for equality with the object’s `stateName` field."""
   stateName: String
-}
 
-"""A connection to a list of `MsaCasesAll` values."""
-type MsaCasesAllsConnection {
-  """A list of `MsaCasesAll` objects."""
-  nodes: [MsaCasesAll]!
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
 
   """
-  A list of edges which contains the `MsaCasesAll` and cursor to aid in pagination.
+  Checks for equality with the object’s `totalTestResultsIncrease` field.
   """
-  edges: [MsaCasesAllsEdge!]!
+  totalTestResultsIncrease: Int
 
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
 
-  """The count of *all* `MsaCasesAll` you could get from the connection."""
-  totalCount: Int!
-}
+  """Checks for equality with the object’s `inconclusive` field."""
+  inconclusive: Int
 
-type MsaCasesAll {
-  msdId: String
-  date: String
-  confirmedCases: Int
-  deaths: Int
-}
+  """Checks for equality with the object’s `inconclusiveIncrease` field."""
+  inconclusiveIncrease: Int
 
-"""A `MsaCasesAll` edge in the connection."""
-type MsaCasesAllsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
+  """Checks for equality with the object’s `state` field."""
+  state: String
 
-  """The `MsaCasesAll` at the end of the edge."""
-  node: MsaCasesAll
-}
-
-"""Methods to use when ordering `MsaCasesAll`."""
-enum MsaCasesAllsOrderBy {
-  NATURAL
-  MSD_ID_ASC
-  MSD_ID_DESC
-  DATE_ASC
-  DATE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-}
-
-"""
-A condition to be used against `MsaCasesAll` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input MsaCasesAllCondition {
-  """Checks for equality with the object’s `msdId` field."""
-  msdId: String
-
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
 }
 
 """A connection to a list of `UsCasesAll` values."""
@@ -3265,45 +2002,13 @@ type Mutation {
     input: CreateCountyCasesAllInput!
   ): CreateCountyCasesAllPayload
 
-  """Creates a single `CountyGeo`."""
-  createCountyGeo(
+  """Creates a single `CountyMeta`."""
+  createCountyMeta(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateCountyGeoInput!
-  ): CreateCountyGeoPayload
-
-  """Creates a single `CountyPopulation`."""
-  createCountyPopulation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateCountyPopulationInput!
-  ): CreateCountyPopulationPayload
-
-  """Creates a single `FipsCodeCounty`."""
-  createFipsCodeCounty(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateFipsCodeCountyInput!
-  ): CreateFipsCodeCountyPayload
-
-  """Creates a single `FipsCodeState`."""
-  createFipsCodeState(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateFipsCodeStateInput!
-  ): CreateFipsCodeStatePayload
-
-  """Creates a single `Msa`."""
-  createMsa(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateMsaInput!
-  ): CreateMsaPayload
+    input: CreateCountyMetaInput!
+  ): CreateCountyMetaPayload
 
   """Creates a single `MsaCasesAll`."""
   createMsaCasesAll(
@@ -3313,14 +2018,6 @@ type Mutation {
     input: CreateMsaCasesAllInput!
   ): CreateMsaCasesAllPayload
 
-  """Creates a single `MsaCounty`."""
-  createMsaCounty(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateMsaCountyInput!
-  ): CreateMsaCountyPayload
-
   """Creates a single `MsaDefinition`."""
   createMsaDefinition(
     """
@@ -3328,6 +2025,14 @@ type Mutation {
     """
     input: CreateMsaDefinitionInput!
   ): CreateMsaDefinitionPayload
+
+  """Creates a single `MsaMeta`."""
+  createMsaMeta(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMsaMetaInput!
+  ): CreateMsaMetaPayload
 
   """Creates a single `StateCasesAll`."""
   createStateCasesAll(
@@ -3337,13 +2042,13 @@ type Mutation {
     input: CreateStateCasesAllInput!
   ): CreateStateCasesAllPayload
 
-  """Creates a single `StatePopulation`."""
-  createStatePopulation(
+  """Creates a single `StateMeta`."""
+  createStateMeta(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateStatePopulationInput!
-  ): CreateStatePopulationPayload
+    input: CreateStateMetaInput!
+  ): CreateStateMetaPayload
 
   """Creates a single `StatesHospitalization`."""
   createStatesHospitalization(
@@ -3400,74 +2105,6 @@ type Mutation {
     """
     input: CreateUsTestingInput!
   ): CreateUsTestingPayload
-
-  """
-  Updates a single `FipsCodeCounty` using its globally unique id and a patch.
-  """
-  updateFipsCodeCounty(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateFipsCodeCountyInput!
-  ): UpdateFipsCodeCountyPayload
-
-  """Updates a single `FipsCodeCounty` using a unique key and a patch."""
-  updateFipsCodeCountyByCountyFipsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateFipsCodeCountyByCountyFipsCodeInput!
-  ): UpdateFipsCodeCountyPayload
-
-  """
-  Updates a single `FipsCodeState` using its globally unique id and a patch.
-  """
-  updateFipsCodeState(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateFipsCodeStateInput!
-  ): UpdateFipsCodeStatePayload
-
-  """Updates a single `FipsCodeState` using a unique key and a patch."""
-  updateFipsCodeStateByStateFipsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateFipsCodeStateByStateFipsCodeInput!
-  ): UpdateFipsCodeStatePayload
-
-  """Deletes a single `FipsCodeCounty` using its globally unique id."""
-  deleteFipsCodeCounty(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteFipsCodeCountyInput!
-  ): DeleteFipsCodeCountyPayload
-
-  """Deletes a single `FipsCodeCounty` using a unique key."""
-  deleteFipsCodeCountyByCountyFipsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteFipsCodeCountyByCountyFipsCodeInput!
-  ): DeleteFipsCodeCountyPayload
-
-  """Deletes a single `FipsCodeState` using its globally unique id."""
-  deleteFipsCodeState(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteFipsCodeStateInput!
-  ): DeleteFipsCodeStatePayload
-
-  """Deletes a single `FipsCodeState` using a unique key."""
-  deleteFipsCodeStateByStateFipsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteFipsCodeStateByStateFipsCodeInput!
-  ): DeleteFipsCodeStatePayload
 }
 
 """The output of our create `CountiesSummary` mutation."""
@@ -3485,16 +2122,6 @@ type CreateCountiesSummaryPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `CountiesSummary`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountiesSummary`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
 
   """An edge for our `CountiesSummary`. May be used by Relay 1."""
   countiesSummaryEdge(
@@ -3547,16 +2174,6 @@ type CreateCountyCasesAllPayload {
   """
   query: Query
 
-  """
-  Reads a single `FipsCodeState` that is related to this `CountyCasesAll`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-
   """An edge for our `CountyCasesAll`. May be used by Relay 1."""
   countyCasesAllEdge(
     """The method to use when ordering `CountyCasesAll`."""
@@ -3587,234 +2204,52 @@ input CountyCasesAllInput {
   deaths: Int
 }
 
-"""The output of our create `CountyGeo` mutation."""
-type CreateCountyGeoPayload {
+"""The output of our create `CountyMeta` mutation."""
+type CreateCountyMetaPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `CountyGeo` that was created by this mutation."""
-  countyGeo: CountyGeo
+  """The `CountyMeta` that was created by this mutation."""
+  countyMeta: CountyMeta
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """An edge for our `CountyGeo`. May be used by Relay 1."""
-  countyGeoEdge(
-    """The method to use when ordering `CountyGeo`."""
-    orderBy: [CountyGeosOrderBy!] = [NATURAL]
-  ): CountyGeosEdge
+  """An edge for our `CountyMeta`. May be used by Relay 1."""
+  countyMetaEdge(
+    """The method to use when ordering `CountyMeta`."""
+    orderBy: [CountyMetasOrderBy!] = [NATURAL]
+  ): CountyMetasEdge
 }
 
-"""All input for the create `CountyGeo` mutation."""
-input CreateCountyGeoInput {
+"""All input for the create `CountyMeta` mutation."""
+input CreateCountyMetaInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `CountyGeo` to be created by this mutation."""
-  countyGeo: CountyGeoInput!
+  """The `CountyMeta` to be created by this mutation."""
+  countyMeta: CountyMetaInput!
 }
 
-"""An input for mutations affecting `CountyGeo`"""
-input CountyGeoInput {
-  intPointLon: Float!
-  intPointLat: Float!
-  countyFipsCode: String!
-}
-
-"""The output of our create `CountyPopulation` mutation."""
-type CreateCountyPopulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `CountyPopulation` that was created by this mutation."""
-  countyPopulation: CountyPopulation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-
-  """
-  Reads a single `FipsCodeState` that is related to this `CountyPopulation`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `CountyPopulation`. May be used by Relay 1."""
-  countyPopulationEdge(
-    """The method to use when ordering `CountyPopulation`."""
-    orderBy: [CountyPopulationsOrderBy!] = [NATURAL]
-  ): CountyPopulationsEdge
-}
-
-"""All input for the create `CountyPopulation` mutation."""
-input CreateCountyPopulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `CountyPopulation` to be created by this mutation."""
-  countyPopulation: CountyPopulationInput!
-}
-
-"""An input for mutations affecting `CountyPopulation`"""
-input CountyPopulationInput {
+"""An input for mutations affecting `CountyMeta`"""
+input CountyMetaInput {
   countyFipsCode: String
   stateFipsCode: String
-  pop2020: Int
-}
-
-"""The output of our create `FipsCodeCounty` mutation."""
-type CreateFipsCodeCountyPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeCounty` that was created by this mutation."""
-  fipsCodeCounty: FipsCodeCounty
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
-  fipsCodeCountyEdge(
-    """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FipsCodeCountiesEdge
-}
-
-"""All input for the create `FipsCodeCounty` mutation."""
-input CreateFipsCodeCountyInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeCounty` to be created by this mutation."""
-  fipsCodeCounty: FipsCodeCountyInput!
-}
-
-"""An input for mutations affecting `FipsCodeCounty`"""
-input FipsCodeCountyInput {
-  source: String
-  stateFipsCode: String
-  countyFipsCode: String!
-  areaName: String
-}
-
-"""The output of our create `FipsCodeState` mutation."""
-type CreateFipsCodeStatePayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeState` that was created by this mutation."""
-  fipsCodeState: FipsCodeState
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `FipsCodeState`. May be used by Relay 1."""
-  fipsCodeStateEdge(
-    """The method to use when ordering `FipsCodeState`."""
-    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FipsCodeStatesEdge
-}
-
-"""All input for the create `FipsCodeState` mutation."""
-input CreateFipsCodeStateInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeState` to be created by this mutation."""
-  fipsCodeState: FipsCodeStateInput!
-}
-
-"""An input for mutations affecting `FipsCodeState`"""
-input FipsCodeStateInput {
-  stateFipsCode: String!
-  statePostalAbbreviation: String
+  popuplation: Int
+  countyName: String
   stateName: String
-}
-
-"""The output of our create `Msa` mutation."""
-type CreateMsaPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Msa` that was created by this mutation."""
-  msa: Msa
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `FipsCodeState` that is related to this `Msa`."""
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `Msa`. May be used by Relay 1."""
-  msaEdge(
-    """The method to use when ordering `Msa`."""
-    orderBy: [MsasOrderBy!] = [NATURAL]
-  ): MsasEdge
-}
-
-"""All input for the create `Msa` mutation."""
-input CreateMsaInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `Msa` to be created by this mutation."""
-  msa: MsaInput!
-}
-
-"""An input for mutations affecting `Msa`"""
-input MsaInput {
-  msaId: String!
-  urlName: String
-  name: String
-  stateFipsCode: String
+  stateAbbr: String
+  msaId: String
+  msaName: String
+  msaUrlName: String
 }
 
 """The output of our create `MsaCasesAll` mutation."""
@@ -3860,55 +2295,6 @@ input MsaCasesAllInput {
   deaths: Int
 }
 
-"""The output of our create `MsaCounty` mutation."""
-type CreateMsaCountyPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `MsaCounty` that was created by this mutation."""
-  msaCounty: MsaCounty
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `FipsCodeCounty` that is related to this `MsaCounty`."""
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
-
-  """Reads a single `FipsCodeState` that is related to this `MsaCounty`."""
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `MsaCounty`. May be used by Relay 1."""
-  msaCountyEdge(
-    """The method to use when ordering `MsaCounty`."""
-    orderBy: [MsaCountiesOrderBy!] = [NATURAL]
-  ): MsaCountiesEdge
-}
-
-"""All input for the create `MsaCounty` mutation."""
-input CreateMsaCountyInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `MsaCounty` to be created by this mutation."""
-  msaCounty: MsaCountyInput!
-}
-
-"""An input for mutations affecting `MsaCounty`"""
-input MsaCountyInput {
-  msaId: String
-  countyFipsCode: String
-  countyName: String
-  stateFipsCode: String
-}
-
 """The output of our create `MsaDefinition` mutation."""
 type CreateMsaDefinitionPayload {
   """
@@ -3924,16 +2310,6 @@ type CreateMsaDefinitionPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `MsaDefinition`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """
-  Reads a single `FipsCodeCounty` that is related to this `MsaDefinition`.
-  """
-  fipsCodeCountyByCountyFipsCode: FipsCodeCounty
 
   """An edge for our `MsaDefinition`. May be used by Relay 1."""
   msaDefinitionEdge(
@@ -3969,6 +2345,52 @@ input MsaDefinitionInput {
   centerStateFipsCode: String
 }
 
+"""The output of our create `MsaMeta` mutation."""
+type CreateMsaMetaPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MsaMeta` that was created by this mutation."""
+  msaMeta: MsaMeta
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MsaMeta`. May be used by Relay 1."""
+  msaMetaEdge(
+    """The method to use when ordering `MsaMeta`."""
+    orderBy: [MsaMetasOrderBy!] = [NATURAL]
+  ): MsaMetasEdge
+}
+
+"""All input for the create `MsaMeta` mutation."""
+input CreateMsaMetaInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MsaMeta` to be created by this mutation."""
+  msaMeta: MsaMetaInput!
+}
+
+"""An input for mutations affecting `MsaMeta`"""
+input MsaMetaInput {
+  msaId: String
+  msaName: String
+  msaUrlName: String
+  stateFipsCode: String
+  stateName: String
+  statePostalAbbreviation: String
+  population: BigInt
+}
+
 """The output of our create `StateCasesAll` mutation."""
 type CreateStateCasesAllPayload {
   """
@@ -3984,11 +2406,6 @@ type CreateStateCasesAllPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StateCasesAll`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 
   """An edge for our `StateCasesAll`. May be used by Relay 1."""
   stateCasesAllEdge(
@@ -4018,50 +2435,47 @@ input StateCasesAllInput {
   deaths: Int
 }
 
-"""The output of our create `StatePopulation` mutation."""
-type CreateStatePopulationPayload {
+"""The output of our create `StateMeta` mutation."""
+type CreateStateMetaPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `StatePopulation` that was created by this mutation."""
-  statePopulation: StatePopulation
+  """The `StateMeta` that was created by this mutation."""
+  stateMeta: StateMeta
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """
-  Reads a single `FipsCodeState` that is related to this `StatePopulation`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `StatePopulation`. May be used by Relay 1."""
-  statePopulationEdge(
-    """The method to use when ordering `StatePopulation`."""
-    orderBy: [StatePopulationsOrderBy!] = [NATURAL]
-  ): StatePopulationsEdge
+  """An edge for our `StateMeta`. May be used by Relay 1."""
+  stateMetaEdge(
+    """The method to use when ordering `StateMeta`."""
+    orderBy: [StateMetasOrderBy!] = [NATURAL]
+  ): StateMetasEdge
 }
 
-"""All input for the create `StatePopulation` mutation."""
-input CreateStatePopulationInput {
+"""All input for the create `StateMeta` mutation."""
+input CreateStateMetaInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `StatePopulation` to be created by this mutation."""
-  statePopulation: StatePopulationInput!
+  """The `StateMeta` to be created by this mutation."""
+  stateMeta: StateMetaInput!
 }
 
-"""An input for mutations affecting `StatePopulation`"""
-input StatePopulationInput {
+"""An input for mutations affecting `StateMeta`"""
+input StateMetaInput {
   stateFipsCode: String
-  pop2020: Int
+  stateAbbr: String
+  stateName: String
+  popuplation: Int
 }
 
 """The output of our create `StatesHospitalization` mutation."""
@@ -4079,11 +2493,6 @@ type CreateStatesHospitalizationPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatesHospitalization`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 
   """An edge for our `StatesHospitalization`. May be used by Relay 1."""
   statesHospitalizationEdge(
@@ -4135,11 +2544,6 @@ type CreateStatesSummaryPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatesSummary`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 
   """An edge for our `StatesSummary`. May be used by Relay 1."""
   statesSummaryEdge(
@@ -4193,11 +2597,6 @@ type CreateStatesTestingPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `StatesTesting`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
 
   """An edge for our `StatesTesting`. May be used by Relay 1."""
   statesTestingEdge(
@@ -4424,243 +2823,4 @@ input UsTestingInput {
   positive: Int
   inconclusive: Int
   inconclusiveIncrease: Int
-}
-
-"""The output of our update `FipsCodeCounty` mutation."""
-type UpdateFipsCodeCountyPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeCounty` that was updated by this mutation."""
-  fipsCodeCounty: FipsCodeCounty
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
-  fipsCodeCountyEdge(
-    """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FipsCodeCountiesEdge
-}
-
-"""All input for the `updateFipsCodeCounty` mutation."""
-input UpdateFipsCodeCountyInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `FipsCodeCounty` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `FipsCodeCounty` being updated.
-  """
-  fipsCodeCountyPatch: FipsCodeCountyPatch!
-}
-
-"""
-Represents an update to a `FipsCodeCounty`. Fields that are set will be updated.
-"""
-input FipsCodeCountyPatch {
-  source: String
-  stateFipsCode: String
-  countyFipsCode: String
-  areaName: String
-}
-
-"""All input for the `updateFipsCodeCountyByCountyFipsCode` mutation."""
-input UpdateFipsCodeCountyByCountyFipsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `FipsCodeCounty` being updated.
-  """
-  fipsCodeCountyPatch: FipsCodeCountyPatch!
-  countyFipsCode: String!
-}
-
-"""The output of our update `FipsCodeState` mutation."""
-type UpdateFipsCodeStatePayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeState` that was updated by this mutation."""
-  fipsCodeState: FipsCodeState
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `FipsCodeState`. May be used by Relay 1."""
-  fipsCodeStateEdge(
-    """The method to use when ordering `FipsCodeState`."""
-    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FipsCodeStatesEdge
-}
-
-"""All input for the `updateFipsCodeState` mutation."""
-input UpdateFipsCodeStateInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `FipsCodeState` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `FipsCodeState` being updated.
-  """
-  fipsCodeStatePatch: FipsCodeStatePatch!
-}
-
-"""
-Represents an update to a `FipsCodeState`. Fields that are set will be updated.
-"""
-input FipsCodeStatePatch {
-  stateFipsCode: String
-  statePostalAbbreviation: String
-  stateName: String
-}
-
-"""All input for the `updateFipsCodeStateByStateFipsCode` mutation."""
-input UpdateFipsCodeStateByStateFipsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `FipsCodeState` being updated.
-  """
-  fipsCodeStatePatch: FipsCodeStatePatch!
-  stateFipsCode: String!
-}
-
-"""The output of our delete `FipsCodeCounty` mutation."""
-type DeleteFipsCodeCountyPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeCounty` that was deleted by this mutation."""
-  fipsCodeCounty: FipsCodeCounty
-  deletedFipsCodeCountyId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`.
-  """
-  fipsCodeStateByStateFipsCode: FipsCodeState
-
-  """An edge for our `FipsCodeCounty`. May be used by Relay 1."""
-  fipsCodeCountyEdge(
-    """The method to use when ordering `FipsCodeCounty`."""
-    orderBy: [FipsCodeCountiesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FipsCodeCountiesEdge
-}
-
-"""All input for the `deleteFipsCodeCounty` mutation."""
-input DeleteFipsCodeCountyInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `FipsCodeCounty` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteFipsCodeCountyByCountyFipsCode` mutation."""
-input DeleteFipsCodeCountyByCountyFipsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  countyFipsCode: String!
-}
-
-"""The output of our delete `FipsCodeState` mutation."""
-type DeleteFipsCodeStatePayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `FipsCodeState` that was deleted by this mutation."""
-  fipsCodeState: FipsCodeState
-  deletedFipsCodeStateId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `FipsCodeState`. May be used by Relay 1."""
-  fipsCodeStateEdge(
-    """The method to use when ordering `FipsCodeState`."""
-    orderBy: [FipsCodeStatesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FipsCodeStatesEdge
-}
-
-"""All input for the `deleteFipsCodeState` mutation."""
-input DeleteFipsCodeStateInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `FipsCodeState` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteFipsCodeStateByStateFipsCode` mutation."""
-input DeleteFipsCodeStateByStateFipsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  stateFipsCode: String!
 }
