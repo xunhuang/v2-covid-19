@@ -17,35 +17,6 @@ type Query implements Node {
     nodeId: ID!
   ): Node
 
-  """Reads and enables pagination through a set of `CountiesSummary`."""
-  allCountiesSummaries(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountiesSummary`."""
-    orderBy: [CountiesSummariesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountiesSummaryCondition
-  ): CountiesSummariesConnection
-
   """Reads and enables pagination through a set of `CountyCasesAll`."""
   allCountyCasesAlls(
     """Only read the first `n` values of the set."""
@@ -132,35 +103,6 @@ type Query implements Node {
     """
     condition: MsaCasesAllCondition
   ): MsaCasesAllsConnection
-
-  """Reads and enables pagination through a set of `MsaDefinition`."""
-  allMsaDefinitions(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `MsaDefinition`."""
-    orderBy: [MsaDefinitionsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MsaDefinitionCondition
-  ): MsaDefinitionsConnection
 
   """Reads and enables pagination through a set of `MsaMeta`."""
   allMsaMetas(
@@ -278,35 +220,6 @@ type Query implements Node {
     condition: StatesHospitalizationCondition
   ): StatesHospitalizationsConnection
 
-  """Reads and enables pagination through a set of `StatesSummary`."""
-  allStatesSummaries(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StatesSummary`."""
-    orderBy: [StatesSummariesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StatesSummaryCondition
-  ): StatesSummariesConnection
-
   """Reads and enables pagination through a set of `StatesTesting`."""
   allStatesTestings(
     """Only read the first `n` values of the set."""
@@ -394,35 +307,6 @@ type Query implements Node {
     condition: UsHospitalizationCondition
   ): UsHospitalizationsConnection
 
-  """Reads and enables pagination through a set of `UsSummary`."""
-  allUsSummaries(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `UsSummary`."""
-    orderBy: [UsSummariesOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UsSummaryCondition
-  ): UsSummariesConnection
-
   """Reads and enables pagination through a set of `UsTesting`."""
   allUsTestings(
     """Only read the first `n` values of the set."""
@@ -461,138 +345,6 @@ interface Node {
   nodeId: ID!
 }
 
-"""A connection to a list of `CountiesSummary` values."""
-type CountiesSummariesConnection {
-  """A list of `CountiesSummary` objects."""
-  nodes: [CountiesSummary]!
-
-  """
-  A list of edges which contains the `CountiesSummary` and cursor to aid in pagination.
-  """
-  edges: [CountiesSummariesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `CountiesSummary` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type CountiesSummary {
-  stateFipsCode: String
-  countyFipsCode: String
-  state: String
-  county: String
-  confirmedCases: Int
-  deaths: Int
-  test7DayTotal: Int
-  positivity7DayAvg: Float
-  community: String
-  school: String
-  reportDate: String
-  healthwebsites: String
-}
-
-"""A `CountiesSummary` edge in the connection."""
-type CountiesSummariesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CountiesSummary` at the end of the edge."""
-  node: CountiesSummary
-}
-
-"""A location in a connection that can be used for resuming pagination."""
-scalar Cursor
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
-}
-
-"""Methods to use when ordering `CountiesSummary`."""
-enum CountiesSummariesOrderBy {
-  NATURAL
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_ASC
-  STATE_DESC
-  COUNTY_ASC
-  COUNTY_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  TEST_7DAY_TOTAL_ASC
-  TEST_7DAY_TOTAL_DESC
-  POSITIVITY_7DAY_AVG_ASC
-  POSITIVITY_7DAY_AVG_DESC
-  COMMUNITY_ASC
-  COMMUNITY_DESC
-  SCHOOL_ASC
-  SCHOOL_DESC
-  REPORT_DATE_ASC
-  REPORT_DATE_DESC
-  HEALTHWEBSITES_ASC
-  HEALTHWEBSITES_DESC
-}
-
-"""
-A condition to be used against `CountiesSummary` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CountiesSummaryCondition {
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `state` field."""
-  state: String
-
-  """Checks for equality with the object’s `county` field."""
-  county: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `test7DayTotal` field."""
-  test7DayTotal: Int
-
-  """Checks for equality with the object’s `positivity7DayAvg` field."""
-  positivity7DayAvg: Float
-
-  """Checks for equality with the object’s `community` field."""
-  community: String
-
-  """Checks for equality with the object’s `school` field."""
-  school: String
-
-  """Checks for equality with the object’s `reportDate` field."""
-  reportDate: String
-
-  """Checks for equality with the object’s `healthwebsites` field."""
-  healthwebsites: String
-}
-
 """A connection to a list of `CountyCasesAll` values."""
 type CountyCasesAllsConnection {
   """A list of `CountyCasesAll` objects."""
@@ -627,6 +379,24 @@ type CountyCasesAllsEdge {
 
   """The `CountyCasesAll` at the end of the edge."""
   node: CountyCasesAll
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
 }
 
 """Methods to use when ordering `CountyCasesAll`."""
@@ -831,112 +601,6 @@ input MsaCasesAllCondition {
 
   """Checks for equality with the object’s `deaths` field."""
   deaths: Int
-}
-
-"""A connection to a list of `MsaDefinition` values."""
-type MsaDefinitionsConnection {
-  """A list of `MsaDefinition` objects."""
-  nodes: [MsaDefinition]!
-
-  """
-  A list of edges which contains the `MsaDefinition` and cursor to aid in pagination.
-  """
-  edges: [MsaDefinitionsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MsaDefinition` you could get from the connection."""
-  totalCount: Int!
-}
-
-type MsaDefinition {
-  id: String
-  urlName: String
-  friendly: String
-  stateFipsCode: String
-  countyFipsCode: String
-  state: String
-  stateName: String
-  name: String
-  countyName: String
-  centerState: String
-  centerStateFipsCode: String
-}
-
-"""A `MsaDefinition` edge in the connection."""
-type MsaDefinitionsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MsaDefinition` at the end of the edge."""
-  node: MsaDefinition
-}
-
-"""Methods to use when ordering `MsaDefinition`."""
-enum MsaDefinitionsOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  URL_NAME_ASC
-  URL_NAME_DESC
-  FRIENDLY_ASC
-  FRIENDLY_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_ASC
-  STATE_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  NAME_ASC
-  NAME_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  CENTER_STATE_ASC
-  CENTER_STATE_DESC
-  CENTER_STATE_FIPS_CODE_ASC
-  CENTER_STATE_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `MsaDefinition` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input MsaDefinitionCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: String
-
-  """Checks for equality with the object’s `urlName` field."""
-  urlName: String
-
-  """Checks for equality with the object’s `friendly` field."""
-  friendly: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `state` field."""
-  state: String
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `name` field."""
-  name: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `centerState` field."""
-  centerState: String
-
-  """Checks for equality with the object’s `centerStateFipsCode` field."""
-  centerStateFipsCode: String
 }
 
 """A connection to a list of `MsaMeta` values."""
@@ -1275,132 +939,6 @@ input StatesHospitalizationCondition {
   stateFipsCode: String
 }
 
-"""A connection to a list of `StatesSummary` values."""
-type StatesSummariesConnection {
-  """A list of `StatesSummary` objects."""
-  nodes: [StatesSummary]!
-
-  """
-  A list of edges which contains the `StatesSummary` and cursor to aid in pagination.
-  """
-  edges: [StatesSummariesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `StatesSummary` you could get from the connection."""
-  totalCount: Int!
-}
-
-type StatesSummary {
-  stateName: String
-  stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  confirmedIncrease14Days: Int
-  totalTestResults: Int
-  totalTestResultsIncrease: Int
-  positive: Int
-  positiveIncrease: Int
-  inIcuCurrently: Int
-  hospitalizedCurrently: Int
-  adultIcuBedsCapacity: Int
-  inpatientBedsUsed: Int
-  inpatientBedsCapacity: Int
-}
-
-"""A `StatesSummary` edge in the connection."""
-type StatesSummariesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StatesSummary` at the end of the edge."""
-  node: StatesSummary
-}
-
-"""Methods to use when ordering `StatesSummary`."""
-enum StatesSummariesOrderBy {
-  NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  CONFIRMED_INCREASE_14DAYS_ASC
-  CONFIRMED_INCREASE_14DAYS_DESC
-  TOTAL_TEST_RESULTS_ASC
-  TOTAL_TEST_RESULTS_DESC
-  TOTAL_TEST_RESULTS_INCREASE_ASC
-  TOTAL_TEST_RESULTS_INCREASE_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
-  IN_ICU_CURRENTLY_ASC
-  IN_ICU_CURRENTLY_DESC
-  HOSPITALIZED_CURRENTLY_ASC
-  HOSPITALIZED_CURRENTLY_DESC
-  ADULT_ICU_BEDS_CAPACITY_ASC
-  ADULT_ICU_BEDS_CAPACITY_DESC
-  INPATIENT_BEDS_USED_ASC
-  INPATIENT_BEDS_USED_DESC
-  INPATIENT_BEDS_CAPACITY_ASC
-  INPATIENT_BEDS_CAPACITY_DESC
-}
-
-"""
-A condition to be used against `StatesSummary` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StatesSummaryCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `confirmedIncrease14Days` field."""
-  confirmedIncrease14Days: Int
-
-  """Checks for equality with the object’s `totalTestResults` field."""
-  totalTestResults: Int
-
-  """
-  Checks for equality with the object’s `totalTestResultsIncrease` field.
-  """
-  totalTestResultsIncrease: Int
-
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `positiveIncrease` field."""
-  positiveIncrease: Int
-
-  """Checks for equality with the object’s `inIcuCurrently` field."""
-  inIcuCurrently: Int
-
-  """Checks for equality with the object’s `hospitalizedCurrently` field."""
-  hospitalizedCurrently: Int
-
-  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
-  adultIcuBedsCapacity: Int
-
-  """Checks for equality with the object’s `inpatientBedsUsed` field."""
-  inpatientBedsUsed: Int
-
-  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
-  inpatientBedsCapacity: Int
-}
-
 """A connection to a list of `StatesTesting` values."""
 type StatesTestingsConnection {
   """A list of `StatesTesting` objects."""
@@ -1657,142 +1195,6 @@ input UsHospitalizationCondition {
   inpatientBedsCapacity: Int
 }
 
-"""A connection to a list of `UsSummary` values."""
-type UsSummariesConnection {
-  """A list of `UsSummary` objects."""
-  nodes: [UsSummary]!
-
-  """
-  A list of edges which contains the `UsSummary` and cursor to aid in pagination.
-  """
-  edges: [UsSummariesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `UsSummary` you could get from the connection."""
-  totalCount: Int!
-}
-
-type UsSummary {
-  totalTestResults: Int
-  negativeIncrease: Int
-  positiveIncrease: Int
-  negative: Int
-  positive: Int
-  inconclusive: Int
-  inconclusiveIncrease: Int
-  adultIcuBedUsed: Int
-  inIcuCurrently: Int
-  hospitalizedCurrently: Int
-  adultIcuBedsCapacity: Int
-  inpatientBedsUsed: Int
-  inpatientBedsCapacity: Int
-  confirmedCases: Int
-  confirmedIncrease: Int
-  confirmedIncrease14Days: Int
-}
-
-"""A `UsSummary` edge in the connection."""
-type UsSummariesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `UsSummary` at the end of the edge."""
-  node: UsSummary
-}
-
-"""Methods to use when ordering `UsSummary`."""
-enum UsSummariesOrderBy {
-  NATURAL
-  TOTAL_TEST_RESULTS_ASC
-  TOTAL_TEST_RESULTS_DESC
-  NEGATIVE_INCREASE_ASC
-  NEGATIVE_INCREASE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
-  NEGATIVE_ASC
-  NEGATIVE_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  INCONCLUSIVE_ASC
-  INCONCLUSIVE_DESC
-  INCONCLUSIVE_INCREASE_ASC
-  INCONCLUSIVE_INCREASE_DESC
-  ADULT_ICU_BED_USED_ASC
-  ADULT_ICU_BED_USED_DESC
-  IN_ICU_CURRENTLY_ASC
-  IN_ICU_CURRENTLY_DESC
-  HOSPITALIZED_CURRENTLY_ASC
-  HOSPITALIZED_CURRENTLY_DESC
-  ADULT_ICU_BEDS_CAPACITY_ASC
-  ADULT_ICU_BEDS_CAPACITY_DESC
-  INPATIENT_BEDS_USED_ASC
-  INPATIENT_BEDS_USED_DESC
-  INPATIENT_BEDS_CAPACITY_ASC
-  INPATIENT_BEDS_CAPACITY_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  CONFIRMED_INCREASE_14DAYS_ASC
-  CONFIRMED_INCREASE_14DAYS_DESC
-}
-
-"""
-A condition to be used against `UsSummary` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input UsSummaryCondition {
-  """Checks for equality with the object’s `totalTestResults` field."""
-  totalTestResults: Int
-
-  """Checks for equality with the object’s `negativeIncrease` field."""
-  negativeIncrease: Int
-
-  """Checks for equality with the object’s `positiveIncrease` field."""
-  positiveIncrease: Int
-
-  """Checks for equality with the object’s `negative` field."""
-  negative: Int
-
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `inconclusive` field."""
-  inconclusive: Int
-
-  """Checks for equality with the object’s `inconclusiveIncrease` field."""
-  inconclusiveIncrease: Int
-
-  """Checks for equality with the object’s `adultIcuBedUsed` field."""
-  adultIcuBedUsed: Int
-
-  """Checks for equality with the object’s `inIcuCurrently` field."""
-  inIcuCurrently: Int
-
-  """Checks for equality with the object’s `hospitalizedCurrently` field."""
-  hospitalizedCurrently: Int
-
-  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
-  adultIcuBedsCapacity: Int
-
-  """Checks for equality with the object’s `inpatientBedsUsed` field."""
-  inpatientBedsUsed: Int
-
-  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
-  inpatientBedsCapacity: Int
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `confirmedIncrease14Days` field."""
-  confirmedIncrease14Days: Int
-}
-
 """A connection to a list of `UsTesting` values."""
 type UsTestingsConnection {
   """A list of `UsTesting` objects."""
@@ -1899,14 +1301,6 @@ input UsTestingCondition {
 The root mutation type which contains root level fields which mutate data.
 """
 type Mutation {
-  """Creates a single `CountiesSummary`."""
-  createCountiesSummary(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateCountiesSummaryInput!
-  ): CreateCountiesSummaryPayload
-
   """Creates a single `CountyCasesAll`."""
   createCountyCasesAll(
     """
@@ -1930,14 +1324,6 @@ type Mutation {
     """
     input: CreateMsaCasesAllInput!
   ): CreateMsaCasesAllPayload
-
-  """Creates a single `MsaDefinition`."""
-  createMsaDefinition(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateMsaDefinitionInput!
-  ): CreateMsaDefinitionPayload
 
   """Creates a single `MsaMeta`."""
   createMsaMeta(
@@ -1971,14 +1357,6 @@ type Mutation {
     input: CreateStatesHospitalizationInput!
   ): CreateStatesHospitalizationPayload
 
-  """Creates a single `StatesSummary`."""
-  createStatesSummary(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateStatesSummaryInput!
-  ): CreateStatesSummaryPayload
-
   """Creates a single `StatesTesting`."""
   createStatesTesting(
     """
@@ -2003,14 +1381,6 @@ type Mutation {
     input: CreateUsHospitalizationInput!
   ): CreateUsHospitalizationPayload
 
-  """Creates a single `UsSummary`."""
-  createUsSummary(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateUsSummaryInput!
-  ): CreateUsSummaryPayload
-
   """Creates a single `UsTesting`."""
   createUsTesting(
     """
@@ -2018,57 +1388,6 @@ type Mutation {
     """
     input: CreateUsTestingInput!
   ): CreateUsTestingPayload
-}
-
-"""The output of our create `CountiesSummary` mutation."""
-type CreateCountiesSummaryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `CountiesSummary` that was created by this mutation."""
-  countiesSummary: CountiesSummary
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `CountiesSummary`. May be used by Relay 1."""
-  countiesSummaryEdge(
-    """The method to use when ordering `CountiesSummary`."""
-    orderBy: [CountiesSummariesOrderBy!] = [NATURAL]
-  ): CountiesSummariesEdge
-}
-
-"""All input for the create `CountiesSummary` mutation."""
-input CreateCountiesSummaryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `CountiesSummary` to be created by this mutation."""
-  countiesSummary: CountiesSummaryInput!
-}
-
-"""An input for mutations affecting `CountiesSummary`"""
-input CountiesSummaryInput {
-  stateFipsCode: String
-  countyFipsCode: String
-  state: String
-  county: String
-  confirmedCases: Int
-  deaths: Int
-  test7DayTotal: Int
-  positivity7DayAvg: Float
-  community: String
-  school: String
-  reportDate: String
-  healthwebsites: String
 }
 
 """The output of our create `CountyCasesAll` mutation."""
@@ -2206,56 +1525,6 @@ input MsaCasesAllInput {
   date: String
   confirmedCases: Int
   deaths: Int
-}
-
-"""The output of our create `MsaDefinition` mutation."""
-type CreateMsaDefinitionPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `MsaDefinition` that was created by this mutation."""
-  msaDefinition: MsaDefinition
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `MsaDefinition`. May be used by Relay 1."""
-  msaDefinitionEdge(
-    """The method to use when ordering `MsaDefinition`."""
-    orderBy: [MsaDefinitionsOrderBy!] = [NATURAL]
-  ): MsaDefinitionsEdge
-}
-
-"""All input for the create `MsaDefinition` mutation."""
-input CreateMsaDefinitionInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `MsaDefinition` to be created by this mutation."""
-  msaDefinition: MsaDefinitionInput!
-}
-
-"""An input for mutations affecting `MsaDefinition`"""
-input MsaDefinitionInput {
-  id: String
-  urlName: String
-  friendly: String
-  stateFipsCode: String
-  countyFipsCode: String
-  state: String
-  stateName: String
-  name: String
-  countyName: String
-  centerState: String
-  centerStateFipsCode: String
 }
 
 """The output of our create `MsaMeta` mutation."""
@@ -2442,59 +1711,6 @@ input StatesHospitalizationInput {
   stateFipsCode: String
 }
 
-"""The output of our create `StatesSummary` mutation."""
-type CreateStatesSummaryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `StatesSummary` that was created by this mutation."""
-  statesSummary: StatesSummary
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `StatesSummary`. May be used by Relay 1."""
-  statesSummaryEdge(
-    """The method to use when ordering `StatesSummary`."""
-    orderBy: [StatesSummariesOrderBy!] = [NATURAL]
-  ): StatesSummariesEdge
-}
-
-"""All input for the create `StatesSummary` mutation."""
-input CreateStatesSummaryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `StatesSummary` to be created by this mutation."""
-  statesSummary: StatesSummaryInput!
-}
-
-"""An input for mutations affecting `StatesSummary`"""
-input StatesSummaryInput {
-  stateName: String
-  stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  confirmedIncrease14Days: Int
-  totalTestResults: Int
-  totalTestResultsIncrease: Int
-  positive: Int
-  positiveIncrease: Int
-  inIcuCurrently: Int
-  hospitalizedCurrently: Int
-  adultIcuBedsCapacity: Int
-  inpatientBedsUsed: Int
-  inpatientBedsCapacity: Int
-}
-
 """The output of our create `StatesTesting` mutation."""
 type CreateStatesTestingPayload {
   """
@@ -2632,61 +1848,6 @@ input UsHospitalizationInput {
   adultIcuBedsCapacity: Int
   inpatientBedsUsed: Int
   inpatientBedsCapacity: Int
-}
-
-"""The output of our create `UsSummary` mutation."""
-type CreateUsSummaryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `UsSummary` that was created by this mutation."""
-  usSummary: UsSummary
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `UsSummary`. May be used by Relay 1."""
-  usSummaryEdge(
-    """The method to use when ordering `UsSummary`."""
-    orderBy: [UsSummariesOrderBy!] = [NATURAL]
-  ): UsSummariesEdge
-}
-
-"""All input for the create `UsSummary` mutation."""
-input CreateUsSummaryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `UsSummary` to be created by this mutation."""
-  usSummary: UsSummaryInput!
-}
-
-"""An input for mutations affecting `UsSummary`"""
-input UsSummaryInput {
-  totalTestResults: Int
-  negativeIncrease: Int
-  positiveIncrease: Int
-  negative: Int
-  positive: Int
-  inconclusive: Int
-  inconclusiveIncrease: Int
-  adultIcuBedUsed: Int
-  inIcuCurrently: Int
-  hospitalizedCurrently: Int
-  adultIcuBedsCapacity: Int
-  inpatientBedsUsed: Int
-  inpatientBedsCapacity: Int
-  confirmedCases: Int
-  confirmedIncrease: Int
-  confirmedIncrease14Days: Int
 }
 
 """The output of our create `UsTesting` mutation."""
