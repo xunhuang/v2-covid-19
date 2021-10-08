@@ -423,35 +423,6 @@ type Query implements Node {
     condition: UsSummaryCondition
   ): UsSummariesConnection
 
-  """Reads and enables pagination through a set of `UsSummaryView`."""
-  allUsSummaryViews(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `UsSummaryView`."""
-    orderBy: [UsSummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UsSummaryViewCondition
-  ): UsSummaryViewsConnection
-
   """Reads and enables pagination through a set of `UsTesting`."""
   allUsTestings(
     """Only read the first `n` values of the set."""
@@ -724,7 +695,7 @@ type CountyMetasConnection {
 type CountyMeta {
   countyFipsCode: String
   stateFipsCode: String
-  popuplation: Int
+  population: Int
   countyName: String
   stateName: String
   stateAbbr: String
@@ -749,8 +720,8 @@ enum CountyMetasOrderBy {
   COUNTY_FIPS_CODE_DESC
   STATE_FIPS_CODE_ASC
   STATE_FIPS_CODE_DESC
-  POPUPLATION_ASC
-  POPUPLATION_DESC
+  POPULATION_ASC
+  POPULATION_DESC
   COUNTY_NAME_ASC
   COUNTY_NAME_DESC
   STATE_NAME_ASC
@@ -776,8 +747,8 @@ input CountyMetaCondition {
   """Checks for equality with the object’s `stateFipsCode` field."""
   stateFipsCode: String
 
-  """Checks for equality with the object’s `popuplation` field."""
-  popuplation: Int
+  """Checks for equality with the object’s `population` field."""
+  population: Int
 
   """Checks for equality with the object’s `countyName` field."""
   countyName: String
@@ -1147,7 +1118,7 @@ type StateMeta {
   stateFipsCode: String
   stateAbbr: String
   stateName: String
-  popuplation: Int
+  population: Int
 }
 
 """A `StateMeta` edge in the connection."""
@@ -1168,8 +1139,8 @@ enum StateMetasOrderBy {
   STATE_ABBR_DESC
   STATE_NAME_ASC
   STATE_NAME_DESC
-  POPUPLATION_ASC
-  POPUPLATION_DESC
+  POPULATION_ASC
+  POPULATION_DESC
 }
 
 """
@@ -1186,8 +1157,8 @@ input StateMetaCondition {
   """Checks for equality with the object’s `stateName` field."""
   stateName: String
 
-  """Checks for equality with the object’s `popuplation` field."""
-  popuplation: Int
+  """Checks for equality with the object’s `population` field."""
+  population: Int
 }
 
 """A connection to a list of `StatesHospitalization` values."""
@@ -1822,64 +1793,6 @@ input UsSummaryCondition {
   confirmedIncrease14Days: Int
 }
 
-"""A connection to a list of `UsSummaryView` values."""
-type UsSummaryViewsConnection {
-  """A list of `UsSummaryView` objects."""
-  nodes: [UsSummaryView]!
-
-  """
-  A list of edges which contains the `UsSummaryView` and cursor to aid in pagination.
-  """
-  edges: [UsSummaryViewsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `UsSummaryView` you could get from the connection."""
-  totalCount: Int!
-}
-
-type UsSummaryView {
-  confirmedCases: Int
-  confirmedIncrease: Int
-  confirmedIncrease14Days: Int
-}
-
-"""A `UsSummaryView` edge in the connection."""
-type UsSummaryViewsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `UsSummaryView` at the end of the edge."""
-  node: UsSummaryView
-}
-
-"""Methods to use when ordering `UsSummaryView`."""
-enum UsSummaryViewsOrderBy {
-  NATURAL
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  CONFIRMED_INCREASE_14DAYS_ASC
-  CONFIRMED_INCREASE_14DAYS_DESC
-}
-
-"""
-A condition to be used against `UsSummaryView` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input UsSummaryViewCondition {
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `confirmedIncrease14Days` field."""
-  confirmedIncrease14Days: Int
-}
-
 """A connection to a list of `UsTesting` values."""
 type UsTestingsConnection {
   """A list of `UsTesting` objects."""
@@ -2243,7 +2156,7 @@ input CreateCountyMetaInput {
 input CountyMetaInput {
   countyFipsCode: String
   stateFipsCode: String
-  popuplation: Int
+  population: Int
   countyName: String
   stateName: String
   stateAbbr: String
@@ -2475,7 +2388,7 @@ input StateMetaInput {
   stateFipsCode: String
   stateAbbr: String
   stateName: String
-  popuplation: Int
+  population: Int
 }
 
 """The output of our create `StatesHospitalization` mutation."""

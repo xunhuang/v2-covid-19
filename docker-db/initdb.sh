@@ -48,15 +48,13 @@ done
 init_views() {
    psql -Atx $CONN < views/us_summary.sql
    psql -Atx $CONN < views/states_summary_view.sql 
-   # psql -Atx $CONN < views/county_summary_view.sql 
+   psql -Atx $CONN < views/county_summary_view.sql 
 
-   # psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
-   # psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
 }
 
-#init_schema_meta
-
-# psql -Atx $CONN < schema.sql
-# init_data
-
+init_schema_meta
+psql -Atx $CONN < schema.sql
+init_data
 init_views

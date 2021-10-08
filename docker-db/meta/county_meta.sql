@@ -2,7 +2,7 @@ drop TABLE if exists county_meta;
 create TABLE county_meta as select
 county.county_fips_code as county_fips_code, 
 county.state_fips_code as state_fips_code, 
-pop.pop2020 as popuplation,
+pop.pop2020 as population,
 county.area_name as county_name,
 state.state_name as state_name,
 state.state_abbr as state_abbr,

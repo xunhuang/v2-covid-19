@@ -28,7 +28,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.county_meta (
     county_fips_code text,
     state_fips_code text,
-    popuplation integer,
+    population integer,
     county_name text,
     state_name text,
     state_abbr text,
@@ -61,7 +61,7 @@ CREATE TABLE public.state_meta (
     state_fips_code text,
     state_abbr text,
     state_name text,
-    popuplation integer
+    population integer
 );
 
 
@@ -69,7 +69,7 @@ CREATE TABLE public.state_meta (
 -- Data for Name: county_meta; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.county_meta (county_fips_code, state_fips_code, popuplation, county_name, state_name, state_abbr, msa_id, msa_name, msa_url_name) FROM stdin;
+COPY public.county_meta (county_fips_code, state_fips_code, population, county_name, state_name, state_abbr, msa_id, msa_name, msa_url_name) FROM stdin;
 19155	19	93328	Pottawattamie County	Iowa	IA	5920	Omaha	Omaha
 19181	19	52265	Warren County	Iowa	IA	2120	Des Moines	DesMoines
 19049	19	96963	Dallas County	Iowa	IA	2120	Des Moines	DesMoines
@@ -3488,7 +3488,7 @@ COPY public.msa_meta (msa_id, msa_name, msa_url_name, state_fips_code, state_nam
 -- Data for Name: state_meta; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.state_meta (state_fips_code, state_abbr, state_name, popuplation) FROM stdin;
+COPY public.state_meta (state_fips_code, state_abbr, state_name, population) FROM stdin;
 01	AL	Alabama	4921532
 02	AK	Alaska	731158
 04	AZ	Arizona	7421401

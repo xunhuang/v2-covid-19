@@ -12,7 +12,7 @@ SELECT
     negative,
     "positiveIncrease",
     "negativeIncrease",
-    state_meta.popuplation as population
+    state_meta.population as population
 from
 state_meta
 left outer join 
