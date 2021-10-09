@@ -16,9 +16,9 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP TABLE public.state_meta;
-DROP TABLE public.msa_meta;
-DROP TABLE public.county_meta;
+DROP TABLE public.state_meta CASCADE;
+DROP TABLE public.msa_meta CASCADE;
+DROP TABLE public.county_meta CASCADE;
 SET default_table_access_method = heap;
 
 --
