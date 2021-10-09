@@ -50,7 +50,7 @@ reset_db() {
 }
 
 update_db() {
-
+   sh download.sh
 }
 
 $1

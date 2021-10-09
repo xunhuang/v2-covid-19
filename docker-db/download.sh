@@ -9,7 +9,7 @@ tables="\
     official.states-testing 
     official.us-hospitalization 
     official.us-testing"
-tables="official.state-cases-all"
+# tables="official.state-cases-all"
 for table in $tables
 do
  echo Downloading $table
