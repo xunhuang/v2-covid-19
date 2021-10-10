@@ -50,7 +50,38 @@ reset_db() {
 }
 
 update_db() {
-   sh download.sh
+   rm -rf changequery.sql
+   tables="\
+ county_cases_all,official.county-cases-all\
+ state_cases_all,official.state-cases-all\
+ us_cases_all,official.us-cases-all\
+ msa_cases_all,official.msa-cases-all\
+ states_hospitalization,official.states-hospitalization\
+ us_hospitalization,official.us-hospitalization\
+ states_testing,official.states-testing\
+ us_testing,official.us-testing\
+ "
+   for i in $tables; do 
+    IFS=',' read table bigquerytable <<< "${i}"
+    echo ----
+    echo "downloading ${bigquerytable}"
+   #time ts-node ./BigQuery.ts -q "SELECT * FROM \`${bigquerytable}\` as x where x.date > date_sub(CURRENT_DATE(), INTERVAL 10 day)" > $bigquerytable.json
+   jsonfile="${bigquerytable}.json"
+   echo "delete from $table where date in (" >> changequery.sql
+   cat $jsonfile  | jq '[.[]  |.date .value ] |sort |unique |.[] ' |sed -e "s/\"/'/g" |paste -sd "," - >> changequery.sql
+   echo ");" >> changequery.sql
+   cat $jsonfile | jq -c " .[] | . + {date: .date.value, } " | json2csv  > $table.csv
+   echo "\\\\copy $table from '$table.csv' with delimiter as ',' csv header quote as '\"' " >> changequery.sql
+   done
+   cat changequery.sql
+   # #ts-node ./BigQuery.ts -q "SELECT * FROM \`official.county-cases-all\` as x where x.date > date_sub(CURRENT_DATE(), INTERVAL 10 day)" > testme.json
+   # table="county_cases_all"
+   # echo "delete from $table where date in (" > changequery.sql
+   # cat testme.json  | jq '[.[]  |.date .value ] |sort |unique |.[] ' |sed -e "s/\"/'/g" |paste -sd "," - >> changequery.sql
+   # echo ");" >> changequery.sql
+   # cat testme.json | jq -c " .[] | . + {date: .date.value, } " | json2csv  > $table.csv
+   # echo "\\\\copy $table from '$table.csv' with delimiter as ',' csv header quote as '\"' " >> changequery.sql
+   # cat changequery.sql
 }
 
 $1

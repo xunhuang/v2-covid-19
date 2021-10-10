@@ -88,10 +88,9 @@ CREATE TABLE us_testing (
     "totalTestResults" integer,
     "negativeIncrease" integer,
     "positiveIncrease" integer,
-    "state_name" text,
     "negative" integer,
-    "totalTestResultsIncrease" integer,
     "positive" integer,
+    -- "totalTestResultsIncrease" integer,
     "inconclusive" integer,
     "inconclusiveIncrease" integer
 );
