@@ -12,6 +12,8 @@ SELECT
     negative,
     "positiveIncrease",
     "negativeIncrease",
+    cases.updated as updated,
+
     state_meta.population as population
 from
 state_meta
@@ -22,10 +24,11 @@ left outer join
             today.confirmed_cases - yesterday.confirmed_cases as confirmed_increase,
             today.deaths as deaths,
             today.deaths - yesterday.deaths as deaths_increase,
-            today.state_fips_code as state_fips_code
+            today.state_fips_code as state_fips_code,
+            today.date as updated
         FROM
             state_cases_all as today
-            JOIN state_cases_all as yesterday ON TO_DATE(yesterday.date, 'YYYY-MM-DD') = TO_DATE(today.date, 'YYYY-MM-DD') - interval '1 day'
+            LEFT OUTER JOIN state_cases_all as yesterday ON TO_DATE(yesterday.date, 'YYYY-MM-DD') = TO_DATE(today.date, 'YYYY-MM-DD') - interval '1 day'
             and today.state_fips_code = yesterday.state_fips_code
         where
             today.date = (
@@ -58,4 +61,4 @@ on state_meta.state_fips_code = cases.state_fips_code
             and tests.date = maxdate.date
     ) as testing on testing.state_fips_code = state_meta.state_fips_code;
 
-    comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references fips_code_state(state_fips_code)'
+    comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references state_meta(state_fips_code)'

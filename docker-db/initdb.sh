@@ -1,11 +1,6 @@
-# export PGPASSWORD=mysecretpassword 
-# export PGHOST=localhost 
-# export PGUSER=postgres 
-# export PGDB=postgres 
-# export DOCKER_NAME=postgres_name
 
-# CONN=postgres://postgres:mysecretpassword@localhost/postgres
-CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
+CONN=postgres://postgres:mysecretpassword@localhost/postgres
+#CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
 
 init_schema_meta () {
    # CONN=postgres://postgres:mysecretpassword@localhost/tempdb
@@ -41,12 +36,35 @@ init_views() {
    psql -Atx $CONN < views/county_summary_view.sql 
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
+   psql -Atx $CONN -c "CREATE UNIQUE INDEX county_summary_view_index ON county_summary_view (county_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX county_summary_view_state_index ON county_summary_view (state_fips_code);"
+   psql -Atx $CONN -c "CREATE UNIQUE INDEX state_summary_view_index ON state_summary_view (state_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX ON public.state_cases_all(state_fips_code);"
 }
 
 reset_db() {
    init_schema_meta
    init_data
    init_views
+}
+
+download_changes() {
+   tables="\
+ county_cases_all,official.county-cases-all\
+ state_cases_all,official.state-cases-all\
+ us_cases_all,official.us-cases-all\
+ msa_cases_all,official.msa-cases-all\
+ states_hospitalization,official.states-hospitalization\
+ us_hospitalization,official.us-hospitalization\
+ states_testing,official.states-testing\
+ us_testing,official.us-testing\
+ "
+   for i in $tables; do 
+    IFS=',' read table bigquerytable <<< "${i}"
+    echo ----
+    echo "downloading ${bigquerytable}"
+   time ts-node ./BigQuery.ts -q "SELECT * FROM \`${bigquerytable}\` as x where x.date > date_sub(CURRENT_DATE(), INTERVAL 10 day)" > $bigquerytable.json
+   done
 }
 
 update_db() {
@@ -64,8 +82,7 @@ update_db() {
    for i in $tables; do 
     IFS=',' read table bigquerytable <<< "${i}"
     echo ----
-    echo "downloading ${bigquerytable}"
-   #time ts-node ./BigQuery.ts -q "SELECT * FROM \`${bigquerytable}\` as x where x.date > date_sub(CURRENT_DATE(), INTERVAL 10 day)" > $bigquerytable.json
+    echo "processing ${bigquerytable}"
    jsonfile="${bigquerytable}.json"
    echo "delete from $table where date in (" >> changequery.sql
    cat $jsonfile  | jq '[.[]  |.date .value ] |sort |unique |.[] ' |sed -e "s/\"/'/g" |paste -sd "," - >> changequery.sql
@@ -73,15 +90,14 @@ update_db() {
    cat $jsonfile | jq -c " .[] | . + {date: .date.value, } " | json2csv  > $table.csv
    echo "\\\\copy $table from '$table.csv' with delimiter as ',' csv header quote as '\"' " >> changequery.sql
    done
+
+cat <<EOF >> changequery.sql
+ REFRESH MATERIALIZED VIEW county_summary_view;
+ REFRESH MATERIALIZED VIEW state_summary_view;
+ REFRESH MATERIALIZED VIEW us_summary_view;
+EOF
    cat changequery.sql
-   # #ts-node ./BigQuery.ts -q "SELECT * FROM \`official.county-cases-all\` as x where x.date > date_sub(CURRENT_DATE(), INTERVAL 10 day)" > testme.json
-   # table="county_cases_all"
-   # echo "delete from $table where date in (" > changequery.sql
-   # cat testme.json  | jq '[.[]  |.date .value ] |sort |unique |.[] ' |sed -e "s/\"/'/g" |paste -sd "," - >> changequery.sql
-   # echo ");" >> changequery.sql
-   # cat testme.json | jq -c " .[] | . + {date: .date.value, } " | json2csv  > $table.csv
-   # echo "\\\\copy $table from '$table.csv' with delimiter as ',' csv header quote as '\"' " >> changequery.sql
-   # cat changequery.sql
+   time psql -Atx $CONN < changequery.sql
 }
 
 $1
