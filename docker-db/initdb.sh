@@ -32,6 +32,8 @@ done
 }
 
 init_views() {
+   echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX Connection String: "
+   echo $CONN
    psql -Atx $CONN < views/us_summary.sql
    psql -Atx $CONN < views/states_summary_view.sql 
    psql -Atx $CONN < views/county_summary_view.sql 
