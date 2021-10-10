@@ -9,20 +9,22 @@ init_schema_meta () {
 }
 
 init_data() {
-b="\
- county_cases_all(date,county,state_name,state_fips_code,county_fips_code,confirmed_cases,deaths)^official.county-cases-all.csv\
- state_cases_all(date,state_name,state_fips_code,confirmed_cases,deaths)^official.state-cases-all.csv\
- us_cases_all(date,confirmed_cases,deaths)^official.us-cases-all.csv\
- msa_cases_all(msd_id,date,confirmed_cases,deaths)^official.msa-cases-all.csv\
- states_hospitalization(date,adult_icu_bed_used,\"inIcuCurrently\",\"hospitalizedCurrently\",adult_icu_beds_capacity,inpatient_beds_used,inpatient_beds_capacity,state,state_postal_abbreviation,state_name,state_gnisid,state_fips_code)^official.states-hospitalization.csv\
- us_hospitalization(date,adult_icu_bed_used,\"inIcuCurrently\",\"hospitalizedCurrently\",adult_icu_beds_capacity,inpatient_beds_used,inpatient_beds_capacity)^official.us-hospitalization.csv\
- states_testing(date,\"totalTestResults\",\"negativeIncrease\",\"positiveIncrease\",state_name,negative,\"totalTestResultsIncrease\",positive,inconclusive,\"inconclusiveIncrease\",state,state_fips_code)^official.states-testing.csv\
- us_testing(date,\"totalTestResults\",\"negativeIncrease\",\"positiveIncrease\",negative,positive,inconclusive,\"inconclusiveIncrease\")^official.us-testing.csv\
-"
+   b="\
+ county_cases_all,official.county-cases-all\
+ state_cases_all,official.state-cases-all\
+ us_cases_all,official.us-cases-all\
+ msa_cases_all,official.msa-cases-all\
+ states_hospitalization,official.states-hospitalization\
+ us_hospitalization,official.us-hospitalization\
+ states_testing,official.states-testing\
+ us_testing,official.us-testing\
+ "
 echo $b
 
 for i in $b; do 
-    IFS='^' read table file <<< "${i}"
+    IFS=',' ;set -- $i;
+    table=$1 
+    file=$2
     echo ----
     echo "${table}  " and " ${file}"
     psql -Atx $CONN -c "\copy $table from '$file' with delimiter as ',' csv header quote as '\"' "
@@ -59,7 +61,9 @@ download_changes() {
  us_testing,official.us-testing\
  "
    for i in $tables; do 
-    IFS=',' read table bigquerytable <<< "${i}"
+    IFS=',' ;set -- $i;
+    table=$1 
+    bigquerytable=$2
     echo ----
     echo "downloading ${bigquerytable}"
    time ts-node ./BigQuery.ts -q "SELECT * FROM \`${bigquerytable}\` as x where x.date > date_sub(CURRENT_DATE(), INTERVAL 10 day)" > $bigquerytable.json
@@ -79,9 +83,11 @@ update_db() {
  us_testing,official.us-testing\
  "
    for i in $tables; do 
-    IFS=',' read table bigquerytable <<< "${i}"
+    IFS=',' ;set -- $i;
+    table=$1 
+    bigquerytable=$2
     echo ----
-    echo "processing ${bigquerytable}"
+    echo "processing ${bigquerytable} ${table}"
    jsonfile="${bigquerytable}.json"
    echo "delete from $table where date in (" >> changequery.sql
    cat $jsonfile  | jq '[.[]  |.date .value ] |sort |unique |.[] ' |sed -e "s/\"/'/g" |paste -sd "," - >> changequery.sql
