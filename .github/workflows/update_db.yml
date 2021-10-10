@@ -47,5 +47,5 @@ jobs:
     - name: updatedb data
       env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/.googleCredentials.json
-          CONN: {{secrets.CONN}}
+          CONN: ${{secrets.CONN}}
       run: cd docker-db; sh -vxe initdb.sh update_db

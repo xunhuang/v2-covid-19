@@ -10,14 +10,14 @@ init_schema_meta () {
 
 init_data() {
    b="\
- county_cases_all,official.county-cases-all\
- state_cases_all,official.state-cases-all\
- us_cases_all,official.us-cases-all\
- msa_cases_all,official.msa-cases-all\
- states_hospitalization,official.states-hospitalization\
- us_hospitalization,official.us-hospitalization\
- states_testing,official.states-testing\
- us_testing,official.us-testing\
+ county_cases_all,official.county-cases-all.csv\
+ state_cases_all,official.state-cases-all.csv\
+ us_cases_all,official.us-cases-all.csv\
+ msa_cases_all,official.msa-cases-all.csv\
+ states_hospitalization,official.states-hospitalization.csv\
+ us_hospitalization,official.us-hospitalization.csv\
+ states_testing,official.states-testing.csv\
+ us_testing,official.us-testing.csv\
  "
 echo $b
 
