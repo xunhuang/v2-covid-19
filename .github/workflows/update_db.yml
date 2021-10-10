@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Publish To GH Pages
+name: Update db incrementally
 
 on:
   push:
@@ -37,11 +37,14 @@ jobs:
       run: echo "${GOOGLE_SVC_ACCOUNT_CREDENTIALS}" > /tmp/.googleCredentials.json
     # - run: sudo apt-get update -y
     # - run: sudo apt-get install -y xmlstarlet
-    - run: npm ci
+    - run: npm ci; npm install -g ts-node
     - run: cd docker-db; npm ci  ; cd ..
     - run: which psql
-    - run: cd docker-db; which ts-node
-    - name: fetch data
+    - name: download data
+      env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/.googleCredentials.json
+      run: cd docker-db; sh -vxe initdb.sh download_changes
+    - name: updatedb data
       env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/.googleCredentials.json
       run: cd docker-db; sh -vxe initdb.sh update_db

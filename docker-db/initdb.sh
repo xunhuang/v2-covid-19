@@ -1,12 +1,9 @@
 
-CONN=postgres://postgres:mysecretpassword@localhost/postgres
+# set your CONN in your env
+# CONN=postgres://postgres:mysecretpassword@localhost/postgres
 #CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
 
 init_schema_meta () {
-   # CONN=postgres://postgres:mysecretpassword@localhost/tempdb
-   # psql -Atx $CONN -c "drop database postgres WITH (FORCE)"
-   # psql -Atx $CONN -c "create database postgres"
-   # CONN=postgres://postgres:mysecretpassword@localhost/postgres
    psql -Atx $CONN < meta/init_data.sql
    psql -Atx $CONN < schema.sql
 }
