@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { AppTabs } from './components/AppTab';
 import {
   CountySummaryView,
-  FipsCodeState,
   StateCasesAllsConnection,
   StatesHospitalization,
   StatesTesting,
+  StateSummaryView,
   useStateByFipsDetailsQuery,
 } from './generated/graphql';
 import { InfoTab } from './USPage/InfoTab';
@@ -16,27 +16,24 @@ import { StateHospitalizationGraph } from './USPage/StateHospitalizationGraph';
 import { StateSubRegions } from './USPage/StateSubRegions';
 import { StateTestingGraphs } from './USPage/StateTestingGraph';
 
-export type StatePageMainProp = {
-  state: FipsCodeState;
-};
-
 export const StatePage = () => {
   const { state_fips_code } = useParams<{ state_fips_code: string }>();
   const { data, loading } = useStateByFipsDetailsQuery({
     variables: {
-      fips: state_fips_code,
+      state_fips_code: state_fips_code,
     },
   });
 
   // not very proud of this but, hey, 1 query to rule to all...
-  const state = data?.allFipsCodeStates?.nodes[0] as unknown as FipsCodeState;
-  const cases = data?.allFipsCodeStates?.nodes[0]
+  const state = data?.allStateSummaryViews
+    ?.nodes[0] as unknown as StateSummaryView;
+  const cases = data?.allStateSummaryViews?.nodes[0]
     ?.cases as unknown as StateCasesAllsConnection;
-  const counties = data?.allFipsCodeStates?.nodes[0]?.countiesTable
+  const counties = data?.allStateSummaryViews?.nodes[0]?.countiesTable
     .nodes as unknown as Array<CountySummaryView>;
-  const hospitalization = data?.allFipsCodeStates?.nodes[0]?.hospitalization
+  const hospitalization = data?.allStateSummaryViews?.nodes[0]?.hospitalization
     .nodes as unknown as Array<StatesHospitalization>;
-  const testing = data?.allFipsCodeStates?.nodes[0]?.testing
+  const testing = data?.allStateSummaryViews?.nodes[0]?.testing
     .nodes as unknown as Array<StatesTesting>;
 
   if (loading) {

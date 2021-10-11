@@ -1,9 +1,9 @@
 import { AdvancedGraph } from '../components/AdvanceGraph';
 import { DataSeries } from '../components/DataSeries';
-import { FipsCodeState, StatesHospitalization } from '../generated/graphql';
+import { StatesHospitalization, StateSummaryView } from '../generated/graphql';
 
 type StateHospitalizationProp = {
-  state: FipsCodeState;
+  state: StateSummaryView;
   hospitalization: Array<StatesHospitalization>;
 };
 

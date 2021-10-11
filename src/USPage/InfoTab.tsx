@@ -31,19 +31,19 @@ const InfoTabByCounty = ({
     data?.allCountySummaryViews?.nodes[0]?.confirmedIncrease;
 
   const stateName =
-    data?.allCountySummaryViews?.nodes[0]?.fipsCodeStateByStateFipsCode
-      ?.stateSummaryViewsByStateFipsCode.nodes[0]?.stateName;
+    data?.allCountySummaryViews?.nodes[0]?.stateSummaryViewByStateFipsCode
+      ?.stateName;
   const state_fips_code =
-    data?.allCountySummaryViews?.nodes[0]?.fipsCodeStateByStateFipsCode
-      ?.stateSummaryViewsByStateFipsCode.nodes[0]?.stateFipsCode;
+    data?.allCountySummaryViews?.nodes[0]?.stateSummaryViewByStateFipsCode
+      ?.stateFipsCode;
 
   const stateConfirmed =
-    data?.allCountySummaryViews?.nodes[0]?.fipsCodeStateByStateFipsCode
-      ?.stateSummaryViewsByStateFipsCode.nodes[0]?.confirmedCases;
+    data?.allCountySummaryViews?.nodes[0]?.stateSummaryViewByStateFipsCode
+      ?.confirmedCases;
 
   const stateConfirmedIncreased =
-    data?.allCountySummaryViews?.nodes[0]?.fipsCodeStateByStateFipsCode
-      ?.stateSummaryViewsByStateFipsCode.nodes[0]?.confirmedIncrease;
+    data?.allCountySummaryViews?.nodes[0]?.stateSummaryViewByStateFipsCode
+      ?.confirmedIncrease;
 
   const USName = "United States";
   const usConfirmed = data?.allUsSummaryViews?.nodes[0]?.confirmedCases;

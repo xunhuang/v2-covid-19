@@ -4,7 +4,7 @@ import { useUsSubRegionsQuery } from '../generated/graphql';
 
 export const USSubRegions = () => {
   const { data, loading } = useUsSubRegionsQuery();
-  const nodes = data?.allFipsCodeStates?.nodes;
+  const nodes = data?.allStateSummaryViews?.nodes;
   return (
     <div>
       {loading && <div>loading</div>}

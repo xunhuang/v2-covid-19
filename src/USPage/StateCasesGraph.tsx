@@ -1,9 +1,9 @@
 import { AdvancedGraph } from '../components/AdvanceGraph';
 import { DataSeries } from '../components/DataSeries';
-import { FipsCodeState, StateCasesAllsConnection } from '../generated/graphql';
+import { StateCasesAllsConnection, StateSummaryView } from '../generated/graphql';
 
 type StateCasesProp = {
-  state: FipsCodeState;
+  state: StateSummaryView;
   cases: StateCasesAllsConnection;
 };
 export const StateCasesGraph = ({ state, cases }: StateCasesProp) => {

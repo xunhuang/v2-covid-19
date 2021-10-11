@@ -24,7 +24,7 @@ export const AppSearchBar = () => {
 
   const counties = data?.counties?.nodes.map((county) => {
     return {
-      label: `${county?.countyName},${county?.state?.statePostalAbbreviation}(${county?.confirmedCases})`,
+      label: `${county?.countyName},${county?.state?.stateAbbr}(${county?.confirmedCases})`,
       county_fips_code: county?.countyFipsCode,
       state_fips_code: null,
       confirmed: county?.confirmedCases,

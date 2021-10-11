@@ -1,9 +1,9 @@
 import { AdvancedGraph } from '../components/AdvanceGraph';
 import { DataSeries } from '../components/DataSeries';
-import { FipsCodeState, useStateSubRegionQuery } from '../generated/graphql';
+import { StateSummaryView, useStateSubRegionQuery } from '../generated/graphql';
 
 type StateSubRegionProp = {
-  state: FipsCodeState;
+  state: StateSummaryView;
 };
 
 export const StateSubRegions = ({ state }: StateSubRegionProp) => {
@@ -12,22 +12,25 @@ export const StateSubRegions = ({ state }: StateSubRegionProp) => {
       state_fips_code: state.stateFipsCode,
     },
   });
-  const nodes = data?.allFipsCodeCounties?.nodes;
+  const nodes = data?.allStateSummaryViews?.nodes;
   return (
     <div>
       {loading && <div>loading</div>}
       {nodes?.map((county) => (
         <div>
-          {county?.countyCasesAllsByCountyFipsCode.nodes &&
-            county?.countyCasesAllsByCountyFipsCode.nodes.length > 100 && (
+          {county?.countySummaryViewsByStateFipsCode.nodes &&
+            county?.countySummaryViewsByStateFipsCode.nodes.length > 100 && (
               <AdvancedGraph
-                title={county?.areaName! + " Confirmed Cases"}
+                title={
+                  county?.countySummaryViewsByStateFipsCode.nodes[0]
+                    ?.countyName! + " Confirmed Cases"
+                }
                 serieses={[
                   {
                     series: DataSeries.fromGraphQLQueryNodes(
                       "Confirmed",
-                      county?.countyCasesAllsByCountyFipsCode
-                        .nodes! as object[],
+                      county?.countySummaryViewsByStateFipsCode.nodes[0]
+                        ?.countyCasesAllsByCountyFipsCode.nodes! as object[],
                       "confirmedCases"
                     ).change(),
                     color: "green",

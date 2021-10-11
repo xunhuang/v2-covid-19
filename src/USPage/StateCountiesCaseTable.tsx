@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { CountySummaryView, FipsCodeState } from '../generated/graphql';
+import { CountySummaryView, StateSummaryView } from '../generated/graphql';
 import { shortNumber, Table } from '../NewSortableTable';
 
 export const stateLink = ({ cell }: any) => {
@@ -11,7 +11,7 @@ export const stateLink = ({ cell }: any) => {
 };
 
 type CountyCasesProp = {
-  state: FipsCodeState;
+  state: StateSummaryView;
   countiesTable: Array<CountySummaryView>;
 };
 

@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
 
 import { AppTabs } from './components/AppTab';
-import { CountyCasesAll, CountySummaryView, FipsCodeState, useCountyDetailsByCountyFipsQuery } from './generated/graphql';
+import { CountyCasesAll, CountySummaryView, useCountyDetailsByCountyFipsQuery } from './generated/graphql';
 import { CountyCasesGraph } from './USPage/CountyCasesGraph';
 import { CountyCompareGraph } from './USPage/CountyCompareGraph';
 import { CountyDailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
 
-export type StatePageMainProp = {
-  state: FipsCodeState;
-};
+// export type StatePageMainProp = {
+//   state: FipsCodeState;
+// };
 
 export const CountyPage = () => {
   const { county_fips_code } = useParams<{ county_fips_code: string }>();

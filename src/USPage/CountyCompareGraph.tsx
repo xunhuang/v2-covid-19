@@ -16,14 +16,14 @@ export const CountyCompareGraph = ({ county }: CountyDailyProp) => {
   if (loading || !data) return <div>loading</div>;
 
   const cases = data?.county.cases?.nodes as object[];
-  const statecases = data?.state.allFipsCodeCounties?.nodes[0]
-    ?.fipsCodeStateByStateFipsCode?.stateCasesAllsByStateFipsCode
+  const statecases = data?.state.allCountyMetas?.nodes[0]
+    ?.stateSummaryViewByStateFipsCode?.stateCasesAllsByStateFipsCode
     .nodes as object[];
   const statePop =
-    data?.state.allFipsCodeCounties?.nodes[0]?.fipsCodeStateByStateFipsCode
-      ?.statePopulationsByStateFipsCode.nodes[0]?.pop2020;
+    data?.state.allCountyMetas?.nodes[0]?.stateSummaryViewByStateFipsCode
+      ?.population;
   const uscases = data?.us.cases?.nodes as object[];
-  const uspop = data?.us.poplation?.nodes.reduce((a, b) => a + b?.pop2020!, 0);
+  const uspop = data?.us.allUsSummaryViews?.nodes[0]?.population;
 
   return (
     <div>
