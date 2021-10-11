@@ -12,126 +12,14 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /**
+   * A signed eight-byte integer. The upper big integer values are greater than the
+   * max value for a JavaScript number. Therefore all big integers will be output as
+   * strings and not numbers.
+   */
+  BigInt: any;
   /** A location in a connection that can be used for resuming pagination. */
   Cursor: any;
-};
-
-/** A connection to a list of `CountiesSummary` values. */
-export type CountiesSummariesConnection = {
-  __typename?: 'CountiesSummariesConnection';
-  /** A list of edges which contains the `CountiesSummary` and cursor to aid in pagination. */
-  edges: Array<CountiesSummariesEdge>;
-  /** A list of `CountiesSummary` objects. */
-  nodes: Array<Maybe<CountiesSummary>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `CountiesSummary` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `CountiesSummary` edge in the connection. */
-export type CountiesSummariesEdge = {
-  __typename?: 'CountiesSummariesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `CountiesSummary` at the end of the edge. */
-  node?: Maybe<CountiesSummary>;
-};
-
-/** Methods to use when ordering `CountiesSummary`. */
-export enum CountiesSummariesOrderBy {
-  CommunityAsc = 'COMMUNITY_ASC',
-  CommunityDesc = 'COMMUNITY_DESC',
-  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
-  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
-  CountyAsc = 'COUNTY_ASC',
-  CountyDesc = 'COUNTY_DESC',
-  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
-  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
-  DeathsAsc = 'DEATHS_ASC',
-  DeathsDesc = 'DEATHS_DESC',
-  HealthwebsitesAsc = 'HEALTHWEBSITES_ASC',
-  HealthwebsitesDesc = 'HEALTHWEBSITES_DESC',
-  Natural = 'NATURAL',
-  Positivity_7DayAvgAsc = 'POSITIVITY_7DAY_AVG_ASC',
-  Positivity_7DayAvgDesc = 'POSITIVITY_7DAY_AVG_DESC',
-  ReportDateAsc = 'REPORT_DATE_ASC',
-  ReportDateDesc = 'REPORT_DATE_DESC',
-  SchoolAsc = 'SCHOOL_ASC',
-  SchoolDesc = 'SCHOOL_DESC',
-  StateAsc = 'STATE_ASC',
-  StateDesc = 'STATE_DESC',
-  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
-  Test_7DayTotalAsc = 'TEST_7DAY_TOTAL_ASC',
-  Test_7DayTotalDesc = 'TEST_7DAY_TOTAL_DESC'
-}
-
-export type CountiesSummary = {
-  __typename?: 'CountiesSummary';
-  community?: Maybe<Scalars['String']>;
-  confirmedCases?: Maybe<Scalars['Int']>;
-  county?: Maybe<Scalars['String']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
-  deaths?: Maybe<Scalars['Int']>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountiesSummary`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountiesSummary`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  healthwebsites?: Maybe<Scalars['String']>;
-  positivity7DayAvg?: Maybe<Scalars['Float']>;
-  reportDate?: Maybe<Scalars['String']>;
-  school?: Maybe<Scalars['String']>;
-  state?: Maybe<Scalars['String']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  test7DayTotal?: Maybe<Scalars['Int']>;
-};
-
-/**
- * A condition to be used against `CountiesSummary` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type CountiesSummaryCondition = {
-  /** Checks for equality with the object’s `community` field. */
-  community?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `confirmedCases` field. */
-  confirmedCases?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `county` field. */
-  county?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `countyFipsCode` field. */
-  countyFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `deaths` field. */
-  deaths?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `healthwebsites` field. */
-  healthwebsites?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `positivity7DayAvg` field. */
-  positivity7DayAvg?: Maybe<Scalars['Float']>;
-  /** Checks for equality with the object’s `reportDate` field. */
-  reportDate?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `school` field. */
-  school?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `state` field. */
-  state?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `stateFipsCode` field. */
-  stateFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `test7DayTotal` field. */
-  test7DayTotal?: Maybe<Scalars['Int']>;
-};
-
-/** An input for mutations affecting `CountiesSummary` */
-export type CountiesSummaryInput = {
-  community?: Maybe<Scalars['String']>;
-  confirmedCases?: Maybe<Scalars['Int']>;
-  county?: Maybe<Scalars['String']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
-  deaths?: Maybe<Scalars['Int']>;
-  healthwebsites?: Maybe<Scalars['String']>;
-  positivity7DayAvg?: Maybe<Scalars['Float']>;
-  reportDate?: Maybe<Scalars['String']>;
-  school?: Maybe<Scalars['String']>;
-  state?: Maybe<Scalars['String']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  test7DayTotal?: Maybe<Scalars['Int']>;
 };
 
 export type CountyCasesAll = {
@@ -139,14 +27,14 @@ export type CountyCasesAll = {
   confirmedCases?: Maybe<Scalars['Int']>;
   county?: Maybe<Scalars['String']>;
   countyFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `CountySummaryView` that is related to this `CountyCasesAll`. */
+  countySummaryViewByCountyFipsCode?: Maybe<CountySummaryView>;
   date?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountyCasesAll`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `CountyCasesAll`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 /**
@@ -222,85 +110,131 @@ export enum CountyCasesAllsOrderBy {
   StateNameDesc = 'STATE_NAME_DESC'
 }
 
-export type CountyPopulation = {
-  __typename?: 'CountyPopulation';
+export type CountyMeta = {
+  __typename?: 'CountyMeta';
   countyFipsCode?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountyPopulation`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  pop2020?: Maybe<Scalars['Int']>;
+  countyName?: Maybe<Scalars['String']>;
+  msaId?: Maybe<Scalars['String']>;
+  msaName?: Maybe<Scalars['String']>;
+  msaUrlName?: Maybe<Scalars['String']>;
+  population?: Maybe<Scalars['Int']>;
+  stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
+  stateName?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `CountyMeta`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 /**
- * A condition to be used against `CountyPopulation` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
+ * A condition to be used against `CountyMeta` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
  */
-export type CountyPopulationCondition = {
+export type CountyMetaCondition = {
   /** Checks for equality with the object’s `countyFipsCode` field. */
   countyFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `pop2020` field. */
-  pop2020?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `countyName` field. */
+  countyName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaId` field. */
+  msaId?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaName` field. */
+  msaName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaUrlName` field. */
+  msaUrlName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `population` field. */
+  population?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateAbbr` field. */
+  stateAbbr?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `stateName` field. */
+  stateName?: Maybe<Scalars['String']>;
 };
 
-/** An input for mutations affecting `CountyPopulation` */
-export type CountyPopulationInput = {
+/** An input for mutations affecting `CountyMeta` */
+export type CountyMetaInput = {
   countyFipsCode?: Maybe<Scalars['String']>;
-  pop2020?: Maybe<Scalars['Int']>;
+  countyName?: Maybe<Scalars['String']>;
+  msaId?: Maybe<Scalars['String']>;
+  msaName?: Maybe<Scalars['String']>;
+  msaUrlName?: Maybe<Scalars['String']>;
+  population?: Maybe<Scalars['Int']>;
+  stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
+  stateName?: Maybe<Scalars['String']>;
 };
 
-/** A connection to a list of `CountyPopulation` values. */
-export type CountyPopulationsConnection = {
-  __typename?: 'CountyPopulationsConnection';
-  /** A list of edges which contains the `CountyPopulation` and cursor to aid in pagination. */
-  edges: Array<CountyPopulationsEdge>;
-  /** A list of `CountyPopulation` objects. */
-  nodes: Array<Maybe<CountyPopulation>>;
+/** A connection to a list of `CountyMeta` values. */
+export type CountyMetasConnection = {
+  __typename?: 'CountyMetasConnection';
+  /** A list of edges which contains the `CountyMeta` and cursor to aid in pagination. */
+  edges: Array<CountyMetasEdge>;
+  /** A list of `CountyMeta` objects. */
+  nodes: Array<Maybe<CountyMeta>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  /** The count of *all* `CountyPopulation` you could get from the connection. */
+  /** The count of *all* `CountyMeta` you could get from the connection. */
   totalCount: Scalars['Int'];
 };
 
-/** A `CountyPopulation` edge in the connection. */
-export type CountyPopulationsEdge = {
-  __typename?: 'CountyPopulationsEdge';
+/** A `CountyMeta` edge in the connection. */
+export type CountyMetasEdge = {
+  __typename?: 'CountyMetasEdge';
   /** A cursor for use in pagination. */
   cursor?: Maybe<Scalars['Cursor']>;
-  /** The `CountyPopulation` at the end of the edge. */
-  node?: Maybe<CountyPopulation>;
+  /** The `CountyMeta` at the end of the edge. */
+  node?: Maybe<CountyMeta>;
 };
 
-/** Methods to use when ordering `CountyPopulation`. */
-export enum CountyPopulationsOrderBy {
+/** Methods to use when ordering `CountyMeta`. */
+export enum CountyMetasOrderBy {
   CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
   CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
+  CountyNameAsc = 'COUNTY_NAME_ASC',
+  CountyNameDesc = 'COUNTY_NAME_DESC',
+  MsaIdAsc = 'MSA_ID_ASC',
+  MsaIdDesc = 'MSA_ID_DESC',
+  MsaNameAsc = 'MSA_NAME_ASC',
+  MsaNameDesc = 'MSA_NAME_DESC',
+  MsaUrlNameAsc = 'MSA_URL_NAME_ASC',
+  MsaUrlNameDesc = 'MSA_URL_NAME_DESC',
   Natural = 'NATURAL',
-  Pop2020Asc = 'POP2020_ASC',
-  Pop2020Desc = 'POP2020_DESC',
+  PopulationAsc = 'POPULATION_ASC',
+  PopulationDesc = 'POPULATION_DESC',
+  StateAbbrAsc = 'STATE_ABBR_ASC',
+  StateAbbrDesc = 'STATE_ABBR_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC'
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
+  StateNameAsc = 'STATE_NAME_ASC',
+  StateNameDesc = 'STATE_NAME_DESC'
 }
 
 export type CountySummaryView = {
   __typename?: 'CountySummaryView';
   confirmedCases?: Maybe<Scalars['Int']>;
   confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Reads and enables pagination through a set of `CountyCasesAll`. */
+  countyCasesAllsByCountyFipsCode: CountyCasesAllsConnection;
   countyFipsCode?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountySummaryView`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountySummaryView`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   population?: Maybe<Scalars['Int']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `CountySummaryView`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
+  updated?: Maybe<Scalars['String']>;
+};
+
+
+export type CountySummaryViewCountyCasesAllsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
 };
 
 /**
@@ -326,6 +260,8 @@ export type CountySummaryViewCondition = {
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateName` field. */
   stateName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `updated` field. */
+  updated?: Maybe<Scalars['String']>;
 };
 
 /** A connection to a list of `CountySummaryView` values. */
@@ -370,45 +306,10 @@ export enum CountySummaryViewsOrderBy {
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   StateNameAsc = 'STATE_NAME_ASC',
-  StateNameDesc = 'STATE_NAME_DESC'
+  StateNameDesc = 'STATE_NAME_DESC',
+  UpdatedAsc = 'UPDATED_ASC',
+  UpdatedDesc = 'UPDATED_DESC'
 }
-
-/** All input for the create `CountiesSummary` mutation. */
-export type CreateCountiesSummaryInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `CountiesSummary` to be created by this mutation. */
-  countiesSummary: CountiesSummaryInput;
-};
-
-/** The output of our create `CountiesSummary` mutation. */
-export type CreateCountiesSummaryPayload = {
-  __typename?: 'CreateCountiesSummaryPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `CountiesSummary` that was created by this mutation. */
-  countiesSummary?: Maybe<CountiesSummary>;
-  /** An edge for our `CountiesSummary`. May be used by Relay 1. */
-  countiesSummaryEdge?: Maybe<CountiesSummariesEdge>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountiesSummary`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountiesSummary`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our create `CountiesSummary` mutation. */
-export type CreateCountiesSummaryPayloadCountiesSummaryEdgeArgs = {
-  orderBy?: Maybe<Array<CountiesSummariesOrderBy>>;
-};
 
 /** All input for the create `CountyCasesAll` mutation. */
 export type CreateCountyCasesAllInput = {
@@ -433,12 +334,12 @@ export type CreateCountyCasesAllPayload = {
   countyCasesAll?: Maybe<CountyCasesAll>;
   /** An edge for our `CountyCasesAll`. May be used by Relay 1. */
   countyCasesAllEdge?: Maybe<CountyCasesAllsEdge>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountyCasesAll`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountyCasesAll`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  /** Reads a single `CountySummaryView` that is related to this `CountyCasesAll`. */
+  countySummaryViewByCountyFipsCode?: Maybe<CountySummaryView>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `StateSummaryView` that is related to this `CountyCasesAll`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 
@@ -447,109 +348,39 @@ export type CreateCountyCasesAllPayloadCountyCasesAllEdgeArgs = {
   orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
 };
 
-/** All input for the create `CountyPopulation` mutation. */
-export type CreateCountyPopulationInput = {
+/** All input for the create `CountyMeta` mutation. */
+export type CreateCountyMetaInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `CountyPopulation` to be created by this mutation. */
-  countyPopulation: CountyPopulationInput;
+  /** The `CountyMeta` to be created by this mutation. */
+  countyMeta: CountyMetaInput;
 };
 
-/** The output of our create `CountyPopulation` mutation. */
-export type CreateCountyPopulationPayload = {
-  __typename?: 'CreateCountyPopulationPayload';
+/** The output of our create `CountyMeta` mutation. */
+export type CreateCountyMetaPayload = {
+  __typename?: 'CreateCountyMetaPayload';
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `CountyPopulation` that was created by this mutation. */
-  countyPopulation?: Maybe<CountyPopulation>;
-  /** An edge for our `CountyPopulation`. May be used by Relay 1. */
-  countyPopulationEdge?: Maybe<CountyPopulationsEdge>;
-  /** Reads a single `FipsCodeCounty` that is related to this `CountyPopulation`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `CountyPopulation`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
+  /** The `CountyMeta` that was created by this mutation. */
+  countyMeta?: Maybe<CountyMeta>;
+  /** An edge for our `CountyMeta`. May be used by Relay 1. */
+  countyMetaEdge?: Maybe<CountyMetasEdge>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `StateSummaryView` that is related to this `CountyMeta`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 
-/** The output of our create `CountyPopulation` mutation. */
-export type CreateCountyPopulationPayloadCountyPopulationEdgeArgs = {
-  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
-};
-
-/** All input for the create `FipsCodeCounty` mutation. */
-export type CreateFipsCodeCountyInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `FipsCodeCounty` to be created by this mutation. */
-  fipsCodeCounty: FipsCodeCountyInput;
-};
-
-/** The output of our create `FipsCodeCounty` mutation. */
-export type CreateFipsCodeCountyPayload = {
-  __typename?: 'CreateFipsCodeCountyPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `FipsCodeCounty` that was created by this mutation. */
-  fipsCodeCounty?: Maybe<FipsCodeCounty>;
-  /** An edge for our `FipsCodeCounty`. May be used by Relay 1. */
-  fipsCodeCountyEdge?: Maybe<FipsCodeCountiesEdge>;
-  /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our create `FipsCodeCounty` mutation. */
-export type CreateFipsCodeCountyPayloadFipsCodeCountyEdgeArgs = {
-  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
-};
-
-/** All input for the create `FipsCodeState` mutation. */
-export type CreateFipsCodeStateInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `FipsCodeState` to be created by this mutation. */
-  fipsCodeState: FipsCodeStateInput;
-};
-
-/** The output of our create `FipsCodeState` mutation. */
-export type CreateFipsCodeStatePayload = {
-  __typename?: 'CreateFipsCodeStatePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `FipsCodeState` that was created by this mutation. */
-  fipsCodeState?: Maybe<FipsCodeState>;
-  /** An edge for our `FipsCodeState`. May be used by Relay 1. */
-  fipsCodeStateEdge?: Maybe<FipsCodeStatesEdge>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our create `FipsCodeState` mutation. */
-export type CreateFipsCodeStatePayloadFipsCodeStateEdgeArgs = {
-  orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
+/** The output of our create `CountyMeta` mutation. */
+export type CreateCountyMetaPayloadCountyMetaEdgeArgs = {
+  orderBy?: Maybe<Array<CountyMetasOrderBy>>;
 };
 
 /** All input for the create `MsaCasesAll` mutation. */
@@ -585,41 +416,37 @@ export type CreateMsaCasesAllPayloadMsaCasesAllEdgeArgs = {
   orderBy?: Maybe<Array<MsaCasesAllsOrderBy>>;
 };
 
-/** All input for the create `MsaDefinition` mutation. */
-export type CreateMsaDefinitionInput = {
+/** All input for the create `MsaMeta` mutation. */
+export type CreateMsaMetaInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `MsaDefinition` to be created by this mutation. */
-  msaDefinition: MsaDefinitionInput;
+  /** The `MsaMeta` to be created by this mutation. */
+  msaMeta: MsaMetaInput;
 };
 
-/** The output of our create `MsaDefinition` mutation. */
-export type CreateMsaDefinitionPayload = {
-  __typename?: 'CreateMsaDefinitionPayload';
+/** The output of our create `MsaMeta` mutation. */
+export type CreateMsaMetaPayload = {
+  __typename?: 'CreateMsaMetaPayload';
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeCounty` that is related to this `MsaDefinition`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `MsaDefinition`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** The `MsaDefinition` that was created by this mutation. */
-  msaDefinition?: Maybe<MsaDefinition>;
-  /** An edge for our `MsaDefinition`. May be used by Relay 1. */
-  msaDefinitionEdge?: Maybe<MsaDefinitionsEdge>;
+  /** The `MsaMeta` that was created by this mutation. */
+  msaMeta?: Maybe<MsaMeta>;
+  /** An edge for our `MsaMeta`. May be used by Relay 1. */
+  msaMetaEdge?: Maybe<MsaMetasEdge>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
 
 
-/** The output of our create `MsaDefinition` mutation. */
-export type CreateMsaDefinitionPayloadMsaDefinitionEdgeArgs = {
-  orderBy?: Maybe<Array<MsaDefinitionsOrderBy>>;
+/** The output of our create `MsaMeta` mutation. */
+export type CreateMsaMetaPayloadMsaMetaEdgeArgs = {
+  orderBy?: Maybe<Array<MsaMetasOrderBy>>;
 };
 
 /** All input for the create `StateCasesAll` mutation. */
@@ -641,14 +468,14 @@ export type CreateStateCasesAllPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StateCasesAll`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `StateCasesAll` that was created by this mutation. */
   stateCasesAll?: Maybe<StateCasesAll>;
   /** An edge for our `StateCasesAll`. May be used by Relay 1. */
   stateCasesAllEdge?: Maybe<StateCasesAllsEdge>;
+  /** Reads a single `StateSummaryView` that is related to this `StateCasesAll`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 
@@ -657,39 +484,37 @@ export type CreateStateCasesAllPayloadStateCasesAllEdgeArgs = {
   orderBy?: Maybe<Array<StateCasesAllsOrderBy>>;
 };
 
-/** All input for the create `StatePopulation` mutation. */
-export type CreateStatePopulationInput = {
+/** All input for the create `StateMeta` mutation. */
+export type CreateStateMetaInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** The `StatePopulation` to be created by this mutation. */
-  statePopulation: StatePopulationInput;
+  /** The `StateMeta` to be created by this mutation. */
+  stateMeta: StateMetaInput;
 };
 
-/** The output of our create `StatePopulation` mutation. */
-export type CreateStatePopulationPayload = {
-  __typename?: 'CreateStatePopulationPayload';
+/** The output of our create `StateMeta` mutation. */
+export type CreateStateMetaPayload = {
+  __typename?: 'CreateStateMetaPayload';
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatePopulation`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
-  /** The `StatePopulation` that was created by this mutation. */
-  statePopulation?: Maybe<StatePopulation>;
-  /** An edge for our `StatePopulation`. May be used by Relay 1. */
-  statePopulationEdge?: Maybe<StatePopulationsEdge>;
+  /** The `StateMeta` that was created by this mutation. */
+  stateMeta?: Maybe<StateMeta>;
+  /** An edge for our `StateMeta`. May be used by Relay 1. */
+  stateMetaEdge?: Maybe<StateMetasEdge>;
 };
 
 
-/** The output of our create `StatePopulation` mutation. */
-export type CreateStatePopulationPayloadStatePopulationEdgeArgs = {
-  orderBy?: Maybe<Array<StatePopulationsOrderBy>>;
+/** The output of our create `StateMeta` mutation. */
+export type CreateStateMetaPayloadStateMetaEdgeArgs = {
+  orderBy?: Maybe<Array<StateMetasOrderBy>>;
 };
 
 /** All input for the create `StatesHospitalization` mutation. */
@@ -711,10 +536,10 @@ export type CreateStatesHospitalizationPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatesHospitalization`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `StateSummaryView` that is related to this `StatesHospitalization`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
   /** The `StatesHospitalization` that was created by this mutation. */
   statesHospitalization?: Maybe<StatesHospitalization>;
   /** An edge for our `StatesHospitalization`. May be used by Relay 1. */
@@ -725,41 +550,6 @@ export type CreateStatesHospitalizationPayload = {
 /** The output of our create `StatesHospitalization` mutation. */
 export type CreateStatesHospitalizationPayloadStatesHospitalizationEdgeArgs = {
   orderBy?: Maybe<Array<StatesHospitalizationsOrderBy>>;
-};
-
-/** All input for the create `StatesSummary` mutation. */
-export type CreateStatesSummaryInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `StatesSummary` to be created by this mutation. */
-  statesSummary: StatesSummaryInput;
-};
-
-/** The output of our create `StatesSummary` mutation. */
-export type CreateStatesSummaryPayload = {
-  __typename?: 'CreateStatesSummaryPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatesSummary`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `StatesSummary` that was created by this mutation. */
-  statesSummary?: Maybe<StatesSummary>;
-  /** An edge for our `StatesSummary`. May be used by Relay 1. */
-  statesSummaryEdge?: Maybe<StatesSummariesEdge>;
-};
-
-
-/** The output of our create `StatesSummary` mutation. */
-export type CreateStatesSummaryPayloadStatesSummaryEdgeArgs = {
-  orderBy?: Maybe<Array<StatesSummariesOrderBy>>;
 };
 
 /** All input for the create `StatesTesting` mutation. */
@@ -781,10 +571,10 @@ export type CreateStatesTestingPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatesTesting`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `StateSummaryView` that is related to this `StatesTesting`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
   /** The `StatesTesting` that was created by this mutation. */
   statesTesting?: Maybe<StatesTesting>;
   /** An edge for our `StatesTesting`. May be used by Relay 1. */
@@ -863,39 +653,6 @@ export type CreateUsHospitalizationPayloadUsHospitalizationEdgeArgs = {
   orderBy?: Maybe<Array<UsHospitalizationsOrderBy>>;
 };
 
-/** All input for the create `UsSummary` mutation. */
-export type CreateUsSummaryInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `UsSummary` to be created by this mutation. */
-  usSummary: UsSummaryInput;
-};
-
-/** The output of our create `UsSummary` mutation. */
-export type CreateUsSummaryPayload = {
-  __typename?: 'CreateUsSummaryPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-  /** The `UsSummary` that was created by this mutation. */
-  usSummary?: Maybe<UsSummary>;
-  /** An edge for our `UsSummary`. May be used by Relay 1. */
-  usSummaryEdge?: Maybe<UsSummariesEdge>;
-};
-
-
-/** The output of our create `UsSummary` mutation. */
-export type CreateUsSummaryPayloadUsSummaryEdgeArgs = {
-  orderBy?: Maybe<Array<UsSummariesOrderBy>>;
-};
-
 /** All input for the create `UsTesting` mutation. */
 export type CreateUsTestingInput = {
   /**
@@ -928,503 +685,6 @@ export type CreateUsTestingPayload = {
 export type CreateUsTestingPayloadUsTestingEdgeArgs = {
   orderBy?: Maybe<Array<UsTestingsOrderBy>>;
 };
-
-/** All input for the `deleteFipsCodeCountyByCountyFipsCode` mutation. */
-export type DeleteFipsCodeCountyByCountyFipsCodeInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  countyFipsCode: Scalars['String'];
-};
-
-/** All input for the `deleteFipsCodeCounty` mutation. */
-export type DeleteFipsCodeCountyInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `FipsCodeCounty` to be deleted. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our delete `FipsCodeCounty` mutation. */
-export type DeleteFipsCodeCountyPayload = {
-  __typename?: 'DeleteFipsCodeCountyPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  deletedFipsCodeCountyId?: Maybe<Scalars['ID']>;
-  /** The `FipsCodeCounty` that was deleted by this mutation. */
-  fipsCodeCounty?: Maybe<FipsCodeCounty>;
-  /** An edge for our `FipsCodeCounty`. May be used by Relay 1. */
-  fipsCodeCountyEdge?: Maybe<FipsCodeCountiesEdge>;
-  /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our delete `FipsCodeCounty` mutation. */
-export type DeleteFipsCodeCountyPayloadFipsCodeCountyEdgeArgs = {
-  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
-};
-
-/** All input for the `deleteFipsCodeStateByStateFipsCode` mutation. */
-export type DeleteFipsCodeStateByStateFipsCodeInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  stateFipsCode: Scalars['String'];
-};
-
-/** All input for the `deleteFipsCodeState` mutation. */
-export type DeleteFipsCodeStateInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `FipsCodeState` to be deleted. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our delete `FipsCodeState` mutation. */
-export type DeleteFipsCodeStatePayload = {
-  __typename?: 'DeleteFipsCodeStatePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  deletedFipsCodeStateId?: Maybe<Scalars['ID']>;
-  /** The `FipsCodeState` that was deleted by this mutation. */
-  fipsCodeState?: Maybe<FipsCodeState>;
-  /** An edge for our `FipsCodeState`. May be used by Relay 1. */
-  fipsCodeStateEdge?: Maybe<FipsCodeStatesEdge>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our delete `FipsCodeState` mutation. */
-export type DeleteFipsCodeStatePayloadFipsCodeStateEdgeArgs = {
-  orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
-};
-
-/** A connection to a list of `FipsCodeCounty` values. */
-export type FipsCodeCountiesConnection = {
-  __typename?: 'FipsCodeCountiesConnection';
-  /** A list of edges which contains the `FipsCodeCounty` and cursor to aid in pagination. */
-  edges: Array<FipsCodeCountiesEdge>;
-  /** A list of `FipsCodeCounty` objects. */
-  nodes: Array<Maybe<FipsCodeCounty>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `FipsCodeCounty` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `FipsCodeCounty` edge in the connection. */
-export type FipsCodeCountiesEdge = {
-  __typename?: 'FipsCodeCountiesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `FipsCodeCounty` at the end of the edge. */
-  node?: Maybe<FipsCodeCounty>;
-};
-
-/** Methods to use when ordering `FipsCodeCounty`. */
-export enum FipsCodeCountiesOrderBy {
-  AreaNameAsc = 'AREA_NAME_ASC',
-  AreaNameDesc = 'AREA_NAME_DESC',
-  ConsolidatedCityFipsCodeAsc = 'CONSOLIDATED_CITY_FIPS_CODE_ASC',
-  ConsolidatedCityFipsCodeDesc = 'CONSOLIDATED_CITY_FIPS_CODE_DESC',
-  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
-  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
-  CountySubdivisionFipsCodeAsc = 'COUNTY_SUBDIVISION_FIPS_CODE_ASC',
-  CountySubdivisionFipsCodeDesc = 'COUNTY_SUBDIVISION_FIPS_CODE_DESC',
-  Natural = 'NATURAL',
-  PlaceFipsCodeAsc = 'PLACE_FIPS_CODE_ASC',
-  PlaceFipsCodeDesc = 'PLACE_FIPS_CODE_DESC',
-  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
-  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
-  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
-  SummaryLevelAsc = 'SUMMARY_LEVEL_ASC',
-  SummaryLevelDesc = 'SUMMARY_LEVEL_DESC',
-  SummaryLevelNameAsc = 'SUMMARY_LEVEL_NAME_ASC',
-  SummaryLevelNameDesc = 'SUMMARY_LEVEL_NAME_DESC'
-}
-
-export type FipsCodeCounty = Node & {
-  __typename?: 'FipsCodeCounty';
-  areaName?: Maybe<Scalars['String']>;
-  consolidatedCityFipsCode?: Maybe<Scalars['String']>;
-  /** Reads and enables pagination through a set of `CountiesSummary`. */
-  countiesSummariesByCountyFipsCode: CountiesSummariesConnection;
-  /** Reads and enables pagination through a set of `CountyCasesAll`. */
-  countyCasesAllsByCountyFipsCode: CountyCasesAllsConnection;
-  countyFipsCode: Scalars['String'];
-  /** Reads and enables pagination through a set of `CountyPopulation`. */
-  countyPopulationsByCountyFipsCode: CountyPopulationsConnection;
-  countySubdivisionFipsCode?: Maybe<Scalars['String']>;
-  /** Reads and enables pagination through a set of `CountySummaryView`. */
-  countySummaryViewsByCountyFipsCode: CountySummaryViewsConnection;
-  /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Reads and enables pagination through a set of `MsaDefinition`. */
-  msaDefinitionsByCountyFipsCode: MsaDefinitionsConnection;
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'];
-  placeFipsCode?: Maybe<Scalars['String']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  summaryLevel?: Maybe<Scalars['String']>;
-  summaryLevelName?: Maybe<Scalars['String']>;
-};
-
-
-export type FipsCodeCountyCountiesSummariesByCountyFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountiesSummaryCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountiesSummariesOrderBy>>;
-};
-
-
-export type FipsCodeCountyCountyCasesAllsByCountyFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountyCasesAllCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
-};
-
-
-export type FipsCodeCountyCountyPopulationsByCountyFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountyPopulationCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
-};
-
-
-export type FipsCodeCountyCountySummaryViewsByCountyFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountySummaryViewCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
-};
-
-
-export type FipsCodeCountyMsaDefinitionsByCountyFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<MsaDefinitionCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<MsaDefinitionsOrderBy>>;
-};
-
-/**
- * A condition to be used against `FipsCodeCounty` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type FipsCodeCountyCondition = {
-  /** Checks for equality with the object’s `areaName` field. */
-  areaName?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `consolidatedCityFipsCode` field. */
-  consolidatedCityFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `countyFipsCode` field. */
-  countyFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `countySubdivisionFipsCode` field. */
-  countySubdivisionFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `placeFipsCode` field. */
-  placeFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `stateFipsCode` field. */
-  stateFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `summaryLevel` field. */
-  summaryLevel?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `summaryLevelName` field. */
-  summaryLevelName?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `FipsCodeCounty` */
-export type FipsCodeCountyInput = {
-  areaName?: Maybe<Scalars['String']>;
-  consolidatedCityFipsCode?: Maybe<Scalars['String']>;
-  countyFipsCode: Scalars['String'];
-  countySubdivisionFipsCode?: Maybe<Scalars['String']>;
-  placeFipsCode?: Maybe<Scalars['String']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  summaryLevel?: Maybe<Scalars['String']>;
-  summaryLevelName?: Maybe<Scalars['String']>;
-};
-
-/** Represents an update to a `FipsCodeCounty`. Fields that are set will be updated. */
-export type FipsCodeCountyPatch = {
-  areaName?: Maybe<Scalars['String']>;
-  consolidatedCityFipsCode?: Maybe<Scalars['String']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
-  countySubdivisionFipsCode?: Maybe<Scalars['String']>;
-  placeFipsCode?: Maybe<Scalars['String']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  summaryLevel?: Maybe<Scalars['String']>;
-  summaryLevelName?: Maybe<Scalars['String']>;
-};
-
-export type FipsCodeState = Node & {
-  __typename?: 'FipsCodeState';
-  /** Reads and enables pagination through a set of `CountiesSummary`. */
-  countiesSummariesByStateFipsCode: CountiesSummariesConnection;
-  /** Reads and enables pagination through a set of `CountyCasesAll`. */
-  countyCasesAllsByStateFipsCode: CountyCasesAllsConnection;
-  /** Reads and enables pagination through a set of `CountyPopulation`. */
-  countyPopulationsByStateFipsCode: CountyPopulationsConnection;
-  /** Reads and enables pagination through a set of `CountySummaryView`. */
-  countySummaryViewsByStateFipsCode: CountySummaryViewsConnection;
-  /** Reads and enables pagination through a set of `FipsCodeCounty`. */
-  fipsCodeCountiesByStateFipsCode: FipsCodeCountiesConnection;
-  /** Reads and enables pagination through a set of `MsaDefinition`. */
-  msaDefinitionsByStateFipsCode: MsaDefinitionsConnection;
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'];
-  /** Reads and enables pagination through a set of `StateCasesAll`. */
-  stateCasesAllsByStateFipsCode: StateCasesAllsConnection;
-  stateFipsCode: Scalars['String'];
-  stateGnisid?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-  /** Reads and enables pagination through a set of `StatePopulation`. */
-  statePopulationsByStateFipsCode: StatePopulationsConnection;
-  statePostalAbbreviation?: Maybe<Scalars['String']>;
-  /** Reads and enables pagination through a set of `StateSummaryView`. */
-  stateSummaryViewsByStateFipsCode: StateSummaryViewsConnection;
-  /** Reads and enables pagination through a set of `StatesHospitalization`. */
-  statesHospitalizationsByStateFipsCode: StatesHospitalizationsConnection;
-  /** Reads and enables pagination through a set of `StatesSummary`. */
-  statesSummariesByStateFipsCode: StatesSummariesConnection;
-  /** Reads and enables pagination through a set of `StatesTesting`. */
-  statesTestingsByStateFipsCode: StatesTestingsConnection;
-};
-
-
-export type FipsCodeStateCountiesSummariesByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountiesSummaryCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountiesSummariesOrderBy>>;
-};
-
-
-export type FipsCodeStateCountyCasesAllsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountyCasesAllCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
-};
-
-
-export type FipsCodeStateCountyPopulationsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountyPopulationCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
-};
-
-
-export type FipsCodeStateCountySummaryViewsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountySummaryViewCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
-};
-
-
-export type FipsCodeStateFipsCodeCountiesByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<FipsCodeCountyCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
-};
-
-
-export type FipsCodeStateMsaDefinitionsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<MsaDefinitionCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<MsaDefinitionsOrderBy>>;
-};
-
-
-export type FipsCodeStateStateCasesAllsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StateCasesAllCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StateCasesAllsOrderBy>>;
-};
-
-
-export type FipsCodeStateStatePopulationsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StatePopulationCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StatePopulationsOrderBy>>;
-};
-
-
-export type FipsCodeStateStateSummaryViewsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StateSummaryViewCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StateSummaryViewsOrderBy>>;
-};
-
-
-export type FipsCodeStateStatesHospitalizationsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StatesHospitalizationCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StatesHospitalizationsOrderBy>>;
-};
-
-
-export type FipsCodeStateStatesSummariesByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StatesSummaryCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StatesSummariesOrderBy>>;
-};
-
-
-export type FipsCodeStateStatesTestingsByStateFipsCodeArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StatesTestingCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StatesTestingsOrderBy>>;
-};
-
-/**
- * A condition to be used against `FipsCodeState` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type FipsCodeStateCondition = {
-  /** Checks for equality with the object’s `stateFipsCode` field. */
-  stateFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `stateGnisid` field. */
-  stateGnisid?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `stateName` field. */
-  stateName?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `statePostalAbbreviation` field. */
-  statePostalAbbreviation?: Maybe<Scalars['String']>;
-};
-
-/** An input for mutations affecting `FipsCodeState` */
-export type FipsCodeStateInput = {
-  stateFipsCode: Scalars['String'];
-  stateGnisid?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-  statePostalAbbreviation?: Maybe<Scalars['String']>;
-};
-
-/** Represents an update to a `FipsCodeState`. Fields that are set will be updated. */
-export type FipsCodeStatePatch = {
-  stateFipsCode?: Maybe<Scalars['String']>;
-  stateGnisid?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-  statePostalAbbreviation?: Maybe<Scalars['String']>;
-};
-
-/** A connection to a list of `FipsCodeState` values. */
-export type FipsCodeStatesConnection = {
-  __typename?: 'FipsCodeStatesConnection';
-  /** A list of edges which contains the `FipsCodeState` and cursor to aid in pagination. */
-  edges: Array<FipsCodeStatesEdge>;
-  /** A list of `FipsCodeState` objects. */
-  nodes: Array<Maybe<FipsCodeState>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `FipsCodeState` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `FipsCodeState` edge in the connection. */
-export type FipsCodeStatesEdge = {
-  __typename?: 'FipsCodeStatesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `FipsCodeState` at the end of the edge. */
-  node?: Maybe<FipsCodeState>;
-};
-
-/** Methods to use when ordering `FipsCodeState`. */
-export enum FipsCodeStatesOrderBy {
-  Natural = 'NATURAL',
-  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
-  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
-  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
-  StateGnisidAsc = 'STATE_GNISID_ASC',
-  StateGnisidDesc = 'STATE_GNISID_DESC',
-  StateNameAsc = 'STATE_NAME_ASC',
-  StateNameDesc = 'STATE_NAME_DESC',
-  StatePostalAbbreviationAsc = 'STATE_POSTAL_ABBREVIATION_ASC',
-  StatePostalAbbreviationDesc = 'STATE_POSTAL_ABBREVIATION_DESC'
-}
 
 export type MsaCasesAll = {
   __typename?: 'MsaCasesAll';
@@ -1492,175 +752,112 @@ export enum MsaCasesAllsOrderBy {
   Natural = 'NATURAL'
 }
 
-export type MsaDefinition = {
-  __typename?: 'MsaDefinition';
-  centerState?: Maybe<Scalars['String']>;
-  centerStateFipsCode?: Maybe<Scalars['String']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
-  countyName?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeCounty` that is related to this `MsaDefinition`. */
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` that is related to this `MsaDefinition`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  friendly?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  state?: Maybe<Scalars['String']>;
+export type MsaMeta = {
+  __typename?: 'MsaMeta';
+  msaId?: Maybe<Scalars['String']>;
+  msaName?: Maybe<Scalars['String']>;
+  msaUrlName?: Maybe<Scalars['String']>;
+  population?: Maybe<Scalars['BigInt']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
-  urlName?: Maybe<Scalars['String']>;
+  statePostalAbbreviation?: Maybe<Scalars['String']>;
 };
 
-/**
- * A condition to be used against `MsaDefinition` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type MsaDefinitionCondition = {
-  /** Checks for equality with the object’s `centerState` field. */
-  centerState?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `centerStateFipsCode` field. */
-  centerStateFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `countyFipsCode` field. */
-  countyFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `countyName` field. */
-  countyName?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `friendly` field. */
-  friendly?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `id` field. */
-  id?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `name` field. */
-  name?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `state` field. */
-  state?: Maybe<Scalars['String']>;
+/** A condition to be used against `MsaMeta` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export type MsaMetaCondition = {
+  /** Checks for equality with the object’s `msaId` field. */
+  msaId?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaName` field. */
+  msaName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaUrlName` field. */
+  msaUrlName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `population` field. */
+  population?: Maybe<Scalars['BigInt']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateName` field. */
   stateName?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `urlName` field. */
-  urlName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `statePostalAbbreviation` field. */
+  statePostalAbbreviation?: Maybe<Scalars['String']>;
 };
 
-/** An input for mutations affecting `MsaDefinition` */
-export type MsaDefinitionInput = {
-  centerState?: Maybe<Scalars['String']>;
-  centerStateFipsCode?: Maybe<Scalars['String']>;
-  countyFipsCode?: Maybe<Scalars['String']>;
-  countyName?: Maybe<Scalars['String']>;
-  friendly?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  state?: Maybe<Scalars['String']>;
+/** An input for mutations affecting `MsaMeta` */
+export type MsaMetaInput = {
+  msaId?: Maybe<Scalars['String']>;
+  msaName?: Maybe<Scalars['String']>;
+  msaUrlName?: Maybe<Scalars['String']>;
+  population?: Maybe<Scalars['BigInt']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
-  urlName?: Maybe<Scalars['String']>;
+  statePostalAbbreviation?: Maybe<Scalars['String']>;
 };
 
-/** A connection to a list of `MsaDefinition` values. */
-export type MsaDefinitionsConnection = {
-  __typename?: 'MsaDefinitionsConnection';
-  /** A list of edges which contains the `MsaDefinition` and cursor to aid in pagination. */
-  edges: Array<MsaDefinitionsEdge>;
-  /** A list of `MsaDefinition` objects. */
-  nodes: Array<Maybe<MsaDefinition>>;
+/** A connection to a list of `MsaMeta` values. */
+export type MsaMetasConnection = {
+  __typename?: 'MsaMetasConnection';
+  /** A list of edges which contains the `MsaMeta` and cursor to aid in pagination. */
+  edges: Array<MsaMetasEdge>;
+  /** A list of `MsaMeta` objects. */
+  nodes: Array<Maybe<MsaMeta>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  /** The count of *all* `MsaDefinition` you could get from the connection. */
+  /** The count of *all* `MsaMeta` you could get from the connection. */
   totalCount: Scalars['Int'];
 };
 
-/** A `MsaDefinition` edge in the connection. */
-export type MsaDefinitionsEdge = {
-  __typename?: 'MsaDefinitionsEdge';
+/** A `MsaMeta` edge in the connection. */
+export type MsaMetasEdge = {
+  __typename?: 'MsaMetasEdge';
   /** A cursor for use in pagination. */
   cursor?: Maybe<Scalars['Cursor']>;
-  /** The `MsaDefinition` at the end of the edge. */
-  node?: Maybe<MsaDefinition>;
+  /** The `MsaMeta` at the end of the edge. */
+  node?: Maybe<MsaMeta>;
 };
 
-/** Methods to use when ordering `MsaDefinition`. */
-export enum MsaDefinitionsOrderBy {
-  CenterStateAsc = 'CENTER_STATE_ASC',
-  CenterStateDesc = 'CENTER_STATE_DESC',
-  CenterStateFipsCodeAsc = 'CENTER_STATE_FIPS_CODE_ASC',
-  CenterStateFipsCodeDesc = 'CENTER_STATE_FIPS_CODE_DESC',
-  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
-  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
-  CountyNameAsc = 'COUNTY_NAME_ASC',
-  CountyNameDesc = 'COUNTY_NAME_DESC',
-  FriendlyAsc = 'FRIENDLY_ASC',
-  FriendlyDesc = 'FRIENDLY_DESC',
-  IdAsc = 'ID_ASC',
-  IdDesc = 'ID_DESC',
-  NameAsc = 'NAME_ASC',
-  NameDesc = 'NAME_DESC',
+/** Methods to use when ordering `MsaMeta`. */
+export enum MsaMetasOrderBy {
+  MsaIdAsc = 'MSA_ID_ASC',
+  MsaIdDesc = 'MSA_ID_DESC',
+  MsaNameAsc = 'MSA_NAME_ASC',
+  MsaNameDesc = 'MSA_NAME_DESC',
+  MsaUrlNameAsc = 'MSA_URL_NAME_ASC',
+  MsaUrlNameDesc = 'MSA_URL_NAME_DESC',
   Natural = 'NATURAL',
-  StateAsc = 'STATE_ASC',
-  StateDesc = 'STATE_DESC',
+  PopulationAsc = 'POPULATION_ASC',
+  PopulationDesc = 'POPULATION_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   StateNameAsc = 'STATE_NAME_ASC',
   StateNameDesc = 'STATE_NAME_DESC',
-  UrlNameAsc = 'URL_NAME_ASC',
-  UrlNameDesc = 'URL_NAME_DESC'
+  StatePostalAbbreviationAsc = 'STATE_POSTAL_ABBREVIATION_ASC',
+  StatePostalAbbreviationDesc = 'STATE_POSTAL_ABBREVIATION_DESC'
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
 export type Mutation = {
   __typename?: 'Mutation';
-  /** Creates a single `CountiesSummary`. */
-  createCountiesSummary?: Maybe<CreateCountiesSummaryPayload>;
   /** Creates a single `CountyCasesAll`. */
   createCountyCasesAll?: Maybe<CreateCountyCasesAllPayload>;
-  /** Creates a single `CountyPopulation`. */
-  createCountyPopulation?: Maybe<CreateCountyPopulationPayload>;
-  /** Creates a single `FipsCodeCounty`. */
-  createFipsCodeCounty?: Maybe<CreateFipsCodeCountyPayload>;
-  /** Creates a single `FipsCodeState`. */
-  createFipsCodeState?: Maybe<CreateFipsCodeStatePayload>;
+  /** Creates a single `CountyMeta`. */
+  createCountyMeta?: Maybe<CreateCountyMetaPayload>;
   /** Creates a single `MsaCasesAll`. */
   createMsaCasesAll?: Maybe<CreateMsaCasesAllPayload>;
-  /** Creates a single `MsaDefinition`. */
-  createMsaDefinition?: Maybe<CreateMsaDefinitionPayload>;
+  /** Creates a single `MsaMeta`. */
+  createMsaMeta?: Maybe<CreateMsaMetaPayload>;
   /** Creates a single `StateCasesAll`. */
   createStateCasesAll?: Maybe<CreateStateCasesAllPayload>;
-  /** Creates a single `StatePopulation`. */
-  createStatePopulation?: Maybe<CreateStatePopulationPayload>;
+  /** Creates a single `StateMeta`. */
+  createStateMeta?: Maybe<CreateStateMetaPayload>;
   /** Creates a single `StatesHospitalization`. */
   createStatesHospitalization?: Maybe<CreateStatesHospitalizationPayload>;
-  /** Creates a single `StatesSummary`. */
-  createStatesSummary?: Maybe<CreateStatesSummaryPayload>;
   /** Creates a single `StatesTesting`. */
   createStatesTesting?: Maybe<CreateStatesTestingPayload>;
   /** Creates a single `UsCasesAll`. */
   createUsCasesAll?: Maybe<CreateUsCasesAllPayload>;
   /** Creates a single `UsHospitalization`. */
   createUsHospitalization?: Maybe<CreateUsHospitalizationPayload>;
-  /** Creates a single `UsSummary`. */
-  createUsSummary?: Maybe<CreateUsSummaryPayload>;
   /** Creates a single `UsTesting`. */
   createUsTesting?: Maybe<CreateUsTestingPayload>;
-  /** Deletes a single `FipsCodeCounty` using its globally unique id. */
-  deleteFipsCodeCounty?: Maybe<DeleteFipsCodeCountyPayload>;
-  /** Deletes a single `FipsCodeCounty` using a unique key. */
-  deleteFipsCodeCountyByCountyFipsCode?: Maybe<DeleteFipsCodeCountyPayload>;
-  /** Deletes a single `FipsCodeState` using its globally unique id. */
-  deleteFipsCodeState?: Maybe<DeleteFipsCodeStatePayload>;
-  /** Deletes a single `FipsCodeState` using a unique key. */
-  deleteFipsCodeStateByStateFipsCode?: Maybe<DeleteFipsCodeStatePayload>;
-  /** Updates a single `FipsCodeCounty` using its globally unique id and a patch. */
-  updateFipsCodeCounty?: Maybe<UpdateFipsCodeCountyPayload>;
-  /** Updates a single `FipsCodeCounty` using a unique key and a patch. */
-  updateFipsCodeCountyByCountyFipsCode?: Maybe<UpdateFipsCodeCountyPayload>;
-  /** Updates a single `FipsCodeState` using its globally unique id and a patch. */
-  updateFipsCodeState?: Maybe<UpdateFipsCodeStatePayload>;
-  /** Updates a single `FipsCodeState` using a unique key and a patch. */
-  updateFipsCodeStateByStateFipsCode?: Maybe<UpdateFipsCodeStatePayload>;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateCountiesSummaryArgs = {
-  input: CreateCountiesSummaryInput;
 };
 
 
@@ -1671,20 +868,8 @@ export type MutationCreateCountyCasesAllArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateCountyPopulationArgs = {
-  input: CreateCountyPopulationInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateFipsCodeCountyArgs = {
-  input: CreateFipsCodeCountyInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateFipsCodeStateArgs = {
-  input: CreateFipsCodeStateInput;
+export type MutationCreateCountyMetaArgs = {
+  input: CreateCountyMetaInput;
 };
 
 
@@ -1695,8 +880,8 @@ export type MutationCreateMsaCasesAllArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateMsaDefinitionArgs = {
-  input: CreateMsaDefinitionInput;
+export type MutationCreateMsaMetaArgs = {
+  input: CreateMsaMetaInput;
 };
 
 
@@ -1707,20 +892,14 @@ export type MutationCreateStateCasesAllArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateStatePopulationArgs = {
-  input: CreateStatePopulationInput;
+export type MutationCreateStateMetaArgs = {
+  input: CreateStateMetaInput;
 };
 
 
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateStatesHospitalizationArgs = {
   input: CreateStatesHospitalizationInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateStatesSummaryArgs = {
-  input: CreateStatesSummaryInput;
 };
 
 
@@ -1743,62 +922,8 @@ export type MutationCreateUsHospitalizationArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateUsSummaryArgs = {
-  input: CreateUsSummaryInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateUsTestingArgs = {
   input: CreateUsTestingInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteFipsCodeCountyArgs = {
-  input: DeleteFipsCodeCountyInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteFipsCodeCountyByCountyFipsCodeArgs = {
-  input: DeleteFipsCodeCountyByCountyFipsCodeInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteFipsCodeStateArgs = {
-  input: DeleteFipsCodeStateInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteFipsCodeStateByStateFipsCodeArgs = {
-  input: DeleteFipsCodeStateByStateFipsCodeInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateFipsCodeCountyArgs = {
-  input: UpdateFipsCodeCountyInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateFipsCodeCountyByCountyFipsCodeArgs = {
-  input: UpdateFipsCodeCountyByCountyFipsCodeInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateFipsCodeStateArgs = {
-  input: UpdateFipsCodeStateInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateFipsCodeStateByStateFipsCodeArgs = {
-  input: UpdateFipsCodeStateByStateFipsCodeInput;
 };
 
 /** An object with a globally unique `ID`. */
@@ -1823,50 +948,34 @@ export type PageInfo = {
 /** The root query type which gives access points into the data universe. */
 export type Query = Node & {
   __typename?: 'Query';
-  /** Reads and enables pagination through a set of `CountiesSummary`. */
-  allCountiesSummaries?: Maybe<CountiesSummariesConnection>;
   /** Reads and enables pagination through a set of `CountyCasesAll`. */
   allCountyCasesAlls?: Maybe<CountyCasesAllsConnection>;
-  /** Reads and enables pagination through a set of `CountyPopulation`. */
-  allCountyPopulations?: Maybe<CountyPopulationsConnection>;
+  /** Reads and enables pagination through a set of `CountyMeta`. */
+  allCountyMetas?: Maybe<CountyMetasConnection>;
   /** Reads and enables pagination through a set of `CountySummaryView`. */
   allCountySummaryViews?: Maybe<CountySummaryViewsConnection>;
-  /** Reads and enables pagination through a set of `FipsCodeCounty`. */
-  allFipsCodeCounties?: Maybe<FipsCodeCountiesConnection>;
-  /** Reads and enables pagination through a set of `FipsCodeState`. */
-  allFipsCodeStates?: Maybe<FipsCodeStatesConnection>;
   /** Reads and enables pagination through a set of `MsaCasesAll`. */
   allMsaCasesAlls?: Maybe<MsaCasesAllsConnection>;
-  /** Reads and enables pagination through a set of `MsaDefinition`. */
-  allMsaDefinitions?: Maybe<MsaDefinitionsConnection>;
+  /** Reads and enables pagination through a set of `MsaMeta`. */
+  allMsaMetas?: Maybe<MsaMetasConnection>;
   /** Reads and enables pagination through a set of `StateCasesAll`. */
   allStateCasesAlls?: Maybe<StateCasesAllsConnection>;
-  /** Reads and enables pagination through a set of `StatePopulation`. */
-  allStatePopulations?: Maybe<StatePopulationsConnection>;
+  /** Reads and enables pagination through a set of `StateMeta`. */
+  allStateMetas?: Maybe<StateMetasConnection>;
   /** Reads and enables pagination through a set of `StateSummaryView`. */
   allStateSummaryViews?: Maybe<StateSummaryViewsConnection>;
   /** Reads and enables pagination through a set of `StatesHospitalization`. */
   allStatesHospitalizations?: Maybe<StatesHospitalizationsConnection>;
-  /** Reads and enables pagination through a set of `StatesSummary`. */
-  allStatesSummaries?: Maybe<StatesSummariesConnection>;
   /** Reads and enables pagination through a set of `StatesTesting`. */
   allStatesTestings?: Maybe<StatesTestingsConnection>;
   /** Reads and enables pagination through a set of `UsCasesAll`. */
   allUsCasesAlls?: Maybe<UsCasesAllsConnection>;
   /** Reads and enables pagination through a set of `UsHospitalization`. */
   allUsHospitalizations?: Maybe<UsHospitalizationsConnection>;
-  /** Reads and enables pagination through a set of `UsSummary`. */
-  allUsSummaries?: Maybe<UsSummariesConnection>;
   /** Reads and enables pagination through a set of `UsSummaryView`. */
   allUsSummaryViews?: Maybe<UsSummaryViewsConnection>;
   /** Reads and enables pagination through a set of `UsTesting`. */
   allUsTestings?: Maybe<UsTestingsConnection>;
-  /** Reads a single `FipsCodeCounty` using its globally unique `ID`. */
-  fipsCodeCounty?: Maybe<FipsCodeCounty>;
-  fipsCodeCountyByCountyFipsCode?: Maybe<FipsCodeCounty>;
-  /** Reads a single `FipsCodeState` using its globally unique `ID`. */
-  fipsCodeState?: Maybe<FipsCodeState>;
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   /** Fetches an object given its globally unique `ID`. */
   node?: Maybe<Node>;
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
@@ -1876,18 +985,6 @@ export type Query = Node & {
    * which can only query top level fields if they are in a particular form.
    */
   query: Query;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllCountiesSummariesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountiesSummaryCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountiesSummariesOrderBy>>;
 };
 
 
@@ -1904,14 +1001,14 @@ export type QueryAllCountyCasesAllsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllCountyPopulationsArgs = {
+export type QueryAllCountyMetasArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<CountyPopulationCondition>;
+  condition?: Maybe<CountyMetaCondition>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<CountyPopulationsOrderBy>>;
+  orderBy?: Maybe<Array<CountyMetasOrderBy>>;
 };
 
 
@@ -1928,30 +1025,6 @@ export type QueryAllCountySummaryViewsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllFipsCodeCountiesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<FipsCodeCountyCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllFipsCodeStatesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<FipsCodeStateCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
 export type QueryAllMsaCasesAllsArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
@@ -1964,14 +1037,14 @@ export type QueryAllMsaCasesAllsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllMsaDefinitionsArgs = {
+export type QueryAllMsaMetasArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<MsaDefinitionCondition>;
+  condition?: Maybe<MsaMetaCondition>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<MsaDefinitionsOrderBy>>;
+  orderBy?: Maybe<Array<MsaMetasOrderBy>>;
 };
 
 
@@ -1988,14 +1061,14 @@ export type QueryAllStateCasesAllsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllStatePopulationsArgs = {
+export type QueryAllStateMetasArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StatePopulationCondition>;
+  condition?: Maybe<StateMetaCondition>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StatePopulationsOrderBy>>;
+  orderBy?: Maybe<Array<StateMetasOrderBy>>;
 };
 
 
@@ -2020,18 +1093,6 @@ export type QueryAllStatesHospitalizationsArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<StatesHospitalizationsOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllStatesSummariesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<StatesSummaryCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<StatesSummariesOrderBy>>;
 };
 
 
@@ -2072,18 +1133,6 @@ export type QueryAllUsHospitalizationsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllUsSummariesArgs = {
-  after?: Maybe<Scalars['Cursor']>;
-  before?: Maybe<Scalars['Cursor']>;
-  condition?: Maybe<UsSummaryCondition>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<UsSummariesOrderBy>>;
-};
-
-
-/** The root query type which gives access points into the data universe. */
 export type QueryAllUsSummaryViewsArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
@@ -2108,30 +1157,6 @@ export type QueryAllUsTestingsArgs = {
 
 
 /** The root query type which gives access points into the data universe. */
-export type QueryFipsCodeCountyArgs = {
-  nodeId: Scalars['ID'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryFipsCodeCountyByCountyFipsCodeArgs = {
-  countyFipsCode: Scalars['String'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryFipsCodeStateArgs = {
-  nodeId: Scalars['ID'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryFipsCodeStateByStateFipsCodeArgs = {
-  stateFipsCode: Scalars['String'];
-};
-
-
-/** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
   nodeId: Scalars['ID'];
 };
@@ -2141,10 +1166,10 @@ export type StateCasesAll = {
   confirmedCases?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
-  /** Reads a single `FipsCodeState` that is related to this `StateCasesAll`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `StateCasesAll`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 /**
@@ -2210,78 +1235,181 @@ export enum StateCasesAllsOrderBy {
   StateNameDesc = 'STATE_NAME_DESC'
 }
 
-export type StatePopulation = {
-  __typename?: 'StatePopulation';
-  /** Reads a single `FipsCodeState` that is related to this `StatePopulation`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  pop2020?: Maybe<Scalars['Int']>;
+export type StateMeta = {
+  __typename?: 'StateMeta';
+  population?: Maybe<Scalars['Int']>;
+  stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
+  stateName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `StateSummaryView`. */
+  stateSummaryViewsByStateFipsCode: StateSummaryViewsConnection;
+};
+
+
+export type StateMetaStateSummaryViewsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateSummaryViewsOrderBy>>;
 };
 
 /**
- * A condition to be used against `StatePopulation` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
+ * A condition to be used against `StateMeta` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
  */
-export type StatePopulationCondition = {
-  /** Checks for equality with the object’s `pop2020` field. */
-  pop2020?: Maybe<Scalars['Int']>;
+export type StateMetaCondition = {
+  /** Checks for equality with the object’s `population` field. */
+  population?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateAbbr` field. */
+  stateAbbr?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `stateName` field. */
+  stateName?: Maybe<Scalars['String']>;
 };
 
-/** An input for mutations affecting `StatePopulation` */
-export type StatePopulationInput = {
-  pop2020?: Maybe<Scalars['Int']>;
+/** An input for mutations affecting `StateMeta` */
+export type StateMetaInput = {
+  population?: Maybe<Scalars['Int']>;
+  stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
+  stateName?: Maybe<Scalars['String']>;
 };
 
-/** A connection to a list of `StatePopulation` values. */
-export type StatePopulationsConnection = {
-  __typename?: 'StatePopulationsConnection';
-  /** A list of edges which contains the `StatePopulation` and cursor to aid in pagination. */
-  edges: Array<StatePopulationsEdge>;
-  /** A list of `StatePopulation` objects. */
-  nodes: Array<Maybe<StatePopulation>>;
+/** A connection to a list of `StateMeta` values. */
+export type StateMetasConnection = {
+  __typename?: 'StateMetasConnection';
+  /** A list of edges which contains the `StateMeta` and cursor to aid in pagination. */
+  edges: Array<StateMetasEdge>;
+  /** A list of `StateMeta` objects. */
+  nodes: Array<Maybe<StateMeta>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  /** The count of *all* `StatePopulation` you could get from the connection. */
+  /** The count of *all* `StateMeta` you could get from the connection. */
   totalCount: Scalars['Int'];
 };
 
-/** A `StatePopulation` edge in the connection. */
-export type StatePopulationsEdge = {
-  __typename?: 'StatePopulationsEdge';
+/** A `StateMeta` edge in the connection. */
+export type StateMetasEdge = {
+  __typename?: 'StateMetasEdge';
   /** A cursor for use in pagination. */
   cursor?: Maybe<Scalars['Cursor']>;
-  /** The `StatePopulation` at the end of the edge. */
-  node?: Maybe<StatePopulation>;
+  /** The `StateMeta` at the end of the edge. */
+  node?: Maybe<StateMeta>;
 };
 
-/** Methods to use when ordering `StatePopulation`. */
-export enum StatePopulationsOrderBy {
+/** Methods to use when ordering `StateMeta`. */
+export enum StateMetasOrderBy {
   Natural = 'NATURAL',
-  Pop2020Asc = 'POP2020_ASC',
-  Pop2020Desc = 'POP2020_DESC',
+  PopulationAsc = 'POPULATION_ASC',
+  PopulationDesc = 'POPULATION_DESC',
+  StateAbbrAsc = 'STATE_ABBR_ASC',
+  StateAbbrDesc = 'STATE_ABBR_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC'
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
+  StateNameAsc = 'STATE_NAME_ASC',
+  StateNameDesc = 'STATE_NAME_DESC'
 }
 
 export type StateSummaryView = {
   __typename?: 'StateSummaryView';
   confirmedCases?: Maybe<Scalars['Int']>;
   confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Reads and enables pagination through a set of `CountyCasesAll`. */
+  countyCasesAllsByStateFipsCode: CountyCasesAllsConnection;
+  /** Reads and enables pagination through a set of `CountyMeta`. */
+  countyMetasByStateFipsCode: CountyMetasConnection;
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  countySummaryViewsByStateFipsCode: CountySummaryViewsConnection;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
-  /** Reads a single `FipsCodeState` that is related to this `StateSummaryView`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   negative?: Maybe<Scalars['Int']>;
   negativeIncrease?: Maybe<Scalars['Int']>;
   population?: Maybe<Scalars['Int']>;
   positive?: Maybe<Scalars['Int']>;
   positiveIncrease?: Maybe<Scalars['Int']>;
+  stateAbbr?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `StateCasesAll`. */
+  stateCasesAllsByStateFipsCode: StateCasesAllsConnection;
   stateFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `StateMeta` that is related to this `StateSummaryView`. */
+  stateMetaByStateFipsCode?: Maybe<StateMeta>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `StatesHospitalization`. */
+  statesHospitalizationsByStateFipsCode: StatesHospitalizationsConnection;
+  /** Reads and enables pagination through a set of `StatesTesting`. */
+  statesTestingsByStateFipsCode: StatesTestingsConnection;
   totalTestResults?: Maybe<Scalars['Int']>;
+  updated?: Maybe<Scalars['String']>;
+};
+
+
+export type StateSummaryViewCountyCasesAllsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
+};
+
+
+export type StateSummaryViewCountyMetasByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyMetaCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyMetasOrderBy>>;
+};
+
+
+export type StateSummaryViewCountySummaryViewsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
+
+export type StateSummaryViewStateCasesAllsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateCasesAllsOrderBy>>;
+};
+
+
+export type StateSummaryViewStatesHospitalizationsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatesHospitalizationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatesHospitalizationsOrderBy>>;
+};
+
+
+export type StateSummaryViewStatesTestingsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StatesTestingCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StatesTestingsOrderBy>>;
 };
 
 /**
@@ -2307,12 +1435,16 @@ export type StateSummaryViewCondition = {
   positive?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `positiveIncrease` field. */
   positiveIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateAbbr` field. */
+  stateAbbr?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateName` field. */
   stateName?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `totalTestResults` field. */
   totalTestResults?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `updated` field. */
+  updated?: Maybe<Scalars['String']>;
 };
 
 /** A connection to a list of `StateSummaryView` values. */
@@ -2358,12 +1490,16 @@ export enum StateSummaryViewsOrderBy {
   PositiveDesc = 'POSITIVE_DESC',
   PositiveIncreaseAsc = 'POSITIVE_INCREASE_ASC',
   PositiveIncreaseDesc = 'POSITIVE_INCREASE_DESC',
+  StateAbbrAsc = 'STATE_ABBR_ASC',
+  StateAbbrDesc = 'STATE_ABBR_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   StateNameAsc = 'STATE_NAME_ASC',
   StateNameDesc = 'STATE_NAME_DESC',
   TotalTestResultsAsc = 'TOTAL_TEST_RESULTS_ASC',
-  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC'
+  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC',
+  UpdatedAsc = 'UPDATED_ASC',
+  UpdatedDesc = 'UPDATED_DESC'
 }
 
 export type StatesHospitalization = {
@@ -2371,8 +1507,6 @@ export type StatesHospitalization = {
   adultIcuBedUsed?: Maybe<Scalars['Int']>;
   adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatesHospitalization`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   hospitalizedCurrently?: Maybe<Scalars['Int']>;
   inIcuCurrently?: Maybe<Scalars['Int']>;
   inpatientBedsCapacity?: Maybe<Scalars['Int']>;
@@ -2382,6 +1516,8 @@ export type StatesHospitalization = {
   stateGnisid?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
   statePostalAbbreviation?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `StatesHospitalization`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
 /**
@@ -2482,139 +1618,9 @@ export enum StatesHospitalizationsOrderBy {
   StatePostalAbbreviationDesc = 'STATE_POSTAL_ABBREVIATION_DESC'
 }
 
-/** A connection to a list of `StatesSummary` values. */
-export type StatesSummariesConnection = {
-  __typename?: 'StatesSummariesConnection';
-  /** A list of edges which contains the `StatesSummary` and cursor to aid in pagination. */
-  edges: Array<StatesSummariesEdge>;
-  /** A list of `StatesSummary` objects. */
-  nodes: Array<Maybe<StatesSummary>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `StatesSummary` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `StatesSummary` edge in the connection. */
-export type StatesSummariesEdge = {
-  __typename?: 'StatesSummariesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `StatesSummary` at the end of the edge. */
-  node?: Maybe<StatesSummary>;
-};
-
-/** Methods to use when ordering `StatesSummary`. */
-export enum StatesSummariesOrderBy {
-  AdultIcuBedsCapacityAsc = 'ADULT_ICU_BEDS_CAPACITY_ASC',
-  AdultIcuBedsCapacityDesc = 'ADULT_ICU_BEDS_CAPACITY_DESC',
-  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
-  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
-  ConfirmedIncrease_14DaysAsc = 'CONFIRMED_INCREASE_14DAYS_ASC',
-  ConfirmedIncrease_14DaysDesc = 'CONFIRMED_INCREASE_14DAYS_DESC',
-  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
-  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
-  HospitalizedCurrentlyAsc = 'HOSPITALIZED_CURRENTLY_ASC',
-  HospitalizedCurrentlyDesc = 'HOSPITALIZED_CURRENTLY_DESC',
-  InpatientBedsCapacityAsc = 'INPATIENT_BEDS_CAPACITY_ASC',
-  InpatientBedsCapacityDesc = 'INPATIENT_BEDS_CAPACITY_DESC',
-  InpatientBedsUsedAsc = 'INPATIENT_BEDS_USED_ASC',
-  InpatientBedsUsedDesc = 'INPATIENT_BEDS_USED_DESC',
-  InIcuCurrentlyAsc = 'IN_ICU_CURRENTLY_ASC',
-  InIcuCurrentlyDesc = 'IN_ICU_CURRENTLY_DESC',
-  Natural = 'NATURAL',
-  PositiveAsc = 'POSITIVE_ASC',
-  PositiveDesc = 'POSITIVE_DESC',
-  PositiveIncreaseAsc = 'POSITIVE_INCREASE_ASC',
-  PositiveIncreaseDesc = 'POSITIVE_INCREASE_DESC',
-  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
-  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
-  StateNameAsc = 'STATE_NAME_ASC',
-  StateNameDesc = 'STATE_NAME_DESC',
-  TotalTestResultsAsc = 'TOTAL_TEST_RESULTS_ASC',
-  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC',
-  TotalTestResultsIncreaseAsc = 'TOTAL_TEST_RESULTS_INCREASE_ASC',
-  TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
-}
-
-export type StatesSummary = {
-  __typename?: 'StatesSummary';
-  adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
-  confirmedCases?: Maybe<Scalars['Int']>;
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatesSummary`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  hospitalizedCurrently?: Maybe<Scalars['Int']>;
-  inIcuCurrently?: Maybe<Scalars['Int']>;
-  inpatientBedsCapacity?: Maybe<Scalars['Int']>;
-  inpatientBedsUsed?: Maybe<Scalars['Int']>;
-  positive?: Maybe<Scalars['Int']>;
-  positiveIncrease?: Maybe<Scalars['Int']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-  totalTestResults?: Maybe<Scalars['Int']>;
-  totalTestResultsIncrease?: Maybe<Scalars['Int']>;
-};
-
-/**
- * A condition to be used against `StatesSummary` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type StatesSummaryCondition = {
-  /** Checks for equality with the object’s `adultIcuBedsCapacity` field. */
-  adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedCases` field. */
-  confirmedCases?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedIncrease` field. */
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedIncrease14Days` field. */
-  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `hospitalizedCurrently` field. */
-  hospitalizedCurrently?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inIcuCurrently` field. */
-  inIcuCurrently?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inpatientBedsCapacity` field. */
-  inpatientBedsCapacity?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inpatientBedsUsed` field. */
-  inpatientBedsUsed?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `positive` field. */
-  positive?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `positiveIncrease` field. */
-  positiveIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `stateFipsCode` field. */
-  stateFipsCode?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `stateName` field. */
-  stateName?: Maybe<Scalars['String']>;
-  /** Checks for equality with the object’s `totalTestResults` field. */
-  totalTestResults?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `totalTestResultsIncrease` field. */
-  totalTestResultsIncrease?: Maybe<Scalars['Int']>;
-};
-
-/** An input for mutations affecting `StatesSummary` */
-export type StatesSummaryInput = {
-  adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
-  confirmedCases?: Maybe<Scalars['Int']>;
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
-  hospitalizedCurrently?: Maybe<Scalars['Int']>;
-  inIcuCurrently?: Maybe<Scalars['Int']>;
-  inpatientBedsCapacity?: Maybe<Scalars['Int']>;
-  inpatientBedsUsed?: Maybe<Scalars['Int']>;
-  positive?: Maybe<Scalars['Int']>;
-  positiveIncrease?: Maybe<Scalars['Int']>;
-  stateFipsCode?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-  totalTestResults?: Maybe<Scalars['Int']>;
-  totalTestResultsIncrease?: Maybe<Scalars['Int']>;
-};
-
 export type StatesTesting = {
   __typename?: 'StatesTesting';
   date?: Maybe<Scalars['String']>;
-  /** Reads a single `FipsCodeState` that is related to this `StatesTesting`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
   inconclusive?: Maybe<Scalars['Int']>;
   inconclusiveIncrease?: Maybe<Scalars['Int']>;
   negative?: Maybe<Scalars['Int']>;
@@ -2624,6 +1630,8 @@ export type StatesTesting = {
   state?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `StatesTesting`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
   totalTestResults?: Maybe<Scalars['Int']>;
   totalTestResultsIncrease?: Maybe<Scalars['Int']>;
 };
@@ -2725,102 +1733,6 @@ export enum StatesTestingsOrderBy {
   TotalTestResultsIncreaseAsc = 'TOTAL_TEST_RESULTS_INCREASE_ASC',
   TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
 }
-
-/** All input for the `updateFipsCodeCountyByCountyFipsCode` mutation. */
-export type UpdateFipsCodeCountyByCountyFipsCodeInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  countyFipsCode: Scalars['String'];
-  /** An object where the defined keys will be set on the `FipsCodeCounty` being updated. */
-  fipsCodeCountyPatch: FipsCodeCountyPatch;
-};
-
-/** All input for the `updateFipsCodeCounty` mutation. */
-export type UpdateFipsCodeCountyInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** An object where the defined keys will be set on the `FipsCodeCounty` being updated. */
-  fipsCodeCountyPatch: FipsCodeCountyPatch;
-  /** The globally unique `ID` which will identify a single `FipsCodeCounty` to be updated. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our update `FipsCodeCounty` mutation. */
-export type UpdateFipsCodeCountyPayload = {
-  __typename?: 'UpdateFipsCodeCountyPayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `FipsCodeCounty` that was updated by this mutation. */
-  fipsCodeCounty?: Maybe<FipsCodeCounty>;
-  /** An edge for our `FipsCodeCounty`. May be used by Relay 1. */
-  fipsCodeCountyEdge?: Maybe<FipsCodeCountiesEdge>;
-  /** Reads a single `FipsCodeState` that is related to this `FipsCodeCounty`. */
-  fipsCodeStateByStateFipsCode?: Maybe<FipsCodeState>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our update `FipsCodeCounty` mutation. */
-export type UpdateFipsCodeCountyPayloadFipsCodeCountyEdgeArgs = {
-  orderBy?: Maybe<Array<FipsCodeCountiesOrderBy>>;
-};
-
-/** All input for the `updateFipsCodeStateByStateFipsCode` mutation. */
-export type UpdateFipsCodeStateByStateFipsCodeInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** An object where the defined keys will be set on the `FipsCodeState` being updated. */
-  fipsCodeStatePatch: FipsCodeStatePatch;
-  stateFipsCode: Scalars['String'];
-};
-
-/** All input for the `updateFipsCodeState` mutation. */
-export type UpdateFipsCodeStateInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** An object where the defined keys will be set on the `FipsCodeState` being updated. */
-  fipsCodeStatePatch: FipsCodeStatePatch;
-  /** The globally unique `ID` which will identify a single `FipsCodeState` to be updated. */
-  nodeId: Scalars['ID'];
-};
-
-/** The output of our update `FipsCodeState` mutation. */
-export type UpdateFipsCodeStatePayload = {
-  __typename?: 'UpdateFipsCodeStatePayload';
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** The `FipsCodeState` that was updated by this mutation. */
-  fipsCodeState?: Maybe<FipsCodeState>;
-  /** An edge for our `FipsCodeState`. May be used by Relay 1. */
-  fipsCodeStateEdge?: Maybe<FipsCodeStatesEdge>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
-
-/** The output of our update `FipsCodeState` mutation. */
-export type UpdateFipsCodeStatePayloadFipsCodeStateEdgeArgs = {
-  orderBy?: Maybe<Array<FipsCodeStatesOrderBy>>;
-};
 
 export type UsCasesAll = {
   __typename?: 'UsCasesAll';
@@ -2966,149 +1878,13 @@ export enum UsHospitalizationsOrderBy {
   Natural = 'NATURAL'
 }
 
-/** A connection to a list of `UsSummary` values. */
-export type UsSummariesConnection = {
-  __typename?: 'UsSummariesConnection';
-  /** A list of edges which contains the `UsSummary` and cursor to aid in pagination. */
-  edges: Array<UsSummariesEdge>;
-  /** A list of `UsSummary` objects. */
-  nodes: Array<Maybe<UsSummary>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** The count of *all* `UsSummary` you could get from the connection. */
-  totalCount: Scalars['Int'];
-};
-
-/** A `UsSummary` edge in the connection. */
-export type UsSummariesEdge = {
-  __typename?: 'UsSummariesEdge';
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>;
-  /** The `UsSummary` at the end of the edge. */
-  node?: Maybe<UsSummary>;
-};
-
-/** Methods to use when ordering `UsSummary`. */
-export enum UsSummariesOrderBy {
-  AdultIcuBedsCapacityAsc = 'ADULT_ICU_BEDS_CAPACITY_ASC',
-  AdultIcuBedsCapacityDesc = 'ADULT_ICU_BEDS_CAPACITY_DESC',
-  AdultIcuBedUsedAsc = 'ADULT_ICU_BED_USED_ASC',
-  AdultIcuBedUsedDesc = 'ADULT_ICU_BED_USED_DESC',
-  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
-  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
-  ConfirmedIncrease_14DaysAsc = 'CONFIRMED_INCREASE_14DAYS_ASC',
-  ConfirmedIncrease_14DaysDesc = 'CONFIRMED_INCREASE_14DAYS_DESC',
-  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
-  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
-  HospitalizedCurrentlyAsc = 'HOSPITALIZED_CURRENTLY_ASC',
-  HospitalizedCurrentlyDesc = 'HOSPITALIZED_CURRENTLY_DESC',
-  InconclusiveAsc = 'INCONCLUSIVE_ASC',
-  InconclusiveDesc = 'INCONCLUSIVE_DESC',
-  InconclusiveIncreaseAsc = 'INCONCLUSIVE_INCREASE_ASC',
-  InconclusiveIncreaseDesc = 'INCONCLUSIVE_INCREASE_DESC',
-  InpatientBedsCapacityAsc = 'INPATIENT_BEDS_CAPACITY_ASC',
-  InpatientBedsCapacityDesc = 'INPATIENT_BEDS_CAPACITY_DESC',
-  InpatientBedsUsedAsc = 'INPATIENT_BEDS_USED_ASC',
-  InpatientBedsUsedDesc = 'INPATIENT_BEDS_USED_DESC',
-  InIcuCurrentlyAsc = 'IN_ICU_CURRENTLY_ASC',
-  InIcuCurrentlyDesc = 'IN_ICU_CURRENTLY_DESC',
-  Natural = 'NATURAL',
-  NegativeAsc = 'NEGATIVE_ASC',
-  NegativeDesc = 'NEGATIVE_DESC',
-  NegativeIncreaseAsc = 'NEGATIVE_INCREASE_ASC',
-  NegativeIncreaseDesc = 'NEGATIVE_INCREASE_DESC',
-  PositiveAsc = 'POSITIVE_ASC',
-  PositiveDesc = 'POSITIVE_DESC',
-  PositiveIncreaseAsc = 'POSITIVE_INCREASE_ASC',
-  PositiveIncreaseDesc = 'POSITIVE_INCREASE_DESC',
-  TotalTestResultsAsc = 'TOTAL_TEST_RESULTS_ASC',
-  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC'
-}
-
-export type UsSummary = {
-  __typename?: 'UsSummary';
-  adultIcuBedUsed?: Maybe<Scalars['Int']>;
-  adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
-  confirmedCases?: Maybe<Scalars['Int']>;
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
-  hospitalizedCurrently?: Maybe<Scalars['Int']>;
-  inIcuCurrently?: Maybe<Scalars['Int']>;
-  inconclusive?: Maybe<Scalars['Int']>;
-  inconclusiveIncrease?: Maybe<Scalars['Int']>;
-  inpatientBedsCapacity?: Maybe<Scalars['Int']>;
-  inpatientBedsUsed?: Maybe<Scalars['Int']>;
-  negative?: Maybe<Scalars['Int']>;
-  negativeIncrease?: Maybe<Scalars['Int']>;
-  positive?: Maybe<Scalars['Int']>;
-  positiveIncrease?: Maybe<Scalars['Int']>;
-  totalTestResults?: Maybe<Scalars['Int']>;
-};
-
-/**
- * A condition to be used against `UsSummary` object types. All fields are tested
- * for equality and combined with a logical ‘and.’
- */
-export type UsSummaryCondition = {
-  /** Checks for equality with the object’s `adultIcuBedUsed` field. */
-  adultIcuBedUsed?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `adultIcuBedsCapacity` field. */
-  adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedCases` field. */
-  confirmedCases?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedIncrease` field. */
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `confirmedIncrease14Days` field. */
-  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `hospitalizedCurrently` field. */
-  hospitalizedCurrently?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inIcuCurrently` field. */
-  inIcuCurrently?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inconclusive` field. */
-  inconclusive?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inconclusiveIncrease` field. */
-  inconclusiveIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inpatientBedsCapacity` field. */
-  inpatientBedsCapacity?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `inpatientBedsUsed` field. */
-  inpatientBedsUsed?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `negative` field. */
-  negative?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `negativeIncrease` field. */
-  negativeIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `positive` field. */
-  positive?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `positiveIncrease` field. */
-  positiveIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `totalTestResults` field. */
-  totalTestResults?: Maybe<Scalars['Int']>;
-};
-
-/** An input for mutations affecting `UsSummary` */
-export type UsSummaryInput = {
-  adultIcuBedUsed?: Maybe<Scalars['Int']>;
-  adultIcuBedsCapacity?: Maybe<Scalars['Int']>;
-  confirmedCases?: Maybe<Scalars['Int']>;
-  confirmedIncrease?: Maybe<Scalars['Int']>;
-  confirmedIncrease14Days?: Maybe<Scalars['Int']>;
-  hospitalizedCurrently?: Maybe<Scalars['Int']>;
-  inIcuCurrently?: Maybe<Scalars['Int']>;
-  inconclusive?: Maybe<Scalars['Int']>;
-  inconclusiveIncrease?: Maybe<Scalars['Int']>;
-  inpatientBedsCapacity?: Maybe<Scalars['Int']>;
-  inpatientBedsUsed?: Maybe<Scalars['Int']>;
-  negative?: Maybe<Scalars['Int']>;
-  negativeIncrease?: Maybe<Scalars['Int']>;
-  positive?: Maybe<Scalars['Int']>;
-  positiveIncrease?: Maybe<Scalars['Int']>;
-  totalTestResults?: Maybe<Scalars['Int']>;
-};
-
 export type UsSummaryView = {
   __typename?: 'UsSummaryView';
   confirmedCases?: Maybe<Scalars['Int']>;
   confirmedIncrease?: Maybe<Scalars['Int']>;
   confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+  population?: Maybe<Scalars['BigInt']>;
+  updated?: Maybe<Scalars['String']>;
 };
 
 /**
@@ -3122,6 +1898,10 @@ export type UsSummaryViewCondition = {
   confirmedIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `confirmedIncrease14Days` field. */
   confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `population` field. */
+  population?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updated` field. */
+  updated?: Maybe<Scalars['String']>;
 };
 
 /** A connection to a list of `UsSummaryView` values. */
@@ -3154,7 +1934,11 @@ export enum UsSummaryViewsOrderBy {
   ConfirmedIncrease_14DaysDesc = 'CONFIRMED_INCREASE_14DAYS_DESC',
   ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
   ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
-  Natural = 'NATURAL'
+  Natural = 'NATURAL',
+  PopulationAsc = 'POPULATION_ASC',
+  PopulationDesc = 'POPULATION_DESC',
+  UpdatedAsc = 'UPDATED_ASC',
+  UpdatedDesc = 'UPDATED_DESC'
 }
 
 export type UsTesting = {
@@ -3166,9 +1950,7 @@ export type UsTesting = {
   negativeIncrease?: Maybe<Scalars['Int']>;
   positive?: Maybe<Scalars['Int']>;
   positiveIncrease?: Maybe<Scalars['Int']>;
-  stateName?: Maybe<Scalars['String']>;
   totalTestResults?: Maybe<Scalars['Int']>;
-  totalTestResultsIncrease?: Maybe<Scalars['Int']>;
 };
 
 /**
@@ -3190,12 +1972,8 @@ export type UsTestingCondition = {
   positive?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `positiveIncrease` field. */
   positiveIncrease?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `stateName` field. */
-  stateName?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `totalTestResults` field. */
   totalTestResults?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `totalTestResultsIncrease` field. */
-  totalTestResultsIncrease?: Maybe<Scalars['Int']>;
 };
 
 /** An input for mutations affecting `UsTesting` */
@@ -3207,9 +1985,7 @@ export type UsTestingInput = {
   negativeIncrease?: Maybe<Scalars['Int']>;
   positive?: Maybe<Scalars['Int']>;
   positiveIncrease?: Maybe<Scalars['Int']>;
-  stateName?: Maybe<Scalars['String']>;
   totalTestResults?: Maybe<Scalars['Int']>;
-  totalTestResultsIncrease?: Maybe<Scalars['Int']>;
 };
 
 /** A connection to a list of `UsTesting` values. */
@@ -3251,18 +2027,14 @@ export enum UsTestingsOrderBy {
   PositiveDesc = 'POSITIVE_DESC',
   PositiveIncreaseAsc = 'POSITIVE_INCREASE_ASC',
   PositiveIncreaseDesc = 'POSITIVE_INCREASE_DESC',
-  StateNameAsc = 'STATE_NAME_ASC',
-  StateNameDesc = 'STATE_NAME_DESC',
   TotalTestResultsAsc = 'TOTAL_TEST_RESULTS_ASC',
-  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC',
-  TotalTestResultsIncreaseAsc = 'TOTAL_TEST_RESULTS_INCREASE_ASC',
-  TotalTestResultsIncreaseDesc = 'TOTAL_TEST_RESULTS_INCREASE_DESC'
+  TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC'
 }
 
 export type SearchBarDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, stateName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, state?: Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string> }> }>> }>, states?: Maybe<{ __typename?: 'StatesSummariesConnection', nodes: Array<Maybe<{ __typename?: 'StatesSummary', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
+export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, stateName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, state?: Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string> }> }>> }>, states?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
 
 export type UsCasesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3282,19 +2054,19 @@ export type UsHopitalizationQuery = { __typename?: 'Query', allUsHospitalization
 export type UsSubRegionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UsSubRegionsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
+export type UsSubRegionsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, stateName?: Maybe<string>, negative?: Maybe<number>, totalTestResultsIncrease?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
+export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
 
 export type CountyCompareToParentsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
 }>;
 
 
-export type CountyCompareToParentsQuery = { __typename?: 'Query', us: { __typename?: 'Query', cases?: Maybe<{ __typename?: 'UsCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'UsCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }>, poplation?: Maybe<{ __typename?: 'StatePopulationsConnection', nodes: Array<Maybe<{ __typename?: 'StatePopulation', pop2020?: Maybe<number> }>> }> }, county: { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', confirmedCases?: Maybe<number>, deaths?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> }, state: { __typename?: 'Query', allFipsCodeCounties?: Maybe<{ __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', fipsCodeStateByStateFipsCode?: Maybe<{ __typename?: 'FipsCodeState', statePopulationsByStateFipsCode: { __typename?: 'StatePopulationsConnection', nodes: Array<Maybe<{ __typename?: 'StatePopulation', stateFipsCode?: Maybe<string>, pop2020?: Maybe<number> }>> }, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }> }>> }> } };
+export type CountyCompareToParentsQuery = { __typename?: 'Query', us: { __typename?: 'Query', cases?: Maybe<{ __typename?: 'UsCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'UsCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', population?: Maybe<any> }>> }> }, county: { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', confirmedCases?: Maybe<number>, deaths?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> }, state: { __typename?: 'Query', allCountyMetas?: Maybe<{ __typename?: 'CountyMetasConnection', nodes: Array<Maybe<{ __typename?: 'CountyMeta', stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, population?: Maybe<number>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }> }>> }> } };
 
 export type CountyDetailsByCountyFipsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
@@ -3315,33 +2087,33 @@ export type InfoSummaryByCountyFipsQueryVariables = Exact<{
 }>;
 
 
-export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, fipsCodeStateByStateFipsCode?: Maybe<{ __typename?: 'FipsCodeState', stateSummaryViewsByStateFipsCode: { __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> } }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
+export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
 
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
 }>;
 
 
-export type StateByFipsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, stateGnisid?: Maybe<string> }>> }> };
+export type StateByFipsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string> }>> }> };
 
 export type StateByFipsDetailsQueryVariables = Exact<{
-  fips?: Maybe<Scalars['String']>;
+  state_fips_code?: Maybe<Scalars['String']>;
 }>;
 
 
-export type StateByFipsDetailsQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode: string, countiesTable: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, hospitalization: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, testing: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
+export type StateByFipsDetailsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countiesTable: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, hospitalization: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, testing: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
 
 export type StateSubRegionQueryVariables = Exact<{
   state_fips_code?: Maybe<Scalars['String']>;
 }>;
 
 
-export type StateSubRegionQuery = { __typename?: 'Query', allFipsCodeCounties?: Maybe<{ __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', countyFipsCode: string, areaName?: Maybe<string>, countyCasesAllsByCountyFipsCode: { __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number> }>> } }>> }> };
+export type StateSubRegionQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, population?: Maybe<number>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, countyCasesAllsByCountyFipsCode: { __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number> }>> } }>> } }>> }> };
 
 export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type StatesQuery = { __typename?: 'Query', allFipsCodeStates?: Maybe<{ __typename?: 'FipsCodeStatesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeState', statePostalAbbreviation?: Maybe<string>, stateName?: Maybe<string>, stateGnisid?: Maybe<string>, fipsCodeCountiesByStateFipsCode: { __typename?: 'FipsCodeCountiesConnection', nodes: Array<Maybe<{ __typename?: 'FipsCodeCounty', areaName?: Maybe<string> }>> } }>> }> };
+export type StatesQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string> }>> } }>> }> };
 
 export type UsStatesTestingTableQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3357,12 +2129,12 @@ export const SearchBarDataDocument = gql`
       stateName
       countyFipsCode
       confirmedCases
-      state: fipsCodeStateByStateFipsCode {
-        statePostalAbbreviation
+      state: stateSummaryViewByStateFipsCode {
+        stateAbbr
       }
     }
   }
-  states: allStatesSummaries {
+  states: allStateSummaryViews {
     nodes {
       stateName
       stateFipsCode
@@ -3522,11 +2294,10 @@ export type UsHopitalizationLazyQueryHookResult = ReturnType<typeof useUsHopital
 export type UsHopitalizationQueryResult = Apollo.QueryResult<UsHopitalizationQuery, UsHopitalizationQueryVariables>;
 export const UsSubRegionsDocument = gql`
     query USSubRegions {
-  allFipsCodeStates {
+  allStateSummaryViews {
     nodes {
-      statePostalAbbreviation
       stateName
-      stateGnisid
+      stateAbbr
       stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 180) {
         nodes {
           date
@@ -3575,9 +2346,7 @@ export const UsTestingDocument = gql`
       totalTestResults
       negativeIncrease
       positiveIncrease
-      stateName
       negative
-      totalTestResultsIncrease
       positive
       inconclusive
       inconclusiveIncrease
@@ -3622,9 +2391,9 @@ export const CountyCompareToParentsDocument = gql`
         deaths
       }
     }
-    poplation: allStatePopulations {
+    allUsSummaryViews {
       nodes {
-        pop2020
+        population
       }
     }
   }
@@ -3646,20 +2415,16 @@ export const CountyCompareToParentsDocument = gql`
     }
   }
   state: query {
-    allFipsCodeCounties(condition: {countyFipsCode: $county_fips_code}) {
+    allCountyMetas(condition: {countyFipsCode: $county_fips_code}) {
       nodes {
-        fipsCodeStateByStateFipsCode {
-          statePopulationsByStateFipsCode {
-            nodes {
-              stateFipsCode
-              pop2020
-            }
-          }
+        stateSummaryViewByStateFipsCode {
+          stateName
+          stateAbbr
+          stateFipsCode
+          population
           stateCasesAllsByStateFipsCode {
             nodes {
               date
-              stateName
-              stateFipsCode
               confirmedCases
               deaths
             }
@@ -3805,15 +2570,12 @@ export const InfoSummaryByCountyFipsDocument = gql`
       countyName
       confirmedCases
       confirmedIncrease
-      fipsCodeStateByStateFipsCode {
-        stateSummaryViewsByStateFipsCode {
-          nodes {
-            stateName
-            stateFipsCode
-            confirmedCases
-            confirmedIncrease
-          }
-        }
+      stateSummaryViewByStateFipsCode {
+        stateName
+        stateAbbr
+        stateFipsCode
+        confirmedCases
+        confirmedIncrease
       }
     }
   }
@@ -3855,12 +2617,11 @@ export type InfoSummaryByCountyFipsLazyQueryHookResult = ReturnType<typeof useIn
 export type InfoSummaryByCountyFipsQueryResult = Apollo.QueryResult<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>;
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
-  allFipsCodeStates(condition: {stateFipsCode: $fips}) {
+  allStateSummaryViews(condition: {stateFipsCode: $fips}) {
     nodes {
-      statePostalAbbreviation
+      stateAbbr
       stateName
       stateFipsCode
-      stateGnisid
     }
   }
 }
@@ -3894,10 +2655,10 @@ export type StateByFipsQueryHookResult = ReturnType<typeof useStateByFipsQuery>;
 export type StateByFipsLazyQueryHookResult = ReturnType<typeof useStateByFipsLazyQuery>;
 export type StateByFipsQueryResult = Apollo.QueryResult<StateByFipsQuery, StateByFipsQueryVariables>;
 export const StateByFipsDetailsDocument = gql`
-    query StateByFipsDetails($fips: String) {
-  allFipsCodeStates(condition: {stateFipsCode: $fips}) {
+    query StateByFipsDetails($state_fips_code: String) {
+  allStateSummaryViews(condition: {stateFipsCode: $state_fips_code}) {
     nodes {
-      statePostalAbbreviation
+      stateAbbr
       stateName
       stateFipsCode
       countiesTable: countySummaryViewsByStateFipsCode {
@@ -3953,7 +2714,7 @@ export const StateByFipsDetailsDocument = gql`
  * @example
  * const { data, loading, error } = useStateByFipsDetailsQuery({
  *   variables: {
- *      fips: // value for 'fips'
+ *      state_fips_code: // value for 'state_fips_code'
  *   },
  * });
  */
@@ -3970,14 +2731,22 @@ export type StateByFipsDetailsLazyQueryHookResult = ReturnType<typeof useStateBy
 export type StateByFipsDetailsQueryResult = Apollo.QueryResult<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>;
 export const StateSubRegionDocument = gql`
     query StateSubRegion($state_fips_code: String) {
-  allFipsCodeCounties(condition: {stateFipsCode: $state_fips_code}) {
+  allStateSummaryViews(condition: {stateFipsCode: $state_fips_code}) {
     nodes {
-      countyFipsCode
-      areaName
-      countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC, first: 180) {
+      stateName
+      stateAbbr
+      stateFipsCode
+      population
+      countySummaryViewsByStateFipsCode {
         nodes {
-          date
-          confirmedCases
+          countyName
+          countyFipsCode
+          countyCasesAllsByCountyFipsCode {
+            nodes {
+              date
+              confirmedCases
+            }
+          }
         }
       }
     }
@@ -4014,14 +2783,13 @@ export type StateSubRegionLazyQueryHookResult = ReturnType<typeof useStateSubReg
 export type StateSubRegionQueryResult = Apollo.QueryResult<StateSubRegionQuery, StateSubRegionQueryVariables>;
 export const StatesDocument = gql`
     query States {
-  allFipsCodeStates {
+  allStateSummaryViews {
     nodes {
-      statePostalAbbreviation
+      stateAbbr
       stateName
-      stateGnisid
-      fipsCodeCountiesByStateFipsCode {
+      countySummaryViewsByStateFipsCode {
         nodes {
-          areaName
+          countyName
         }
       }
     }

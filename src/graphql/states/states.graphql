@@ -1,12 +1,11 @@
 query States {
-  allFipsCodeStates {
+  allStateSummaryViews {
     nodes {
-      statePostalAbbreviation
+      stateAbbr
       stateName
-      stateGnisid
-      fipsCodeCountiesByStateFipsCode {
+      countySummaryViewsByStateFipsCode {
         nodes {
-          areaName
+          countyName
         }
       }
     }

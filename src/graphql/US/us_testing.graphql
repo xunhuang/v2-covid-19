@@ -5,9 +5,7 @@ query USTesting {
       totalTestResults
       negativeIncrease
       positiveIncrease
-      stateName
       negative
-      totalTestResultsIncrease
       positive
       inconclusive
       inconclusiveIncrease

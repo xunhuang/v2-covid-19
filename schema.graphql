@@ -457,15 +457,274 @@ type CountyCasesAll {
   countyFipsCode: String
   confirmedCases: Int
   deaths: Int
+
+  """
+  Reads a single `StateSummaryView` that is related to this `CountyCasesAll`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """
+  Reads a single `CountySummaryView` that is related to this `CountyCasesAll`.
+  """
+  countySummaryViewByCountyFipsCode: CountySummaryView
 }
 
-"""A `CountyCasesAll` edge in the connection."""
-type CountyCasesAllsEdge {
+type StateSummaryView {
+  stateName: String
+  stateAbbr: String
+  stateFipsCode: String
+  confirmedCases: Int
+  confirmedIncrease: Int
+  deaths: Int
+  deathIncrease: Int
+  totalTestResults: Int
+  positive: Int
+  negative: Int
+  positiveIncrease: Int
+  negativeIncrease: Int
+  updated: String
+  population: Int
+
+  """Reads a single `StateMeta` that is related to this `StateSummaryView`."""
+  stateMetaByStateFipsCode: StateMeta
+
+  """Reads and enables pagination through a set of `CountyCasesAll`."""
+  countyCasesAllsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyCasesAll`."""
+    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyCasesAllCondition
+  ): CountyCasesAllsConnection!
+
+  """Reads and enables pagination through a set of `CountyMeta`."""
+  countyMetasByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyMeta`."""
+    orderBy: [CountyMetasOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyMetaCondition
+  ): CountyMetasConnection!
+
+  """Reads and enables pagination through a set of `CountySummaryView`."""
+  countySummaryViewsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountySummaryView`."""
+    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountySummaryViewCondition
+  ): CountySummaryViewsConnection!
+
+  """Reads and enables pagination through a set of `StateCasesAll`."""
+  stateCasesAllsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StateCasesAll`."""
+    orderBy: [StateCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StateCasesAllCondition
+  ): StateCasesAllsConnection!
+
+  """Reads and enables pagination through a set of `StatesHospitalization`."""
+  statesHospitalizationsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatesHospitalization`."""
+    orderBy: [StatesHospitalizationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatesHospitalizationCondition
+  ): StatesHospitalizationsConnection!
+
+  """Reads and enables pagination through a set of `StatesTesting`."""
+  statesTestingsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StatesTesting`."""
+    orderBy: [StatesTestingsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StatesTestingCondition
+  ): StatesTestingsConnection!
+}
+
+type StateMeta {
+  stateFipsCode: String
+  stateAbbr: String
+  stateName: String
+  population: Int
+
+  """Reads and enables pagination through a set of `StateSummaryView`."""
+  stateSummaryViewsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StateSummaryView`."""
+    orderBy: [StateSummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StateSummaryViewCondition
+  ): StateSummaryViewsConnection!
+}
+
+"""A connection to a list of `StateSummaryView` values."""
+type StateSummaryViewsConnection {
+  """A list of `StateSummaryView` objects."""
+  nodes: [StateSummaryView]!
+
+  """
+  A list of edges which contains the `StateSummaryView` and cursor to aid in pagination.
+  """
+  edges: [StateSummaryViewsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `StateSummaryView` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `StateSummaryView` edge in the connection."""
+type StateSummaryViewsEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `CountyCasesAll` at the end of the edge."""
-  node: CountyCasesAll
+  """The `StateSummaryView` at the end of the edge."""
+  node: StateSummaryView
 }
 
 """A location in a connection that can be used for resuming pagination."""
@@ -484,6 +743,87 @@ type PageInfo {
 
   """When paginating forwards, the cursor to continue."""
   endCursor: Cursor
+}
+
+"""Methods to use when ordering `StateSummaryView`."""
+enum StateSummaryViewsOrderBy {
+  NATURAL
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_ABBR_ASC
+  STATE_ABBR_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  CONFIRMED_INCREASE_ASC
+  CONFIRMED_INCREASE_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+  DEATH_INCREASE_ASC
+  DEATH_INCREASE_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
+  UPDATED_ASC
+  UPDATED_DESC
+  POPULATION_ASC
+  POPULATION_DESC
+}
+
+"""
+A condition to be used against `StateSummaryView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StateSummaryViewCondition {
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateAbbr` field."""
+  stateAbbr: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `confirmedIncrease` field."""
+  confirmedIncrease: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+
+  """Checks for equality with the object’s `deathIncrease` field."""
+  deathIncrease: Int
+
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
+
+  """Checks for equality with the object’s `updated` field."""
+  updated: String
+
+  """Checks for equality with the object’s `population` field."""
+  population: Int
 }
 
 """Methods to use when ordering `CountyCasesAll`."""
@@ -560,334 +900,10 @@ type CountyMeta {
   msaName: String
   msaUrlName: String
 
-  """Reads and enables pagination through a set of `CountySummaryView`."""
-  countySummaryViewsByCountyFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountySummaryView`."""
-    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountySummaryViewCondition
-  ): CountySummaryViewsConnection!
-}
-
-"""A connection to a list of `CountySummaryView` values."""
-type CountySummaryViewsConnection {
-  """A list of `CountySummaryView` objects."""
-  nodes: [CountySummaryView]!
-
   """
-  A list of edges which contains the `CountySummaryView` and cursor to aid in pagination.
+  Reads a single `StateSummaryView` that is related to this `CountyMeta`.
   """
-  edges: [CountySummaryViewsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `CountySummaryView` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type CountySummaryView {
-  stateName: String
-  countyName: String
-  countyFipsCode: String
-  stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  deaths: Int
-  deathIncrease: Int
-  population: Int
-  updated: String
-
-  """
-  Reads a single `CountyMeta` that is related to this `CountySummaryView`.
-  """
-  countyMetaByCountyFipsCode: CountyMeta
-
-  """
-  Reads a single `StateMeta` that is related to this `CountySummaryView`.
-  """
-  stateMetaByStateFipsCode: StateMeta
-}
-
-type StateMeta {
-  stateFipsCode: String
-  stateAbbr: String
-  stateName: String
-  population: Int
-
-  """Reads and enables pagination through a set of `CountySummaryView`."""
-  countySummaryViewsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CountySummaryView`."""
-    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CountySummaryViewCondition
-  ): CountySummaryViewsConnection!
-
-  """Reads and enables pagination through a set of `StateSummaryView`."""
-  stateSummaryViewsByStateFipsCode(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `StateSummaryView`."""
-    orderBy: [StateSummaryViewsOrderBy!] = [NATURAL]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: StateSummaryViewCondition
-  ): StateSummaryViewsConnection!
-}
-
-"""Methods to use when ordering `CountySummaryView`."""
-enum CountySummaryViewsOrderBy {
-  NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
-  POPULATION_ASC
-  POPULATION_DESC
-  UPDATED_ASC
-  UPDATED_DESC
-}
-
-"""
-A condition to be used against `CountySummaryView` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CountySummaryViewCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
-
-  """Checks for equality with the object’s `updated` field."""
-  updated: String
-}
-
-"""A connection to a list of `StateSummaryView` values."""
-type StateSummaryViewsConnection {
-  """A list of `StateSummaryView` objects."""
-  nodes: [StateSummaryView]!
-
-  """
-  A list of edges which contains the `StateSummaryView` and cursor to aid in pagination.
-  """
-  edges: [StateSummaryViewsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `StateSummaryView` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type StateSummaryView {
-  stateName: String
-  stateFipsCode: String
-  confirmedCases: Int
-  confirmedIncrease: Int
-  deaths: Int
-  deathIncrease: Int
-  totalTestResults: Int
-  positive: Int
-  negative: Int
-  positiveIncrease: Int
-  negativeIncrease: Int
-  updated: String
-  population: Int
-
-  """Reads a single `StateMeta` that is related to this `StateSummaryView`."""
-  stateMetaByStateFipsCode: StateMeta
-}
-
-"""A `StateSummaryView` edge in the connection."""
-type StateSummaryViewsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StateSummaryView` at the end of the edge."""
-  node: StateSummaryView
-}
-
-"""Methods to use when ordering `StateSummaryView`."""
-enum StateSummaryViewsOrderBy {
-  NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
-  TOTAL_TEST_RESULTS_ASC
-  TOTAL_TEST_RESULTS_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  NEGATIVE_ASC
-  NEGATIVE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
-  NEGATIVE_INCREASE_ASC
-  NEGATIVE_INCREASE_DESC
-  UPDATED_ASC
-  UPDATED_DESC
-  POPULATION_ASC
-  POPULATION_DESC
-}
-
-"""
-A condition to be used against `StateSummaryView` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StateSummaryViewCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
-
-  """Checks for equality with the object’s `totalTestResults` field."""
-  totalTestResults: Int
-
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `negative` field."""
-  negative: Int
-
-  """Checks for equality with the object’s `positiveIncrease` field."""
-  positiveIncrease: Int
-
-  """Checks for equality with the object’s `negativeIncrease` field."""
-  negativeIncrease: Int
-
-  """Checks for equality with the object’s `updated` field."""
-  updated: String
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
-}
-
-"""A `CountySummaryView` edge in the connection."""
-type CountySummaryViewsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CountySummaryView` at the end of the edge."""
-  node: CountySummaryView
+  stateSummaryViewByStateFipsCode: StateSummaryView
 }
 
 """A `CountyMeta` edge in the connection."""
@@ -953,6 +969,465 @@ input CountyMetaCondition {
 
   """Checks for equality with the object’s `msaUrlName` field."""
   msaUrlName: String
+}
+
+"""A connection to a list of `CountySummaryView` values."""
+type CountySummaryViewsConnection {
+  """A list of `CountySummaryView` objects."""
+  nodes: [CountySummaryView]!
+
+  """
+  A list of edges which contains the `CountySummaryView` and cursor to aid in pagination.
+  """
+  edges: [CountySummaryViewsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CountySummaryView` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+""" """
+type CountySummaryView {
+  stateName: String
+  countyName: String
+  countyFipsCode: String
+  stateFipsCode: String
+  confirmedCases: Int
+  confirmedIncrease: Int
+  deaths: Int
+  deathIncrease: Int
+  population: Int
+  updated: String
+
+  """
+  Reads a single `StateSummaryView` that is related to this `CountySummaryView`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """Reads and enables pagination through a set of `CountyCasesAll`."""
+  countyCasesAllsByCountyFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyCasesAll`."""
+    orderBy: [CountyCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyCasesAllCondition
+  ): CountyCasesAllsConnection!
+}
+
+"""A `CountySummaryView` edge in the connection."""
+type CountySummaryViewsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountySummaryView` at the end of the edge."""
+  node: CountySummaryView
+}
+
+"""Methods to use when ordering `CountySummaryView`."""
+enum CountySummaryViewsOrderBy {
+  NATURAL
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  COUNTY_NAME_ASC
+  COUNTY_NAME_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  CONFIRMED_INCREASE_ASC
+  CONFIRMED_INCREASE_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+  DEATH_INCREASE_ASC
+  DEATH_INCREASE_DESC
+  POPULATION_ASC
+  POPULATION_DESC
+  UPDATED_ASC
+  UPDATED_DESC
+}
+
+"""
+A condition to be used against `CountySummaryView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountySummaryViewCondition {
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `countyName` field."""
+  countyName: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `confirmedIncrease` field."""
+  confirmedIncrease: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+
+  """Checks for equality with the object’s `deathIncrease` field."""
+  deathIncrease: Int
+
+  """Checks for equality with the object’s `population` field."""
+  population: Int
+
+  """Checks for equality with the object’s `updated` field."""
+  updated: String
+}
+
+"""A connection to a list of `StateCasesAll` values."""
+type StateCasesAllsConnection {
+  """A list of `StateCasesAll` objects."""
+  nodes: [StateCasesAll]!
+
+  """
+  A list of edges which contains the `StateCasesAll` and cursor to aid in pagination.
+  """
+  edges: [StateCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `StateCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type StateCasesAll {
+  date: String
+  stateName: String
+  stateFipsCode: String
+  confirmedCases: Int
+  deaths: Int
+
+  """
+  Reads a single `StateSummaryView` that is related to this `StateCasesAll`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+}
+
+"""A `StateCasesAll` edge in the connection."""
+type StateCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StateCasesAll` at the end of the edge."""
+  node: StateCasesAll
+}
+
+"""Methods to use when ordering `StateCasesAll`."""
+enum StateCasesAllsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `StateCasesAll` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StateCasesAllCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""A connection to a list of `StatesHospitalization` values."""
+type StatesHospitalizationsConnection {
+  """A list of `StatesHospitalization` objects."""
+  nodes: [StatesHospitalization]!
+
+  """
+  A list of edges which contains the `StatesHospitalization` and cursor to aid in pagination.
+  """
+  edges: [StatesHospitalizationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `StatesHospitalization` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type StatesHospitalization {
+  date: String
+  adultIcuBedUsed: Int
+  inIcuCurrently: Int
+  hospitalizedCurrently: Int
+  adultIcuBedsCapacity: Int
+  inpatientBedsUsed: Int
+  inpatientBedsCapacity: Int
+  state: String
+  statePostalAbbreviation: String
+  stateName: String
+  stateGnisid: String
+  stateFipsCode: String
+
+  """
+  Reads a single `StateSummaryView` that is related to this `StatesHospitalization`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+}
+
+"""A `StatesHospitalization` edge in the connection."""
+type StatesHospitalizationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StatesHospitalization` at the end of the edge."""
+  node: StatesHospitalization
+}
+
+"""Methods to use when ordering `StatesHospitalization`."""
+enum StatesHospitalizationsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  ADULT_ICU_BED_USED_ASC
+  ADULT_ICU_BED_USED_DESC
+  IN_ICU_CURRENTLY_ASC
+  IN_ICU_CURRENTLY_DESC
+  HOSPITALIZED_CURRENTLY_ASC
+  HOSPITALIZED_CURRENTLY_DESC
+  ADULT_ICU_BEDS_CAPACITY_ASC
+  ADULT_ICU_BEDS_CAPACITY_DESC
+  INPATIENT_BEDS_USED_ASC
+  INPATIENT_BEDS_USED_DESC
+  INPATIENT_BEDS_CAPACITY_ASC
+  INPATIENT_BEDS_CAPACITY_DESC
+  STATE_ASC
+  STATE_DESC
+  STATE_POSTAL_ABBREVIATION_ASC
+  STATE_POSTAL_ABBREVIATION_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_GNISID_ASC
+  STATE_GNISID_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+}
+
+"""
+A condition to be used against `StatesHospitalization` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input StatesHospitalizationCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `adultIcuBedUsed` field."""
+  adultIcuBedUsed: Int
+
+  """Checks for equality with the object’s `inIcuCurrently` field."""
+  inIcuCurrently: Int
+
+  """Checks for equality with the object’s `hospitalizedCurrently` field."""
+  hospitalizedCurrently: Int
+
+  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
+  adultIcuBedsCapacity: Int
+
+  """Checks for equality with the object’s `inpatientBedsUsed` field."""
+  inpatientBedsUsed: Int
+
+  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
+  inpatientBedsCapacity: Int
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `statePostalAbbreviation` field."""
+  statePostalAbbreviation: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateGnisid` field."""
+  stateGnisid: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+}
+
+"""A connection to a list of `StatesTesting` values."""
+type StatesTestingsConnection {
+  """A list of `StatesTesting` objects."""
+  nodes: [StatesTesting]!
+
+  """
+  A list of edges which contains the `StatesTesting` and cursor to aid in pagination.
+  """
+  edges: [StatesTestingsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `StatesTesting` you could get from the connection."""
+  totalCount: Int!
+}
+
+type StatesTesting {
+  date: String
+  totalTestResults: Int
+  negativeIncrease: Int
+  positiveIncrease: Int
+  stateName: String
+  negative: Int
+  totalTestResultsIncrease: Int
+  positive: Int
+  inconclusive: Int
+  inconclusiveIncrease: Int
+  state: String
+  stateFipsCode: String
+
+  """
+  Reads a single `StateSummaryView` that is related to this `StatesTesting`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+}
+
+"""A `StatesTesting` edge in the connection."""
+type StatesTestingsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StatesTesting` at the end of the edge."""
+  node: StatesTesting
+}
+
+"""Methods to use when ordering `StatesTesting`."""
+enum StatesTestingsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  TOTAL_TEST_RESULTS_INCREASE_ASC
+  TOTAL_TEST_RESULTS_INCREASE_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  INCONCLUSIVE_ASC
+  INCONCLUSIVE_DESC
+  INCONCLUSIVE_INCREASE_ASC
+  INCONCLUSIVE_INCREASE_DESC
+  STATE_ASC
+  STATE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+}
+
+"""
+A condition to be used against `StatesTesting` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StatesTestingCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """
+  Checks for equality with the object’s `totalTestResultsIncrease` field.
+  """
+  totalTestResultsIncrease: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `inconclusive` field."""
+  inconclusive: Int
+
+  """Checks for equality with the object’s `inconclusiveIncrease` field."""
+  inconclusiveIncrease: Int
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+}
+
+"""A `CountyCasesAll` edge in the connection."""
+type CountyCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyCasesAll` at the end of the edge."""
+  node: CountyCasesAll
 }
 
 """A connection to a list of `MsaCasesAll` values."""
@@ -1107,76 +1582,6 @@ input MsaMetaCondition {
   population: BigInt
 }
 
-"""A connection to a list of `StateCasesAll` values."""
-type StateCasesAllsConnection {
-  """A list of `StateCasesAll` objects."""
-  nodes: [StateCasesAll]!
-
-  """
-  A list of edges which contains the `StateCasesAll` and cursor to aid in pagination.
-  """
-  edges: [StateCasesAllsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `StateCasesAll` you could get from the connection."""
-  totalCount: Int!
-}
-
-type StateCasesAll {
-  date: String
-  stateName: String
-  stateFipsCode: String
-  confirmedCases: Int
-  deaths: Int
-}
-
-"""A `StateCasesAll` edge in the connection."""
-type StateCasesAllsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StateCasesAll` at the end of the edge."""
-  node: StateCasesAll
-}
-
-"""Methods to use when ordering `StateCasesAll`."""
-enum StateCasesAllsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-}
-
-"""
-A condition to be used against `StateCasesAll` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StateCasesAllCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-}
-
 """A connection to a list of `StateMeta` values."""
 type StateMetasConnection {
   """A list of `StateMeta` objects."""
@@ -1232,234 +1637,6 @@ input StateMetaCondition {
 
   """Checks for equality with the object’s `population` field."""
   population: Int
-}
-
-"""A connection to a list of `StatesHospitalization` values."""
-type StatesHospitalizationsConnection {
-  """A list of `StatesHospitalization` objects."""
-  nodes: [StatesHospitalization]!
-
-  """
-  A list of edges which contains the `StatesHospitalization` and cursor to aid in pagination.
-  """
-  edges: [StatesHospitalizationsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `StatesHospitalization` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type StatesHospitalization {
-  date: String
-  adultIcuBedUsed: Int
-  inIcuCurrently: Int
-  hospitalizedCurrently: Int
-  adultIcuBedsCapacity: Int
-  inpatientBedsUsed: Int
-  inpatientBedsCapacity: Int
-  state: String
-  statePostalAbbreviation: String
-  stateName: String
-  stateGnisid: String
-  stateFipsCode: String
-}
-
-"""A `StatesHospitalization` edge in the connection."""
-type StatesHospitalizationsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StatesHospitalization` at the end of the edge."""
-  node: StatesHospitalization
-}
-
-"""Methods to use when ordering `StatesHospitalization`."""
-enum StatesHospitalizationsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  ADULT_ICU_BED_USED_ASC
-  ADULT_ICU_BED_USED_DESC
-  IN_ICU_CURRENTLY_ASC
-  IN_ICU_CURRENTLY_DESC
-  HOSPITALIZED_CURRENTLY_ASC
-  HOSPITALIZED_CURRENTLY_DESC
-  ADULT_ICU_BEDS_CAPACITY_ASC
-  ADULT_ICU_BEDS_CAPACITY_DESC
-  INPATIENT_BEDS_USED_ASC
-  INPATIENT_BEDS_USED_DESC
-  INPATIENT_BEDS_CAPACITY_ASC
-  INPATIENT_BEDS_CAPACITY_DESC
-  STATE_ASC
-  STATE_DESC
-  STATE_POSTAL_ABBREVIATION_ASC
-  STATE_POSTAL_ABBREVIATION_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_GNISID_ASC
-  STATE_GNISID_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `StatesHospitalization` object types. All fields
-are tested for equality and combined with a logical ‘and.’
-"""
-input StatesHospitalizationCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `adultIcuBedUsed` field."""
-  adultIcuBedUsed: Int
-
-  """Checks for equality with the object’s `inIcuCurrently` field."""
-  inIcuCurrently: Int
-
-  """Checks for equality with the object’s `hospitalizedCurrently` field."""
-  hospitalizedCurrently: Int
-
-  """Checks for equality with the object’s `adultIcuBedsCapacity` field."""
-  adultIcuBedsCapacity: Int
-
-  """Checks for equality with the object’s `inpatientBedsUsed` field."""
-  inpatientBedsUsed: Int
-
-  """Checks for equality with the object’s `inpatientBedsCapacity` field."""
-  inpatientBedsCapacity: Int
-
-  """Checks for equality with the object’s `state` field."""
-  state: String
-
-  """Checks for equality with the object’s `statePostalAbbreviation` field."""
-  statePostalAbbreviation: String
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateGnisid` field."""
-  stateGnisid: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-}
-
-"""A connection to a list of `StatesTesting` values."""
-type StatesTestingsConnection {
-  """A list of `StatesTesting` objects."""
-  nodes: [StatesTesting]!
-
-  """
-  A list of edges which contains the `StatesTesting` and cursor to aid in pagination.
-  """
-  edges: [StatesTestingsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `StatesTesting` you could get from the connection."""
-  totalCount: Int!
-}
-
-type StatesTesting {
-  date: String
-  totalTestResults: Int
-  negativeIncrease: Int
-  positiveIncrease: Int
-  stateName: String
-  negative: Int
-  totalTestResultsIncrease: Int
-  positive: Int
-  inconclusive: Int
-  inconclusiveIncrease: Int
-  state: String
-  stateFipsCode: String
-}
-
-"""A `StatesTesting` edge in the connection."""
-type StatesTestingsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StatesTesting` at the end of the edge."""
-  node: StatesTesting
-}
-
-"""Methods to use when ordering `StatesTesting`."""
-enum StatesTestingsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  TOTAL_TEST_RESULTS_ASC
-  TOTAL_TEST_RESULTS_DESC
-  NEGATIVE_INCREASE_ASC
-  NEGATIVE_INCREASE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  NEGATIVE_ASC
-  NEGATIVE_DESC
-  TOTAL_TEST_RESULTS_INCREASE_ASC
-  TOTAL_TEST_RESULTS_INCREASE_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  INCONCLUSIVE_ASC
-  INCONCLUSIVE_DESC
-  INCONCLUSIVE_INCREASE_ASC
-  INCONCLUSIVE_INCREASE_DESC
-  STATE_ASC
-  STATE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-}
-
-"""
-A condition to be used against `StatesTesting` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StatesTestingCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `totalTestResults` field."""
-  totalTestResults: Int
-
-  """Checks for equality with the object’s `negativeIncrease` field."""
-  negativeIncrease: Int
-
-  """Checks for equality with the object’s `positiveIncrease` field."""
-  positiveIncrease: Int
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `negative` field."""
-  negative: Int
-
-  """
-  Checks for equality with the object’s `totalTestResultsIncrease` field.
-  """
-  totalTestResultsIncrease: Int
-
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `inconclusive` field."""
-  inconclusive: Int
-
-  """Checks for equality with the object’s `inconclusiveIncrease` field."""
-  inconclusiveIncrease: Int
-
-  """Checks for equality with the object’s `state` field."""
-  state: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
 }
 
 """A connection to a list of `UsCasesAll` values."""
@@ -1871,6 +2048,16 @@ type CreateCountyCasesAllPayload {
   """
   query: Query
 
+  """
+  Reads a single `StateSummaryView` that is related to this `CountyCasesAll`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """
+  Reads a single `CountySummaryView` that is related to this `CountyCasesAll`.
+  """
+  countySummaryViewByCountyFipsCode: CountySummaryView
+
   """An edge for our `CountyCasesAll`. May be used by Relay 1."""
   countyCasesAllEdge(
     """The method to use when ordering `CountyCasesAll`."""
@@ -1916,6 +2103,11 @@ type CreateCountyMetaPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """
+  Reads a single `StateSummaryView` that is related to this `CountyMeta`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
 
   """An edge for our `CountyMeta`. May be used by Relay 1."""
   countyMetaEdge(
@@ -2054,6 +2246,11 @@ type CreateStateCasesAllPayload {
   """
   query: Query
 
+  """
+  Reads a single `StateSummaryView` that is related to this `StateCasesAll`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
   """An edge for our `StateCasesAll`. May be used by Relay 1."""
   stateCasesAllEdge(
     """The method to use when ordering `StateCasesAll`."""
@@ -2141,6 +2338,11 @@ type CreateStatesHospitalizationPayload {
   """
   query: Query
 
+  """
+  Reads a single `StateSummaryView` that is related to this `StatesHospitalization`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
   """An edge for our `StatesHospitalization`. May be used by Relay 1."""
   statesHospitalizationEdge(
     """The method to use when ordering `StatesHospitalization`."""
@@ -2191,6 +2393,11 @@ type CreateStatesTestingPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """
+  Reads a single `StateSummaryView` that is related to this `StatesTesting`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
 
   """An edge for our `StatesTesting`. May be used by Relay 1."""
   statesTestingEdge(

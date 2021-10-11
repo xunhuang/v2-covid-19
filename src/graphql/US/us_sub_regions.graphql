@@ -1,9 +1,8 @@
 query USSubRegions {
-  allFipsCodeStates {
+  allStateSummaryViews {
     nodes {
-      statePostalAbbreviation
       stateName
-      stateGnisid
+      stateAbbr
       stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 180) {
         nodes {
           date

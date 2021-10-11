@@ -7,12 +7,13 @@ query CountyCompareToParents($county_fips_code: String) {
         deaths
       }
     }
-    poplation: allStatePopulations {
+    allUsSummaryViews {
       nodes {
-        pop2020
+        population
       }
     }
   }
+
   county: query {
     summary: allCountySummaryViews(
       condition: { countyFipsCode: $county_fips_code }
@@ -35,20 +36,17 @@ query CountyCompareToParents($county_fips_code: String) {
     }
   }
   state: query {
-    allFipsCodeCounties(condition: { countyFipsCode: $county_fips_code }) {
+    allCountyMetas(condition: { countyFipsCode: $county_fips_code }) {
       nodes {
-        fipsCodeStateByStateFipsCode {
-          statePopulationsByStateFipsCode {
-            nodes {
-              stateFipsCode
-              pop2020
-            }
-          }
+        stateSummaryViewByStateFipsCode {
+          stateName
+          stateAbbr
+          stateFipsCode
+          population
           stateCasesAllsByStateFipsCode {
             nodes {
               date
-              stateName
-              stateFipsCode
+
               confirmedCases
               deaths
             }

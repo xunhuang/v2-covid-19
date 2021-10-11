@@ -5,12 +5,13 @@ query SearchBarData {
       stateName
       countyFipsCode
       confirmedCases
-      state: fipsCodeStateByStateFipsCode {
-        statePostalAbbreviation
+
+      state: stateSummaryViewByStateFipsCode {
+        stateAbbr
       }
     }
   }
-  states: allStatesSummaries {
+  states: allStateSummaryViews {
     nodes {
       stateName
       stateFipsCode

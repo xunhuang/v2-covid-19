@@ -2,6 +2,7 @@ DROP MATERIALIZED VIEW if exists state_summary_view;CREATE MATERIALIZED VIEW sta
 SELECT
 
     state_meta.state_name as state_name,
+    state_meta.state_abbr as state_abbr,
     state_meta.state_fips_code as state_fips_code,
     cases.confirmed_cases as confirmed_cases,
     cases.confirmed_increase as confirmed_increase,

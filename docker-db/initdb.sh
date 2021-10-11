@@ -107,4 +107,8 @@ EOF
    time psql -Atx $CONN < changequery.sql
 }
 
+update_relationship() {
+   time psql -Atx $CONN < relationship.sql
+}
+
 $1

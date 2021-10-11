@@ -1,12 +1,20 @@
 query StateSubRegion($state_fips_code: String) {
-  allFipsCodeCounties(condition: { stateFipsCode: $state_fips_code }) {
+  allStateSummaryViews(condition: { stateFipsCode: $state_fips_code }) {
     nodes {
-      countyFipsCode
-      areaName
-      countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC, first: 180) {
+      stateName
+      stateAbbr
+      stateFipsCode
+      population
+      countySummaryViewsByStateFipsCode {
         nodes {
-          date
-          confirmedCases
+          countyName
+          countyFipsCode
+          countyCasesAllsByCountyFipsCode {
+            nodes {
+              date
+              confirmedCases
+            }
+          }
         }
       }
     }
