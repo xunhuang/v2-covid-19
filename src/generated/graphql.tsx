@@ -114,6 +114,8 @@ export type CountyMeta = {
   __typename?: 'CountyMeta';
   countyFipsCode?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
   msaId?: Maybe<Scalars['String']>;
   msaName?: Maybe<Scalars['String']>;
   msaUrlName?: Maybe<Scalars['String']>;
@@ -134,6 +136,10 @@ export type CountyMetaCondition = {
   countyFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `countyName` field. */
   countyName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `latitude` field. */
+  latitude?: Maybe<Scalars['Float']>;
+  /** Checks for equality with the object’s `longitude` field. */
+  longitude?: Maybe<Scalars['Float']>;
   /** Checks for equality with the object’s `msaId` field. */
   msaId?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `msaName` field. */
@@ -154,6 +160,8 @@ export type CountyMetaCondition = {
 export type CountyMetaInput = {
   countyFipsCode?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
   msaId?: Maybe<Scalars['String']>;
   msaName?: Maybe<Scalars['String']>;
   msaUrlName?: Maybe<Scalars['String']>;
@@ -191,6 +199,10 @@ export enum CountyMetasOrderBy {
   CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
   CountyNameAsc = 'COUNTY_NAME_ASC',
   CountyNameDesc = 'COUNTY_NAME_DESC',
+  LatitudeAsc = 'LATITUDE_ASC',
+  LatitudeDesc = 'LATITUDE_DESC',
+  LongitudeAsc = 'LONGITUDE_ASC',
+  LongitudeDesc = 'LONGITUDE_DESC',
   MsaIdAsc = 'MSA_ID_ASC',
   MsaIdDesc = 'MSA_ID_DESC',
   MsaNameAsc = 'MSA_NAME_ASC',
@@ -218,6 +230,8 @@ export type CountySummaryView = {
   countyName?: Maybe<Scalars['String']>;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
   population?: Maybe<Scalars['Int']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
@@ -254,6 +268,10 @@ export type CountySummaryViewCondition = {
   deathIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `deaths` field. */
   deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `latitude` field. */
+  latitude?: Maybe<Scalars['Float']>;
+  /** Checks for equality with the object’s `longitude` field. */
+  longitude?: Maybe<Scalars['Float']>;
   /** Checks for equality with the object’s `population` field. */
   population?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
@@ -300,6 +318,10 @@ export enum CountySummaryViewsOrderBy {
   DeathsDesc = 'DEATHS_DESC',
   DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
   DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  LatitudeAsc = 'LATITUDE_ASC',
+  LatitudeDesc = 'LATITUDE_DESC',
+  LongitudeAsc = 'LONGITUDE_ASC',
+  LongitudeDesc = 'LONGITUDE_DESC',
   Natural = 'NATURAL',
   PopulationAsc = 'POPULATION_ASC',
   PopulationDesc = 'POPULATION_DESC',
@@ -2061,6 +2083,13 @@ export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
 
+export type CountiesInSameStateQueryVariables = Exact<{
+  county_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CountiesInSameStateQuery = { __typename?: 'Query', allCountyMetas?: Maybe<{ __typename?: 'CountyMetasConnection', nodes: Array<Maybe<{ __typename?: 'CountyMeta', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, latitude?: Maybe<number>, longitude?: Maybe<number> }>> } }> }>> }> };
+
 export type CountyCompareToParentsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
 }>;
@@ -2381,6 +2410,66 @@ export function useUsTestingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type UsTestingQueryHookResult = ReturnType<typeof useUsTestingQuery>;
 export type UsTestingLazyQueryHookResult = ReturnType<typeof useUsTestingLazyQuery>;
 export type UsTestingQueryResult = Apollo.QueryResult<UsTestingQuery, UsTestingQueryVariables>;
+export const CountiesInSameStateDocument = gql`
+    query CountiesInSameState($county_fips_code: String) {
+  allCountyMetas(condition: {countyFipsCode: $county_fips_code}) {
+    nodes {
+      stateName
+      countyName
+      countyFipsCode
+      stateFipsCode
+      stateSummaryViewByStateFipsCode {
+        stateName
+        countySummaryViewsByStateFipsCode {
+          nodes {
+            stateName
+            countyName
+            countyFipsCode
+            stateFipsCode
+            confirmedCases
+            confirmedIncrease
+            deaths
+            deathIncrease
+            population
+            latitude
+            longitude
+          }
+        }
+      }
+      longitude
+      latitude
+    }
+  }
+}
+    `;
+
+/**
+ * __useCountiesInSameStateQuery__
+ *
+ * To run a query within a React component, call `useCountiesInSameStateQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCountiesInSameStateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountiesInSameStateQuery({
+ *   variables: {
+ *      county_fips_code: // value for 'county_fips_code'
+ *   },
+ * });
+ */
+export function useCountiesInSameStateQuery(baseOptions?: Apollo.QueryHookOptions<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>(CountiesInSameStateDocument, options);
+      }
+export function useCountiesInSameStateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>(CountiesInSameStateDocument, options);
+        }
+export type CountiesInSameStateQueryHookResult = ReturnType<typeof useCountiesInSameStateQuery>;
+export type CountiesInSameStateLazyQueryHookResult = ReturnType<typeof useCountiesInSameStateLazyQuery>;
+export type CountiesInSameStateQueryResult = Apollo.QueryResult<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>;
 export const CountyCompareToParentsDocument = gql`
     query CountyCompareToParents($county_fips_code: String) {
   us: query {

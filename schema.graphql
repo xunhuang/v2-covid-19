@@ -892,6 +892,8 @@ type CountyMetasConnection {
 type CountyMeta {
   countyFipsCode: String
   stateFipsCode: String
+  longitude: Float
+  latitude: Float
   population: Int
   countyName: String
   stateName: String
@@ -922,6 +924,10 @@ enum CountyMetasOrderBy {
   COUNTY_FIPS_CODE_DESC
   STATE_FIPS_CODE_ASC
   STATE_FIPS_CODE_DESC
+  LONGITUDE_ASC
+  LONGITUDE_DESC
+  LATITUDE_ASC
+  LATITUDE_DESC
   POPULATION_ASC
   POPULATION_DESC
   COUNTY_NAME_ASC
@@ -948,6 +954,12 @@ input CountyMetaCondition {
 
   """Checks for equality with the object’s `stateFipsCode` field."""
   stateFipsCode: String
+
+  """Checks for equality with the object’s `longitude` field."""
+  longitude: Float
+
+  """Checks for equality with the object’s `latitude` field."""
+  latitude: Float
 
   """Checks for equality with the object’s `population` field."""
   population: Int
@@ -996,6 +1008,8 @@ type CountySummaryView {
   countyName: String
   countyFipsCode: String
   stateFipsCode: String
+  longitude: Float
+  latitude: Float
   confirmedCases: Int
   confirmedIncrease: Int
   deaths: Int
@@ -1058,6 +1072,10 @@ enum CountySummaryViewsOrderBy {
   COUNTY_FIPS_CODE_DESC
   STATE_FIPS_CODE_ASC
   STATE_FIPS_CODE_DESC
+  LONGITUDE_ASC
+  LONGITUDE_DESC
+  LATITUDE_ASC
+  LATITUDE_DESC
   CONFIRMED_CASES_ASC
   CONFIRMED_CASES_DESC
   CONFIRMED_INCREASE_ASC
@@ -1088,6 +1106,12 @@ input CountySummaryViewCondition {
 
   """Checks for equality with the object’s `stateFipsCode` field."""
   stateFipsCode: String
+
+  """Checks for equality with the object’s `longitude` field."""
+  longitude: Float
+
+  """Checks for equality with the object’s `latitude` field."""
+  latitude: Float
 
   """Checks for equality with the object’s `confirmedCases` field."""
   confirmedCases: Int
@@ -2132,6 +2156,8 @@ input CreateCountyMetaInput {
 input CountyMetaInput {
   countyFipsCode: String
   stateFipsCode: String
+  longitude: Float
+  latitude: Float
   population: Int
   countyName: String
   stateName: String

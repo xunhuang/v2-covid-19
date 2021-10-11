@@ -42,7 +42,10 @@ init_views() {
    psql -Atx $CONN -c "CREATE UNIQUE INDEX county_summary_view_index ON county_summary_view (county_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX county_summary_view_state_index ON county_summary_view (state_fips_code);"
    psql -Atx $CONN -c "CREATE UNIQUE INDEX state_summary_view_index ON state_summary_view (state_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX state_testing_index ON states_testing (state_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX state_hospitalization_index ON states_hospitalization(state_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX ON public.state_cases_all(state_fips_code);"
+   update_relationship
 }
 
 reset_db() {
@@ -105,6 +108,7 @@ cat <<EOF >> changequery.sql
 EOF
    cat changequery.sql
    time psql -Atx $CONN < changequery.sql
+   update_relationship
 }
 
 update_relationship() {
