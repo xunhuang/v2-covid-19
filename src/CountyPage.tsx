@@ -1,3 +1,4 @@
+import { getDistance } from 'geolib';
 import { useParams } from 'react-router-dom';
 
 import { AppTabs } from './components/AppTab';
@@ -6,6 +7,7 @@ import { CountyCasesGraph } from './USPage/CountyCasesGraph';
 import { CountyCompareGraph } from './USPage/CountyCompareGraph';
 import { CountyDailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
+import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
 // export type StatePageMainProp = {
 //   state: FipsCodeState;
@@ -18,25 +20,33 @@ export const CountyPage = () => {
       county_fips_code: county_fips_code,
     },
   });
-
-  // // not very proud of this but, hey, 1 query to rule to all...
-  // const state = data?.allFipsCodeStates?.nodes[0] as unknown as FipsCodeState;
-  // const cases = data?.allFipsCodeStates?.nodes[0]
-  //   ?.cases as unknown as StateCasesAllsConnection;
-  // const counties = data?.allFipsCodeStates?.nodes[0]?.countiesTable
-  //   .nodes as unknown as Array<CountySummaryView>;
-  // const hospitalization = data?.allFipsCodeStates?.nodes[0]?.hospitalization
-  //   .nodes as unknown as Array<StatesHospitalization>;
-  // const testing = data?.allFipsCodeStates?.nodes[0]?.testing
-  //   .nodes as unknown as Array<StatesTesting>;
-
-  const county = data?.summary?.nodes[0] as unknown as CountySummaryView;
-  const cases = data?.cases?.nodes as unknown as Array<CountyCasesAll>;
-  //   ?.cases as unknown as StateCasesAllsConnection;
-
   if (loading) {
     return <div> loading </div>;
   }
+
+  const county = data?.summary?.nodes[0] as unknown as CountySummaryView;
+  const cases = data?.cases?.nodes as unknown as Array<CountyCasesAll>;
+  const countyTables = data?.countiesInstate?.nodes[0]
+    ?.stateSummaryViewByStateFipsCode?.countySummaryViewsByStateFipsCode
+    .nodes as Array<CountySummaryView>;
+
+  const longitude = data?.countiesInstate?.nodes[0]?.longitude;
+  const latitude = data?.countiesInstate?.nodes[0]?.latitude;
+  const table = countyTables ? [...countyTables] : null;
+  const nearby = table
+    ?.sort((a, b) => {
+      const dist_a = getDistance(
+        { longitude: longitude || 0, latitude: latitude || 0 },
+        { longitude: a.longitude || 0, latitude: a.latitude || 0 }
+      );
+      const dist_b = getDistance(
+        { longitude: longitude || 0, latitude: latitude || 0 },
+        { longitude: b.longitude || 0, latitude: b.latitude || 0 }
+      );
+      return dist_a - dist_b;
+    })
+    .slice(0, 10);
+
   return (
     <div>
       <InfoTab county_fips_code={county_fips_code} />
@@ -45,32 +55,12 @@ export const CountyPage = () => {
           ["At-A-Glance", <CountyCasesGraph county={county} cases={cases} />],
           ["Daily", <CountyDailyGraph county={county} cases={cases} />],
           ["Compare", <CountyCompareGraph county={county} />],
-          // ["Testing", <StateTestingGraphs state={state!} testing={testing} />],
-          // [
-          //   "Hospitalization",
-          //   <StateHospitalizationGraph
-          //     state={state!}
-          //     hospitalization={hospitalization}
-          //   />,
-          // ],
         ]}
       />
 
-      {/* <AppTabs
-        tabs={[
-          [
-            "Cases",
-            <StateCountiesCasesTable state={state!} countiesTable={counties} />,
-          ],
-          [
-            "Capita",
-            <StateCountiesCapitaTable
-              state={state!}
-              countiesTable={counties}
-            />,
-          ],
-        ]}
-      /> */}
+      <AppTabs
+        tabs={[["Cases", <StateCountiesCasesTable countiesTable={nearby!} />]]}
+      />
     </div>
   );
 };

@@ -2102,7 +2102,7 @@ export type CountyDetailsByCountyFipsQueryVariables = Exact<{
 }>;
 
 
-export type CountyDetailsByCountyFipsQuery = { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, county?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }> };
+export type CountyDetailsByCountyFipsQuery = { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, county?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }>, countiesInstate?: Maybe<{ __typename?: 'CountyMetasConnection', nodes: Array<Maybe<{ __typename?: 'CountyMeta', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, latitude?: Maybe<number>, longitude?: Maybe<number> }>> } }> }>> }> };
 
 export type InfoSummaryByStateFipsQueryVariables = Exact<{
   state_fips_code?: Maybe<Scalars['String']>;
@@ -2576,6 +2576,34 @@ export const CountyDetailsByCountyFipsDocument = gql`
       countyFipsCode
       confirmedCases
       deaths
+    }
+  }
+  countiesInstate: allCountyMetas(condition: {countyFipsCode: $county_fips_code}) {
+    nodes {
+      stateName
+      countyName
+      countyFipsCode
+      stateFipsCode
+      stateSummaryViewByStateFipsCode {
+        stateName
+        countySummaryViewsByStateFipsCode {
+          nodes {
+            stateName
+            countyName
+            countyFipsCode
+            stateFipsCode
+            confirmedCases
+            confirmedIncrease
+            deaths
+            deathIncrease
+            population
+            latitude
+            longitude
+          }
+        }
+      }
+      longitude
+      latitude
     }
   }
 }

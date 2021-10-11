@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { CountySummaryView, StateSummaryView } from '../generated/graphql';
+import { CountySummaryView } from '../generated/graphql';
 import { shortNumber, Table } from '../NewSortableTable';
 
 export const stateLink = ({ cell }: any) => {
@@ -11,14 +11,10 @@ export const stateLink = ({ cell }: any) => {
 };
 
 type CountyCasesProp = {
-  state: StateSummaryView;
   countiesTable: Array<CountySummaryView>;
 };
 
-export const StateCountiesCasesTable = ({
-  state,
-  countiesTable,
-}: CountyCasesProp) => {
+export const StateCountiesCasesTable = ({ countiesTable }: CountyCasesProp) => {
   const table = [...countiesTable].sort(
     (s1, s2) => s2?.confirmedCases! - s1?.confirmedCases!
   );
@@ -69,7 +65,6 @@ export const StateCountiesCasesTable = ({
 };
 
 export const StateCountiesCapitaTable = ({
-  state,
   countiesTable,
 }: CountyCasesProp) => {
   const table = [...countiesTable].sort(

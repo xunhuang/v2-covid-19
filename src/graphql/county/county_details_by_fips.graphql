@@ -26,4 +26,35 @@ query CountyDetailsByCountyFips($county_fips_code: String) {
       deaths
     }
   }
+
+  countiesInstate: allCountyMetas(
+    condition: { countyFipsCode: $county_fips_code }
+  ) {
+    nodes {
+      stateName
+      countyName
+      countyFipsCode
+      stateFipsCode
+      stateSummaryViewByStateFipsCode {
+        stateName
+        countySummaryViewsByStateFipsCode {
+          nodes {
+            stateName
+            countyName
+            countyFipsCode
+            stateFipsCode
+            confirmedCases
+            confirmedIncrease
+            deaths
+            deathIncrease
+            population
+            latitude
+            longitude
+          }
+        }
+      }
+      longitude
+      latitude
+    }
+  }
 }
