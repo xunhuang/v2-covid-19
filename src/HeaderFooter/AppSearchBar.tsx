@@ -3,17 +3,29 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useSearchBarDataQuery } from '../generated/graphql';
+import { useSearchBarDataLazyQuery } from '../generated/graphql';
 
 export const AppSearchBar = () => {
-  const { data, loading } = useSearchBarDataQuery();
+  const [open, setOpen] = React.useState(false);
+  const [runquery, { called, loading, data }] = useSearchBarDataLazyQuery();
+
+  React.useEffect(() => {
+    if (open) {
+      console.log("should open now");
+      runquery();
+    }
+  }, [open]);
+
   const history = useHistory();
-  if (loading) {
+  if (!called || loading) {
     return (
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        options={[{ label: "hello" }, { label: "world" }]}
+        onOpen={() => {
+          setOpen(true);
+        }}
+        options={[{ label: "loading" }]}
         // sx={{ width: 300 }}
         renderInput={(params) => (
           <TextField {...params} label="Search for County or State" />
