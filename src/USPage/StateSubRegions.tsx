@@ -12,25 +12,25 @@ export const StateSubRegions = ({ state }: StateSubRegionProp) => {
       state_fips_code: state.stateFipsCode,
     },
   });
-  const nodes = data?.allStateSummaryViews?.nodes;
+  const nodes =
+    data?.allStateSummaryViews?.nodes[0]?.countySummaryViewsByStateFipsCode
+      .nodes;
   return (
     <div>
       {loading && <div>loading</div>}
+      {!loading && <div>done loading</div>}
       {nodes?.map((county) => (
         <div>
-          {county?.countySummaryViewsByStateFipsCode.nodes &&
-            county?.countySummaryViewsByStateFipsCode.nodes.length > 100 && (
+          {county?.countyCasesAllsByCountyFipsCode.nodes.length &&
+            county?.countyCasesAllsByCountyFipsCode.nodes.length! > 100 && (
               <AdvancedGraph
-                title={
-                  county?.countySummaryViewsByStateFipsCode.nodes[0]
-                    ?.countyName! + " Confirmed Cases"
-                }
+                title={county?.countyName! + " Confirmed Cases"}
                 serieses={[
                   {
                     series: DataSeries.fromGraphQLQueryNodes(
                       "Confirmed",
-                      county?.countySummaryViewsByStateFipsCode.nodes[0]
-                        ?.countyCasesAllsByCountyFipsCode.nodes! as object[],
+                      county?.countyCasesAllsByCountyFipsCode
+                        .nodes! as object[],
                       "confirmedCases"
                     ).change(),
                     color: "green",
