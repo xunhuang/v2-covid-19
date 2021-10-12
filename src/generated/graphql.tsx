@@ -2471,6 +2471,13 @@ export type CountyDetailsByCountyFipsQueryVariables = Exact<{
 
 export type CountyDetailsByCountyFipsQuery = { __typename?: 'Query', summary?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }>, cases?: Maybe<{ __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, county?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }>, countiesInstate?: Maybe<{ __typename?: 'CountyMetasConnection', nodes: Array<Maybe<{ __typename?: 'CountyMeta', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, latitude?: Maybe<number>, longitude?: Maybe<number> }>> } }> }>> }> };
 
+export type CountyVaccinationQueryVariables = Exact<{
+  county_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CountyVaccinationQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countyVaccinationsByCountyFipsCode: { __typename?: 'CountyVaccinationsConnection', nodes: Array<Maybe<{ __typename?: 'CountyVaccination', stateFipsCode?: Maybe<string>, date?: Maybe<string>, partial?: Maybe<number>, full?: Maybe<number> }>> } }>> }> };
+
 export type InfoSummaryByStateFipsQueryVariables = Exact<{
   state_fips_code?: Maybe<Scalars['String']>;
 }>;
@@ -2989,6 +2996,54 @@ export function useCountyDetailsByCountyFipsLazyQuery(baseOptions?: Apollo.LazyQ
 export type CountyDetailsByCountyFipsQueryHookResult = ReturnType<typeof useCountyDetailsByCountyFipsQuery>;
 export type CountyDetailsByCountyFipsLazyQueryHookResult = ReturnType<typeof useCountyDetailsByCountyFipsLazyQuery>;
 export type CountyDetailsByCountyFipsQueryResult = Apollo.QueryResult<CountyDetailsByCountyFipsQuery, CountyDetailsByCountyFipsQueryVariables>;
+export const CountyVaccinationDocument = gql`
+    query CountyVaccination($county_fips_code: String) {
+  allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {
+    nodes {
+      countyName
+      countyFipsCode
+      stateName
+      stateFipsCode
+      countyVaccinationsByCountyFipsCode {
+        nodes {
+          stateFipsCode
+          date
+          partial
+          full
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useCountyVaccinationQuery__
+ *
+ * To run a query within a React component, call `useCountyVaccinationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCountyVaccinationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountyVaccinationQuery({
+ *   variables: {
+ *      county_fips_code: // value for 'county_fips_code'
+ *   },
+ * });
+ */
+export function useCountyVaccinationQuery(baseOptions?: Apollo.QueryHookOptions<CountyVaccinationQuery, CountyVaccinationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountyVaccinationQuery, CountyVaccinationQueryVariables>(CountyVaccinationDocument, options);
+      }
+export function useCountyVaccinationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountyVaccinationQuery, CountyVaccinationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountyVaccinationQuery, CountyVaccinationQueryVariables>(CountyVaccinationDocument, options);
+        }
+export type CountyVaccinationQueryHookResult = ReturnType<typeof useCountyVaccinationQuery>;
+export type CountyVaccinationLazyQueryHookResult = ReturnType<typeof useCountyVaccinationLazyQuery>;
+export type CountyVaccinationQueryResult = Apollo.QueryResult<CountyVaccinationQuery, CountyVaccinationQueryVariables>;
 export const InfoSummaryByStateFipsDocument = gql`
     query InfoSummaryByStateFips($state_fips_code: String) {
   allCountySummaryViews(

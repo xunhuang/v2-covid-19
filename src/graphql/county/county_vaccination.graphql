@@ -1,0 +1,18 @@
+query CountyVaccination($county_fips_code: String) {
+  allCountySummaryViews(condition: { countyFipsCode: $county_fips_code }) {
+    nodes {
+      countyName
+      countyFipsCode
+      stateName
+      stateFipsCode
+      countyVaccinationsByCountyFipsCode {
+        nodes {
+          stateFipsCode
+          date
+          partial
+          full
+        }
+      }
+    }
+  }
+}

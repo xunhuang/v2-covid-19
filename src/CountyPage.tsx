@@ -6,6 +6,7 @@ import { CountyCasesAll, CountySummaryView, useCountyDetailsByCountyFipsQuery } 
 import { CountyCasesGraph } from './USPage/CountyCasesGraph';
 import { CountyCompareGraph } from './USPage/CountyCompareGraph';
 import { CountyDailyGraph } from './USPage/CountyDailyGraph';
+import { CountyVaccinationGraph } from './USPage/CountyVaccinationGraph';
 import { InfoTab } from './USPage/InfoTab';
 import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
@@ -55,6 +56,7 @@ export const CountyPage = () => {
           ["At-A-Glance", <CountyCasesGraph county={county} cases={cases} />],
           ["Daily", <CountyDailyGraph county={county} cases={cases} />],
           ["Compare", <CountyCompareGraph county={county} />],
+          ["Vaccination", <CountyVaccinationGraph county={county} />],
         ]}
       />
 
