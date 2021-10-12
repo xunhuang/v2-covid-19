@@ -18,7 +18,7 @@ export const StateSubRegions = ({ state }: StateSubRegionProp) => {
   return (
     <div>
       {loading && <div>loading</div>}
-      {!loading && <div>done loading</div>}
+      {/* {!loading && <div>done loading</div>} */}
       {nodes?.map((county) => (
         <div>
           {county?.countyCasesAllsByCountyFipsCode.nodes.length &&

@@ -11,6 +11,7 @@ import { USStateCasesTable } from './USStatesCaseTable';
 import { USStateTestingTable } from './USStatesTestingTable';
 import { USSubRegions } from './USSubRegions';
 import { USTestingGraphs } from './USTestingGraph';
+import { UsVaccinationGraph } from './USVaccinationGraph';
 
 export function USTableTabs() {
   return (
@@ -31,6 +32,7 @@ export function USGraphTabs() {
         ["Daily", <UsDailyGraph />],
         ["Cases", <UsCasesGraph />],
         ["Sub Regions", <USSubRegions />],
+        ["Vaccination", <UsVaccinationGraph />],
         ["Hospitalization", <UsHospitalizationGraph />],
         ["Testing", <USTestingGraphs />],
       ]}

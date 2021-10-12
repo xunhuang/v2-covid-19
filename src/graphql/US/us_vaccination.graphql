@@ -1,0 +1,10 @@
+query USVaccination {
+  allUsVaccinations {
+    nodes {
+      date
+      full
+      partial
+      administered
+    }
+  }
+}

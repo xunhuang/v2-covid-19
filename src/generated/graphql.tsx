@@ -228,6 +228,8 @@ export type CountySummaryView = {
   countyCasesAllsByCountyFipsCode: CountyCasesAllsConnection;
   countyFipsCode?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `CountyVaccination`. */
+  countyVaccinationsByCountyFipsCode: CountyVaccinationsConnection;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
   latitude?: Maybe<Scalars['Float']>;
@@ -249,6 +251,17 @@ export type CountySummaryViewCountyCasesAllsByCountyFipsCodeArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<CountyCasesAllsOrderBy>>;
+};
+
+
+export type CountySummaryViewCountyVaccinationsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyVaccinationsOrderBy>>;
 };
 
 /**
@@ -333,6 +346,82 @@ export enum CountySummaryViewsOrderBy {
   UpdatedDesc = 'UPDATED_DESC'
 }
 
+export type CountyVaccination = {
+  __typename?: 'CountyVaccination';
+  countyFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `CountySummaryView` that is related to this `CountyVaccination`. */
+  countySummaryViewByCountyFipsCode?: Maybe<CountySummaryView>;
+  date?: Maybe<Scalars['String']>;
+  full?: Maybe<Scalars['Int']>;
+  partial?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `CountyVaccination`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
+};
+
+/**
+ * A condition to be used against `CountyVaccination` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type CountyVaccinationCondition = {
+  /** Checks for equality with the object’s `countyFipsCode` field. */
+  countyFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `full` field. */
+  full?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `partial` field. */
+  partial?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateFipsCode` field. */
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** An input for mutations affecting `CountyVaccination` */
+export type CountyVaccinationInput = {
+  countyFipsCode?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  full?: Maybe<Scalars['Int']>;
+  partial?: Maybe<Scalars['Int']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `CountyVaccination` values. */
+export type CountyVaccinationsConnection = {
+  __typename?: 'CountyVaccinationsConnection';
+  /** A list of edges which contains the `CountyVaccination` and cursor to aid in pagination. */
+  edges: Array<CountyVaccinationsEdge>;
+  /** A list of `CountyVaccination` objects. */
+  nodes: Array<Maybe<CountyVaccination>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `CountyVaccination` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `CountyVaccination` edge in the connection. */
+export type CountyVaccinationsEdge = {
+  __typename?: 'CountyVaccinationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `CountyVaccination` at the end of the edge. */
+  node?: Maybe<CountyVaccination>;
+};
+
+/** Methods to use when ordering `CountyVaccination`. */
+export enum CountyVaccinationsOrderBy {
+  CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
+  CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
+  DateAsc = 'DATE_ASC',
+  DateDesc = 'DATE_DESC',
+  FullAsc = 'FULL_ASC',
+  FullDesc = 'FULL_DESC',
+  Natural = 'NATURAL',
+  PartialAsc = 'PARTIAL_ASC',
+  PartialDesc = 'PARTIAL_DESC',
+  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC'
+}
+
 /** All input for the create `CountyCasesAll` mutation. */
 export type CreateCountyCasesAllInput = {
   /**
@@ -403,6 +492,43 @@ export type CreateCountyMetaPayload = {
 /** The output of our create `CountyMeta` mutation. */
 export type CreateCountyMetaPayloadCountyMetaEdgeArgs = {
   orderBy?: Maybe<Array<CountyMetasOrderBy>>;
+};
+
+/** All input for the create `CountyVaccination` mutation. */
+export type CreateCountyVaccinationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `CountyVaccination` to be created by this mutation. */
+  countyVaccination: CountyVaccinationInput;
+};
+
+/** The output of our create `CountyVaccination` mutation. */
+export type CreateCountyVaccinationPayload = {
+  __typename?: 'CreateCountyVaccinationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Reads a single `CountySummaryView` that is related to this `CountyVaccination`. */
+  countySummaryViewByCountyFipsCode?: Maybe<CountySummaryView>;
+  /** The `CountyVaccination` that was created by this mutation. */
+  countyVaccination?: Maybe<CountyVaccination>;
+  /** An edge for our `CountyVaccination`. May be used by Relay 1. */
+  countyVaccinationEdge?: Maybe<CountyVaccinationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `StateSummaryView` that is related to this `CountyVaccination`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
+};
+
+
+/** The output of our create `CountyVaccination` mutation. */
+export type CreateCountyVaccinationPayloadCountyVaccinationEdgeArgs = {
+  orderBy?: Maybe<Array<CountyVaccinationsOrderBy>>;
 };
 
 /** All input for the create `MsaCasesAll` mutation. */
@@ -708,6 +834,39 @@ export type CreateUsTestingPayloadUsTestingEdgeArgs = {
   orderBy?: Maybe<Array<UsTestingsOrderBy>>;
 };
 
+/** All input for the create `UsVaccination` mutation. */
+export type CreateUsVaccinationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UsVaccination` to be created by this mutation. */
+  usVaccination: UsVaccinationInput;
+};
+
+/** The output of our create `UsVaccination` mutation. */
+export type CreateUsVaccinationPayload = {
+  __typename?: 'CreateUsVaccinationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `UsVaccination` that was created by this mutation. */
+  usVaccination?: Maybe<UsVaccination>;
+  /** An edge for our `UsVaccination`. May be used by Relay 1. */
+  usVaccinationEdge?: Maybe<UsVaccinationsEdge>;
+};
+
+
+/** The output of our create `UsVaccination` mutation. */
+export type CreateUsVaccinationPayloadUsVaccinationEdgeArgs = {
+  orderBy?: Maybe<Array<UsVaccinationsOrderBy>>;
+};
+
 export type MsaCasesAll = {
   __typename?: 'MsaCasesAll';
   confirmedCases?: Maybe<Scalars['Int']>;
@@ -862,6 +1021,8 @@ export type Mutation = {
   createCountyCasesAll?: Maybe<CreateCountyCasesAllPayload>;
   /** Creates a single `CountyMeta`. */
   createCountyMeta?: Maybe<CreateCountyMetaPayload>;
+  /** Creates a single `CountyVaccination`. */
+  createCountyVaccination?: Maybe<CreateCountyVaccinationPayload>;
   /** Creates a single `MsaCasesAll`. */
   createMsaCasesAll?: Maybe<CreateMsaCasesAllPayload>;
   /** Creates a single `MsaMeta`. */
@@ -880,6 +1041,8 @@ export type Mutation = {
   createUsHospitalization?: Maybe<CreateUsHospitalizationPayload>;
   /** Creates a single `UsTesting`. */
   createUsTesting?: Maybe<CreateUsTestingPayload>;
+  /** Creates a single `UsVaccination`. */
+  createUsVaccination?: Maybe<CreateUsVaccinationPayload>;
 };
 
 
@@ -892,6 +1055,12 @@ export type MutationCreateCountyCasesAllArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateCountyMetaArgs = {
   input: CreateCountyMetaInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateCountyVaccinationArgs = {
+  input: CreateCountyVaccinationInput;
 };
 
 
@@ -948,6 +1117,12 @@ export type MutationCreateUsTestingArgs = {
   input: CreateUsTestingInput;
 };
 
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateUsVaccinationArgs = {
+  input: CreateUsVaccinationInput;
+};
+
 /** An object with a globally unique `ID`. */
 export type Node = {
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
@@ -976,6 +1151,8 @@ export type Query = Node & {
   allCountyMetas?: Maybe<CountyMetasConnection>;
   /** Reads and enables pagination through a set of `CountySummaryView`. */
   allCountySummaryViews?: Maybe<CountySummaryViewsConnection>;
+  /** Reads and enables pagination through a set of `CountyVaccination`. */
+  allCountyVaccinations?: Maybe<CountyVaccinationsConnection>;
   /** Reads and enables pagination through a set of `MsaCasesAll`. */
   allMsaCasesAlls?: Maybe<MsaCasesAllsConnection>;
   /** Reads and enables pagination through a set of `MsaMeta`. */
@@ -986,6 +1163,8 @@ export type Query = Node & {
   allStateMetas?: Maybe<StateMetasConnection>;
   /** Reads and enables pagination through a set of `StateSummaryView`. */
   allStateSummaryViews?: Maybe<StateSummaryViewsConnection>;
+  /** Reads and enables pagination through a set of `StateVaccination`. */
+  allStateVaccinations?: Maybe<StateVaccinationsConnection>;
   /** Reads and enables pagination through a set of `StatesHospitalization`. */
   allStatesHospitalizations?: Maybe<StatesHospitalizationsConnection>;
   /** Reads and enables pagination through a set of `StatesTesting`. */
@@ -998,6 +1177,8 @@ export type Query = Node & {
   allUsSummaryViews?: Maybe<UsSummaryViewsConnection>;
   /** Reads and enables pagination through a set of `UsTesting`. */
   allUsTestings?: Maybe<UsTestingsConnection>;
+  /** Reads and enables pagination through a set of `UsVaccination`. */
+  allUsVaccinations?: Maybe<UsVaccinationsConnection>;
   /** Fetches an object given its globally unique `ID`. */
   node?: Maybe<Node>;
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
@@ -1043,6 +1224,18 @@ export type QueryAllCountySummaryViewsArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllCountyVaccinationsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyVaccinationsOrderBy>>;
 };
 
 
@@ -1103,6 +1296,18 @@ export type QueryAllStateSummaryViewsArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<StateSummaryViewsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllStateVaccinationsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateVaccinationsOrderBy>>;
 };
 
 
@@ -1175,6 +1380,18 @@ export type QueryAllUsTestingsArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<UsTestingsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllUsVaccinationsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<UsVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<UsVaccinationsOrderBy>>;
 };
 
 
@@ -1346,6 +1563,8 @@ export type StateSummaryView = {
   countyMetasByStateFipsCode: CountyMetasConnection;
   /** Reads and enables pagination through a set of `CountySummaryView`. */
   countySummaryViewsByStateFipsCode: CountySummaryViewsConnection;
+  /** Reads and enables pagination through a set of `CountyVaccination`. */
+  countyVaccinationsByStateFipsCode: CountyVaccinationsConnection;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
   negative?: Maybe<Scalars['Int']>;
@@ -1360,6 +1579,8 @@ export type StateSummaryView = {
   /** Reads a single `StateMeta` that is related to this `StateSummaryView`. */
   stateMetaByStateFipsCode?: Maybe<StateMeta>;
   stateName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `StateVaccination`. */
+  stateVaccinationsByStateFipsCode: StateVaccinationsConnection;
   /** Reads and enables pagination through a set of `StatesHospitalization`. */
   statesHospitalizationsByStateFipsCode: StatesHospitalizationsConnection;
   /** Reads and enables pagination through a set of `StatesTesting`. */
@@ -1402,6 +1623,17 @@ export type StateSummaryViewCountySummaryViewsByStateFipsCodeArgs = {
 };
 
 
+export type StateSummaryViewCountyVaccinationsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountyVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountyVaccinationsOrderBy>>;
+};
+
+
 export type StateSummaryViewStateCasesAllsByStateFipsCodeArgs = {
   after?: Maybe<Scalars['Cursor']>;
   before?: Maybe<Scalars['Cursor']>;
@@ -1410,6 +1642,17 @@ export type StateSummaryViewStateCasesAllsByStateFipsCodeArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<StateCasesAllsOrderBy>>;
+};
+
+
+export type StateSummaryViewStateVaccinationsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<StateVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<StateVaccinationsOrderBy>>;
 };
 
 
@@ -1522,6 +1765,66 @@ export enum StateSummaryViewsOrderBy {
   TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC',
   UpdatedAsc = 'UPDATED_ASC',
   UpdatedDesc = 'UPDATED_DESC'
+}
+
+export type StateVaccination = {
+  __typename?: 'StateVaccination';
+  date?: Maybe<Scalars['String']>;
+  full?: Maybe<Scalars['BigInt']>;
+  partial?: Maybe<Scalars['BigInt']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `StateSummaryView` that is related to this `StateVaccination`. */
+  stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
+};
+
+/**
+ * A condition to be used against `StateVaccination` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type StateVaccinationCondition = {
+  /** Checks for equality with the object’s `date` field. */
+  date?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `full` field. */
+  full?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `partial` field. */
+  partial?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `stateFipsCode` field. */
+  stateFipsCode?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `StateVaccination` values. */
+export type StateVaccinationsConnection = {
+  __typename?: 'StateVaccinationsConnection';
+  /** A list of edges which contains the `StateVaccination` and cursor to aid in pagination. */
+  edges: Array<StateVaccinationsEdge>;
+  /** A list of `StateVaccination` objects. */
+  nodes: Array<Maybe<StateVaccination>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `StateVaccination` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `StateVaccination` edge in the connection. */
+export type StateVaccinationsEdge = {
+  __typename?: 'StateVaccinationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `StateVaccination` at the end of the edge. */
+  node?: Maybe<StateVaccination>;
+};
+
+/** Methods to use when ordering `StateVaccination`. */
+export enum StateVaccinationsOrderBy {
+  DateAsc = 'DATE_ASC',
+  DateDesc = 'DATE_DESC',
+  FullAsc = 'FULL_ASC',
+  FullDesc = 'FULL_DESC',
+  Natural = 'NATURAL',
+  PartialAsc = 'PARTIAL_ASC',
+  PartialDesc = 'PARTIAL_DESC',
+  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC'
 }
 
 export type StatesHospitalization = {
@@ -2053,6 +2356,72 @@ export enum UsTestingsOrderBy {
   TotalTestResultsDesc = 'TOTAL_TEST_RESULTS_DESC'
 }
 
+export type UsVaccination = {
+  __typename?: 'UsVaccination';
+  administered?: Maybe<Scalars['Int']>;
+  date?: Maybe<Scalars['String']>;
+  full?: Maybe<Scalars['Int']>;
+  partial?: Maybe<Scalars['Int']>;
+};
+
+/**
+ * A condition to be used against `UsVaccination` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type UsVaccinationCondition = {
+  /** Checks for equality with the object’s `administered` field. */
+  administered?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `full` field. */
+  full?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `partial` field. */
+  partial?: Maybe<Scalars['Int']>;
+};
+
+/** An input for mutations affecting `UsVaccination` */
+export type UsVaccinationInput = {
+  administered?: Maybe<Scalars['Int']>;
+  date?: Maybe<Scalars['String']>;
+  full?: Maybe<Scalars['Int']>;
+  partial?: Maybe<Scalars['Int']>;
+};
+
+/** A connection to a list of `UsVaccination` values. */
+export type UsVaccinationsConnection = {
+  __typename?: 'UsVaccinationsConnection';
+  /** A list of edges which contains the `UsVaccination` and cursor to aid in pagination. */
+  edges: Array<UsVaccinationsEdge>;
+  /** A list of `UsVaccination` objects. */
+  nodes: Array<Maybe<UsVaccination>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `UsVaccination` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `UsVaccination` edge in the connection. */
+export type UsVaccinationsEdge = {
+  __typename?: 'UsVaccinationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `UsVaccination` at the end of the edge. */
+  node?: Maybe<UsVaccination>;
+};
+
+/** Methods to use when ordering `UsVaccination`. */
+export enum UsVaccinationsOrderBy {
+  AdministeredAsc = 'ADMINISTERED_ASC',
+  AdministeredDesc = 'ADMINISTERED_DESC',
+  DateAsc = 'DATE_ASC',
+  DateDesc = 'DATE_DESC',
+  FullAsc = 'FULL_ASC',
+  FullDesc = 'FULL_DESC',
+  Natural = 'NATURAL',
+  PartialAsc = 'PARTIAL_ASC',
+  PartialDesc = 'PARTIAL_DESC'
+}
+
 export type SearchBarDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2083,12 +2452,10 @@ export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsTestingQuery = { __typename?: 'Query', allUsTestings?: Maybe<{ __typename?: 'UsTestingsConnection', nodes: Array<Maybe<{ __typename?: 'UsTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negativeIncrease?: Maybe<number>, positiveIncrease?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number>, inconclusiveIncrease?: Maybe<number> }>> }> };
 
-export type CountiesInSameStateQueryVariables = Exact<{
-  county_fips_code?: Maybe<Scalars['String']>;
-}>;
+export type UsVaccinationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CountiesInSameStateQuery = { __typename?: 'Query', allCountyMetas?: Maybe<{ __typename?: 'CountyMetasConnection', nodes: Array<Maybe<{ __typename?: 'CountyMeta', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, latitude?: Maybe<number>, longitude?: Maybe<number> }>> } }> }>> }> };
+export type UsVaccinationQuery = { __typename?: 'Query', allUsVaccinations?: Maybe<{ __typename?: 'UsVaccinationsConnection', nodes: Array<Maybe<{ __typename?: 'UsVaccination', date?: Maybe<string>, full?: Maybe<number>, partial?: Maybe<number>, administered?: Maybe<number> }>> }> };
 
 export type CountyCompareToParentsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
@@ -2410,66 +2777,45 @@ export function useUsTestingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type UsTestingQueryHookResult = ReturnType<typeof useUsTestingQuery>;
 export type UsTestingLazyQueryHookResult = ReturnType<typeof useUsTestingLazyQuery>;
 export type UsTestingQueryResult = Apollo.QueryResult<UsTestingQuery, UsTestingQueryVariables>;
-export const CountiesInSameStateDocument = gql`
-    query CountiesInSameState($county_fips_code: String) {
-  allCountyMetas(condition: {countyFipsCode: $county_fips_code}) {
+export const UsVaccinationDocument = gql`
+    query USVaccination {
+  allUsVaccinations {
     nodes {
-      stateName
-      countyName
-      countyFipsCode
-      stateFipsCode
-      stateSummaryViewByStateFipsCode {
-        stateName
-        countySummaryViewsByStateFipsCode {
-          nodes {
-            stateName
-            countyName
-            countyFipsCode
-            stateFipsCode
-            confirmedCases
-            confirmedIncrease
-            deaths
-            deathIncrease
-            population
-            latitude
-            longitude
-          }
-        }
-      }
-      longitude
-      latitude
+      date
+      full
+      partial
+      administered
     }
   }
 }
     `;
 
 /**
- * __useCountiesInSameStateQuery__
+ * __useUsVaccinationQuery__
  *
- * To run a query within a React component, call `useCountiesInSameStateQuery` and pass it any options that fit your needs.
- * When your component renders, `useCountiesInSameStateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useUsVaccinationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsVaccinationQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useCountiesInSameStateQuery({
+ * const { data, loading, error } = useUsVaccinationQuery({
  *   variables: {
- *      county_fips_code: // value for 'county_fips_code'
  *   },
  * });
  */
-export function useCountiesInSameStateQuery(baseOptions?: Apollo.QueryHookOptions<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>) {
+export function useUsVaccinationQuery(baseOptions?: Apollo.QueryHookOptions<UsVaccinationQuery, UsVaccinationQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>(CountiesInSameStateDocument, options);
+        return Apollo.useQuery<UsVaccinationQuery, UsVaccinationQueryVariables>(UsVaccinationDocument, options);
       }
-export function useCountiesInSameStateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>) {
+export function useUsVaccinationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsVaccinationQuery, UsVaccinationQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>(CountiesInSameStateDocument, options);
+          return Apollo.useLazyQuery<UsVaccinationQuery, UsVaccinationQueryVariables>(UsVaccinationDocument, options);
         }
-export type CountiesInSameStateQueryHookResult = ReturnType<typeof useCountiesInSameStateQuery>;
-export type CountiesInSameStateLazyQueryHookResult = ReturnType<typeof useCountiesInSameStateLazyQuery>;
-export type CountiesInSameStateQueryResult = Apollo.QueryResult<CountiesInSameStateQuery, CountiesInSameStateQueryVariables>;
+export type UsVaccinationQueryHookResult = ReturnType<typeof useUsVaccinationQuery>;
+export type UsVaccinationLazyQueryHookResult = ReturnType<typeof useUsVaccinationLazyQuery>;
+export type UsVaccinationQueryResult = Apollo.QueryResult<UsVaccinationQuery, UsVaccinationQueryVariables>;
 export const CountyCompareToParentsDocument = gql`
     query CountyCompareToParents($county_fips_code: String) {
   us: query {
