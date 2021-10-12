@@ -1,0 +1,17 @@
+query StateVaccination($state_fips_code: String) {
+  allStateSummaryViews(condition: { stateFipsCode: $state_fips_code }) {
+    nodes {
+      stateAbbr
+      stateName
+      stateFipsCode
+      stateVaccinationsByStateFipsCode {
+        nodes {
+          stateFipsCode
+          date
+          partial
+          full
+        }
+      }
+    }
+  }
+}

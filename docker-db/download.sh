@@ -30,6 +30,7 @@ download_vaccination_data() {
 
     # interesting the json is also available… 
     # Original data page is here… https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh 
+
     RAW=${DATADIR}/county_vaccination_raw.csv
     curl -o ${RAW} "https://data.cdc.gov/api/views/8xkx-amqh/rows.csv?accessType=DOWNLOAD"
     cat ${RAW} | gawk -vFPAT='([^,]*)|("[^"]+")' -vOFS=,  '{print $1","$2","$4","$7","$15}' |csvtojson > ${DATADIR}/county_vaccination.json   
@@ -38,7 +39,6 @@ download_vaccination_data() {
     jq -r -nc --stream  \
     'fromstream(1|truncate_stream(inputs)) | select(.FIPS != "UNK") | {date:(.Date|split("/") | .[2] + "-"+.[0] + "-" + .[1]), county_fips_code:.FIPS, county_name: .Recip_County, full:(.Series_Complete_Yes|sub(",";"";"g") ), partial:(.Administered_Dose1_Recip| if .== "" then 0 else (. |tonumber) end)} | .date +","+.county_fips_code+","+.county_fips_code[0:2]+","+.full+","+(.partial|tostring)' \
     >> ${DATADIR}/county_vaccination.csv
-
 }
 
 download_vaccination_data

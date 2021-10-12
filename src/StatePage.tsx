@@ -15,6 +15,7 @@ import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/Stat
 import { StateHospitalizationGraph } from './USPage/StateHospitalizationGraph';
 import { StateSubRegions } from './USPage/StateSubRegions';
 import { StateTestingGraphs } from './USPage/StateTestingGraph';
+import { StateVaccinationGraph } from './USPage/StateVaccination';
 
 export const StatePage = () => {
   const { state_fips_code } = useParams<{ state_fips_code: string }>();
@@ -46,6 +47,7 @@ export const StatePage = () => {
         tabs={[
           ["Cases", <StateCasesGraph state={state!} cases={cases} />],
           ["Sub Regions", <StateSubRegions state={state} />],
+          ["Vaccination", <StateVaccinationGraph state={state} />],
           ["Testing", <StateTestingGraphs state={state!} testing={testing} />],
           [
             "Hospitalization",

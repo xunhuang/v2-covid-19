@@ -2506,6 +2506,13 @@ export type StateSubRegionQueryVariables = Exact<{
 
 export type StateSubRegionQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, population?: Maybe<number>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, countyCasesAllsByCountyFipsCode: { __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number> }>> } }>> } }>> }> };
 
+export type StateVaccinationQueryVariables = Exact<{
+  state_fips_code?: Maybe<Scalars['String']>;
+}>;
+
+
+export type StateVaccinationQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, stateVaccinationsByStateFipsCode: { __typename?: 'StateVaccinationsConnection', nodes: Array<Maybe<{ __typename?: 'StateVaccination', stateFipsCode?: Maybe<string>, date?: Maybe<string>, partial?: Maybe<any>, full?: Maybe<any> }>> } }>> }> };
+
 export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3244,6 +3251,53 @@ export function useStateSubRegionLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type StateSubRegionQueryHookResult = ReturnType<typeof useStateSubRegionQuery>;
 export type StateSubRegionLazyQueryHookResult = ReturnType<typeof useStateSubRegionLazyQuery>;
 export type StateSubRegionQueryResult = Apollo.QueryResult<StateSubRegionQuery, StateSubRegionQueryVariables>;
+export const StateVaccinationDocument = gql`
+    query StateVaccination($state_fips_code: String) {
+  allStateSummaryViews(condition: {stateFipsCode: $state_fips_code}) {
+    nodes {
+      stateAbbr
+      stateName
+      stateFipsCode
+      stateVaccinationsByStateFipsCode {
+        nodes {
+          stateFipsCode
+          date
+          partial
+          full
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useStateVaccinationQuery__
+ *
+ * To run a query within a React component, call `useStateVaccinationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStateVaccinationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStateVaccinationQuery({
+ *   variables: {
+ *      state_fips_code: // value for 'state_fips_code'
+ *   },
+ * });
+ */
+export function useStateVaccinationQuery(baseOptions?: Apollo.QueryHookOptions<StateVaccinationQuery, StateVaccinationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StateVaccinationQuery, StateVaccinationQueryVariables>(StateVaccinationDocument, options);
+      }
+export function useStateVaccinationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StateVaccinationQuery, StateVaccinationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StateVaccinationQuery, StateVaccinationQueryVariables>(StateVaccinationDocument, options);
+        }
+export type StateVaccinationQueryHookResult = ReturnType<typeof useStateVaccinationQuery>;
+export type StateVaccinationLazyQueryHookResult = ReturnType<typeof useStateVaccinationLazyQuery>;
+export type StateVaccinationQueryResult = Apollo.QueryResult<StateVaccinationQuery, StateVaccinationQueryVariables>;
 export const StatesDocument = gql`
     query States {
   allStateSummaryViews {
