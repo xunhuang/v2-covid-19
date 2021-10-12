@@ -17,3 +17,12 @@ comment on table county_cases_all  is E'
 @foreignKey (state_fips_code) references state_summary_view(state_fips_code)
 @foreignKey (county_fips_code) references county_summary_view(county_fips_code)
 ';
+
+comment on table county_vaccination  is E'
+@foreignKey (state_fips_code) references state_summary_view(state_fips_code)
+@foreignKey (county_fips_code) references county_summary_view(county_fips_code)
+';
+
+comment on materialized view  state_vaccination  is E'
+@foreignKey (state_fips_code) references state_summary_view(state_fips_code)
+';

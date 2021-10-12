@@ -103,3 +103,21 @@ CREATE TABLE msa_cases_all (
     "confirmed_cases" integer,
     "deaths" integer
 );
+
+DROP TABLE IF EXISTS us_vaccination;
+
+CREATE TABLE us_vaccination (
+    "date" text,
+    "full" INTEGER,
+    "partial" INTEGER, 
+    "administered" INTEGER
+);
+
+DROP TABLE IF EXISTS county_vaccination;
+CREATE TABLE county_vaccination (
+    "date" text,
+    "county_fips_code" text,
+    "state_fips_code" text,
+    "full" INTEGER,
+    "partial" INTEGER
+);

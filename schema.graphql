@@ -104,6 +104,35 @@ type Query implements Node {
     condition: CountySummaryViewCondition
   ): CountySummaryViewsConnection
 
+  """Reads and enables pagination through a set of `CountyVaccination`."""
+  allCountyVaccinations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyVaccination`."""
+    orderBy: [CountyVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyVaccinationCondition
+  ): CountyVaccinationsConnection
+
   """Reads and enables pagination through a set of `MsaCasesAll`."""
   allMsaCasesAlls(
     """Only read the first `n` values of the set."""
@@ -248,6 +277,35 @@ type Query implements Node {
     """
     condition: StateSummaryViewCondition
   ): StateSummaryViewsConnection
+
+  """Reads and enables pagination through a set of `StateVaccination`."""
+  allStateVaccinations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StateVaccination`."""
+    orderBy: [StateVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StateVaccinationCondition
+  ): StateVaccinationsConnection
 
   """Reads and enables pagination through a set of `StatesHospitalization`."""
   allStatesHospitalizations(
@@ -422,6 +480,35 @@ type Query implements Node {
     """
     condition: UsTestingCondition
   ): UsTestingsConnection
+
+  """Reads and enables pagination through a set of `UsVaccination`."""
+  allUsVaccinations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UsVaccination`."""
+    orderBy: [UsVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UsVaccinationCondition
+  ): UsVaccinationsConnection
 }
 
 """An object with a globally unique `ID`."""
@@ -575,6 +662,35 @@ type StateSummaryView {
     condition: CountySummaryViewCondition
   ): CountySummaryViewsConnection!
 
+  """Reads and enables pagination through a set of `CountyVaccination`."""
+  countyVaccinationsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyVaccination`."""
+    orderBy: [CountyVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyVaccinationCondition
+  ): CountyVaccinationsConnection!
+
   """Reads and enables pagination through a set of `StateCasesAll`."""
   stateCasesAllsByStateFipsCode(
     """Only read the first `n` values of the set."""
@@ -603,6 +719,35 @@ type StateSummaryView {
     """
     condition: StateCasesAllCondition
   ): StateCasesAllsConnection!
+
+  """Reads and enables pagination through a set of `StateVaccination`."""
+  stateVaccinationsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `StateVaccination`."""
+    orderBy: [StateVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: StateVaccinationCondition
+  ): StateVaccinationsConnection!
 
   """Reads and enables pagination through a set of `StatesHospitalization`."""
   statesHospitalizationsByStateFipsCode(
@@ -1050,6 +1195,117 @@ type CountySummaryView {
     """
     condition: CountyCasesAllCondition
   ): CountyCasesAllsConnection!
+
+  """Reads and enables pagination through a set of `CountyVaccination`."""
+  countyVaccinationsByCountyFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountyVaccination`."""
+    orderBy: [CountyVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountyVaccinationCondition
+  ): CountyVaccinationsConnection!
+}
+
+"""A connection to a list of `CountyVaccination` values."""
+type CountyVaccinationsConnection {
+  """A list of `CountyVaccination` objects."""
+  nodes: [CountyVaccination]!
+
+  """
+  A list of edges which contains the `CountyVaccination` and cursor to aid in pagination.
+  """
+  edges: [CountyVaccinationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CountyVaccination` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type CountyVaccination {
+  date: String
+  countyFipsCode: String
+  stateFipsCode: String
+  full: Int
+  partial: Int
+
+  """
+  Reads a single `StateSummaryView` that is related to this `CountyVaccination`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """
+  Reads a single `CountySummaryView` that is related to this `CountyVaccination`.
+  """
+  countySummaryViewByCountyFipsCode: CountySummaryView
+}
+
+"""A `CountyVaccination` edge in the connection."""
+type CountyVaccinationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyVaccination` at the end of the edge."""
+  node: CountyVaccination
+}
+
+"""Methods to use when ordering `CountyVaccination`."""
+enum CountyVaccinationsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  FULL_ASC
+  FULL_DESC
+  PARTIAL_ASC
+  PARTIAL_DESC
+}
+
+"""
+A condition to be used against `CountyVaccination` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountyVaccinationCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `full` field."""
+  full: Int
+
+  """Checks for equality with the object’s `partial` field."""
+  partial: Int
 }
 
 """A `CountySummaryView` edge in the connection."""
@@ -1205,6 +1461,84 @@ input StateCasesAllCondition {
 
   """Checks for equality with the object’s `deaths` field."""
   deaths: Int
+}
+
+"""A connection to a list of `StateVaccination` values."""
+type StateVaccinationsConnection {
+  """A list of `StateVaccination` objects."""
+  nodes: [StateVaccination]!
+
+  """
+  A list of edges which contains the `StateVaccination` and cursor to aid in pagination.
+  """
+  edges: [StateVaccinationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `StateVaccination` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type StateVaccination {
+  stateFipsCode: String
+  date: String
+  partial: BigInt
+  full: BigInt
+
+  """
+  Reads a single `StateSummaryView` that is related to this `StateVaccination`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+}
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+"""A `StateVaccination` edge in the connection."""
+type StateVaccinationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StateVaccination` at the end of the edge."""
+  node: StateVaccination
+}
+
+"""Methods to use when ordering `StateVaccination`."""
+enum StateVaccinationsOrderBy {
+  NATURAL
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  DATE_ASC
+  DATE_DESC
+  PARTIAL_ASC
+  PARTIAL_DESC
+  FULL_ASC
+  FULL_DESC
+}
+
+"""
+A condition to be used against `StateVaccination` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input StateVaccinationCondition {
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `partial` field."""
+  partial: BigInt
+
+  """Checks for equality with the object’s `full` field."""
+  full: BigInt
 }
 
 """A connection to a list of `StatesHospitalization` values."""
@@ -1544,13 +1878,6 @@ type MsaMeta {
   statePostalAbbreviation: String
   population: BigInt
 }
-
-"""
-A signed eight-byte integer. The upper big integer values are greater than the
-max value for a JavaScript number. Therefore all big integers will be output as
-strings and not numbers.
-"""
-scalar BigInt
 
 """A `MsaMeta` edge in the connection."""
 type MsaMetasEdge {
@@ -1963,6 +2290,70 @@ input UsTestingCondition {
   inconclusiveIncrease: Int
 }
 
+"""A connection to a list of `UsVaccination` values."""
+type UsVaccinationsConnection {
+  """A list of `UsVaccination` objects."""
+  nodes: [UsVaccination]!
+
+  """
+  A list of edges which contains the `UsVaccination` and cursor to aid in pagination.
+  """
+  edges: [UsVaccinationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `UsVaccination` you could get from the connection."""
+  totalCount: Int!
+}
+
+type UsVaccination {
+  date: String
+  full: Int
+  partial: Int
+  administered: Int
+}
+
+"""A `UsVaccination` edge in the connection."""
+type UsVaccinationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UsVaccination` at the end of the edge."""
+  node: UsVaccination
+}
+
+"""Methods to use when ordering `UsVaccination`."""
+enum UsVaccinationsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  FULL_ASC
+  FULL_DESC
+  PARTIAL_ASC
+  PARTIAL_DESC
+  ADMINISTERED_ASC
+  ADMINISTERED_DESC
+}
+
+"""
+A condition to be used against `UsVaccination` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input UsVaccinationCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `full` field."""
+  full: Int
+
+  """Checks for equality with the object’s `partial` field."""
+  partial: Int
+
+  """Checks for equality with the object’s `administered` field."""
+  administered: Int
+}
+
 """
 The root mutation type which contains root level fields which mutate data.
 """
@@ -1982,6 +2373,14 @@ type Mutation {
     """
     input: CreateCountyMetaInput!
   ): CreateCountyMetaPayload
+
+  """Creates a single `CountyVaccination`."""
+  createCountyVaccination(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCountyVaccinationInput!
+  ): CreateCountyVaccinationPayload
 
   """Creates a single `MsaCasesAll`."""
   createMsaCasesAll(
@@ -2054,6 +2453,14 @@ type Mutation {
     """
     input: CreateUsTestingInput!
   ): CreateUsTestingPayload
+
+  """Creates a single `UsVaccination`."""
+  createUsVaccination(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUsVaccinationInput!
+  ): CreateUsVaccinationPayload
 }
 
 """The output of our create `CountyCasesAll` mutation."""
@@ -2165,6 +2572,60 @@ input CountyMetaInput {
   msaId: String
   msaName: String
   msaUrlName: String
+}
+
+"""The output of our create `CountyVaccination` mutation."""
+type CreateCountyVaccinationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `CountyVaccination` that was created by this mutation."""
+  countyVaccination: CountyVaccination
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `StateSummaryView` that is related to this `CountyVaccination`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """
+  Reads a single `CountySummaryView` that is related to this `CountyVaccination`.
+  """
+  countySummaryViewByCountyFipsCode: CountySummaryView
+
+  """An edge for our `CountyVaccination`. May be used by Relay 1."""
+  countyVaccinationEdge(
+    """The method to use when ordering `CountyVaccination`."""
+    orderBy: [CountyVaccinationsOrderBy!] = [NATURAL]
+  ): CountyVaccinationsEdge
+}
+
+"""All input for the create `CountyVaccination` mutation."""
+input CreateCountyVaccinationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `CountyVaccination` to be created by this mutation."""
+  countyVaccination: CountyVaccinationInput!
+}
+
+"""An input for mutations affecting `CountyVaccination`"""
+input CountyVaccinationInput {
+  date: String
+  countyFipsCode: String
+  stateFipsCode: String
+  full: Int
+  partial: Int
 }
 
 """The output of our create `MsaCasesAll` mutation."""
@@ -2593,4 +3054,47 @@ input UsTestingInput {
   positive: Int
   inconclusive: Int
   inconclusiveIncrease: Int
+}
+
+"""The output of our create `UsVaccination` mutation."""
+type CreateUsVaccinationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UsVaccination` that was created by this mutation."""
+  usVaccination: UsVaccination
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `UsVaccination`. May be used by Relay 1."""
+  usVaccinationEdge(
+    """The method to use when ordering `UsVaccination`."""
+    orderBy: [UsVaccinationsOrderBy!] = [NATURAL]
+  ): UsVaccinationsEdge
+}
+
+"""All input for the create `UsVaccination` mutation."""
+input CreateUsVaccinationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UsVaccination` to be created by this mutation."""
+  usVaccination: UsVaccinationInput!
+}
+
+"""An input for mutations affecting `UsVaccination`"""
+input UsVaccinationInput {
+  date: String
+  full: Int
+  partial: Int
+  administered: Int
 }
