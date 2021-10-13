@@ -1,4 +1,3 @@
-import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
@@ -26,13 +25,11 @@ export function AppTabs({ tabs }: AppTabsProp) {
   };
   return (
     <>
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange}>
-          {tabs.map(([label]) => (
-            <Tab label={label} />
-          ))}
-        </Tabs>
-      </AppBar>
+      <Tabs value={value} onChange={handleChange} variant="scrollable">
+        {tabs.map(([label]) => (
+          <Tab label={label} />
+        ))}
+      </Tabs>
       {tabs.map(([label, component], index) => (
         <TabPanel value={value} index={index}>
           {component}
