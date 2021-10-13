@@ -1,4 +1,5 @@
-import { TextField } from '@mui/material';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -27,7 +28,28 @@ export const AppSearchBar = () => {
         }}
         options={[{ label: "loading" }]}
         renderInput={(params) => (
-          <TextField {...params} label="Search for County or State" />
+          <>
+            <TextField
+              {...params}
+              label="Search for County or State"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      // onClick={handleClickShowPassword}
+                      // onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      <GpsFixedIcon></GpsFixedIcon>
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            >
+              ABC sdsds ds ds ds
+            </TextField>
+          </>
         )}
       />
     );
