@@ -1153,6 +1153,7 @@ type CountySummaryView {
   countyName: String
   countyFipsCode: String
   stateFipsCode: String
+  stateAbbr: String
   longitude: Float
   latitude: Float
   confirmedCases: Int
@@ -1328,6 +1329,8 @@ enum CountySummaryViewsOrderBy {
   COUNTY_FIPS_CODE_DESC
   STATE_FIPS_CODE_ASC
   STATE_FIPS_CODE_DESC
+  STATE_ABBR_ASC
+  STATE_ABBR_DESC
   LONGITUDE_ASC
   LONGITUDE_DESC
   LATITUDE_ASC
@@ -1362,6 +1365,9 @@ input CountySummaryViewCondition {
 
   """Checks for equality with the object’s `stateFipsCode` field."""
   stateFipsCode: String
+
+  """Checks for equality with the object’s `stateAbbr` field."""
+  stateAbbr: String
 
   """Checks for equality with the object’s `longitude` field."""
   longitude: Float

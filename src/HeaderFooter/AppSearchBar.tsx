@@ -8,15 +8,15 @@ import { useSearchBarDataLazyQuery } from '../generated/graphql';
 export const AppSearchBar = () => {
   const [open, setOpen] = React.useState(false);
   const [runquery, { called, loading, data }] = useSearchBarDataLazyQuery();
+  const history = useHistory();
 
   React.useEffect(() => {
     if (open) {
-      console.log("should open now");
+      // console.log("should fetch now");
       runquery();
     }
-  }, [open]);
+  }, [open, runquery]);
 
-  const history = useHistory();
   if (!called || loading) {
     return (
       <Autocomplete
@@ -26,7 +26,6 @@ export const AppSearchBar = () => {
           setOpen(true);
         }}
         options={[{ label: "loading" }]}
-        // sx={{ width: 300 }}
         renderInput={(params) => (
           <TextField {...params} label="Search for County or State" />
         )}
@@ -36,7 +35,7 @@ export const AppSearchBar = () => {
 
   const counties = data?.counties?.nodes.map((county) => {
     return {
-      label: `${county?.countyName},${county?.state?.stateAbbr}(${county?.confirmedCases})`,
+      label: `${county?.countyName},${county?.stateAbbr}(${county?.confirmedCases})`,
       county_fips_code: county?.countyFipsCode,
       state_fips_code: null,
       confirmed: county?.confirmedCases,

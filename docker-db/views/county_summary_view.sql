@@ -5,6 +5,7 @@ CREATE MATERIALIZED VIEW county_summary_view AS
     county_meta.county_name,
     county_meta.county_fips_code,
     county_meta.state_fips_code,
+    county_meta.state_abbr,
     county_meta.longitude as longitude,
     county_meta.latitude as latitude,
     cases.confirmed_cases,

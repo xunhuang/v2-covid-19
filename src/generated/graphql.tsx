@@ -235,6 +235,7 @@ export type CountySummaryView = {
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
   population?: Maybe<Scalars['Int']>;
+  stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
   /** Reads a single `StateSummaryView` that is related to this `CountySummaryView`. */
@@ -287,6 +288,8 @@ export type CountySummaryViewCondition = {
   longitude?: Maybe<Scalars['Float']>;
   /** Checks for equality with the object’s `population` field. */
   population?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `stateAbbr` field. */
+  stateAbbr?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `stateName` field. */
@@ -338,6 +341,8 @@ export enum CountySummaryViewsOrderBy {
   Natural = 'NATURAL',
   PopulationAsc = 'POPULATION_ASC',
   PopulationDesc = 'POPULATION_DESC',
+  StateAbbrAsc = 'STATE_ABBR_ASC',
+  StateAbbrDesc = 'STATE_ABBR_DESC',
   StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   StateNameAsc = 'STATE_NAME_ASC',
@@ -2425,7 +2430,7 @@ export enum UsVaccinationsOrderBy {
 export type SearchBarDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, stateName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, state?: Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string> }> }>> }>, states?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
+export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, stateAbbr?: Maybe<string> }>> }>, states?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
 
 export type UsCasesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2536,12 +2541,9 @@ export const SearchBarDataDocument = gql`
   counties: allCountySummaryViews(condition: {}) {
     nodes {
       countyName
-      stateName
       countyFipsCode
       confirmedCases
-      state: stateSummaryViewByStateFipsCode {
-        stateAbbr
-      }
+      stateAbbr
     }
   }
   states: allStateSummaryViews {

@@ -2,13 +2,9 @@ query SearchBarData {
   counties: allCountySummaryViews(condition: {}) {
     nodes {
       countyName
-      stateName
       countyFipsCode
       confirmedCases
-
-      state: stateSummaryViewByStateFipsCode {
-        stateAbbr
-      }
+      stateAbbr
     }
   }
   states: allStateSummaryViews {
