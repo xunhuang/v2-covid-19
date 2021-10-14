@@ -1,17 +1,7 @@
-import styled from 'styled-components';
-
 import { AdvancedGraph } from '../components/AdvanceGraph';
 import { DataSeries } from '../components/DataSeries';
 import { useUsSubRegionsQuery } from '../generated/graphql';
-
-const GraphContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-const GraphSingle = styled.div`
-  min-width: 350px;
-  display: block;
-`;
+import { GraphContainer, GraphSingle } from '../styles/HomeStyles';
 
 export const USSubRegions = () => {
   const { data, loading } = useUsSubRegionsQuery();
@@ -74,4 +64,4 @@ export const USSubRegions = () => {
       ))}
     </GraphContainer>
   );
-};;
+};

@@ -32,7 +32,7 @@ export function AppTabs({ tabs }: AppTabsProp) {
       </Tabs>
       {tabs.map(([label, component], index) => (
         <TabPanel value={value} index={index} key={index}>
-          {component}
+        {component}
         </TabPanel>
       ))}
     </>

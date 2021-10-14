@@ -9,6 +9,7 @@ query StateSubRegion($state_fips_code: String) {
         nodes {
           countyName
           countyFipsCode
+          population
           countyCasesAllsByCountyFipsCode {
             nodes {
               date
