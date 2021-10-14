@@ -5,7 +5,7 @@ name: build website and update to firebase hosting
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
