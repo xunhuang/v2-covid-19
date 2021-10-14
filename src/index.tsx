@@ -21,8 +21,8 @@ const init = async () => {
   // Continue setting up Apollo as usual.
 
   const client = new ApolloClient({
-    uri: "http://localhost:5000/graphql",
-    // uri: "https://helloworld-capsc6nslq-uc.a.run.app/graphql",
+    // uri: "http://localhost:5000/graphql",
+    uri: "https://helloworld-capsc6nslq-uc.a.run.app/graphql",
 
     cache: cache,
     connectToDevTools: true,
