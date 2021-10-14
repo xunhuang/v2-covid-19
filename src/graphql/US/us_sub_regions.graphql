@@ -3,7 +3,8 @@ query USSubRegions {
     nodes {
       stateName
       stateAbbr
-      stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 180) {
+      population
+      stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 120) {
         nodes {
           date
           stateName

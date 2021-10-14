@@ -230,7 +230,7 @@ export class DataSeries {
     const generator = () => {
       const points = this.points();
       const deltaPoints = [] as MomentNumber[];
-      deltaPoints.push([points[0][0], points[0][1]]);
+      // deltaPoints.push([points[0][0], points[0][1]]);
       for (let i = 1; i < points.length; ++i) {
         deltaPoints.push([
           points[i][0],

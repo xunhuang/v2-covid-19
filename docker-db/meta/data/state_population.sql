@@ -72,6 +72,13 @@ COPY public.state_population (state_fips_code, pop2020) FROM stdin;
 54	1784787
 55	5832655
 56	582328
+66	168783
+72	3285874
+60	55197
+74	315
+69	57557
+78	106290
+68	1
 \.
 
 

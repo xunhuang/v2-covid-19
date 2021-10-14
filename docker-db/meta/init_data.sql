@@ -3542,13 +3542,13 @@ COPY public.state_meta (state_fips_code, state_abbr, state_name, population) FRO
 54	WV	West Virginia	1784787
 55	WI	Wisconsin	5832655
 56	WY	Wyoming	582328
-68	ZZ	Unknown	\N
-72	PR	Puerto Rico	\N
-60	AS	American Samoa	\N
-74	UM	U.S. Minor Outlying Islands	\N
-69	MP	Northern Mariana Islands	\N
-78	VI	U.S. Virgin Islands	\N
-66	GU	Guam	\N
+66	GU	Guam	168783
+72	PR	Puerto Rico	3285874
+60	AS	American Samoa	55197
+74	UM	U.S. Minor Outlying Islands	315
+69	MP	Northern Mariana Islands	57557
+78	VI	U.S. Virgin Islands	106290
+68	ZZ	Unknown	1
 \.
 
 

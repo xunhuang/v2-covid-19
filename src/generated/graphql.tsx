@@ -2450,7 +2450,7 @@ export type UsHopitalizationQuery = { __typename?: 'Query', allUsHospitalization
 export type UsSubRegionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UsSubRegionsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
+export type UsSubRegionsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, population?: Maybe<number>, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 export type UsTestingQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2710,7 +2710,8 @@ export const UsSubRegionsDocument = gql`
     nodes {
       stateName
       stateAbbr
-      stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 180) {
+      population
+      stateCasesAllsByStateFipsCode(orderBy: DATE_DESC, first: 120) {
         nodes {
           date
           stateName
