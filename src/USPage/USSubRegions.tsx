@@ -22,21 +22,23 @@ export const USSubRegions = () => {
   const nodes = data?.allStateSummaryViews?.nodes;
 
   const sorted_nodes = [...nodes!]
-    .sort((a, b) => {
-      const da =
-        a?.stateCasesAllsByStateFipsCode.nodes[0]?.confirmedCases! -
-        a?.stateCasesAllsByStateFipsCode.nodes[30]?.confirmedCases!;
-      const db =
-        b?.stateCasesAllsByStateFipsCode.nodes[0]?.confirmedCases! -
-        b?.stateCasesAllsByStateFipsCode.nodes[30]?.confirmedCases!;
-      return db / b?.population! - da / a?.population!;
-    })
     .filter(
       (state) =>
         state?.stateCasesAllsByStateFipsCode.nodes &&
         state?.stateCasesAllsByStateFipsCode.nodes.length > 50
-    );
-
+    )
+    .sort((a, b) => {
+      const da =
+        (a?.stateCasesAllsByStateFipsCode.nodes[0]?.confirmedCases! -
+          a?.stateCasesAllsByStateFipsCode.nodes[30]?.confirmedCases!) /
+        a?.population!;
+      const db =
+        (b?.stateCasesAllsByStateFipsCode.nodes[0]?.confirmedCases! -
+          b?.stateCasesAllsByStateFipsCode.nodes[30]?.confirmedCases!) /
+        b?.population!;
+      console.log(`${a?.stateName} ${da} -  ${b?.stateName} ${db}`);
+      return db - da;
+    });
   return (
     <GraphContainer>
       {sorted_nodes?.map((state) => (
@@ -72,4 +74,4 @@ export const USSubRegions = () => {
       ))}
     </GraphContainer>
   );
-};
+};;
