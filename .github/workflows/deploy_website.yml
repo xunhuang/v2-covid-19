@@ -26,6 +26,10 @@ jobs:
       uses: zcong1993/setup-timezone@master
       with:
         timezone: America/Los_Angeles
+    - name: DOTENV
+      env:
+        PROD_ENV: ${{ secrets.DOTENV }}
+      run: echo "${PROD_ENV}" > .env.production
     - name: Google project credentials
       env:
         GOOGLE_SVC_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_SVC_ACCOUNT_CREDENTIALS }}
