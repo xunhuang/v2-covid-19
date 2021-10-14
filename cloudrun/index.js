@@ -14,11 +14,18 @@ const pgConfig = {
   // user: process.env.PGUSER || "postgres",
   // database: process.env.PGDATABASE || "postgres",
   // password: process.env.PGPASSWORD || "mysecretpassword",
-  host: process.env.PGHOST || "kashin.db.elephantsql.com",
-  port: process.env.PGPORT || 5432,
-  user: process.env.PGUSER || "grqssupe",
-  database: process.env.PGDATABASE || "grqssupe",
-  password: process.env.PGPASSWORD || "wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX",
+
+  // host: process.env.PGHOST || "kashin.db.elephantsql.com",
+  // port: process.env.PGPORT || 5432,
+  // user: process.env.PGUSER || "grqssupe",
+  // database: process.env.PGDATABASE || "grqssupe",
+  // password: process.env.PGPASSWORD || "wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX",
+
+  host: process.env.PGHOST || "/cloudsql/myrandomwatch-b4b41:us-central1:firstpostpostdb",
+  // port: process.env.PGPORT || 5432,
+  user: process.env.PGUSER || "postgres",
+  database: process.env.PGDATABASE || "postgres",
+  password: process.env.PGPASSWORD || "3DdeMKqEsqyOE5jL",
 };
 
 // Your PostGraphile config:

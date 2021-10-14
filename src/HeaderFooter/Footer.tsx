@@ -48,13 +48,13 @@ const Footer = () => {
     <Grid
       container
       className={classes.topContainer}
-      justify="space-evenly"
+      justifyContent="space-evenly"
       alignItems="center"
       direction="row"
     >
       <Grid item xs={12} sm={1} />
       <Grid item xs={12} sm={2}>
-        <Grid container justify="center" className={classes.iconRoot}>
+        <Grid container justifyContent="center" className={classes.iconRoot}>
           <Grid item xs={3} sm={6}>
             <MaterialLink
               href="https://github.com/xunhuang/covid-19"

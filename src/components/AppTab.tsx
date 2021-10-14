@@ -26,12 +26,12 @@ export function AppTabs({ tabs }: AppTabsProp) {
   return (
     <>
       <Tabs value={value} onChange={handleChange} variant="scrollable">
-        {tabs.map(([label]) => (
-          <Tab label={label} />
+        {tabs.map(([label], index) => (
+          <Tab label={label} key={index} />
         ))}
       </Tabs>
       {tabs.map(([label, component], index) => (
-        <TabPanel value={value} index={index}>
+        <TabPanel value={value} index={index} key={index}>
           {component}
         </TabPanel>
       ))}
