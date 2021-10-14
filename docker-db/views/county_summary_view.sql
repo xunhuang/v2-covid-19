@@ -8,7 +8,7 @@ CREATE MATERIALIZED VIEW county_summary_view AS
     county_meta.state_abbr,
     county_meta.longitude as longitude,
     county_meta.latitude as latitude,
-    cases.confirmed_cases,
+    CASE WHEN cases.confirmed_cases is NULL THEN 0 ELSE cases.confirmed_cases END AS confirmed_cases,
     cases.confirmed_increase,
     cases.deaths,
     cases.deaths_increase AS death_increase,
