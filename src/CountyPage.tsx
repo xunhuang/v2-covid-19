@@ -61,7 +61,12 @@ export const CountyPage = () => {
       />
 
       <AppTabs
-        tabs={[["Cases", <StateCountiesCasesTable countiesTable={nearby!} />]]}
+        tabs={[
+          [
+            "Nearby Counties",
+            <StateCountiesCasesTable countiesTable={nearby!} />,
+          ],
+        ]}
       />
     </div>
   );
