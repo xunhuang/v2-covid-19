@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "firebase deploy",
+    "deploy": "npx firebase deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "db_cloud": "npx postgraphile -c postgres://postgres:3DdeMKqEsqyOE5jL@localhost:5432 --watch --enhance-graphiql --allow-explain --dynamic-json   --export-schema-graphql schema.graphql -o ",
@@ -80,6 +80,7 @@
     "apollo3-cache-persist": "^0.13.0",
     "dayjs": "^1.10.6",
     "disqus-react": "^1.1.2",
+    "firebase-tools": "^9.20.0",
     "geolib": "^3.3.1",
     "graphql": "^15.6.0",
     "react-device-detect": "^2.0.0",
