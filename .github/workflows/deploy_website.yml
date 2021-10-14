@@ -6,19 +6,14 @@ name: build website and update to firebase hosting
 on:
   push:
     branches: [ master ]
-  schedule:
-  - cron: "*/20 * * * *"
   workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
     - uses: actions/checkout@v2
       with:
@@ -40,5 +35,5 @@ jobs:
     - run: npm run build
     - name: deploy
       env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/.googleCredentials.json
-      run: npm run deploy
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      run: npx firebase deploy --token $FIREBASE_TOKEN --only hosting
