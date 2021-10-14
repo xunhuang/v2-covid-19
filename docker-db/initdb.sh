@@ -1,8 +1,8 @@
 
 # set your CONN in your env
 # CONN=postgres://postgres:mysecretpassword@localhost/postgres
-#CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
-#CONN=postgres://postgres:3DdeMKqEsqyOE5jL@localhost/postgres
+# CONN=postgres://grqssupe:wVuhYC8zcz31f1PR36tqsuKBoK7GTJFX@kashin.db.elephantsql.com/grqssupe
+# CONN=postgres://postgres:3DdeMKqEsqyOE5jL@localhost/postgres
 
 init_schema_meta () {
    psql -Atx $CONN < meta/init_data.sql

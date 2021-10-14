@@ -17,7 +17,7 @@ export const USSubRegions = () => {
   const { data, loading } = useUsSubRegionsQuery();
 
   if (loading) {
-    return <div>loading</div>;
+    return <div> loading</div>;
   }
   const nodes = data?.allStateSummaryViews?.nodes;
 
@@ -39,6 +39,15 @@ export const USSubRegions = () => {
             state?.stateCasesAllsByStateFipsCode.nodes.length > 50 && (
               <AdvancedGraph
                 title={state?.stateName!}
+                subtitle={`Avg ${Math.round(
+                  ((state?.stateCasesAllsByStateFipsCode.nodes[0]
+                    ?.confirmedCases! -
+                    state?.stateCasesAllsByStateFipsCode.nodes[30]
+                      ?.confirmedCases!) /
+                    state.population! /
+                    30) *
+                    100000
+                )}/100K/day past month`}
                 serieses={[
                   {
                     series: DataSeries.fromGraphQLQueryNodes(

@@ -32,7 +32,7 @@ CREATE TABLE us_cases_all (
     "deaths" integer
 );
 
-DROP TABLE IF EXISTS states_hospitalization;
+DROP TABLE IF EXISTS states_hospitalization CASCADE;
 
 CREATE TABLE states_hospitalization (
     "date" text,
@@ -50,7 +50,7 @@ CREATE TABLE states_hospitalization (
     -- CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
-DROP TABLE IF EXISTS us_hospitalization;
+DROP TABLE IF EXISTS us_hospitalization CASCADE;
 
 CREATE TABLE us_hospitalization (
     "date" text,
@@ -63,7 +63,7 @@ CREATE TABLE us_hospitalization (
 );
 
 
-DROP TABLE IF EXISTS states_testing;
+DROP TABLE IF EXISTS states_testing CASCADE;
 
 CREATE TABLE states_testing (
     "date" text,
@@ -81,7 +81,7 @@ CREATE TABLE states_testing (
     -- CONSTRAINT fk_state_fips FOREIGN KEY (state_fips_code) REFERENCES fips_code_state (state_fips_code)
 );
 
-DROP TABLE IF EXISTS us_testing;
+DROP TABLE IF EXISTS us_testing CASCADE;
 
 CREATE TABLE us_testing (
     "date" text,
@@ -95,7 +95,7 @@ CREATE TABLE us_testing (
     "inconclusiveIncrease" integer
 );
 
-DROP TABLE IF EXISTS msa_cases_all;
+DROP TABLE IF EXISTS msa_cases_all CASCADE;
 
 CREATE TABLE msa_cases_all (
     "msd_id" text,
@@ -104,7 +104,7 @@ CREATE TABLE msa_cases_all (
     "deaths" integer
 );
 
-DROP TABLE IF EXISTS us_vaccination;
+DROP TABLE IF EXISTS us_vaccination CASCADE;
 
 CREATE TABLE us_vaccination (
     "date" text,
@@ -113,7 +113,7 @@ CREATE TABLE us_vaccination (
     "administered" INTEGER
 );
 
-DROP TABLE IF EXISTS county_vaccination;
+DROP TABLE IF EXISTS county_vaccination CASCADE;
 CREATE TABLE county_vaccination (
     "date" text,
     "county_fips_code" text,
