@@ -36,13 +36,13 @@ export const USSubRegions = () => {
         (b?.stateCasesAllsByStateFipsCode.nodes[0]?.confirmedCases! -
           b?.stateCasesAllsByStateFipsCode.nodes[30]?.confirmedCases!) /
         b?.population!;
-      console.log(`${a?.stateName} ${da} -  ${b?.stateName} ${db}`);
+      // console.log(`${a?.stateName} ${da} -  ${b?.stateName} ${db}`);
       return db - da;
     });
   return (
     <GraphContainer>
-      {sorted_nodes?.map((state) => (
-        <GraphSingle>
+      {sorted_nodes?.map((state, index) => (
+        <GraphSingle key={index}>
           <AdvancedGraph
             title={state?.stateName!}
             subtitle={`Avg ${Math.round(
