@@ -22,11 +22,13 @@ const init = async () => {
 
   const client = new ApolloClient({
     // uri: "http://localhost:5000/graphql",
-    uri: "https://helloworld-capsc6nslq-uc.a.run.app/graphql",
-
+    uri:
+      process.env.REACT_APP_GRAPHQL_ENDPOINT ||
+      "https://helloworld-capsc6nslq-uc.a.run.app/graphql",
     cache: cache,
     connectToDevTools: true,
   });
+
   const ApolloApp = (AppComponent: any) => (
     <ApolloProvider client={client}>
       <AppComponent />
