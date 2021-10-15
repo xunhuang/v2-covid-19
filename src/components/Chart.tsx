@@ -1,15 +1,16 @@
 import {
-  LineChart,
-  ReferenceLine,
-  ReferenceArea,
-  Label,
   CartesianGrid,
+  Label,
+  Line,
+  LineChart,
+  ReferenceArea,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  Line,
-} from "recharts";
+} from 'recharts';
+
 const moment = require("moment");
 
 export function valueFormatter(value: any) {
@@ -77,7 +78,7 @@ const Display = (props) => {
 export interface RefLineType {
   date: number; // unix timestamp
   label: string;
-  value: number;
+  // value: number;
 }
 export interface LineSpec {
   derived: boolean;
@@ -159,7 +160,7 @@ export const Chart = (props: ChartProps) => {
       return (
         <ReferenceLine
           key={`hrefline${idx}`}
-          y={l.value}
+          y={l.date}
           stroke="#e3e3e3"
           strokeWidth={1}
         >
