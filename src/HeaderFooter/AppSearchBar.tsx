@@ -5,6 +5,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useSearchBarDataLazyQuery } from '../generated/graphql';
+import { fetchPrecisePoliticalLocation } from '../GeoLocation';
 
 export const AppSearchBar = () => {
   const [open, setOpen] = React.useState(false);
@@ -36,9 +37,15 @@ export const AppSearchBar = () => {
                 endAdornment: (
                   <InputAdornment position="start">
                     <IconButton
-                      aria-label="toggle password visibility"
-                      // onClick={handleClickShowPassword}
-                      // onMouseDown={handleMouseDownPassword}
+                      onClick={() => {
+                        fetchPrecisePoliticalLocation().then((location) => {
+                          if (location.county_fips_code) {
+                            history.push(
+                              `/county/${location.county_fips_code}`
+                            );
+                          }
+                        });
+                      }}
                       edge="end"
                     >
                       <GpsFixedIcon></GpsFixedIcon>
@@ -46,9 +53,7 @@ export const AppSearchBar = () => {
                   </InputAdornment>
                 ),
               }}
-            >
-              ABC sdsds ds ds ds
-            </TextField>
+            ></TextField>
           </>
         )}
       />
