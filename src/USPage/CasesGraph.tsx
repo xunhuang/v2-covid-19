@@ -1,34 +1,41 @@
 import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
-import { StateCasesAllsConnection, StateSummaryView } from '../generated/graphql';
+import { CovidColor } from './CovidColor';
 
-type StateCasesProp = {
-  state: StateSummaryView;
-  cases: StateCasesAllsConnection;
+export interface CasesObject {
+  confirmedCases: number;
+  deaths: number;
+}
+
+type CasesGraphProp = {
+  cases: CasesObject[];
 };
-export const StateCasesGraph = ({ state, cases }: StateCasesProp) => {
+
+export const CasesGraph = ({ cases }: CasesGraphProp) => {
   return (
     <div>
       {cases && (
         <>
           <AdvancedCovidGraph
-            title={`${state.stateName} Confirmed Cases`}
+            title={""}
             serieses={[
               {
                 series: DataSeries.fromGraphQLQueryNodes(
                   "Confirmed",
-                  cases.nodes! as object[],
+                  cases,
                   "confirmedCases"
                 ),
-                color: "red",
+                color: CovidColor.confirmed,
               },
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Changes",
-                  cases.nodes! as object[],
+                  "",
+                  cases,
                   "confirmedCases"
-                ).change(),
-                color: "green",
+                )
+                  .change()
+                  .setLabel("New"),
+                color: CovidColor.confirmedNew,
                 rightAxis: true,
                 covidspecial: true,
                 showMovingAverage: true,
@@ -37,23 +44,23 @@ export const StateCasesGraph = ({ state, cases }: StateCasesProp) => {
             initNumberOfDays={360}
           />
           <AdvancedCovidGraph
-            title={`${state.stateName} Deaths`}
+            title={`Deaths`}
             serieses={[
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Confirmed",
-                  cases.nodes! as object[],
+                  "Deaths",
+                  cases,
                   "deaths"
                 ),
-                color: "red",
+                color: CovidColor.deaths,
               },
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Changes",
-                  cases.nodes! as object[],
+                  "",
+                  cases,
                   "deaths"
                 ).change(),
-                color: "green",
+                color: CovidColor.deathsNew,
                 rightAxis: true,
                 covidspecial: true,
                 showMovingAverage: true,

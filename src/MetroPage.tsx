@@ -1,28 +1,29 @@
-import { getDistance } from 'geolib';
 import { useParams } from 'react-router-dom';
 
 import { AppTabs } from './components/AppTab';
-import { CountySummaryView, useCountyDetailsByCountyFipsQuery } from './generated/graphql';
+import { useMsaDetailsByMsaIdQuery } from './generated/graphql';
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
-import { CountyCompareGraph } from './USPage/CountyCompareGraph';
-import { CountyDailyGraph } from './USPage/CountyDailyGraph';
-import { CountyVaccinationGraph } from './USPage/CountyVaccinationGraph';
 import { InfoTab } from './USPage/InfoTab';
-import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
-export const CountyPage = () => {
-  const { county_fips_code } = useParams<{ county_fips_code: string }>();
-  const { data, loading } = useCountyDetailsByCountyFipsQuery({
+export const MetroPage = () => {
+  const { msa_id } = useParams<{ msa_id: string }>();
+  const { data, loading } = useMsaDetailsByMsaIdQuery({
     variables: {
-      county_fips_code: county_fips_code,
+      msaId: msa_id,
     },
   });
+  console.log("whatever");
+
   if (loading) {
     return <div> loading </div>;
   }
 
+  const cases = data?.allMsaSummaryViews?.nodes[0]?.msaCasesAllsByMsaId
+    .nodes as CasesObject[];
+
+  /*
   const county = data?.summary?.nodes[0] as unknown as CountySummaryView;
-  const cases = data?.cases?.nodes as unknown as Array<CasesObject>;
+  
   const countyTables = data?.countiesInstate?.nodes[0]
     ?.stateSummaryViewByStateFipsCode?.countySummaryViewsByStateFipsCode
     .nodes as Array<CountySummaryView>;
@@ -43,19 +44,22 @@ export const CountyPage = () => {
       return dist_a - dist_b;
     })
     .slice(0, 10);
+    */
 
   return (
     <div>
-      <InfoTab county_fips_code={county_fips_code} />
-      <AppTabs
-        tabs={[
-          ["At-A-Glance", <CasesGraph cases={cases} />],
-          ["Daily", <CountyDailyGraph county={county} cases={cases} />],
-          ["Compare", <CountyCompareGraph county={county} />],
-          ["Vaccination", <CountyVaccinationGraph county={county} />],
-        ]}
-      />
+      <InfoTab msa_id={msa_id} />
+      {
+        <AppTabs
+          tabs={[
+            ["At-A-Glance", <CasesGraph cases={cases} />],
+            // ["Daily", <CountyDailyGraph county={county} cases={cases} />],
+            // ["Compare", <CountyCompareGraph county={county} />],
+            // ["Vaccination", <CountyVaccinationGraph county={county} />],
+          ]}
+        />
 
+        /*
       <AppTabs
         tabs={[
           [
@@ -63,7 +67,8 @@ export const CountyPage = () => {
             <StateCountiesCasesTable countiesTable={nearby!} />,
           ],
         ]}
-      />
+      /> */
+      }
     </div>
   );
 };

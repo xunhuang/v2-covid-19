@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { myShortNumber } from '../components/AdvanceGraph';
-import { useInfoSummaryByCountyFipsQuery, useInfoSummaryByStateFipsQuery } from '../generated/graphql';
+import {
+  useInfoSummaryByCountyFipsQuery,
+  useInfoSummaryByStateFipsQuery,
+  useMsaCountyDetailsByMsaIdQuery,
+} from '../generated/graphql';
 import { getLastCountyLocation, setLastCountyLocation } from './LastCountyLocation';
 import { TagProps, USInfoTopWidget } from './USInfoBoxRender';
 
@@ -56,6 +60,9 @@ const InfoTabByCounty = ({
   setLastCountyLocation({
     county_fips_code,
     state_fips_code: state_fips_code!,
+    msa_id:
+      data?.allCountySummaryViews?.nodes[0]?.msaSummaryViewByMsaId?.msaId ||
+      undefined,
   });
 
   const tags: TagProps[] = [];
@@ -71,7 +78,7 @@ const InfoTabByCounty = ({
   if (data?.allCountySummaryViews?.nodes[0]?.msaSummaryViewByMsaId) {
     const msa = data?.allCountySummaryViews?.nodes[0]?.msaSummaryViewByMsaId!;
     tags.push({
-      routeTo: `/msa/${msa.msaId}`,
+      routeTo: `/metro/${msa.msaId}`,
       title: msa.msaName!,
       mainMetric: myShortNumber(msa.confirmedCases!),
       mainMini: "+" + myShortNumber(msa.confirmedIncrease!),
@@ -100,8 +107,41 @@ const InfoTabByCounty = ({
 
   return <USInfoTopWidget tags={tags} />;
 };
+
 type InfoTypeByStateProps = {
   state_fips_code: string;
+};
+
+type InfoTypeByMsaProps = {
+  msa_id: string;
+};
+
+export const InfoTabByMsa = ({ msa_id }: InfoTypeByMsaProps) => {
+  var desiredCounty: null | string;
+  const cacheCounty = getLastCountyLocation();
+
+  const { data, loading } = useMsaCountyDetailsByMsaIdQuery({
+    variables: {
+      msaId: msa_id,
+    },
+  });
+
+  if (cacheCounty && cacheCounty?.msa_id === msa_id) {
+    desiredCounty = cacheCounty.county_fips_code;
+  } else {
+    desiredCounty =
+      data?.allMsaSummaryViews?.nodes[0]?.countySummaryViewsByMsaId!.nodes[0]
+        ?.countyFipsCode!;
+  }
+
+  return desiredCounty ? (
+    <InfoTabByCounty
+      county_fips_code={desiredCounty!}
+      highlight={Highlight.MSA}
+    ></InfoTabByCounty>
+  ) : (
+    <> loading</>
+  );
 };
 
 export const InfoTabByState = ({ state_fips_code }: InfoTypeByStateProps) => {
@@ -136,11 +176,13 @@ export const InfoTabByState = ({ state_fips_code }: InfoTypeByStateProps) => {
 type InfoTabProps = {
   county_fips_code?: string;
   state_fips_code?: string;
+  msa_id?: string;
 };
 
 export const InfoTab = ({
   county_fips_code,
   state_fips_code,
+  msa_id,
 }: InfoTabProps) => {
   if (county_fips_code) {
     return (
@@ -150,6 +192,11 @@ export const InfoTab = ({
       />
     );
   }
+
+  if (msa_id) {
+    return <InfoTabByMsa msa_id={msa_id} />;
+  }
+
   if (state_fips_code) {
     return <InfoTabByState state_fips_code={state_fips_code} />;
   }

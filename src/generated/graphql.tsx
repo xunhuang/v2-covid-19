@@ -2732,12 +2732,26 @@ export type InfoSummaryByStateFipsQueryVariables = Exact<{
 
 export type InfoSummaryByStateFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
 
+export type MsaCountyDetailsByMsaIdQueryVariables = Exact<{
+  msaId?: Maybe<Scalars['String']>;
+}>;
+
+
+export type MsaCountyDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, msaId?: Maybe<string>, msaName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, stateAbbr?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, updated?: Maybe<string> }>> } }>> }> };
+
 export type InfoSummaryByCountyFipsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
 }>;
 
 
 export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>, msaSummaryViewByMsaId?: Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
+
+export type MsaDetailsByMsaIdQueryVariables = Exact<{
+  msaId?: Maybe<Scalars['String']>;
+}>;
+
+
+export type MsaDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, msaCasesAllsByMsaId: { __typename?: 'MsaCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'MsaCasesAll', msaId?: Maybe<string>, date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
 
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
@@ -3333,6 +3347,71 @@ export function useInfoSummaryByStateFipsLazyQuery(baseOptions?: Apollo.LazyQuer
 export type InfoSummaryByStateFipsQueryHookResult = ReturnType<typeof useInfoSummaryByStateFipsQuery>;
 export type InfoSummaryByStateFipsLazyQueryHookResult = ReturnType<typeof useInfoSummaryByStateFipsLazyQuery>;
 export type InfoSummaryByStateFipsQueryResult = Apollo.QueryResult<InfoSummaryByStateFipsQuery, InfoSummaryByStateFipsQueryVariables>;
+export const MsaCountyDetailsByMsaIdDocument = gql`
+    query MsaCountyDetailsByMsaId($msaId: String = "") {
+  allMsaSummaryViews(condition: {msaId: $msaId}) {
+    nodes {
+      msaId
+      msaName
+      msaUrlName
+      population
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      updated
+      countySummaryViewsByMsaId(orderBy: POPULATION_DESC) {
+        nodes {
+          stateName
+          msaId
+          msaName
+          countyName
+          countyFipsCode
+          stateFipsCode
+          stateAbbr
+          longitude
+          latitude
+          confirmedCases
+          confirmedIncrease
+          deaths
+          deathIncrease
+          population
+          updated
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMsaCountyDetailsByMsaIdQuery__
+ *
+ * To run a query within a React component, call `useMsaCountyDetailsByMsaIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsaCountyDetailsByMsaIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsaCountyDetailsByMsaIdQuery({
+ *   variables: {
+ *      msaId: // value for 'msaId'
+ *   },
+ * });
+ */
+export function useMsaCountyDetailsByMsaIdQuery(baseOptions?: Apollo.QueryHookOptions<MsaCountyDetailsByMsaIdQuery, MsaCountyDetailsByMsaIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MsaCountyDetailsByMsaIdQuery, MsaCountyDetailsByMsaIdQueryVariables>(MsaCountyDetailsByMsaIdDocument, options);
+      }
+export function useMsaCountyDetailsByMsaIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MsaCountyDetailsByMsaIdQuery, MsaCountyDetailsByMsaIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MsaCountyDetailsByMsaIdQuery, MsaCountyDetailsByMsaIdQueryVariables>(MsaCountyDetailsByMsaIdDocument, options);
+        }
+export type MsaCountyDetailsByMsaIdQueryHookResult = ReturnType<typeof useMsaCountyDetailsByMsaIdQuery>;
+export type MsaCountyDetailsByMsaIdLazyQueryHookResult = ReturnType<typeof useMsaCountyDetailsByMsaIdLazyQuery>;
+export type MsaCountyDetailsByMsaIdQueryResult = Apollo.QueryResult<MsaCountyDetailsByMsaIdQuery, MsaCountyDetailsByMsaIdQueryVariables>;
 export const InfoSummaryByCountyFipsDocument = gql`
     query InfoSummaryByCountyFips($county_fips_code: String) {
   allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {
@@ -3391,6 +3470,60 @@ export function useInfoSummaryByCountyFipsLazyQuery(baseOptions?: Apollo.LazyQue
 export type InfoSummaryByCountyFipsQueryHookResult = ReturnType<typeof useInfoSummaryByCountyFipsQuery>;
 export type InfoSummaryByCountyFipsLazyQueryHookResult = ReturnType<typeof useInfoSummaryByCountyFipsLazyQuery>;
 export type InfoSummaryByCountyFipsQueryResult = Apollo.QueryResult<InfoSummaryByCountyFipsQuery, InfoSummaryByCountyFipsQueryVariables>;
+export const MsaDetailsByMsaIdDocument = gql`
+    query MsaDetailsByMsaId($msaId: String = "") {
+  allMsaSummaryViews(condition: {msaId: $msaId}) {
+    nodes {
+      msaId
+      msaName
+      msaUrlName
+      population
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      updated
+      msaCasesAllsByMsaId {
+        nodes {
+          msaId
+          date
+          confirmedCases
+          deaths
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMsaDetailsByMsaIdQuery__
+ *
+ * To run a query within a React component, call `useMsaDetailsByMsaIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsaDetailsByMsaIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsaDetailsByMsaIdQuery({
+ *   variables: {
+ *      msaId: // value for 'msaId'
+ *   },
+ * });
+ */
+export function useMsaDetailsByMsaIdQuery(baseOptions?: Apollo.QueryHookOptions<MsaDetailsByMsaIdQuery, MsaDetailsByMsaIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MsaDetailsByMsaIdQuery, MsaDetailsByMsaIdQueryVariables>(MsaDetailsByMsaIdDocument, options);
+      }
+export function useMsaDetailsByMsaIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MsaDetailsByMsaIdQuery, MsaDetailsByMsaIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MsaDetailsByMsaIdQuery, MsaDetailsByMsaIdQueryVariables>(MsaDetailsByMsaIdDocument, options);
+        }
+export type MsaDetailsByMsaIdQueryHookResult = ReturnType<typeof useMsaDetailsByMsaIdQuery>;
+export type MsaDetailsByMsaIdLazyQueryHookResult = ReturnType<typeof useMsaDetailsByMsaIdLazyQuery>;
+export type MsaDetailsByMsaIdQueryResult = Apollo.QueryResult<MsaDetailsByMsaIdQuery, MsaDetailsByMsaIdQueryVariables>;
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
   allStateSummaryViews(condition: {stateFipsCode: $fips}) {

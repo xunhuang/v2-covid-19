@@ -1,0 +1,35 @@
+query MsaCountyDetailsByMsaId($msaId: String = "") {
+  allMsaSummaryViews(condition: { msaId: $msaId }) {
+    nodes {
+      msaId
+      msaName
+      msaUrlName
+      population
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      updated
+      countySummaryViewsByMsaId(orderBy: POPULATION_DESC) {
+        nodes {
+          stateName
+          msaId
+          msaName
+          countyName
+          countyFipsCode
+          stateFipsCode
+          stateAbbr
+          longitude
+          latitude
+          confirmedCases
+          confirmedIncrease
+          deaths
+          deathIncrease
+          population
+          updated
+        }
+      }
+    }
+  }
+}

@@ -3,14 +3,13 @@ import { useParams } from 'react-router-dom';
 import { AppTabs } from './components/AppTab';
 import {
   CountySummaryView,
-  StateCasesAllsConnection,
   StatesHospitalization,
   StatesTesting,
   StateSummaryView,
   useStateByFipsDetailsQuery,
 } from './generated/graphql';
+import { CasesGraph, CasesObject } from './USPage/CasesGraph';
 import { InfoTab } from './USPage/InfoTab';
-import { StateCasesGraph } from './USPage/StateCasesGraph';
 import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 import { StateHospitalizationGraph } from './USPage/StateHospitalizationGraph';
 import { StateSubRegions } from './USPage/StateSubRegions';
@@ -28,8 +27,8 @@ export const StatePage = () => {
   // not very proud of this but, hey, 1 query to rule to all...
   const state = data?.allStateSummaryViews
     ?.nodes[0] as unknown as StateSummaryView;
-  const cases = data?.allStateSummaryViews?.nodes[0]
-    ?.cases as unknown as StateCasesAllsConnection;
+  const cases = data?.allStateSummaryViews?.nodes[0]?.cases
+    .nodes as unknown as Array<CasesObject>;
   const counties = data?.allStateSummaryViews?.nodes[0]?.countiesTable
     .nodes as unknown as Array<CountySummaryView>;
   const hospitalization = data?.allStateSummaryViews?.nodes[0]?.hospitalization
@@ -45,7 +44,7 @@ export const StatePage = () => {
       <InfoTab state_fips_code={state_fips_code} />
       <AppTabs
         tabs={[
-          ["Cases", <StateCasesGraph state={state!} cases={cases} />],
+          ["Cases", <CasesGraph cases={cases} />],
           ["Sub Regions", <StateSubRegions state={state} />],
           ["Vaccination", <StateVaccinationGraph state={state} />],
           ["Testing", <StateTestingGraphs state={state!} testing={testing} />],

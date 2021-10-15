@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from 'rea
 import { CountyPage } from './CountyPage';
 import { AppHeaderSection } from './HeaderFooter/AppHeaderSection';
 import { Footer } from './HeaderFooter/Footer';
+import { MetroPage } from './MetroPage';
 import { StatePage } from './StatePage';
 import { FullDiv } from './styles/HomeStyles';
 import { FrontPage } from './USPage/FrontPage';
@@ -37,6 +38,11 @@ const routes: IRoute[] = [
   {
     path: "/county/:county_fips_code",
     component: CountyPage,
+    name: "State",
+  },
+  {
+    path: "/metro/:msa_id",
+    component: MetroPage,
     name: "State",
   },
 ];

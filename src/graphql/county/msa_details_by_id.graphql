@@ -1,0 +1,24 @@
+query MsaDetailsByMsaId($msaId: String = "") {
+  allMsaSummaryViews(condition: { msaId: $msaId }) {
+    nodes {
+      msaId
+      msaName
+      msaUrlName
+      population
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      updated
+      msaCasesAllsByMsaId {
+        nodes {
+          msaId
+          date
+          confirmedCases
+          deaths
+        }
+      }
+    }
+  }
+}
