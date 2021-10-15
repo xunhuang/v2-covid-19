@@ -1,8 +1,8 @@
-import Cookies from 'js-cookie';
 import React from 'react';
 
 import { myShortNumber } from '../components/AdvanceGraph';
 import { useInfoSummaryByCountyFipsQuery, useInfoSummaryByStateFipsQuery } from '../generated/graphql';
+import { getLastCountyLocation, setLastCountyLocation } from './LastCountyLocation';
 import { USInfoTopWidget } from './USInfoBoxRender';
 
 enum Highlight {
@@ -15,12 +15,7 @@ type InfoTypebyCountyProps = {
   highlight: Highlight;
 };
 
-interface LastCountyCookieType {
-  county_fips_code: string;
-  state_fips_code: string;
-}
-
-const LastCountyCookieName = "LAST_COUNTY_VISITED";
+export const LastCountyCookieName = "LAST_COUNTY_VISITED";
 const InfoTabByCounty = ({
   county_fips_code,
   highlight,
@@ -58,13 +53,10 @@ const InfoTabByCounty = ({
   const usConfirmedIncreased =
     data?.allUsSummaryViews?.nodes[0]?.confirmedIncrease;
 
-  Cookies.set(
-    LastCountyCookieName,
-    JSON.stringify({
-      county_fips_code,
-      state_fips_code,
-    })
-  );
+  setLastCountyLocation({
+    county_fips_code,
+    state_fips_code: state_fips_code!,
+  });
 
   return (
     <USInfoTopWidget
@@ -101,15 +93,9 @@ type InfoTypeByStateProps = {
   state_fips_code: string;
 };
 
-function getLastCountyCookie(): null | LastCountyCookieType {
-  const cache = Cookies.get(LastCountyCookieName);
-  if (cache == null) return null;
-  return JSON.parse(cache) as LastCountyCookieType;
-}
-
 export const InfoTabByState = ({ state_fips_code }: InfoTypeByStateProps) => {
   var desiredCounty: null | string;
-  const cacheCounty = getLastCountyCookie();
+  const cacheCounty = getLastCountyLocation();
   const { data } = useInfoSummaryByStateFipsQuery({
     variables: {
       state_fips_code: state_fips_code,
@@ -157,7 +143,7 @@ export const InfoTab = ({
     return <InfoTabByState state_fips_code={state_fips_code} />;
   }
 
-  const cacheCounty = getLastCountyCookie();
+  const cacheCounty = getLastCountyLocation();
 
   const derived_county_fips_code =
     cacheCounty && cacheCounty.county_fips_code

@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import superagent from 'superagent';
 
 // import { Coordinate } from 'recharts/types/util/types';
@@ -24,10 +23,6 @@ interface CoordType {
   stateName?: string;
 }
 
-// import Countries from './models/Countries';
-
-const cookieId = "covidLocation";
-
 const defaultValue = {
   location: {
     state: "CA",
@@ -45,9 +40,6 @@ export async function fetchPrecisePoliticalLocation() {
     () => askForExactLocation(),
     () => fetchApproxIPLocationGoogle(),
   ]);
-  Cookies.set(cookieId, location!, {
-    expires: 1000,
-  });
   return location;
 }
 
@@ -61,9 +53,6 @@ export async function fetchApproximatePoliticalLocation() {
     () => fetchApproxIPLocationGoogle(),
   ]);
 
-  Cookies.set(cookieId, location!, {
-    expires: 1000,
-  });
   return location;
 }
 
@@ -196,7 +185,6 @@ function askForExactLocation(): Promise<CoordType> {
   });
 }
 
-
 async function fetchApproxIPLocationGoogle(): Promise<CoordType> {
   return await superagent
     .post(
@@ -233,7 +221,7 @@ async function fetchApproxIPLocationIPGEOLOCATION(): Promise<CoordType> {
     };
   });
 }
-*/ 
+*/
 
 async function fetchApproxIPLocationIPDataCo(
   apikey: string
