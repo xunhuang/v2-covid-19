@@ -113,7 +113,10 @@ export enum CountyCasesAllsOrderBy {
 export type CountyMeta = {
   __typename?: 'CountyMeta';
   countyFipsCode?: Maybe<Scalars['String']>;
+  countyFullName?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  countySummaryViewsByCountyFipsCode: CountySummaryViewsConnection;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
   msaId?: Maybe<Scalars['String']>;
@@ -127,6 +130,17 @@ export type CountyMeta = {
   stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
 };
 
+
+export type CountyMetaCountySummaryViewsByCountyFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
 /**
  * A condition to be used against `CountyMeta` object types. All fields are tested
  * for equality and combined with a logical ‘and.’
@@ -134,6 +148,8 @@ export type CountyMeta = {
 export type CountyMetaCondition = {
   /** Checks for equality with the object’s `countyFipsCode` field. */
   countyFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `countyFullName` field. */
+  countyFullName?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `countyName` field. */
   countyName?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `latitude` field. */
@@ -159,6 +175,7 @@ export type CountyMetaCondition = {
 /** An input for mutations affecting `CountyMeta` */
 export type CountyMetaInput = {
   countyFipsCode?: Maybe<Scalars['String']>;
+  countyFullName?: Maybe<Scalars['String']>;
   countyName?: Maybe<Scalars['String']>;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
@@ -197,6 +214,8 @@ export type CountyMetasEdge = {
 export enum CountyMetasOrderBy {
   CountyFipsCodeAsc = 'COUNTY_FIPS_CODE_ASC',
   CountyFipsCodeDesc = 'COUNTY_FIPS_CODE_DESC',
+  CountyFullNameAsc = 'COUNTY_FULL_NAME_ASC',
+  CountyFullNameDesc = 'COUNTY_FULL_NAME_DESC',
   CountyNameAsc = 'COUNTY_NAME_ASC',
   CountyNameDesc = 'COUNTY_NAME_DESC',
   LatitudeAsc = 'LATITUDE_ASC',
@@ -227,6 +246,8 @@ export type CountySummaryView = {
   /** Reads and enables pagination through a set of `CountyCasesAll`. */
   countyCasesAllsByCountyFipsCode: CountyCasesAllsConnection;
   countyFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `CountyMeta` that is related to this `CountySummaryView`. */
+  countyMetaByCountyFipsCode?: Maybe<CountyMeta>;
   countyName?: Maybe<Scalars['String']>;
   /** Reads and enables pagination through a set of `CountyVaccination`. */
   countyVaccinationsByCountyFipsCode: CountyVaccinationsConnection;
@@ -234,9 +255,17 @@ export type CountySummaryView = {
   deaths?: Maybe<Scalars['Int']>;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
+  msaId?: Maybe<Scalars['String']>;
+  /** Reads a single `MsaMeta` that is related to this `CountySummaryView`. */
+  msaMetaByMsaId?: Maybe<MsaMeta>;
+  msaName?: Maybe<Scalars['String']>;
+  /** Reads a single `MsaSummaryView` that is related to this `CountySummaryView`. */
+  msaSummaryViewByMsaId?: Maybe<MsaSummaryView>;
   population?: Maybe<Scalars['Int']>;
   stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `StateMeta` that is related to this `CountySummaryView`. */
+  stateMetaByStateFipsCode?: Maybe<StateMeta>;
   stateName?: Maybe<Scalars['String']>;
   /** Reads a single `StateSummaryView` that is related to this `CountySummaryView`. */
   stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
@@ -286,6 +315,10 @@ export type CountySummaryViewCondition = {
   latitude?: Maybe<Scalars['Float']>;
   /** Checks for equality with the object’s `longitude` field. */
   longitude?: Maybe<Scalars['Float']>;
+  /** Checks for equality with the object’s `msaId` field. */
+  msaId?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaName` field. */
+  msaName?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `population` field. */
   population?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `stateAbbr` field. */
@@ -338,6 +371,10 @@ export enum CountySummaryViewsOrderBy {
   LatitudeDesc = 'LATITUDE_DESC',
   LongitudeAsc = 'LONGITUDE_ASC',
   LongitudeDesc = 'LONGITUDE_DESC',
+  MsaIdAsc = 'MSA_ID_ASC',
+  MsaIdDesc = 'MSA_ID_DESC',
+  MsaNameAsc = 'MSA_NAME_ASC',
+  MsaNameDesc = 'MSA_NAME_DESC',
   Natural = 'NATURAL',
   PopulationAsc = 'POPULATION_ASC',
   PopulationDesc = 'POPULATION_DESC',
@@ -559,6 +596,10 @@ export type CreateMsaCasesAllPayload = {
   msaCasesAll?: Maybe<MsaCasesAll>;
   /** An edge for our `MsaCasesAll`. May be used by Relay 1. */
   msaCasesAllEdge?: Maybe<MsaCasesAllsEdge>;
+  /** Reads a single `MsaMeta` that is related to this `MsaCasesAll`. */
+  msaMetaByMsaId?: Maybe<MsaMeta>;
+  /** Reads a single `MsaSummaryView` that is related to this `MsaCasesAll`. */
+  msaSummaryViewByMsaId?: Maybe<MsaSummaryView>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -877,7 +918,11 @@ export type MsaCasesAll = {
   confirmedCases?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
-  msdId?: Maybe<Scalars['String']>;
+  msaId?: Maybe<Scalars['String']>;
+  /** Reads a single `MsaMeta` that is related to this `MsaCasesAll`. */
+  msaMetaByMsaId?: Maybe<MsaMeta>;
+  /** Reads a single `MsaSummaryView` that is related to this `MsaCasesAll`. */
+  msaSummaryViewByMsaId?: Maybe<MsaSummaryView>;
 };
 
 /**
@@ -891,8 +936,8 @@ export type MsaCasesAllCondition = {
   date?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `deaths` field. */
   deaths?: Maybe<Scalars['Int']>;
-  /** Checks for equality with the object’s `msdId` field. */
-  msdId?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaId` field. */
+  msaId?: Maybe<Scalars['String']>;
 };
 
 /** An input for mutations affecting `MsaCasesAll` */
@@ -900,7 +945,7 @@ export type MsaCasesAllInput = {
   confirmedCases?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
   deaths?: Maybe<Scalars['Int']>;
-  msdId?: Maybe<Scalars['String']>;
+  msaId?: Maybe<Scalars['String']>;
 };
 
 /** A connection to a list of `MsaCasesAll` values. */
@@ -933,20 +978,59 @@ export enum MsaCasesAllsOrderBy {
   DateDesc = 'DATE_DESC',
   DeathsAsc = 'DEATHS_ASC',
   DeathsDesc = 'DEATHS_DESC',
-  MsdIdAsc = 'MSD_ID_ASC',
-  MsdIdDesc = 'MSD_ID_DESC',
+  MsaIdAsc = 'MSA_ID_ASC',
+  MsaIdDesc = 'MSA_ID_DESC',
   Natural = 'NATURAL'
 }
 
 export type MsaMeta = {
   __typename?: 'MsaMeta';
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  countySummaryViewsByMsaId: CountySummaryViewsConnection;
+  /** Reads and enables pagination through a set of `MsaCasesAll`. */
+  msaCasesAllsByMsaId: MsaCasesAllsConnection;
   msaId?: Maybe<Scalars['String']>;
   msaName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `MsaSummaryView`. */
+  msaSummaryViewsByMsaId: MsaSummaryViewsConnection;
   msaUrlName?: Maybe<Scalars['String']>;
   population?: Maybe<Scalars['BigInt']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
   statePostalAbbreviation?: Maybe<Scalars['String']>;
+};
+
+
+export type MsaMetaCountySummaryViewsByMsaIdArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
+
+export type MsaMetaMsaCasesAllsByMsaIdArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaCasesAllsOrderBy>>;
+};
+
+
+export type MsaMetaMsaSummaryViewsByMsaIdArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaSummaryViewsOrderBy>>;
 };
 
 /** A condition to be used against `MsaMeta` object types. All fields are tested for equality and combined with a logical ‘and.’ */
@@ -1017,6 +1101,124 @@ export enum MsaMetasOrderBy {
   StateNameDesc = 'STATE_NAME_DESC',
   StatePostalAbbreviationAsc = 'STATE_POSTAL_ABBREVIATION_ASC',
   StatePostalAbbreviationDesc = 'STATE_POSTAL_ABBREVIATION_DESC'
+}
+
+export type MsaSummaryView = {
+  __typename?: 'MsaSummaryView';
+  confirmedCases?: Maybe<Scalars['Int']>;
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  countySummaryViewsByMsaId: CountySummaryViewsConnection;
+  deathIncrease?: Maybe<Scalars['Int']>;
+  deaths?: Maybe<Scalars['Int']>;
+  /** Reads and enables pagination through a set of `MsaCasesAll`. */
+  msaCasesAllsByMsaId: MsaCasesAllsConnection;
+  msaId?: Maybe<Scalars['String']>;
+  /** Reads a single `MsaMeta` that is related to this `MsaSummaryView`. */
+  msaMetaByMsaId?: Maybe<MsaMeta>;
+  msaName?: Maybe<Scalars['String']>;
+  msaUrlName?: Maybe<Scalars['String']>;
+  population?: Maybe<Scalars['BigInt']>;
+  stateFipsCode?: Maybe<Scalars['String']>;
+  /** Reads a single `StateMeta` that is related to this `MsaSummaryView`. */
+  stateMetaByStateFipsCode?: Maybe<StateMeta>;
+  updated?: Maybe<Scalars['String']>;
+};
+
+
+export type MsaSummaryViewCountySummaryViewsByMsaIdArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
+
+export type MsaSummaryViewMsaCasesAllsByMsaIdArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaCasesAllCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaCasesAllsOrderBy>>;
+};
+
+/**
+ * A condition to be used against `MsaSummaryView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type MsaSummaryViewCondition = {
+  /** Checks for equality with the object’s `confirmedCases` field. */
+  confirmedCases?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `confirmedIncrease` field. */
+  confirmedIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `deathIncrease` field. */
+  deathIncrease?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `deaths` field. */
+  deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `msaId` field. */
+  msaId?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaName` field. */
+  msaName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `msaUrlName` field. */
+  msaUrlName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `population` field. */
+  population?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `stateFipsCode` field. */
+  stateFipsCode?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `updated` field. */
+  updated?: Maybe<Scalars['String']>;
+};
+
+/** A connection to a list of `MsaSummaryView` values. */
+export type MsaSummaryViewsConnection = {
+  __typename?: 'MsaSummaryViewsConnection';
+  /** A list of edges which contains the `MsaSummaryView` and cursor to aid in pagination. */
+  edges: Array<MsaSummaryViewsEdge>;
+  /** A list of `MsaSummaryView` objects. */
+  nodes: Array<Maybe<MsaSummaryView>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `MsaSummaryView` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `MsaSummaryView` edge in the connection. */
+export type MsaSummaryViewsEdge = {
+  __typename?: 'MsaSummaryViewsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `MsaSummaryView` at the end of the edge. */
+  node?: Maybe<MsaSummaryView>;
+};
+
+/** Methods to use when ordering `MsaSummaryView`. */
+export enum MsaSummaryViewsOrderBy {
+  ConfirmedCasesAsc = 'CONFIRMED_CASES_ASC',
+  ConfirmedCasesDesc = 'CONFIRMED_CASES_DESC',
+  ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
+  ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
+  DeathsAsc = 'DEATHS_ASC',
+  DeathsDesc = 'DEATHS_DESC',
+  DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
+  DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  MsaIdAsc = 'MSA_ID_ASC',
+  MsaIdDesc = 'MSA_ID_DESC',
+  MsaNameAsc = 'MSA_NAME_ASC',
+  MsaNameDesc = 'MSA_NAME_DESC',
+  MsaUrlNameAsc = 'MSA_URL_NAME_ASC',
+  MsaUrlNameDesc = 'MSA_URL_NAME_DESC',
+  Natural = 'NATURAL',
+  PopulationAsc = 'POPULATION_ASC',
+  PopulationDesc = 'POPULATION_DESC',
+  StateFipsCodeAsc = 'STATE_FIPS_CODE_ASC',
+  StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
+  UpdatedAsc = 'UPDATED_ASC',
+  UpdatedDesc = 'UPDATED_DESC'
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1162,6 +1364,8 @@ export type Query = Node & {
   allMsaCasesAlls?: Maybe<MsaCasesAllsConnection>;
   /** Reads and enables pagination through a set of `MsaMeta`. */
   allMsaMetas?: Maybe<MsaMetasConnection>;
+  /** Reads and enables pagination through a set of `MsaSummaryView`. */
+  allMsaSummaryViews?: Maybe<MsaSummaryViewsConnection>;
   /** Reads and enables pagination through a set of `StateCasesAll`. */
   allStateCasesAlls?: Maybe<StateCasesAllsConnection>;
   /** Reads and enables pagination through a set of `StateMeta`. */
@@ -1265,6 +1469,18 @@ export type QueryAllMsaMetasArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<MsaMetasOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllMsaSummaryViewsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaSummaryViewsOrderBy>>;
 };
 
 
@@ -1481,12 +1697,38 @@ export enum StateCasesAllsOrderBy {
 
 export type StateMeta = {
   __typename?: 'StateMeta';
+  /** Reads and enables pagination through a set of `CountySummaryView`. */
+  countySummaryViewsByStateFipsCode: CountySummaryViewsConnection;
+  /** Reads and enables pagination through a set of `MsaSummaryView`. */
+  msaSummaryViewsByStateFipsCode: MsaSummaryViewsConnection;
   population?: Maybe<Scalars['Int']>;
   stateAbbr?: Maybe<Scalars['String']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   stateName?: Maybe<Scalars['String']>;
   /** Reads and enables pagination through a set of `StateSummaryView`. */
   stateSummaryViewsByStateFipsCode: StateSummaryViewsConnection;
+};
+
+
+export type StateMetaCountySummaryViewsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<CountySummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<CountySummaryViewsOrderBy>>;
+};
+
+
+export type StateMetaMsaSummaryViewsByStateFipsCodeArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaSummaryViewCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaSummaryViewsOrderBy>>;
 };
 
 
@@ -2495,7 +2737,7 @@ export type InfoSummaryByCountyFipsQueryVariables = Exact<{
 }>;
 
 
-export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
+export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>, msaSummaryViewByMsaId?: Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
 
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
@@ -3102,6 +3344,12 @@ export const InfoSummaryByCountyFipsDocument = gql`
         stateName
         stateAbbr
         stateFipsCode
+        confirmedCases
+        confirmedIncrease
+      }
+      msaSummaryViewByMsaId {
+        msaId
+        msaName
         confirmedCases
         confirmedIncrease
       }

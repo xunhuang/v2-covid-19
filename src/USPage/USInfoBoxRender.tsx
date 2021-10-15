@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme?: any) => ({
     padding: 3,
   },
 }));
-type TagProps = {
+export type TagProps = {
   title: string;
   mainMetric: string;
   mainMini: string;

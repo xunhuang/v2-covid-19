@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
 
-import { LastCountyCookieName } from './InfoTab';
 
+
+const LastCountyCookieName = "LAST_COUNTY_VISITED";
 interface LastCountyCookieType {
   county_fips_code: string;
   state_fips_code: string;

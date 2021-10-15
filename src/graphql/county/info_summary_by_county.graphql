@@ -11,6 +11,12 @@ query InfoSummaryByCountyFips($county_fips_code: String) {
         confirmedCases
         confirmedIncrease
       }
+      msaSummaryViewByMsaId {
+        msaId
+        msaName
+        confirmedCases
+        confirmedIncrease
+      }
     }
   }
   allUsSummaryViews {

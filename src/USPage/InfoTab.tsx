@@ -3,10 +3,11 @@ import React from 'react';
 import { myShortNumber } from '../components/AdvanceGraph';
 import { useInfoSummaryByCountyFipsQuery, useInfoSummaryByStateFipsQuery } from '../generated/graphql';
 import { getLastCountyLocation, setLastCountyLocation } from './LastCountyLocation';
-import { USInfoTopWidget } from './USInfoBoxRender';
+import { TagProps, USInfoTopWidget } from './USInfoBoxRender';
 
 enum Highlight {
   COUNTY,
+  MSA,
   STATE,
   US,
 }
@@ -15,7 +16,6 @@ type InfoTypebyCountyProps = {
   highlight: Highlight;
 };
 
-export const LastCountyCookieName = "LAST_COUNTY_VISITED";
 const InfoTabByCounty = ({
   county_fips_code,
   highlight,
@@ -58,36 +58,47 @@ const InfoTabByCounty = ({
     state_fips_code: state_fips_code!,
   });
 
-  return (
-    <USInfoTopWidget
-      tags={[
-        {
-          routeTo: `/county/${county_fips_code}`,
-          title: countyName!,
-          mainMetric: myShortNumber(countyConfirmed!),
-          mainMini: "+" + myShortNumber(countyConfirmedIncreased!),
-          footer: "confirmed",
-          selected: highlight === Highlight.COUNTY,
-        },
-        {
-          routeTo: `/state/${state_fips_code}`,
-          title: stateName!,
-          mainMetric: myShortNumber(stateConfirmed!),
-          mainMini: "+" + myShortNumber(stateConfirmedIncreased!),
-          footer: "confirmed",
-          selected: highlight === Highlight.STATE,
-        },
-        {
-          routeTo: `/US`,
-          title: USName,
-          mainMetric: myShortNumber(usConfirmed!),
-          mainMini: "+" + myShortNumber(usConfirmedIncreased!),
-          footer: "confirmed",
-          selected: highlight === Highlight.US,
-        },
-      ]}
-    />
+  const tags: TagProps[] = [];
+  tags.push({
+    routeTo: `/county/${county_fips_code}`,
+    title: countyName!,
+    mainMetric: myShortNumber(countyConfirmed!),
+    mainMini: "+" + myShortNumber(countyConfirmedIncreased!),
+    footer: "confirmed",
+    selected: highlight === Highlight.COUNTY,
+  });
+
+  if (data?.allCountySummaryViews?.nodes[0]?.msaSummaryViewByMsaId) {
+    const msa = data?.allCountySummaryViews?.nodes[0]?.msaSummaryViewByMsaId!;
+    tags.push({
+      routeTo: `/msa/${msa.msaId}`,
+      title: msa.msaName!,
+      mainMetric: myShortNumber(msa.confirmedCases!),
+      mainMini: "+" + myShortNumber(msa.confirmedIncrease!),
+      footer: "confirmed",
+      selected: highlight === Highlight.MSA,
+    });
+  }
+  tags.push(
+    {
+      routeTo: `/state/${state_fips_code}`,
+      title: stateName!,
+      mainMetric: myShortNumber(stateConfirmed!),
+      mainMini: "+" + myShortNumber(stateConfirmedIncreased!),
+      footer: "confirmed",
+      selected: highlight === Highlight.STATE,
+    },
+    {
+      routeTo: `/US`,
+      title: USName,
+      mainMetric: myShortNumber(usConfirmed!),
+      mainMini: "+" + myShortNumber(usConfirmedIncreased!),
+      footer: "confirmed",
+      selected: highlight === Highlight.US,
+    }
   );
+
+  return <USInfoTopWidget tags={tags} />;
 };
 type InfoTypeByStateProps = {
   state_fips_code: string;
