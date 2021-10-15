@@ -191,6 +191,35 @@ type Query implements Node {
     condition: MsaMetaCondition
   ): MsaMetasConnection
 
+  """Reads and enables pagination through a set of `MsaSummaryView`."""
+  allMsaSummaryViews(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaSummaryView`."""
+    orderBy: [MsaSummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaSummaryViewCondition
+  ): MsaSummaryViewsConnection
+
   """Reads and enables pagination through a set of `StateCasesAll`."""
   allStateCasesAlls(
     """Only read the first `n` values of the set."""
@@ -814,6 +843,64 @@ type StateMeta {
   stateName: String
   population: Int
 
+  """Reads and enables pagination through a set of `CountySummaryView`."""
+  countySummaryViewsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountySummaryView`."""
+    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountySummaryViewCondition
+  ): CountySummaryViewsConnection!
+
+  """Reads and enables pagination through a set of `MsaSummaryView`."""
+  msaSummaryViewsByStateFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaSummaryView`."""
+    orderBy: [MsaSummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaSummaryViewCondition
+  ): MsaSummaryViewsConnection!
+
   """Reads and enables pagination through a set of `StateSummaryView`."""
   stateSummaryViewsByStateFipsCode(
     """Only read the first `n` values of the set."""
@@ -844,290 +931,6 @@ type StateMeta {
   ): StateSummaryViewsConnection!
 }
 
-"""A connection to a list of `StateSummaryView` values."""
-type StateSummaryViewsConnection {
-  """A list of `StateSummaryView` objects."""
-  nodes: [StateSummaryView]!
-
-  """
-  A list of edges which contains the `StateSummaryView` and cursor to aid in pagination.
-  """
-  edges: [StateSummaryViewsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `StateSummaryView` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `StateSummaryView` edge in the connection."""
-type StateSummaryViewsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `StateSummaryView` at the end of the edge."""
-  node: StateSummaryView
-}
-
-"""A location in a connection that can be used for resuming pagination."""
-scalar Cursor
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
-}
-
-"""Methods to use when ordering `StateSummaryView`."""
-enum StateSummaryViewsOrderBy {
-  NATURAL
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_ABBR_ASC
-  STATE_ABBR_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  CONFIRMED_INCREASE_ASC
-  CONFIRMED_INCREASE_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-  DEATH_INCREASE_ASC
-  DEATH_INCREASE_DESC
-  TOTAL_TEST_RESULTS_ASC
-  TOTAL_TEST_RESULTS_DESC
-  POSITIVE_ASC
-  POSITIVE_DESC
-  NEGATIVE_ASC
-  NEGATIVE_DESC
-  POSITIVE_INCREASE_ASC
-  POSITIVE_INCREASE_DESC
-  NEGATIVE_INCREASE_ASC
-  NEGATIVE_INCREASE_DESC
-  UPDATED_ASC
-  UPDATED_DESC
-  POPULATION_ASC
-  POPULATION_DESC
-}
-
-"""
-A condition to be used against `StateSummaryView` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input StateSummaryViewCondition {
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateAbbr` field."""
-  stateAbbr: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `confirmedIncrease` field."""
-  confirmedIncrease: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-
-  """Checks for equality with the object’s `deathIncrease` field."""
-  deathIncrease: Int
-
-  """Checks for equality with the object’s `totalTestResults` field."""
-  totalTestResults: Int
-
-  """Checks for equality with the object’s `positive` field."""
-  positive: Int
-
-  """Checks for equality with the object’s `negative` field."""
-  negative: Int
-
-  """Checks for equality with the object’s `positiveIncrease` field."""
-  positiveIncrease: Int
-
-  """Checks for equality with the object’s `negativeIncrease` field."""
-  negativeIncrease: Int
-
-  """Checks for equality with the object’s `updated` field."""
-  updated: String
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
-}
-
-"""Methods to use when ordering `CountyCasesAll`."""
-enum CountyCasesAllsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  COUNTY_ASC
-  COUNTY_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-}
-
-"""
-A condition to be used against `CountyCasesAll` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CountyCasesAllCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `county` field."""
-  county: String
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-}
-
-"""A connection to a list of `CountyMeta` values."""
-type CountyMetasConnection {
-  """A list of `CountyMeta` objects."""
-  nodes: [CountyMeta]!
-
-  """
-  A list of edges which contains the `CountyMeta` and cursor to aid in pagination.
-  """
-  edges: [CountyMetasEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CountyMeta` you could get from the connection."""
-  totalCount: Int!
-}
-
-type CountyMeta {
-  countyFipsCode: String
-  stateFipsCode: String
-  longitude: Float
-  latitude: Float
-  population: Int
-  countyName: String
-  stateName: String
-  stateAbbr: String
-  msaId: String
-  msaName: String
-  msaUrlName: String
-
-  """
-  Reads a single `StateSummaryView` that is related to this `CountyMeta`.
-  """
-  stateSummaryViewByStateFipsCode: StateSummaryView
-}
-
-"""A `CountyMeta` edge in the connection."""
-type CountyMetasEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CountyMeta` at the end of the edge."""
-  node: CountyMeta
-}
-
-"""Methods to use when ordering `CountyMeta`."""
-enum CountyMetasOrderBy {
-  NATURAL
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
-  LONGITUDE_ASC
-  LONGITUDE_DESC
-  LATITUDE_ASC
-  LATITUDE_DESC
-  POPULATION_ASC
-  POPULATION_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  STATE_NAME_ASC
-  STATE_NAME_DESC
-  STATE_ABBR_ASC
-  STATE_ABBR_DESC
-  MSA_ID_ASC
-  MSA_ID_DESC
-  MSA_NAME_ASC
-  MSA_NAME_DESC
-  MSA_URL_NAME_ASC
-  MSA_URL_NAME_DESC
-}
-
-"""
-A condition to be used against `CountyMeta` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input CountyMetaCondition {
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
-
-  """Checks for equality with the object’s `longitude` field."""
-  longitude: Float
-
-  """Checks for equality with the object’s `latitude` field."""
-  latitude: Float
-
-  """Checks for equality with the object’s `population` field."""
-  population: Int
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `stateName` field."""
-  stateName: String
-
-  """Checks for equality with the object’s `stateAbbr` field."""
-  stateAbbr: String
-
-  """Checks for equality with the object’s `msaId` field."""
-  msaId: String
-
-  """Checks for equality with the object’s `msaName` field."""
-  msaName: String
-
-  """Checks for equality with the object’s `msaUrlName` field."""
-  msaUrlName: String
-}
-
 """A connection to a list of `CountySummaryView` values."""
 type CountySummaryViewsConnection {
   """A list of `CountySummaryView` objects."""
@@ -1147,9 +950,10 @@ type CountySummaryViewsConnection {
   totalCount: Int!
 }
 
-""" """
 type CountySummaryView {
   stateName: String
+  msaId: String
+  msaName: String
   countyName: String
   countyFipsCode: String
   stateFipsCode: String
@@ -1164,9 +968,27 @@ type CountySummaryView {
   updated: String
 
   """
+  Reads a single `CountyMeta` that is related to this `CountySummaryView`.
+  """
+  countyMetaByCountyFipsCode: CountyMeta
+
+  """
+  Reads a single `StateMeta` that is related to this `CountySummaryView`.
+  """
+  stateMetaByStateFipsCode: StateMeta
+
+  """
   Reads a single `StateSummaryView` that is related to this `CountySummaryView`.
   """
   stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """
+  Reads a single `MsaSummaryView` that is related to this `CountySummaryView`.
+  """
+  msaSummaryViewByMsaId: MsaSummaryView
+
+  """Reads a single `MsaMeta` that is related to this `CountySummaryView`."""
+  msaMetaByMsaId: MsaMeta
 
   """Reads and enables pagination through a set of `CountyCasesAll`."""
   countyCasesAllsByCountyFipsCode(
@@ -1225,6 +1047,543 @@ type CountySummaryView {
     """
     condition: CountyVaccinationCondition
   ): CountyVaccinationsConnection!
+}
+
+type CountyMeta {
+  countyFipsCode: String
+  stateFipsCode: String
+  longitude: Float
+  latitude: Float
+  population: Int
+  countyFullName: String
+  countyName: String
+  stateName: String
+  stateAbbr: String
+  msaId: String
+  msaName: String
+  msaUrlName: String
+
+  """
+  Reads a single `StateSummaryView` that is related to this `CountyMeta`.
+  """
+  stateSummaryViewByStateFipsCode: StateSummaryView
+
+  """Reads and enables pagination through a set of `CountySummaryView`."""
+  countySummaryViewsByCountyFipsCode(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountySummaryView`."""
+    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountySummaryViewCondition
+  ): CountySummaryViewsConnection!
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Methods to use when ordering `CountySummaryView`."""
+enum CountySummaryViewsOrderBy {
+  NATURAL
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  MSA_ID_ASC
+  MSA_ID_DESC
+  MSA_NAME_ASC
+  MSA_NAME_DESC
+  COUNTY_NAME_ASC
+  COUNTY_NAME_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  STATE_ABBR_ASC
+  STATE_ABBR_DESC
+  LONGITUDE_ASC
+  LONGITUDE_DESC
+  LATITUDE_ASC
+  LATITUDE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  CONFIRMED_INCREASE_ASC
+  CONFIRMED_INCREASE_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+  DEATH_INCREASE_ASC
+  DEATH_INCREASE_DESC
+  POPULATION_ASC
+  POPULATION_DESC
+  UPDATED_ASC
+  UPDATED_DESC
+}
+
+"""
+A condition to be used against `CountySummaryView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountySummaryViewCondition {
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `msaId` field."""
+  msaId: String
+
+  """Checks for equality with the object’s `msaName` field."""
+  msaName: String
+
+  """Checks for equality with the object’s `countyName` field."""
+  countyName: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `stateAbbr` field."""
+  stateAbbr: String
+
+  """Checks for equality with the object’s `longitude` field."""
+  longitude: Float
+
+  """Checks for equality with the object’s `latitude` field."""
+  latitude: Float
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `confirmedIncrease` field."""
+  confirmedIncrease: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+
+  """Checks for equality with the object’s `deathIncrease` field."""
+  deathIncrease: Int
+
+  """Checks for equality with the object’s `population` field."""
+  population: Int
+
+  """Checks for equality with the object’s `updated` field."""
+  updated: String
+}
+
+type MsaSummaryView {
+  msaId: String
+  msaName: String
+  msaUrlName: String
+  population: BigInt
+  stateFipsCode: String
+  confirmedCases: Int
+  confirmedIncrease: Int
+  deaths: Int
+  deathIncrease: Int
+  updated: String
+
+  """Reads a single `MsaMeta` that is related to this `MsaSummaryView`."""
+  msaMetaByMsaId: MsaMeta
+
+  """Reads a single `StateMeta` that is related to this `MsaSummaryView`."""
+  stateMetaByStateFipsCode: StateMeta
+
+  """Reads and enables pagination through a set of `CountySummaryView`."""
+  countySummaryViewsByMsaId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountySummaryView`."""
+    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountySummaryViewCondition
+  ): CountySummaryViewsConnection!
+
+  """Reads and enables pagination through a set of `MsaCasesAll`."""
+  msaCasesAllsByMsaId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaCasesAll`."""
+    orderBy: [MsaCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaCasesAllCondition
+  ): MsaCasesAllsConnection!
+}
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+type MsaMeta {
+  msaId: String
+  msaName: String
+  msaUrlName: String
+  stateFipsCode: String
+  stateName: String
+  statePostalAbbreviation: String
+  population: BigInt
+
+  """Reads and enables pagination through a set of `CountySummaryView`."""
+  countySummaryViewsByMsaId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CountySummaryView`."""
+    orderBy: [CountySummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CountySummaryViewCondition
+  ): CountySummaryViewsConnection!
+
+  """Reads and enables pagination through a set of `MsaCasesAll`."""
+  msaCasesAllsByMsaId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaCasesAll`."""
+    orderBy: [MsaCasesAllsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaCasesAllCondition
+  ): MsaCasesAllsConnection!
+
+  """Reads and enables pagination through a set of `MsaSummaryView`."""
+  msaSummaryViewsByMsaId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaSummaryView`."""
+    orderBy: [MsaSummaryViewsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaSummaryViewCondition
+  ): MsaSummaryViewsConnection!
+}
+
+"""A connection to a list of `MsaCasesAll` values."""
+type MsaCasesAllsConnection {
+  """A list of `MsaCasesAll` objects."""
+  nodes: [MsaCasesAll]!
+
+  """
+  A list of edges which contains the `MsaCasesAll` and cursor to aid in pagination.
+  """
+  edges: [MsaCasesAllsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MsaCasesAll` you could get from the connection."""
+  totalCount: Int!
+}
+
+type MsaCasesAll {
+  msaId: String
+  date: String
+  confirmedCases: Int
+  deaths: Int
+
+  """Reads a single `MsaMeta` that is related to this `MsaCasesAll`."""
+  msaMetaByMsaId: MsaMeta
+
+  """Reads a single `MsaSummaryView` that is related to this `MsaCasesAll`."""
+  msaSummaryViewByMsaId: MsaSummaryView
+}
+
+"""A `MsaCasesAll` edge in the connection."""
+type MsaCasesAllsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MsaCasesAll` at the end of the edge."""
+  node: MsaCasesAll
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Methods to use when ordering `MsaCasesAll`."""
+enum MsaCasesAllsOrderBy {
+  NATURAL
+  MSA_ID_ASC
+  MSA_ID_DESC
+  DATE_ASC
+  DATE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `MsaCasesAll` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MsaCasesAllCondition {
+  """Checks for equality with the object’s `msaId` field."""
+  msaId: String
+
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+}
+
+"""A connection to a list of `MsaSummaryView` values."""
+type MsaSummaryViewsConnection {
+  """A list of `MsaSummaryView` objects."""
+  nodes: [MsaSummaryView]!
+
+  """
+  A list of edges which contains the `MsaSummaryView` and cursor to aid in pagination.
+  """
+  edges: [MsaSummaryViewsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MsaSummaryView` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `MsaSummaryView` edge in the connection."""
+type MsaSummaryViewsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MsaSummaryView` at the end of the edge."""
+  node: MsaSummaryView
+}
+
+"""Methods to use when ordering `MsaSummaryView`."""
+enum MsaSummaryViewsOrderBy {
+  NATURAL
+  MSA_ID_ASC
+  MSA_ID_DESC
+  MSA_NAME_ASC
+  MSA_NAME_DESC
+  MSA_URL_NAME_ASC
+  MSA_URL_NAME_DESC
+  POPULATION_ASC
+  POPULATION_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  CONFIRMED_INCREASE_ASC
+  CONFIRMED_INCREASE_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+  DEATH_INCREASE_ASC
+  DEATH_INCREASE_DESC
+  UPDATED_ASC
+  UPDATED_DESC
+}
+
+"""
+A condition to be used against `MsaSummaryView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input MsaSummaryViewCondition {
+  """Checks for equality with the object’s `msaId` field."""
+  msaId: String
+
+  """Checks for equality with the object’s `msaName` field."""
+  msaName: String
+
+  """Checks for equality with the object’s `msaUrlName` field."""
+  msaUrlName: String
+
+  """Checks for equality with the object’s `population` field."""
+  population: BigInt
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `confirmedIncrease` field."""
+  confirmedIncrease: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
+
+  """Checks for equality with the object’s `deathIncrease` field."""
+  deathIncrease: Int
+
+  """Checks for equality with the object’s `updated` field."""
+  updated: String
+}
+
+"""Methods to use when ordering `CountyCasesAll`."""
+enum CountyCasesAllsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  COUNTY_ASC
+  COUNTY_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  CONFIRMED_CASES_ASC
+  CONFIRMED_CASES_DESC
+  DEATHS_ASC
+  DEATHS_DESC
+}
+
+"""
+A condition to be used against `CountyCasesAll` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CountyCasesAllCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `county` field."""
+  county: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `confirmedCases` field."""
+  confirmedCases: Int
+
+  """Checks for equality with the object’s `deaths` field."""
+  deaths: Int
 }
 
 """A connection to a list of `CountyVaccination` values."""
@@ -1318,23 +1677,43 @@ type CountySummaryViewsEdge {
   node: CountySummaryView
 }
 
-"""Methods to use when ordering `CountySummaryView`."""
-enum CountySummaryViewsOrderBy {
+"""A connection to a list of `StateSummaryView` values."""
+type StateSummaryViewsConnection {
+  """A list of `StateSummaryView` objects."""
+  nodes: [StateSummaryView]!
+
+  """
+  A list of edges which contains the `StateSummaryView` and cursor to aid in pagination.
+  """
+  edges: [StateSummaryViewsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `StateSummaryView` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `StateSummaryView` edge in the connection."""
+type StateSummaryViewsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `StateSummaryView` at the end of the edge."""
+  node: StateSummaryView
+}
+
+"""Methods to use when ordering `StateSummaryView`."""
+enum StateSummaryViewsOrderBy {
   NATURAL
   STATE_NAME_ASC
   STATE_NAME_DESC
-  COUNTY_NAME_ASC
-  COUNTY_NAME_DESC
-  COUNTY_FIPS_CODE_ASC
-  COUNTY_FIPS_CODE_DESC
-  STATE_FIPS_CODE_ASC
-  STATE_FIPS_CODE_DESC
   STATE_ABBR_ASC
   STATE_ABBR_DESC
-  LONGITUDE_ASC
-  LONGITUDE_DESC
-  LATITUDE_ASC
-  LATITUDE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
   CONFIRMED_CASES_ASC
   CONFIRMED_CASES_DESC
   CONFIRMED_INCREASE_ASC
@@ -1343,37 +1722,35 @@ enum CountySummaryViewsOrderBy {
   DEATHS_DESC
   DEATH_INCREASE_ASC
   DEATH_INCREASE_DESC
-  POPULATION_ASC
-  POPULATION_DESC
+  TOTAL_TEST_RESULTS_ASC
+  TOTAL_TEST_RESULTS_DESC
+  POSITIVE_ASC
+  POSITIVE_DESC
+  NEGATIVE_ASC
+  NEGATIVE_DESC
+  POSITIVE_INCREASE_ASC
+  POSITIVE_INCREASE_DESC
+  NEGATIVE_INCREASE_ASC
+  NEGATIVE_INCREASE_DESC
   UPDATED_ASC
   UPDATED_DESC
+  POPULATION_ASC
+  POPULATION_DESC
 }
 
 """
-A condition to be used against `CountySummaryView` object types. All fields are
+A condition to be used against `StateSummaryView` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
-input CountySummaryViewCondition {
+input StateSummaryViewCondition {
   """Checks for equality with the object’s `stateName` field."""
   stateName: String
-
-  """Checks for equality with the object’s `countyName` field."""
-  countyName: String
-
-  """Checks for equality with the object’s `countyFipsCode` field."""
-  countyFipsCode: String
-
-  """Checks for equality with the object’s `stateFipsCode` field."""
-  stateFipsCode: String
 
   """Checks for equality with the object’s `stateAbbr` field."""
   stateAbbr: String
 
-  """Checks for equality with the object’s `longitude` field."""
-  longitude: Float
-
-  """Checks for equality with the object’s `latitude` field."""
-  latitude: Float
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
 
   """Checks for equality with the object’s `confirmedCases` field."""
   confirmedCases: Int
@@ -1387,11 +1764,123 @@ input CountySummaryViewCondition {
   """Checks for equality with the object’s `deathIncrease` field."""
   deathIncrease: Int
 
-  """Checks for equality with the object’s `population` field."""
-  population: Int
+  """Checks for equality with the object’s `totalTestResults` field."""
+  totalTestResults: Int
+
+  """Checks for equality with the object’s `positive` field."""
+  positive: Int
+
+  """Checks for equality with the object’s `negative` field."""
+  negative: Int
+
+  """Checks for equality with the object’s `positiveIncrease` field."""
+  positiveIncrease: Int
+
+  """Checks for equality with the object’s `negativeIncrease` field."""
+  negativeIncrease: Int
 
   """Checks for equality with the object’s `updated` field."""
   updated: String
+
+  """Checks for equality with the object’s `population` field."""
+  population: Int
+}
+
+"""A connection to a list of `CountyMeta` values."""
+type CountyMetasConnection {
+  """A list of `CountyMeta` objects."""
+  nodes: [CountyMeta]!
+
+  """
+  A list of edges which contains the `CountyMeta` and cursor to aid in pagination.
+  """
+  edges: [CountyMetasEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CountyMeta` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CountyMeta` edge in the connection."""
+type CountyMetasEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CountyMeta` at the end of the edge."""
+  node: CountyMeta
+}
+
+"""Methods to use when ordering `CountyMeta`."""
+enum CountyMetasOrderBy {
+  NATURAL
+  COUNTY_FIPS_CODE_ASC
+  COUNTY_FIPS_CODE_DESC
+  STATE_FIPS_CODE_ASC
+  STATE_FIPS_CODE_DESC
+  LONGITUDE_ASC
+  LONGITUDE_DESC
+  LATITUDE_ASC
+  LATITUDE_DESC
+  POPULATION_ASC
+  POPULATION_DESC
+  COUNTY_FULL_NAME_ASC
+  COUNTY_FULL_NAME_DESC
+  COUNTY_NAME_ASC
+  COUNTY_NAME_DESC
+  STATE_NAME_ASC
+  STATE_NAME_DESC
+  STATE_ABBR_ASC
+  STATE_ABBR_DESC
+  MSA_ID_ASC
+  MSA_ID_DESC
+  MSA_NAME_ASC
+  MSA_NAME_DESC
+  MSA_URL_NAME_ASC
+  MSA_URL_NAME_DESC
+}
+
+"""
+A condition to be used against `CountyMeta` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input CountyMetaCondition {
+  """Checks for equality with the object’s `countyFipsCode` field."""
+  countyFipsCode: String
+
+  """Checks for equality with the object’s `stateFipsCode` field."""
+  stateFipsCode: String
+
+  """Checks for equality with the object’s `longitude` field."""
+  longitude: Float
+
+  """Checks for equality with the object’s `latitude` field."""
+  latitude: Float
+
+  """Checks for equality with the object’s `population` field."""
+  population: Int
+
+  """Checks for equality with the object’s `countyFullName` field."""
+  countyFullName: String
+
+  """Checks for equality with the object’s `countyName` field."""
+  countyName: String
+
+  """Checks for equality with the object’s `stateName` field."""
+  stateName: String
+
+  """Checks for equality with the object’s `stateAbbr` field."""
+  stateAbbr: String
+
+  """Checks for equality with the object’s `msaId` field."""
+  msaId: String
+
+  """Checks for equality with the object’s `msaName` field."""
+  msaName: String
+
+  """Checks for equality with the object’s `msaUrlName` field."""
+  msaUrlName: String
 }
 
 """A connection to a list of `StateCasesAll` values."""
@@ -1499,13 +1988,6 @@ type StateVaccination {
   """
   stateSummaryViewByStateFipsCode: StateSummaryView
 }
-
-"""
-A signed eight-byte integer. The upper big integer values are greater than the
-max value for a JavaScript number. Therefore all big integers will be output as
-strings and not numbers.
-"""
-scalar BigInt
 
 """A `StateVaccination` edge in the connection."""
 type StateVaccinationsEdge {
@@ -1794,70 +2276,6 @@ type CountyCasesAllsEdge {
   node: CountyCasesAll
 }
 
-"""A connection to a list of `MsaCasesAll` values."""
-type MsaCasesAllsConnection {
-  """A list of `MsaCasesAll` objects."""
-  nodes: [MsaCasesAll]!
-
-  """
-  A list of edges which contains the `MsaCasesAll` and cursor to aid in pagination.
-  """
-  edges: [MsaCasesAllsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MsaCasesAll` you could get from the connection."""
-  totalCount: Int!
-}
-
-type MsaCasesAll {
-  msdId: String
-  date: String
-  confirmedCases: Int
-  deaths: Int
-}
-
-"""A `MsaCasesAll` edge in the connection."""
-type MsaCasesAllsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MsaCasesAll` at the end of the edge."""
-  node: MsaCasesAll
-}
-
-"""Methods to use when ordering `MsaCasesAll`."""
-enum MsaCasesAllsOrderBy {
-  NATURAL
-  MSD_ID_ASC
-  MSD_ID_DESC
-  DATE_ASC
-  DATE_DESC
-  CONFIRMED_CASES_ASC
-  CONFIRMED_CASES_DESC
-  DEATHS_ASC
-  DEATHS_DESC
-}
-
-"""
-A condition to be used against `MsaCasesAll` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input MsaCasesAllCondition {
-  """Checks for equality with the object’s `msdId` field."""
-  msdId: String
-
-  """Checks for equality with the object’s `date` field."""
-  date: String
-
-  """Checks for equality with the object’s `confirmedCases` field."""
-  confirmedCases: Int
-
-  """Checks for equality with the object’s `deaths` field."""
-  deaths: Int
-}
-
 """A connection to a list of `MsaMeta` values."""
 type MsaMetasConnection {
   """A list of `MsaMeta` objects."""
@@ -1873,16 +2291,6 @@ type MsaMetasConnection {
 
   """The count of *all* `MsaMeta` you could get from the connection."""
   totalCount: Int!
-}
-
-type MsaMeta {
-  msaId: String
-  msaName: String
-  msaUrlName: String
-  stateFipsCode: String
-  stateName: String
-  statePostalAbbreviation: String
-  population: BigInt
 }
 
 """A `MsaMeta` edge in the connection."""
@@ -2572,6 +2980,7 @@ input CountyMetaInput {
   longitude: Float
   latitude: Float
   population: Int
+  countyFullName: String
   countyName: String
   stateName: String
   stateAbbr: String
@@ -2650,6 +3059,12 @@ type CreateMsaCasesAllPayload {
   """
   query: Query
 
+  """Reads a single `MsaMeta` that is related to this `MsaCasesAll`."""
+  msaMetaByMsaId: MsaMeta
+
+  """Reads a single `MsaSummaryView` that is related to this `MsaCasesAll`."""
+  msaSummaryViewByMsaId: MsaSummaryView
+
   """An edge for our `MsaCasesAll`. May be used by Relay 1."""
   msaCasesAllEdge(
     """The method to use when ordering `MsaCasesAll`."""
@@ -2671,7 +3086,7 @@ input CreateMsaCasesAllInput {
 
 """An input for mutations affecting `MsaCasesAll`"""
 input MsaCasesAllInput {
-  msdId: String
+  msaId: String
   date: String
   confirmedCases: Int
   deaths: Int

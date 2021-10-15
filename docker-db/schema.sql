@@ -98,7 +98,7 @@ CREATE TABLE us_testing (
 DROP TABLE IF EXISTS msa_cases_all CASCADE;
 
 CREATE TABLE msa_cases_all (
-    "msd_id" text,
+    "msa_id" text,
     "date" text,
     "confirmed_cases" integer,
     "deaths" integer

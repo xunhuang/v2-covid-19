@@ -61,5 +61,3 @@ on state_meta.state_fips_code = cases.state_fips_code
             ) as maxdate on tests.state_fips_code = maxdate.state_fips_code
             and tests.date = maxdate.date
     ) as testing on testing.state_fips_code = state_meta.state_fips_code;
-
-    comment on materialized view state_summary_view is E'@foreignKey (state_fips_code) references state_meta(state_fips_code)'

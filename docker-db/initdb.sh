@@ -43,7 +43,9 @@ init_views() {
    psql -Atx $CONN < views/us_summary.sql
    psql -Atx $CONN < views/states_summary_view.sql 
    psql -Atx $CONN < views/county_summary_view.sql 
+   psql -Atx $CONN < views/msa_summary_view.sql 
    psql -Atx $CONN < views/state_vaccination_view.sql 
+
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
    psql -Atx $CONN -c "CREATE UNIQUE INDEX county_summary_view_index ON county_summary_view (county_fips_code);"
@@ -54,6 +56,7 @@ init_views() {
    psql -Atx $CONN -c "CREATE INDEX county_vaccination_county_index ON county_vaccination(county_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX county_vaccination_state_index ON county_vaccination(state_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX ON public.state_cases_all(state_fips_code);"
+
    update_relationship
 }
 

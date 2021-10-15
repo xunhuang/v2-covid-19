@@ -5,7 +5,21 @@ select
     geo.int_point_lon as longitude,
     geo.int_point_lat as latitude,
     pop.pop2020 as population,
-    county.area_name as county_name,
+    county.area_name as county_full_name,
+    replace(
+replace(
+replace(replace(
+replace(replace(
+	replace(
+	replace(county.area_name, 
+					' and County',''),
+			' and Borough',''),
+			' County',''),
+	' Municipio', ''),	' Municipality', ''),
+	' Parish', ''),
+		' Borough', ''),
+				' Census Area', '') as county_name,
+
     state.state_name as state_name,
     state.state_abbr as state_abbr,
     msa_counties.msa_id as msa_id,
