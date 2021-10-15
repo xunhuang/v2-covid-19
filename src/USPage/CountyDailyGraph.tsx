@@ -1,6 +1,7 @@
 import { AdvancedGraph } from '../components/AdvanceGraph';
 import { DataSeries } from '../components/DataSeries';
 import { CountyCasesAll, CountySummaryView } from '../generated/graphql';
+import { CovidColor } from './CovidColor';
 
 type CountyDailyProp = {
   county: CountySummaryView;
@@ -19,7 +20,7 @@ export const CountyDailyGraph = ({ county, cases }: CountyDailyProp) => {
                 cases,
                 "confirmedCases"
               ).change(),
-              color: "red",
+              color: CovidColor.confirmedNew,
               covidspecial: true,
               showMovingAverage: true,
             },
@@ -29,7 +30,7 @@ export const CountyDailyGraph = ({ county, cases }: CountyDailyProp) => {
                 cases,
                 "deaths"
               ).change(),
-              color: "black",
+              color: CovidColor.deathsNew,
               rightAxis: true,
               covidspecial: true,
               showMovingAverage: true,

@@ -1,18 +1,21 @@
 import { AdvancedGraph } from '../components/AdvanceGraph';
 import { DataSeries } from '../components/DataSeries';
 import { CountyCasesAll, CountySummaryView } from '../generated/graphql';
+import { CovidColor } from './CovidColor';
 
 type CountyCasesProp = {
   county: CountySummaryView;
   cases: Array<CountyCasesAll>;
 };
+
 export const CountyCasesGraph = ({ county, cases }: CountyCasesProp) => {
   return (
     <div>
       {cases && (
         <>
           <AdvancedGraph
-            title={`${county.countyName} Confirmed Cases`}
+            // title={`${county.countyName} Confirmed Cases`}
+            title={""}
             serieses={[
               {
                 series: DataSeries.fromGraphQLQueryNodes(
@@ -20,15 +23,17 @@ export const CountyCasesGraph = ({ county, cases }: CountyCasesProp) => {
                   cases,
                   "confirmedCases"
                 ),
-                color: "red",
+                color: CovidColor.confirmed,
               },
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Changes",
+                  "",
                   cases,
                   "confirmedCases"
-                ).change(),
-                color: "green",
+                )
+                  .change()
+                  .setLabel("New"),
+                color: CovidColor.confirmedNew,
                 rightAxis: true,
                 covidspecial: true,
                 showMovingAverage: true,
@@ -41,19 +46,19 @@ export const CountyCasesGraph = ({ county, cases }: CountyCasesProp) => {
             serieses={[
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Confirmed",
+                  "Deaths",
                   cases,
                   "deaths"
                 ),
-                color: "red",
+                color: CovidColor.deaths,
               },
               {
                 series: DataSeries.fromGraphQLQueryNodes(
-                  "Changes",
+                  "",
                   cases,
                   "deaths"
                 ).change(),
-                color: "green",
+                color: CovidColor.deathsNew,
                 rightAxis: true,
                 covidspecial: true,
                 showMovingAverage: true,
