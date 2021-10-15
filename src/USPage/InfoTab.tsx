@@ -120,7 +120,7 @@ export const InfoTabByMsa = ({ msa_id }: InfoTypeByMsaProps) => {
   var desiredCounty: null | string;
   const cacheCounty = getLastCountyLocation();
 
-  const { data, loading } = useMsaCountyDetailsByMsaIdQuery({
+  const { data } = useMsaCountyDetailsByMsaIdQuery({
     variables: {
       msaId: msa_id,
     },

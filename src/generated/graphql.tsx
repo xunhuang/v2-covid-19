@@ -2751,7 +2751,7 @@ export type MsaDetailsByMsaIdQueryVariables = Exact<{
 }>;
 
 
-export type MsaDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, msaCasesAllsByMsaId: { __typename?: 'MsaCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'MsaCasesAll', msaId?: Maybe<string>, date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> } }>> }> };
+export type MsaDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, msaCasesAllsByMsaId: { __typename?: 'MsaCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'MsaCasesAll', msaId?: Maybe<string>, date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', deathIncrease?: Maybe<number>, deaths?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, population?: Maybe<number>, countyFipsCode?: Maybe<string>, countyName?: Maybe<string> }>> } }>> }> };
 
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
@@ -3490,6 +3490,17 @@ export const MsaDetailsByMsaIdDocument = gql`
           date
           confirmedCases
           deaths
+        }
+      }
+      countySummaryViewsByMsaId {
+        nodes {
+          deathIncrease
+          deaths
+          confirmedCases
+          confirmedIncrease
+          population
+          countyFipsCode
+          countyName
         }
       }
     }

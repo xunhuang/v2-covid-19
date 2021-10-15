@@ -19,6 +19,17 @@ query MsaDetailsByMsaId($msaId: String = "") {
           deaths
         }
       }
+      countySummaryViewsByMsaId {
+        nodes {
+          deathIncrease
+          deaths
+          confirmedCases
+          confirmedIncrease
+          population
+          countyFipsCode
+          countyName
+        }
+      }
     }
   }
 }

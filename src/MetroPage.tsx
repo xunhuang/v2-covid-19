@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 
 import { AppTabs } from './components/AppTab';
-import { useMsaDetailsByMsaIdQuery } from './generated/graphql';
+import { CountySummaryView, useMsaDetailsByMsaIdQuery } from './generated/graphql';
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
 import { InfoTab } from './USPage/InfoTab';
+import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
 export const MetroPage = () => {
   const { msa_id } = useParams<{ msa_id: string }>();
@@ -12,7 +13,6 @@ export const MetroPage = () => {
       msaId: msa_id,
     },
   });
-  console.log("whatever");
 
   if (loading) {
     return <div> loading </div>;
@@ -21,12 +21,12 @@ export const MetroPage = () => {
   const cases = data?.allMsaSummaryViews?.nodes[0]?.msaCasesAllsByMsaId
     .nodes as CasesObject[];
 
+  const countyTables = data?.allMsaSummaryViews?.nodes[0]
+    ?.countySummaryViewsByMsaId.nodes as Array<CountySummaryView>;
+
   /*
   const county = data?.summary?.nodes[0] as unknown as CountySummaryView;
   
-  const countyTables = data?.countiesInstate?.nodes[0]
-    ?.stateSummaryViewByStateFipsCode?.countySummaryViewsByStateFipsCode
-    .nodes as Array<CountySummaryView>;
 
   const longitude = data?.countiesInstate?.nodes[0]?.longitude;
   const latitude = data?.countiesInstate?.nodes[0]?.latitude;
@@ -49,26 +49,22 @@ export const MetroPage = () => {
   return (
     <div>
       <InfoTab msa_id={msa_id} />
-      {
-        <AppTabs
-          tabs={[
-            ["At-A-Glance", <CasesGraph cases={cases} />],
-            // ["Daily", <CountyDailyGraph county={county} cases={cases} />],
-            // ["Compare", <CountyCompareGraph county={county} />],
-            // ["Vaccination", <CountyVaccinationGraph county={county} />],
-          ]}
-        />
-
-        /*
+      <AppTabs
+        tabs={[
+          ["At-A-Glance", <CasesGraph cases={cases} />],
+          // ["Daily", <CountyDailyGraph county={county} cases={cases} />],
+          // ["Compare", <CountyCompareGraph county={county} />],
+          // ["Vaccination", <CountyVaccinationGraph county={county} />],
+        ]}
+      />
       <AppTabs
         tabs={[
           [
-            "Nearby Counties",
-            <StateCountiesCasesTable countiesTable={nearby!} />,
+            "Counties",
+            <StateCountiesCasesTable countiesTable={countyTables} />,
           ],
         ]}
-      /> */
-      }
+      />
     </div>
   );
 };
