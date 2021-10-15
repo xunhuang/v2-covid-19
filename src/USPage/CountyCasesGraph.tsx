@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { CountyCasesAll, CountySummaryView } from '../generated/graphql';
 import { CovidColor } from './CovidColor';
@@ -13,7 +13,7 @@ export const CountyCasesGraph = ({ county, cases }: CountyCasesProp) => {
     <div>
       {cases && (
         <>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             // title={`${county.countyName} Confirmed Cases`}
             title={""}
             serieses={[
@@ -41,7 +41,7 @@ export const CountyCasesGraph = ({ county, cases }: CountyCasesProp) => {
             ]}
             initNumberOfDays={360}
           />
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title={`${county.countyName} Deaths`}
             serieses={[
               {

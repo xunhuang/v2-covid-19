@@ -1,11 +1,12 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { DateRangeSlider } from "./DateRangeSlider";
-import { SectionHeader } from "./SectionHeader";
-import Typography from "@material-ui/core/Typography";
-import { DataSeries } from "./DataSeries";
-import { Chart, LineSpec, RefLineType } from "./Chart";
-import { Legend } from "./Legend";
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+
+import { Chart, LineSpec, RefLineType } from './Chart';
+import { DataSeries } from './DataSeries';
+import { DateRangeSlider } from './DateRangeSlider';
+import { Legend } from './Legend';
+import { SectionHeader } from './SectionHeader';
 
 var shortNumber = require("short-number");
 const moment = require("moment");

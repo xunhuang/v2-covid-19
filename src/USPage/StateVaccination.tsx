@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { StateSummaryView, useStateVaccinationQuery } from '../generated/graphql';
 
@@ -21,7 +21,7 @@ export const StateVaccinationGraph = ({ state }: StateVaccinationProp) => {
       {/* {!loading && <div>done loading</div>} */}
       {nodes && (
         <>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title=""
             serieses={[
               {

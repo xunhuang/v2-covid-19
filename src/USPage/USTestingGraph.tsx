@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { useUsTestingQuery } from '../generated/graphql';
 
@@ -18,7 +18,7 @@ export const UsTestingEffortGraph = () => {
       {loading && <div>loading</div>}
       {data && (
         <>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title="US Testing Effort"
             serieses={[
               {
@@ -77,7 +77,7 @@ export const UsTest7DayPositivityEffortGraph = () => {
       <div>
         {loading && <div>loading</div>}
         {data && (
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title="US 7-Day Positivity Rate"
             serieses={[
               {

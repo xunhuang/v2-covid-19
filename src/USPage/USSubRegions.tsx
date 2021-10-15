@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { useUsSubRegionsQuery } from '../generated/graphql';
 import { GraphContainer, GraphSingle } from '../styles/HomeStyles';
@@ -33,7 +33,7 @@ export const USSubRegions = () => {
     <GraphContainer>
       {sorted_nodes?.map((state, index) => (
         <GraphSingle key={index}>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title={state?.stateName!}
             subtitle={`Avg ${Math.round(
               ((state?.stateCasesAllsByStateFipsCode.nodes[0]?.confirmedCases! -

@@ -2,7 +2,7 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-import { GraphSeriesType } from './AdvanceGraph';
+import { GraphSeriesType } from './AdvanceGraphCovid';
 
 const useLegendStyles = makeStyles((theme) => ({
   serieses: {

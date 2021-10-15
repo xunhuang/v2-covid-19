@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { CountySummaryView, useCountyVaccinationQuery } from '../generated/graphql';
 
@@ -19,7 +19,7 @@ export const CountyVaccinationGraph = ({ county }: CountyVaccinationProp) => {
     data?.allCountySummaryViews?.nodes[0]?.countyVaccinationsByCountyFipsCode
       .nodes;
   return (
-    <AdvancedGraph
+    <AdvancedCovidGraph
       title=""
       serieses={[
         {

@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { CountyCasesAll, CountySummaryView } from '../generated/graphql';
 import { CovidColor } from './CovidColor';
@@ -11,7 +11,7 @@ export const CountyDailyGraph = ({ county, cases }: CountyDailyProp) => {
   return (
     <div>
       {cases && (
-        <AdvancedGraph
+        <AdvancedCovidGraph
           title={`${county.countyName} Confirmed Cases`}
           serieses={[
             {

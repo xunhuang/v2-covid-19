@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { useUsCasesQuery } from '../generated/graphql';
 
@@ -9,7 +9,7 @@ export const UsCasesGraph = () => {
       {loading && <div>loading</div>}
       {data && (
         <>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title="US Confirmed Cases"
             serieses={[
               {
@@ -34,7 +34,7 @@ export const UsCasesGraph = () => {
             ]}
             initNumberOfDays={360}
           />
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title="US Deaths"
             serieses={[
               {

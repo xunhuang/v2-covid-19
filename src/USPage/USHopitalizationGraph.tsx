@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { useUsHopitalizationQuery } from '../generated/graphql';
 
@@ -9,7 +9,7 @@ export const UsHospitalizationGraph = () => {
       {loading && <div>loading</div>}
       {data && (
         <>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title="US Hospitalization"
             serieses={[
               {

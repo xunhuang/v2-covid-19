@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { StatesHospitalization, StateSummaryView } from '../generated/graphql';
 
@@ -12,7 +12,7 @@ export const StateHospitalizationGraph = ({
   hospitalization,
 }: StateHospitalizationProp) => {
   return (
-    <AdvancedGraph
+    <AdvancedCovidGraph
       title={`${state.stateName} Hospitalization`}
       serieses={[
         {

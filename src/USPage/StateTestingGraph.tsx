@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { StatesTesting, StateSummaryView } from '../generated/graphql';
 
@@ -22,7 +22,7 @@ export const StateTestingEffortGraph = ({
 }: StateTestingProp) => {
   return (
     <>
-      <AdvancedGraph
+      <AdvancedCovidGraph
         title={`${state.stateName} Testing Effort`}
         serieses={[
           {
@@ -74,7 +74,7 @@ export const StateTest7DayPositivityEffortGraph = ({
   let rate = positiveDaily.divide(testedDaily).setLabel("Positive Rate 7-days");
 
   return (
-    <AdvancedGraph
+    <AdvancedCovidGraph
       title={`${state.stateName} 7-Day Positivity Rate`}
       serieses={[
         {

@@ -1,7 +1,8 @@
-import { useTable, useSortBy, Column } from "react-table";
-import React from "react";
-import { myShortNumber } from "./components/AdvanceGraph";
-import { FullDiv, FullTable } from "./styles/HomeStyles";
+import React from 'react';
+import { Column, useSortBy, useTable } from 'react-table';
+
+import { myShortNumber } from './components/AdvanceGraph';
+import { FullDiv, FullTable } from './styles/HomeStyles';
 
 export const shortNumber = ({ cell }: any) => {
   return <div>{myShortNumber(cell.value)}</div>;

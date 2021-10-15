@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { StateCasesAllsConnection, StateSummaryView } from '../generated/graphql';
 
@@ -11,7 +11,7 @@ export const StateCasesGraph = ({ state, cases }: StateCasesProp) => {
     <div>
       {cases && (
         <>
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title={`${state.stateName} Confirmed Cases`}
             serieses={[
               {
@@ -36,7 +36,7 @@ export const StateCasesGraph = ({ state, cases }: StateCasesProp) => {
             ]}
             initNumberOfDays={360}
           />
-          <AdvancedGraph
+          <AdvancedCovidGraph
             title={`${state.stateName} Deaths`}
             serieses={[
               {

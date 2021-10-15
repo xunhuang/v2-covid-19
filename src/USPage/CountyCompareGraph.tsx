@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { CountySummaryView, useCountyCompareToParentsQuery } from '../generated/graphql';
 
@@ -27,7 +27,7 @@ export const CountyCompareGraph = ({ county }: CountyDailyProp) => {
 
   return (
     <div>
-      <AdvancedGraph
+      <AdvancedCovidGraph
         title={"New Cases/100K (7-day average)"}
         serieses={[
           {
@@ -69,7 +69,7 @@ export const CountyCompareGraph = ({ county }: CountyDailyProp) => {
         ]}
         initNumberOfDays={360}
       />
-      <AdvancedGraph
+      <AdvancedCovidGraph
         title={"Deaths/100K (2-week average)"}
         serieses={[
           {

@@ -1,4 +1,4 @@
-import { AdvancedGraph } from '../components/AdvanceGraph';
+import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
 import { StateSummaryView, useStateSubRegionQuery } from '../generated/graphql';
 import { GraphContainer, GraphSingle } from '../styles/HomeStyles';
@@ -44,7 +44,7 @@ export const StateSubRegions = ({ state }: StateSubRegionProp) => {
         <GraphSingle>
           {county?.countyCasesAllsByCountyFipsCode.nodes.length &&
             county?.countyCasesAllsByCountyFipsCode.nodes.length! > 100 && (
-              <AdvancedGraph
+              <AdvancedCovidGraph
                 title={county?.countyName!}
                 subtitle={`Avg ${Math.round(
                   ((county?.countyCasesAllsByCountyFipsCode.nodes[0]
