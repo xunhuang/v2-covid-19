@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React from 'react';
 
 import { myShortNumber } from '../components/AdvanceGraph';
@@ -14,6 +15,12 @@ type InfoTypebyCountyProps = {
   highlight: Highlight;
 };
 
+interface LastCountyCookieType {
+  county_fips_code: string;
+  state_fips_code: string;
+}
+
+const LastCountyCookieName = "LAST_COUNTY_VISITED";
 const InfoTabByCounty = ({
   county_fips_code,
   highlight,
@@ -23,6 +30,7 @@ const InfoTabByCounty = ({
       county_fips_code: county_fips_code,
     },
   });
+
   if (loading) return null;
 
   const countyName = data?.allCountySummaryViews?.nodes[0]?.countyName;
@@ -49,6 +57,15 @@ const InfoTabByCounty = ({
   const usConfirmed = data?.allUsSummaryViews?.nodes[0]?.confirmedCases;
   const usConfirmedIncreased =
     data?.allUsSummaryViews?.nodes[0]?.confirmedIncrease;
+
+  Cookies.set(
+    LastCountyCookieName,
+    JSON.stringify({
+      county_fips_code,
+      state_fips_code,
+    })
+  );
+
   return (
     <USInfoTopWidget
       tags={[
@@ -61,7 +78,7 @@ const InfoTabByCounty = ({
           selected: highlight === Highlight.COUNTY,
         },
         {
-          routeTo: `/State/${state_fips_code}`,
+          routeTo: `/state/${state_fips_code}`,
           title: stateName!,
           mainMetric: myShortNumber(stateConfirmed!),
           mainMini: "+" + myShortNumber(stateConfirmedIncreased!),
@@ -84,18 +101,38 @@ type InfoTypeByStateProps = {
   state_fips_code: string;
 };
 
+function getLastCountyCookie(): null | LastCountyCookieType {
+  const cache = Cookies.get(LastCountyCookieName);
+  if (cache == null) return null;
+  return JSON.parse(cache) as LastCountyCookieType;
+}
+
 export const InfoTabByState = ({ state_fips_code }: InfoTypeByStateProps) => {
-  const { data, loading } = useInfoSummaryByStateFipsQuery({
+  var desiredCounty: null | string;
+  const cacheCounty = getLastCountyCookie();
+  const { data } = useInfoSummaryByStateFipsQuery({
     variables: {
       state_fips_code: state_fips_code,
     },
   });
-  if (loading) return null;
-  return (
+
+  if (
+    cacheCounty &&
+    cacheCounty.county_fips_code &&
+    cacheCounty.state_fips_code === state_fips_code
+  ) {
+    desiredCounty = cacheCounty.county_fips_code;
+  } else {
+    desiredCounty = data?.allCountySummaryViews?.nodes[0]?.countyFipsCode!;
+  }
+
+  return desiredCounty ? (
     <InfoTabByCounty
-      county_fips_code={data?.allCountySummaryViews?.nodes[0]?.countyFipsCode!}
+      county_fips_code={desiredCounty!}
       highlight={Highlight.STATE}
     ></InfoTabByCounty>
+  ) : (
+    <> </>
   );
 };
 
@@ -120,10 +157,17 @@ export const InfoTab = ({
     return <InfoTabByState state_fips_code={state_fips_code} />;
   }
 
+  const cacheCounty = getLastCountyCookie();
+
+  const derived_county_fips_code =
+    cacheCounty && cacheCounty.county_fips_code
+      ? cacheCounty.county_fips_code
+      : "06001";
+
   // nothing is selected so default to Alameda, CA
   return (
     <InfoTabByCounty
-      county_fips_code="06001"
+      county_fips_code={derived_county_fips_code}
       highlight={Highlight.US}
     ></InfoTabByCounty>
   );
