@@ -86,7 +86,7 @@ const InfoTabByCounty = ({
           selected: highlight === Highlight.STATE,
         },
         {
-          routeTo: `/`,
+          routeTo: `/US`,
           title: USName,
           mainMetric: myShortNumber(usConfirmed!),
           mainMini: "+" + myShortNumber(usConfirmedIncreased!),

@@ -9,6 +9,7 @@ import { AppHeaderSection } from './HeaderFooter/AppHeaderSection';
 import { Footer } from './HeaderFooter/Footer';
 import { StatePage } from './StatePage';
 import { FullDiv } from './styles/HomeStyles';
+import { FrontPage } from './USPage/FrontPage';
 import { USPage } from './USPage/USPage';
 
 interface IRoute {
@@ -20,6 +21,11 @@ interface IRoute {
 const routes: IRoute[] = [
   {
     path: "/",
+    component: FrontPage,
+    name: "Front Page",
+  },
+  {
+    path: "/US",
     component: USPage,
     name: "US Page",
   },
