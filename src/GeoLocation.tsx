@@ -53,11 +53,6 @@ export async function fetchPrecisePoliticalLocation() {
 
 // Uses IP address to get country, and if availble, approximate country/state
 export async function fetchApproximatePoliticalLocation() {
-  const saved = getLocationFromCookie();
-  if (saved) {
-    return saved;
-  }
-
   const location = await fetchLocationUsingMethods([
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
@@ -104,7 +99,7 @@ async function getPoliticalLocationFromCoordinates(
       return result;
     }
   }
-  throw "no possible";
+  throw new Error("not possible, we have a fall back location");
 }
 
 async function getCensusLocationFromCoordinates(coordinates: CoordType) {
@@ -142,6 +137,7 @@ async function getCensusLocationFromCoordinates(coordinates: CoordType) {
     });
 }
 
+/*
 async function getGlobalLocationFromCoordinates(
   coordinates: CoordType,
   apiKey: string
@@ -180,6 +176,7 @@ async function getGlobalLocationFromCoordinates(
       return null;
     });
 }
+*/
 
 function locationFindingError() {
   console.log("LocationFromCoordNotFoundAfterAPI");
@@ -199,16 +196,6 @@ function askForExactLocation(): Promise<CoordType> {
   });
 }
 
-function getLocationFromCookie() {
-  return null;
-  // const cookie = Cookies.get(cookieId);
-  // if (cookie && (cookie.country || cookie.county)) {
-  //   console.log("LocationFoundInCookie", cookie);
-  //   return cookie;
-  // } else {
-  //   return null;
-  // }
-}
 
 async function fetchApproxIPLocationGoogle(): Promise<CoordType> {
   return await superagent
@@ -227,6 +214,7 @@ async function fetchApproxIPLocationGoogle(): Promise<CoordType> {
 // this one is not very good - while at Alameda, it says it's in santa clara, I guess
 // with google we are paying for precision.
 
+/*
 async function fetchApproxIPLocationIPGEOLOCATION(): Promise<CoordType> {
   const url = `https://api.ipgeolocation.io/ipgeo?apiKey=${firebaseConfig.ipgeolocation_key}`;
   return await superagent.get(url).then((res) => {
@@ -245,6 +233,7 @@ async function fetchApproxIPLocationIPGEOLOCATION(): Promise<CoordType> {
     };
   });
 }
+*/ 
 
 async function fetchApproxIPLocationIPDataCo(
   apikey: string

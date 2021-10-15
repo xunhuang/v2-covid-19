@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router';
+import React from 'react';
+import { Redirect } from 'react-router';
 
 import { fetchApproximatePoliticalLocation } from '../GeoLocation';
 import { FullDiv } from '../styles/HomeStyles';
 
 export const FrontPage = () => {
-  const history = useHistory();
   const [county_fips_code, setCountyFipsCode] = React.useState<
     undefined | string
   >(undefined);
