@@ -27,5 +27,5 @@ npm start
 to connect to the cloud sql proxy
 
 ```
-./cloud_sql_proxy -instances=myrandomwatch-b4b41:us-central1:firstpostpostdb=tcp:5432
+./cloudrun/cloud_sql_proxy -instances=myrandomwatch-b4b41:us-central1:firstpostpostdb=tcp:5432
 ```
