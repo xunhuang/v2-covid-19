@@ -1,10 +1,23 @@
 import './index.css';
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { getAnalytics, logEvent } from 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
 import ReactDOM from 'react-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+const firebaseConfig = process.env.REACT_APP_FIREBASE
+  ? JSON.parse(process.env.REACT_APP_FIREBASE)
+  : null;
+if (firebaseConfig) {
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  logEvent(analytics, "app_loaded");
+}
+
+console.log("yo");
 
 const cache = new InMemoryCache();
 
