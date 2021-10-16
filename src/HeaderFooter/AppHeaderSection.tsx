@@ -62,9 +62,11 @@ export const AppHeaderSection = () => {
     <FullDiv>
       <Toolbar className={classes.appBar}>
         <div>
-          <Typography noWrap className={classes.appName} variant="h6">
-            COVID-19.direct (v2)
-          </Typography>
+          <Link href={"https://covid-19.direct"}>
+            <Typography noWrap className={classes.appName} variant="h6">
+              COVID-19.direct (v2)
+            </Typography>
+          </Link>
 
           <SocialMediaButtons
             buttonClassName={classes.socialButton}
