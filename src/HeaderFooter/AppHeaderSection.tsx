@@ -1,9 +1,13 @@
 import { Link, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
-import { FullDiv } from '../styles/HomeStyles';
 import { AppSearchBar } from './AppSearchBar';
 import { SocialMediaButtons } from './SocialMedia';
+
+export const FullDivPadded = styled.div`
+  margin: 3px;
+`;
 
 const DONATION_URL = "https://ko-fi.com/covid19direct";
 
@@ -13,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
   },
   appName: {
     overflow: "visible",
+  },
+  topleft: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "self-start",
   },
   donations: {
     background: "#00aeef",
@@ -36,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1em",
     whiteSpace: "nowrap",
     "& > *": {
-      marginLeft: "4px",
+      marginRight: "4px",
       verticalAlign: "middle",
     },
   },
@@ -59,9 +68,9 @@ export const AppHeaderSection = () => {
   const classes = useStyles();
 
   return (
-    <FullDiv>
+    <FullDivPadded>
       <Toolbar className={classes.appBar}>
-        <div>
+        <div className={classes.topleft}>
           <Link href={"https://covid-19.direct"}>
             <Typography noWrap className={classes.appName} variant="h6">
               COVID-19.direct (v2)
@@ -86,6 +95,6 @@ export const AppHeaderSection = () => {
         </div>
       </Toolbar>
       <AppSearchBar />
-    </FullDiv>
+    </FullDivPadded>
   );
 };
