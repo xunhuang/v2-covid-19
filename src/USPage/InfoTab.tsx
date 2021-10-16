@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
 
 import { myShortNumber } from '../components/AdvanceGraph';
 import {
@@ -6,6 +7,7 @@ import {
   useInfoSummaryByStateFipsQuery,
   useMsaCountyDetailsByMsaIdQuery,
 } from '../generated/graphql';
+import { LastUpdatedState } from '../RecoilState';
 import { getLastCountyLocation, setLastCountyLocation } from './LastCountyLocation';
 import { TagProps, USInfoTopWidget } from './USInfoBoxRender';
 
@@ -24,6 +26,7 @@ const InfoTabByCounty = ({
   county_fips_code,
   highlight,
 }: InfoTypebyCountyProps) => {
+  const [, setLastUpdated] = useRecoilState(LastUpdatedState);
   const { data, loading } = useInfoSummaryByCountyFipsQuery({
     variables: {
       county_fips_code: county_fips_code,
@@ -32,6 +35,9 @@ const InfoTabByCounty = ({
 
   if (loading) return null;
 
+  if (data?.allCountySummaryViews?.nodes[0]?.updated) {
+    setLastUpdated(data?.allCountySummaryViews?.nodes[0]?.updated);
+  }
   const countyName = data?.allCountySummaryViews?.nodes[0]?.countyName;
   const countyConfirmed = data?.allCountySummaryViews?.nodes[0]?.confirmedCases;
   const countyConfirmedIncreased =

@@ -1,6 +1,7 @@
 query InfoSummaryByCountyFips($county_fips_code: String) {
   allCountySummaryViews(condition: { countyFipsCode: $county_fips_code }) {
     nodes {
+      updated
       countyName
       confirmedCases
       confirmedIncrease

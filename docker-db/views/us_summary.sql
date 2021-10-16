@@ -5,7 +5,8 @@ SELECT
     today.confirmed_cases,
     today.confirmed_cases - yesterday.confirmed_cases as confirmed_increase,
     today.confirmed_cases - twoweeks.confirmed_cases AS confirmed_increase_14days,
-    today.date as updated,
+    today.date as last_date,
+    now() as updated,
 	(select sum(population) from state_meta) as population
 FROM
     us_cases_all as today

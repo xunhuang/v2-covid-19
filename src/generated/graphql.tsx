@@ -20,6 +20,11 @@ export type Scalars = {
   BigInt: any;
   /** A location in a connection that can be used for resuming pagination. */
   Cursor: any;
+  /**
+   * A point in time as described by the [ISO
+   * 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+   */
+  Datetime: any;
 };
 
 export type CountyCasesAll = {
@@ -253,6 +258,7 @@ export type CountySummaryView = {
   countyVaccinationsByCountyFipsCode: CountyVaccinationsConnection;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
+  lastDate?: Maybe<Scalars['String']>;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
   msaId?: Maybe<Scalars['String']>;
@@ -269,7 +275,7 @@ export type CountySummaryView = {
   stateName?: Maybe<Scalars['String']>;
   /** Reads a single `StateSummaryView` that is related to this `CountySummaryView`. */
   stateSummaryViewByStateFipsCode?: Maybe<StateSummaryView>;
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 
@@ -311,6 +317,8 @@ export type CountySummaryViewCondition = {
   deathIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `deaths` field. */
   deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `lastDate` field. */
+  lastDate?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `latitude` field. */
   latitude?: Maybe<Scalars['Float']>;
   /** Checks for equality with the object’s `longitude` field. */
@@ -328,7 +336,7 @@ export type CountySummaryViewCondition = {
   /** Checks for equality with the object’s `stateName` field. */
   stateName?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `updated` field. */
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 /** A connection to a list of `CountySummaryView` values. */
@@ -367,6 +375,8 @@ export enum CountySummaryViewsOrderBy {
   DeathsDesc = 'DEATHS_DESC',
   DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
   DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  LastDateAsc = 'LAST_DATE_ASC',
+  LastDateDesc = 'LAST_DATE_DESC',
   LatitudeAsc = 'LATITUDE_ASC',
   LatitudeDesc = 'LATITUDE_DESC',
   LongitudeAsc = 'LONGITUDE_ASC',
@@ -1111,6 +1121,7 @@ export type MsaSummaryView = {
   countySummaryViewsByMsaId: CountySummaryViewsConnection;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
+  lastDate?: Maybe<Scalars['String']>;
   /** Reads and enables pagination through a set of `MsaCasesAll`. */
   msaCasesAllsByMsaId: MsaCasesAllsConnection;
   msaId?: Maybe<Scalars['String']>;
@@ -1122,7 +1133,7 @@ export type MsaSummaryView = {
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Reads a single `StateMeta` that is related to this `MsaSummaryView`. */
   stateMetaByStateFipsCode?: Maybe<StateMeta>;
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 
@@ -1160,6 +1171,8 @@ export type MsaSummaryViewCondition = {
   deathIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `deaths` field. */
   deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `lastDate` field. */
+  lastDate?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `msaId` field. */
   msaId?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `msaName` field. */
@@ -1171,7 +1184,7 @@ export type MsaSummaryViewCondition = {
   /** Checks for equality with the object’s `stateFipsCode` field. */
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `updated` field. */
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 /** A connection to a list of `MsaSummaryView` values. */
@@ -1206,6 +1219,8 @@ export enum MsaSummaryViewsOrderBy {
   DeathsDesc = 'DEATHS_DESC',
   DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
   DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  LastDateAsc = 'LAST_DATE_ASC',
+  LastDateDesc = 'LAST_DATE_DESC',
   MsaIdAsc = 'MSA_ID_ASC',
   MsaIdDesc = 'MSA_ID_DESC',
   MsaNameAsc = 'MSA_NAME_ASC',
@@ -1814,6 +1829,7 @@ export type StateSummaryView = {
   countyVaccinationsByStateFipsCode: CountyVaccinationsConnection;
   deathIncrease?: Maybe<Scalars['Int']>;
   deaths?: Maybe<Scalars['Int']>;
+  lastDate?: Maybe<Scalars['String']>;
   negative?: Maybe<Scalars['Int']>;
   negativeIncrease?: Maybe<Scalars['Int']>;
   population?: Maybe<Scalars['Int']>;
@@ -1833,7 +1849,7 @@ export type StateSummaryView = {
   /** Reads and enables pagination through a set of `StatesTesting`. */
   statesTestingsByStateFipsCode: StatesTestingsConnection;
   totalTestResults?: Maybe<Scalars['Int']>;
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 
@@ -1937,6 +1953,8 @@ export type StateSummaryViewCondition = {
   deathIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `deaths` field. */
   deaths?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `lastDate` field. */
+  lastDate?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `negative` field. */
   negative?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `negativeIncrease` field. */
@@ -1956,7 +1974,7 @@ export type StateSummaryViewCondition = {
   /** Checks for equality with the object’s `totalTestResults` field. */
   totalTestResults?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `updated` field. */
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 /** A connection to a list of `StateSummaryView` values. */
@@ -1991,6 +2009,8 @@ export enum StateSummaryViewsOrderBy {
   DeathsDesc = 'DEATHS_DESC',
   DeathIncreaseAsc = 'DEATH_INCREASE_ASC',
   DeathIncreaseDesc = 'DEATH_INCREASE_DESC',
+  LastDateAsc = 'LAST_DATE_ASC',
+  LastDateDesc = 'LAST_DATE_DESC',
   Natural = 'NATURAL',
   NegativeAsc = 'NEGATIVE_ASC',
   NegativeDesc = 'NEGATIVE_DESC',
@@ -2455,8 +2475,9 @@ export type UsSummaryView = {
   confirmedCases?: Maybe<Scalars['Int']>;
   confirmedIncrease?: Maybe<Scalars['Int']>;
   confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+  lastDate?: Maybe<Scalars['String']>;
   population?: Maybe<Scalars['BigInt']>;
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 /**
@@ -2470,10 +2491,12 @@ export type UsSummaryViewCondition = {
   confirmedIncrease?: Maybe<Scalars['Int']>;
   /** Checks for equality with the object’s `confirmedIncrease14Days` field. */
   confirmedIncrease14Days?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `lastDate` field. */
+  lastDate?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `population` field. */
   population?: Maybe<Scalars['BigInt']>;
   /** Checks for equality with the object’s `updated` field. */
-  updated?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['Datetime']>;
 };
 
 /** A connection to a list of `UsSummaryView` values. */
@@ -2506,6 +2529,8 @@ export enum UsSummaryViewsOrderBy {
   ConfirmedIncrease_14DaysDesc = 'CONFIRMED_INCREASE_14DAYS_DESC',
   ConfirmedIncreaseAsc = 'CONFIRMED_INCREASE_ASC',
   ConfirmedIncreaseDesc = 'CONFIRMED_INCREASE_DESC',
+  LastDateAsc = 'LAST_DATE_ASC',
+  LastDateDesc = 'LAST_DATE_DESC',
   Natural = 'NATURAL',
   PopulationAsc = 'POPULATION_ASC',
   PopulationDesc = 'POPULATION_DESC',
@@ -2737,21 +2762,21 @@ export type MsaCountyDetailsByMsaIdQueryVariables = Exact<{
 }>;
 
 
-export type MsaCountyDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, msaId?: Maybe<string>, msaName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, stateAbbr?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, updated?: Maybe<string> }>> } }>> }> };
+export type MsaCountyDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<any>, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, msaId?: Maybe<string>, msaName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, stateAbbr?: Maybe<string>, longitude?: Maybe<number>, latitude?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number>, updated?: Maybe<any> }>> } }>> }> };
 
 export type InfoSummaryByCountyFipsQueryVariables = Exact<{
   county_fips_code?: Maybe<Scalars['String']>;
 }>;
 
 
-export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>, msaSummaryViewByMsaId?: Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
+export type InfoSummaryByCountyFipsQuery = { __typename?: 'Query', allCountySummaryViews?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', updated?: Maybe<any>, countyName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, stateSummaryViewByStateFipsCode?: Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateAbbr?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>, msaSummaryViewByMsaId?: Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }> }>> }>, allUsSummaryViews?: Maybe<{ __typename?: 'UsSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'UsSummaryView', confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number> }>> }> };
 
 export type MsaDetailsByMsaIdQueryVariables = Exact<{
   msaId?: Maybe<Scalars['String']>;
 }>;
 
 
-export type MsaDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, msaCasesAllsByMsaId: { __typename?: 'MsaCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'MsaCasesAll', msaId?: Maybe<string>, date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', deathIncrease?: Maybe<number>, deaths?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, population?: Maybe<number>, countyFipsCode?: Maybe<string>, countyName?: Maybe<string> }>> } }>> }> };
+export type MsaDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<any>, msaCasesAllsByMsaId: { __typename?: 'MsaCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'MsaCasesAll', msaId?: Maybe<string>, date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', deathIncrease?: Maybe<number>, deaths?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, population?: Maybe<number>, countyFipsCode?: Maybe<string>, countyName?: Maybe<string> }>> } }>> }> };
 
 export type MsaSubRegionQueryVariables = Exact<{
   msaId?: Maybe<Scalars['String']>;
@@ -3423,6 +3448,7 @@ export const InfoSummaryByCountyFipsDocument = gql`
     query InfoSummaryByCountyFips($county_fips_code: String) {
   allCountySummaryViews(condition: {countyFipsCode: $county_fips_code}) {
     nodes {
+      updated
       countyName
       confirmedCases
       confirmedIncrease

@@ -10,7 +10,8 @@ select
     cases.confirmed_increase,
     cases.deaths,
     cases.deaths_increase AS death_increase,
-    cases.updated as updated
+    cases.updated as last_date,
+    now() as updated
 from
     msa_meta
     LEFT JOIN (

@@ -598,7 +598,8 @@ type StateSummaryView {
   negative: Int
   positiveIncrease: Int
   negativeIncrease: Int
-  updated: String
+  lastDate: String
+  updated: Datetime
   population: Int
 
   """Reads a single `StateMeta` that is related to this `StateSummaryView`."""
@@ -837,6 +838,12 @@ type StateSummaryView {
   ): StatesTestingsConnection!
 }
 
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
 type StateMeta {
   stateFipsCode: String
   stateAbbr: String
@@ -965,7 +972,8 @@ type CountySummaryView {
   deaths: Int
   deathIncrease: Int
   population: Int
-  updated: String
+  lastDate: String
+  updated: Datetime
 
   """
   Reads a single `CountyMeta` that is related to this `CountySummaryView`.
@@ -1132,6 +1140,8 @@ enum CountySummaryViewsOrderBy {
   DEATH_INCREASE_DESC
   POPULATION_ASC
   POPULATION_DESC
+  LAST_DATE_ASC
+  LAST_DATE_DESC
   UPDATED_ASC
   UPDATED_DESC
 }
@@ -1183,8 +1193,11 @@ input CountySummaryViewCondition {
   """Checks for equality with the object’s `population` field."""
   population: Int
 
+  """Checks for equality with the object’s `lastDate` field."""
+  lastDate: String
+
   """Checks for equality with the object’s `updated` field."""
-  updated: String
+  updated: Datetime
 }
 
 type MsaSummaryView {
@@ -1197,7 +1210,8 @@ type MsaSummaryView {
   confirmedIncrease: Int
   deaths: Int
   deathIncrease: Int
-  updated: String
+  lastDate: String
+  updated: Datetime
 
   """Reads a single `MsaMeta` that is related to this `MsaSummaryView`."""
   msaMetaByMsaId: MsaMeta
@@ -1500,6 +1514,8 @@ enum MsaSummaryViewsOrderBy {
   DEATHS_DESC
   DEATH_INCREASE_ASC
   DEATH_INCREASE_DESC
+  LAST_DATE_ASC
+  LAST_DATE_DESC
   UPDATED_ASC
   UPDATED_DESC
 }
@@ -1536,8 +1552,11 @@ input MsaSummaryViewCondition {
   """Checks for equality with the object’s `deathIncrease` field."""
   deathIncrease: Int
 
+  """Checks for equality with the object’s `lastDate` field."""
+  lastDate: String
+
   """Checks for equality with the object’s `updated` field."""
-  updated: String
+  updated: Datetime
 }
 
 """Methods to use when ordering `CountyCasesAll`."""
@@ -1732,6 +1751,8 @@ enum StateSummaryViewsOrderBy {
   POSITIVE_INCREASE_DESC
   NEGATIVE_INCREASE_ASC
   NEGATIVE_INCREASE_DESC
+  LAST_DATE_ASC
+  LAST_DATE_DESC
   UPDATED_ASC
   UPDATED_DESC
   POPULATION_ASC
@@ -1779,8 +1800,11 @@ input StateSummaryViewCondition {
   """Checks for equality with the object’s `negativeIncrease` field."""
   negativeIncrease: Int
 
+  """Checks for equality with the object’s `lastDate` field."""
+  lastDate: String
+
   """Checks for equality with the object’s `updated` field."""
-  updated: String
+  updated: Datetime
 
   """Checks for equality with the object’s `population` field."""
   population: Int
@@ -2567,7 +2591,8 @@ type UsSummaryView {
   confirmedCases: Int
   confirmedIncrease: Int
   confirmedIncrease14Days: Int
-  updated: String
+  lastDate: String
+  updated: Datetime
   population: BigInt
 }
 
@@ -2589,6 +2614,8 @@ enum UsSummaryViewsOrderBy {
   CONFIRMED_INCREASE_DESC
   CONFIRMED_INCREASE_14DAYS_ASC
   CONFIRMED_INCREASE_14DAYS_DESC
+  LAST_DATE_ASC
+  LAST_DATE_DESC
   UPDATED_ASC
   UPDATED_DESC
   POPULATION_ASC
@@ -2609,8 +2636,11 @@ input UsSummaryViewCondition {
   """Checks for equality with the object’s `confirmedIncrease14Days` field."""
   confirmedIncrease14Days: Int
 
+  """Checks for equality with the object’s `lastDate` field."""
+  lastDate: String
+
   """Checks for equality with the object’s `updated` field."""
-  updated: String
+  updated: Datetime
 
   """Checks for equality with the object’s `population` field."""
   population: BigInt

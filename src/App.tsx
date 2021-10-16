@@ -3,6 +3,7 @@ import './App.css';
 import Disqus from 'disqus-react';
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 import { CountyPage } from './CountyPage';
 import { AppHeaderSection } from './HeaderFooter/AppHeaderSection';
@@ -52,25 +53,27 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <FullDiv>
-          <Router>
-            <AppHeaderSection />
-            <Switch>
-              {routes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={true}
-                  render={(routeProps: RouteComponentProps<any>) => {
-                    return <route.component {...routeProps} />;
-                  }}
-                />
-              ))}
-              <Route render={() => <Redirect to="/" />} />
-            </Switch>
-          </Router>
-          <FooterSection />
-        </FullDiv>
+        <RecoilRoot>
+          <FullDiv>
+            <Router>
+              <AppHeaderSection />
+              <Switch>
+                {routes.map((route, index) => (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={true}
+                    render={(routeProps: RouteComponentProps<any>) => {
+                      return <route.component {...routeProps} />;
+                    }}
+                  />
+                ))}
+                <Route render={() => <Redirect to="/" />} />
+              </Switch>
+            </Router>
+            <FooterSection />
+          </FullDiv>
+        </RecoilRoot>
       </header>
     </div>
   );

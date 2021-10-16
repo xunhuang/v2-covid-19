@@ -1,7 +1,10 @@
 import { Link, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import moment from 'moment';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
+import { LastUpdatedState } from '../RecoilState';
 import { AppSearchBar } from './AppSearchBar';
 import { SocialMediaButtons } from './SocialMedia';
 
@@ -66,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const AppHeaderSection = () => {
   const classes = useStyles();
+  const lastUpdated = useRecoilValue(LastUpdatedState);
 
   return (
     <FullDivPadded>
@@ -81,10 +85,11 @@ export const AppHeaderSection = () => {
             buttonClassName={classes.socialButton}
             className={classes.socialButtons}
           />
-          <Link href={"https://coviddatausa.com"}>V1 Site</Link>
+          {lastUpdated && `Updated : ${moment(lastUpdated).format("lll")}`}
         </div>
         <div className={classes.expander} />
-        <div className={classes.actions}>
+        {/* <div className={classes.actions}> */}
+        <div>
           <Link
             target="_blank"
             href={DONATION_URL}
@@ -92,6 +97,7 @@ export const AppHeaderSection = () => {
           >
             Buy Us A Coffee
           </Link>
+          <Link href={"https://coviddatausa.com"}>v1 Site</Link>
         </div>
       </Toolbar>
       <AppSearchBar />

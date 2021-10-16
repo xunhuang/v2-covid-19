@@ -13,7 +13,8 @@ SELECT
     negative,
     "positiveIncrease",
     "negativeIncrease",
-    cases.updated as updated,
+    cases.updated as last_date,
+    now() as updated,
 
     state_meta.population as population
 from
