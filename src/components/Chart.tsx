@@ -13,7 +13,10 @@ import {
 
 const moment = require("moment");
 
-export function valueFormatter(value: any) {
+function valueFormatter(value: any) {
+  if (typeof value == "string") {
+    value = parseFloat(value);
+  }
   if (isNaN(value)) {
     return "unknown";
   } else {

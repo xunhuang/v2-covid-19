@@ -42,6 +42,7 @@ init_views() {
    psql -Atx $CONN < views/county_summary_view.sql 
    psql -Atx $CONN < views/msa_summary_view.sql 
    psql -Atx $CONN < views/state_vaccination_view.sql 
+   psql -Atx $CONN < views/msa_vaccination_view.sql 
 
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(county_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX ON public.county_cases_all(state_fips_code);"
@@ -49,6 +50,8 @@ init_views() {
    psql -Atx $CONN -c "CREATE INDEX county_summary_view_state_index ON county_summary_view (state_fips_code);"
    psql -Atx $CONN -c "CREATE UNIQUE INDEX state_summary_view_index ON state_summary_view (state_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX state_testing_index ON states_testing (state_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX state_vaccination_index ON state_vaccination (state_fips_code);"
+   psql -Atx $CONN -c "CREATE INDEX msa_vaccination_index ON msa_vaccination (msa_id);"
    psql -Atx $CONN -c "CREATE INDEX state_hospitalization_index ON states_hospitalization(state_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX county_vaccination_county_index ON county_vaccination(county_fips_code);"
    psql -Atx $CONN -c "CREATE INDEX county_vaccination_state_index ON county_vaccination(state_fips_code);"
@@ -118,6 +121,7 @@ cat <<EOF >> ${DELTAFILE}
  REFRESH MATERIALIZED VIEW us_summary_view;
  REFRESH MATERIALIZED VIEW msa_summary_view;
  REFRESH MATERIALIZED VIEW state_vaccination;
+ REFRESH MATERIALIZED VIEW msa_vaccination;
 EOF
 
    cat relationship.sql >> ${DELTAFILE}

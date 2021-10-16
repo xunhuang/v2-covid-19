@@ -6,6 +6,7 @@ import { CasesGraph, CasesObject } from './USPage/CasesGraph';
 import { DailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
 import { MsaSubRegions } from './USPage/MsaSubRegions';
+import { MsaVaccinationGraph } from './USPage/MsaVaccination';
 import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
 export const MetroPage = () => {
@@ -37,8 +38,7 @@ export const MetroPage = () => {
           ["At-A-Glance", <CasesGraph cases={cases} />],
           ["Daily", <DailyGraph cases={cases} />],
           ["Sub-Region", <MsaSubRegions msaId={msa_id} />],
-          // ["Compare", <CountyCompareGraph county={county} />],
-          // ["Vaccination", <CountyVaccinationGraph county={county} />],
+          ["Vaccination", <MsaVaccinationGraph msaId={msa_id} />],
         ]}
       />
       <AppTabs

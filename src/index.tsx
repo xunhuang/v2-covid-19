@@ -8,16 +8,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const firebaseConfig = process.env.REACT_APP_FIREBASE
-  ? JSON.parse(process.env.REACT_APP_FIREBASE)
-  : null;
-if (firebaseConfig) {
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  logEvent(analytics, "app_loaded");
+try {
+  const firebaseConfig = JSON.parse(process.env.REACT_APP_FIREBASE!);
+  if (firebaseConfig) {
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    logEvent(analytics, "app_loaded");
+  }
+} catch (ex) {
+  console.log("No valid firebase config. No biggie, analytics only");
 }
-
-console.log("yo");
 
 const cache = new InMemoryCache();
 
@@ -34,7 +34,6 @@ const init = async () => {
   // Continue setting up Apollo as usual.
 
   const client = new ApolloClient({
-    // uri: "http://localhost:5000/graphql",
     uri:
       process.env.REACT_APP_GRAPHQL_ENDPOINT ||
       "https://helloworld-capsc6nslq-uc.a.run.app/graphql",

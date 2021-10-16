@@ -36,7 +36,11 @@ const InfoTabByCounty = ({
   if (loading) return null;
 
   if (data?.allCountySummaryViews?.nodes[0]?.updated) {
-    setLastUpdated(data?.allCountySummaryViews?.nodes[0]?.updated);
+    // why this weird thing? because Recoil breaks HMR( hot module reload)
+    // for react. A pain during development.
+    setTimeout(function () {
+      setLastUpdated(data?.allCountySummaryViews?.nodes[0]?.updated);
+    }, 1);
   }
   const countyName = data?.allCountySummaryViews?.nodes[0]?.countyName;
   const countyConfirmed = data?.allCountySummaryViews?.nodes[0]?.confirmedCases;

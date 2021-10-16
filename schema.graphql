@@ -220,6 +220,35 @@ type Query implements Node {
     condition: MsaSummaryViewCondition
   ): MsaSummaryViewsConnection
 
+  """Reads and enables pagination through a set of `MsaVaccination`."""
+  allMsaVaccinations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaVaccination`."""
+    orderBy: [MsaVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaVaccinationCondition
+  ): MsaVaccinationsConnection
+
   """Reads and enables pagination through a set of `StateCasesAll`."""
   allStateCasesAlls(
     """Only read the first `n` values of the set."""
@@ -1276,6 +1305,35 @@ type MsaSummaryView {
     """
     condition: MsaCasesAllCondition
   ): MsaCasesAllsConnection!
+
+  """Reads and enables pagination through a set of `MsaVaccination`."""
+  msaVaccinationsByMsaId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MsaVaccination`."""
+    orderBy: [MsaVaccinationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsaVaccinationCondition
+  ): MsaVaccinationsConnection!
 }
 
 """
@@ -1557,6 +1615,75 @@ input MsaSummaryViewCondition {
 
   """Checks for equality with the object’s `updated` field."""
   updated: Datetime
+}
+
+"""A connection to a list of `MsaVaccination` values."""
+type MsaVaccinationsConnection {
+  """A list of `MsaVaccination` objects."""
+  nodes: [MsaVaccination]!
+
+  """
+  A list of edges which contains the `MsaVaccination` and cursor to aid in pagination.
+  """
+  edges: [MsaVaccinationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MsaVaccination` you could get from the connection."""
+  totalCount: Int!
+}
+
+type MsaVaccination {
+  msaId: String
+  date: String
+  partial: BigInt
+  full: BigInt
+
+  """
+  Reads a single `MsaSummaryView` that is related to this `MsaVaccination`.
+  """
+  msaSummaryViewByMsaId: MsaSummaryView
+}
+
+"""A `MsaVaccination` edge in the connection."""
+type MsaVaccinationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MsaVaccination` at the end of the edge."""
+  node: MsaVaccination
+}
+
+"""Methods to use when ordering `MsaVaccination`."""
+enum MsaVaccinationsOrderBy {
+  NATURAL
+  MSA_ID_ASC
+  MSA_ID_DESC
+  DATE_ASC
+  DATE_DESC
+  PARTIAL_ASC
+  PARTIAL_DESC
+  FULL_ASC
+  FULL_DESC
+}
+
+"""
+A condition to be used against `MsaVaccination` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input MsaVaccinationCondition {
+  """Checks for equality with the object’s `msaId` field."""
+  msaId: String
+
+  """Checks for equality with the object’s `date` field."""
+  date: String
+
+  """Checks for equality with the object’s `partial` field."""
+  partial: BigInt
+
+  """Checks for equality with the object’s `full` field."""
+  full: BigInt
 }
 
 """Methods to use when ordering `CountyCasesAll`."""

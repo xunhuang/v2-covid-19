@@ -1129,6 +1129,8 @@ export type MsaSummaryView = {
   msaMetaByMsaId?: Maybe<MsaMeta>;
   msaName?: Maybe<Scalars['String']>;
   msaUrlName?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `MsaVaccination`. */
+  msaVaccinationsByMsaId: MsaVaccinationsConnection;
   population?: Maybe<Scalars['BigInt']>;
   stateFipsCode?: Maybe<Scalars['String']>;
   /** Reads a single `StateMeta` that is related to this `MsaSummaryView`. */
@@ -1156,6 +1158,17 @@ export type MsaSummaryViewMsaCasesAllsByMsaIdArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<MsaCasesAllsOrderBy>>;
+};
+
+
+export type MsaSummaryViewMsaVaccinationsByMsaIdArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaVaccinationsOrderBy>>;
 };
 
 /**
@@ -1234,6 +1247,66 @@ export enum MsaSummaryViewsOrderBy {
   StateFipsCodeDesc = 'STATE_FIPS_CODE_DESC',
   UpdatedAsc = 'UPDATED_ASC',
   UpdatedDesc = 'UPDATED_DESC'
+}
+
+export type MsaVaccination = {
+  __typename?: 'MsaVaccination';
+  date?: Maybe<Scalars['String']>;
+  full?: Maybe<Scalars['BigInt']>;
+  msaId?: Maybe<Scalars['String']>;
+  /** Reads a single `MsaSummaryView` that is related to this `MsaVaccination`. */
+  msaSummaryViewByMsaId?: Maybe<MsaSummaryView>;
+  partial?: Maybe<Scalars['BigInt']>;
+};
+
+/**
+ * A condition to be used against `MsaVaccination` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type MsaVaccinationCondition = {
+  /** Checks for equality with the object’s `date` field. */
+  date?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `full` field. */
+  full?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `msaId` field. */
+  msaId?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `partial` field. */
+  partial?: Maybe<Scalars['BigInt']>;
+};
+
+/** A connection to a list of `MsaVaccination` values. */
+export type MsaVaccinationsConnection = {
+  __typename?: 'MsaVaccinationsConnection';
+  /** A list of edges which contains the `MsaVaccination` and cursor to aid in pagination. */
+  edges: Array<MsaVaccinationsEdge>;
+  /** A list of `MsaVaccination` objects. */
+  nodes: Array<Maybe<MsaVaccination>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `MsaVaccination` you could get from the connection. */
+  totalCount: Scalars['Int'];
+};
+
+/** A `MsaVaccination` edge in the connection. */
+export type MsaVaccinationsEdge = {
+  __typename?: 'MsaVaccinationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `MsaVaccination` at the end of the edge. */
+  node?: Maybe<MsaVaccination>;
+};
+
+/** Methods to use when ordering `MsaVaccination`. */
+export enum MsaVaccinationsOrderBy {
+  DateAsc = 'DATE_ASC',
+  DateDesc = 'DATE_DESC',
+  FullAsc = 'FULL_ASC',
+  FullDesc = 'FULL_DESC',
+  MsaIdAsc = 'MSA_ID_ASC',
+  MsaIdDesc = 'MSA_ID_DESC',
+  Natural = 'NATURAL',
+  PartialAsc = 'PARTIAL_ASC',
+  PartialDesc = 'PARTIAL_DESC'
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1381,6 +1454,8 @@ export type Query = Node & {
   allMsaMetas?: Maybe<MsaMetasConnection>;
   /** Reads and enables pagination through a set of `MsaSummaryView`. */
   allMsaSummaryViews?: Maybe<MsaSummaryViewsConnection>;
+  /** Reads and enables pagination through a set of `MsaVaccination`. */
+  allMsaVaccinations?: Maybe<MsaVaccinationsConnection>;
   /** Reads and enables pagination through a set of `StateCasesAll`. */
   allStateCasesAlls?: Maybe<StateCasesAllsConnection>;
   /** Reads and enables pagination through a set of `StateMeta`. */
@@ -1496,6 +1571,18 @@ export type QueryAllMsaSummaryViewsArgs = {
   last?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<MsaSummaryViewsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllMsaVaccinationsArgs = {
+  after?: Maybe<Scalars['Cursor']>;
+  before?: Maybe<Scalars['Cursor']>;
+  condition?: Maybe<MsaVaccinationCondition>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<MsaVaccinationsOrderBy>>;
 };
 
 
@@ -2785,6 +2872,13 @@ export type MsaSubRegionQueryVariables = Exact<{
 
 export type MsaSubRegionQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, population?: Maybe<any>, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, population?: Maybe<number>, countyCasesAllsByCountyFipsCode: { __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number> }>> } }>> } }>> }> };
 
+export type MsaVaccinationQueryVariables = Exact<{
+  msaId?: Maybe<Scalars['String']>;
+}>;
+
+
+export type MsaVaccinationQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, population?: Maybe<any>, msaVaccinationsByMsaId: { __typename?: 'MsaVaccinationsConnection', nodes: Array<Maybe<{ __typename?: 'MsaVaccination', msaId?: Maybe<string>, date?: Maybe<string>, partial?: Maybe<any>, full?: Maybe<any> }>> } }>> }> };
+
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
 }>;
@@ -3620,6 +3714,53 @@ export function useMsaSubRegionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type MsaSubRegionQueryHookResult = ReturnType<typeof useMsaSubRegionQuery>;
 export type MsaSubRegionLazyQueryHookResult = ReturnType<typeof useMsaSubRegionLazyQuery>;
 export type MsaSubRegionQueryResult = Apollo.QueryResult<MsaSubRegionQuery, MsaSubRegionQueryVariables>;
+export const MsaVaccinationDocument = gql`
+    query MsaVaccination($msaId: String = "") {
+  allMsaSummaryViews(condition: {msaId: $msaId}) {
+    nodes {
+      msaId
+      msaName
+      population
+      msaVaccinationsByMsaId {
+        nodes {
+          msaId
+          date
+          partial
+          full
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMsaVaccinationQuery__
+ *
+ * To run a query within a React component, call `useMsaVaccinationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsaVaccinationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsaVaccinationQuery({
+ *   variables: {
+ *      msaId: // value for 'msaId'
+ *   },
+ * });
+ */
+export function useMsaVaccinationQuery(baseOptions?: Apollo.QueryHookOptions<MsaVaccinationQuery, MsaVaccinationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MsaVaccinationQuery, MsaVaccinationQueryVariables>(MsaVaccinationDocument, options);
+      }
+export function useMsaVaccinationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MsaVaccinationQuery, MsaVaccinationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MsaVaccinationQuery, MsaVaccinationQueryVariables>(MsaVaccinationDocument, options);
+        }
+export type MsaVaccinationQueryHookResult = ReturnType<typeof useMsaVaccinationQuery>;
+export type MsaVaccinationLazyQueryHookResult = ReturnType<typeof useMsaVaccinationLazyQuery>;
+export type MsaVaccinationQueryResult = Apollo.QueryResult<MsaVaccinationQuery, MsaVaccinationQueryVariables>;
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
   allStateSummaryViews(condition: {stateFipsCode: $fips}) {
