@@ -2,7 +2,7 @@ import './App.css';
 
 import Disqus from 'disqus-react';
 import React from 'react';
-import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
 
 import { CountyPage } from './CountyPage';
 import { AppHeaderSection } from './HeaderFooter/AppHeaderSection';
@@ -66,6 +66,7 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
                   }}
                 />
               ))}
+              <Route render={() => <Redirect to="/" />} />
             </Switch>
           </Router>
           <FooterSection />
