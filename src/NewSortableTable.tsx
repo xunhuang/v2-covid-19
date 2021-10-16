@@ -1,5 +1,6 @@
 import React from 'react';
 import { Column, useSortBy, useTable } from 'react-table';
+import styled from 'styled-components';
 
 import { myShortNumber } from './components/AdvanceGraph';
 import { FullDiv, FullTable } from './styles/HomeStyles';
@@ -20,6 +21,15 @@ interface Props {
   columns: Array<Column<object>>;
   data: Array<object>;
 }
+
+const TableCell = styled.td`
+  border-bottom: 1px solid rgb(224, 224, 224);
+`;
+
+const TableHeader = styled.th`
+  border-bottom: 1px solid rgb(224, 224, 224);
+`;
+
 export const Table: React.FC<Props> = ({ columns, data }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
@@ -44,13 +54,15 @@ export const Table: React.FC<Props> = ({ columns, data }) => {
               {headerGroup.headers.map((column) => (
                 // Add the sorting props to control sorting. For this example
                 // we can add them into the header props
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
+                <TableHeader
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                >
                   {/* Add a sort direction indicator */}
                   <span>
                     {column.isSorted ? (column.isSortedDesc ? " ↓" : " ↑") : ""}
                   </span>
-                </th>
+                  {column.render("Header")}
+                </TableHeader>
               ))}
             </tr>
           ))}
@@ -62,7 +74,9 @@ export const Table: React.FC<Props> = ({ columns, data }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <TableCell {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </TableCell>
                   );
                 })}
               </tr>

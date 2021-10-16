@@ -60,7 +60,7 @@ export const MetroPage = () => {
       <AppTabs
         tabs={[
           [
-            "Counties",
+            data?.allMsaSummaryViews?.nodes[0]?.msaName!,
             <StateCountiesCasesTable countiesTable={countyTables} />,
           ],
         ]}

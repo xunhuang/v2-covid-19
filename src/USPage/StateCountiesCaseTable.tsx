@@ -1,12 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { CountySummaryView } from '../generated/graphql';
 import { shortNumber, Table } from '../NewSortableTable';
 
+export const StateDiv = styled.div`
+  width: 100%;
+  text-align: left;
+`;
+
 export const stateLink = ({ cell }: any) => {
   return (
-    <Link to={`/county/${cell.row.original.countyFipsCode}`}>{cell.value}</Link>
+    <StateDiv>
+      <Link to={`/county/${cell.row.original.countyFipsCode}`}>
+        {cell.value}
+      </Link>
+    </StateDiv>
   );
 };
 
@@ -22,20 +32,26 @@ export const StateCountiesCasesTable = ({ countiesTable }: CountyCasesProp) => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Counties",
+        Header: "Name",
         accessor: "countyName",
         Cell: stateLink,
       },
       {
         Header: "Total",
         accessor: "confirmedCases",
-        Cell: shortNumber,
+        // Cell: shortNumber,
       },
       {
         Header: "New",
         accessor: "confirmedIncrease",
         Cell: shortNumber,
         sortDescFirst: true,
+      },
+      {
+        Header: "#/Mil",
+        accessor: ({ confirmedCases, population }: any) =>
+          (confirmedCases * 1000000) / population,
+        Cell: shortNumber,
       },
       {
         Header: "Deaths",
@@ -45,12 +61,6 @@ export const StateCountiesCasesTable = ({ countiesTable }: CountyCasesProp) => {
       {
         Header: "Deaths+",
         accessor: "deathIncrease",
-        Cell: shortNumber,
-      },
-      {
-        Header: "#/Mil.",
-        accessor: ({ confirmedCases, population }: any) =>
-          (confirmedCases * 1000000) / population,
         Cell: shortNumber,
       },
     ],
