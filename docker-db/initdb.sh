@@ -1,4 +1,4 @@
-
+set -e
 # set your CONN in your env
 
 init_schema_meta () {
@@ -87,6 +87,7 @@ download_changes() {
 update_db() {
    DELTAFILE="$DATADIR/changequery.sql"
    rm -rf ${DELTAFILE}
+   echo "BEGIN; " > ${DELTAFILE}
    tables="\
  county_cases_all,official.county-cases-all\
  state_cases_all,official.state-cases-all\
@@ -118,9 +119,11 @@ cat <<EOF >> ${DELTAFILE}
  REFRESH MATERIALIZED VIEW msa_summary_view;
  REFRESH MATERIALIZED VIEW state_vaccination;
 EOF
-   cat ${DELTAFILE}
+
+   cat relationship.sql >> ${DELTAFILE}
+   echo "COMMIT; " >> ${DELTAFILE}
+
    time psql -Atx $CONN < ${DELTAFILE}
-   update_relationship
 }
 
 update_relationship() {
