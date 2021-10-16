@@ -40,6 +40,9 @@ export const StatePage = () => {
   if (loading) {
     return <div> loading </div>;
   }
+
+  document.title = `${state.stateName} COVID-19 Information`;
+
   return (
     <div>
       <InfoTab state_fips_code={state_fips_code} />

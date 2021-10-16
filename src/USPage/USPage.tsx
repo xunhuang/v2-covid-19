@@ -26,6 +26,7 @@ export function USTableTabs() {
 }
 
 export function USGraphTabs() {
+  document.title = `US COVID-19 Information`;
   return (
     <AppTabs
       tabs={[

@@ -44,6 +44,8 @@ export const CountyPage = () => {
     })
     .slice(0, 10);
 
+  document.title = `${county.countyName}, ${county.stateName} COVID-19 Information`;
+
   return (
     <div>
       <InfoTab county_fips_code={county_fips_code} />
