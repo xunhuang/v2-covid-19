@@ -1,0 +1,22 @@
+query MsaSubRegion($msaId: String = "") {
+  allMsaSummaryViews(condition: { msaId: $msaId }) {
+    nodes {
+      msaId
+      msaName
+      population
+      countySummaryViewsByMsaId {
+        nodes {
+          countyName
+          countyFipsCode
+          population
+          countyCasesAllsByCountyFipsCode {
+            nodes {
+              date
+              confirmedCases
+            }
+          }
+        }
+      }
+    }
+  }
+}

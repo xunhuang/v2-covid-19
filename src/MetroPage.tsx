@@ -5,6 +5,7 @@ import { CountySummaryView, useMsaDetailsByMsaIdQuery } from './generated/graphq
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
 import { DailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
+import { MsaSubRegions } from './USPage/MsaSubRegions';
 import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
 export const MetroPage = () => {
@@ -54,6 +55,7 @@ export const MetroPage = () => {
         tabs={[
           ["At-A-Glance", <CasesGraph cases={cases} />],
           ["Daily", <DailyGraph cases={cases} />],
+          ["Sub-Region", <MsaSubRegions msaId={msa_id} />],
           // ["Compare", <CountyCompareGraph county={county} />],
           // ["Vaccination", <CountyVaccinationGraph county={county} />],
         ]}

@@ -2753,6 +2753,13 @@ export type MsaDetailsByMsaIdQueryVariables = Exact<{
 
 export type MsaDetailsByMsaIdQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, msaUrlName?: Maybe<string>, population?: Maybe<any>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, updated?: Maybe<string>, msaCasesAllsByMsaId: { __typename?: 'MsaCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'MsaCasesAll', msaId?: Maybe<string>, date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', deathIncrease?: Maybe<number>, deaths?: Maybe<number>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, population?: Maybe<number>, countyFipsCode?: Maybe<string>, countyName?: Maybe<string> }>> } }>> }> };
 
+export type MsaSubRegionQueryVariables = Exact<{
+  msaId?: Maybe<Scalars['String']>;
+}>;
+
+
+export type MsaSubRegionQuery = { __typename?: 'Query', allMsaSummaryViews?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaId?: Maybe<string>, msaName?: Maybe<string>, population?: Maybe<any>, countySummaryViewsByMsaId: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, population?: Maybe<number>, countyCasesAllsByCountyFipsCode: { __typename?: 'CountyCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'CountyCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number> }>> } }>> } }>> }> };
+
 export type StateByFipsQueryVariables = Exact<{
   fips?: Maybe<Scalars['String']>;
 }>;
@@ -3535,6 +3542,58 @@ export function useMsaDetailsByMsaIdLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type MsaDetailsByMsaIdQueryHookResult = ReturnType<typeof useMsaDetailsByMsaIdQuery>;
 export type MsaDetailsByMsaIdLazyQueryHookResult = ReturnType<typeof useMsaDetailsByMsaIdLazyQuery>;
 export type MsaDetailsByMsaIdQueryResult = Apollo.QueryResult<MsaDetailsByMsaIdQuery, MsaDetailsByMsaIdQueryVariables>;
+export const MsaSubRegionDocument = gql`
+    query MsaSubRegion($msaId: String = "") {
+  allMsaSummaryViews(condition: {msaId: $msaId}) {
+    nodes {
+      msaId
+      msaName
+      population
+      countySummaryViewsByMsaId {
+        nodes {
+          countyName
+          countyFipsCode
+          population
+          countyCasesAllsByCountyFipsCode {
+            nodes {
+              date
+              confirmedCases
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMsaSubRegionQuery__
+ *
+ * To run a query within a React component, call `useMsaSubRegionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsaSubRegionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsaSubRegionQuery({
+ *   variables: {
+ *      msaId: // value for 'msaId'
+ *   },
+ * });
+ */
+export function useMsaSubRegionQuery(baseOptions?: Apollo.QueryHookOptions<MsaSubRegionQuery, MsaSubRegionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MsaSubRegionQuery, MsaSubRegionQueryVariables>(MsaSubRegionDocument, options);
+      }
+export function useMsaSubRegionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MsaSubRegionQuery, MsaSubRegionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MsaSubRegionQuery, MsaSubRegionQueryVariables>(MsaSubRegionDocument, options);
+        }
+export type MsaSubRegionQueryHookResult = ReturnType<typeof useMsaSubRegionQuery>;
+export type MsaSubRegionLazyQueryHookResult = ReturnType<typeof useMsaSubRegionLazyQuery>;
+export type MsaSubRegionQueryResult = Apollo.QueryResult<MsaSubRegionQuery, MsaSubRegionQueryVariables>;
 export const StateByFipsDocument = gql`
     query StateByFips($fips: String) {
   allStateSummaryViews(condition: {stateFipsCode: $fips}) {

@@ -63,13 +63,14 @@ export const AppHeaderSection = () => {
       <Toolbar className={classes.appBar}>
         <div>
           <Typography noWrap className={classes.appName} variant="h6">
-            COVID-19.direct
+            COVID-19.direct (v2)
           </Typography>
 
           <SocialMediaButtons
             buttonClassName={classes.socialButton}
             className={classes.socialButtons}
           />
+          <Link href={"https://coviddatausa.com"}>V1 Site</Link>
         </div>
         <div className={classes.expander} />
         <div className={classes.actions}>
