@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { CountySummaryView } from '../generated/graphql';
 import { shortNumber, Table } from '../NewSortableTable';
+import { CasesObject } from './CasesGraph';
 
 export const StateDiv = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ export const stateLink = ({ cell }: any) => {
 };
 
 type CountyCasesProp = {
-  countiesTable: Array<CountySummaryView>;
+  countiesTable: Array<CasesObject>;
 };
 
 export const StateCountiesCasesTable = ({ countiesTable }: CountyCasesProp) => {
@@ -50,7 +50,7 @@ export const StateCountiesCasesTable = ({ countiesTable }: CountyCasesProp) => {
       {
         Header: "#/Mil",
         accessor: ({ confirmedCases, population }: any) =>
-          (confirmedCases * 1000000) / population,
+          Math.round((confirmedCases * 1000000) / population),
         Cell: shortNumber,
       },
       {
@@ -96,7 +96,7 @@ export const StateCountiesCapitaTable = ({
       {
         Header: "#/Mil.",
         accessor: ({ confirmedCases, population }: any) =>
-          (confirmedCases * 1000000) / population,
+          Math.round((confirmedCases * 1000000) / population),
         Cell: shortNumber,
       },
       {
@@ -107,7 +107,7 @@ export const StateCountiesCapitaTable = ({
       {
         Header: "Deaths/Mil.",
         accessor: ({ deaths, population }: any) =>
-          (deaths * 1000000) / population,
+          Math.round((deaths * 1000000) / population),
         Cell: shortNumber,
       },
       {

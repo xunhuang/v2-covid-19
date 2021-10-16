@@ -61,8 +61,18 @@ export const StatePage = () => {
       />
       <AppTabs
         tabs={[
-          ["Cases", <StateCountiesCasesTable countiesTable={counties} />],
-          ["Capita", <StateCountiesCapitaTable countiesTable={counties} />],
+          [
+            state.stateName!,
+            <StateCountiesCasesTable
+              countiesTable={counties as CasesObject[]}
+            />,
+          ],
+          [
+            "Capita",
+            <StateCountiesCapitaTable
+              countiesTable={counties as CasesObject[]}
+            />,
+          ],
         ]}
       />
     </div>

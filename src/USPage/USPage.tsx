@@ -29,8 +29,8 @@ export function USGraphTabs() {
   return (
     <AppTabs
       tabs={[
+        ["At-a-glance", <UsCasesGraph />],
         ["Daily", <UsDailyGraph />],
-        ["Cases", <UsCasesGraph />],
         ["Sub Regions", <USSubRegions />],
         ["Vaccination", <UsVaccinationGraph />],
         ["Hospitalization", <UsHospitalizationGraph />],

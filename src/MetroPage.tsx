@@ -5,7 +5,7 @@ import { CountySummaryView, useMsaDetailsByMsaIdQuery } from './generated/graphq
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
 import { DailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
-import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
+import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
 export const MetroPage = () => {
   const { msa_id } = useParams<{ msa_id: string }>();
@@ -62,7 +62,15 @@ export const MetroPage = () => {
         tabs={[
           [
             data?.allMsaSummaryViews?.nodes[0]?.msaName!,
-            <StateCountiesCasesTable countiesTable={countyTables} />,
+            <StateCountiesCasesTable
+              countiesTable={countyTables as CasesObject[]}
+            />,
+          ],
+          [
+            "Capita",
+            <StateCountiesCapitaTable
+              countiesTable={countyTables as CasesObject[]}
+            />,
           ],
         ]}
       />

@@ -8,7 +8,7 @@ import { CountyCompareGraph } from './USPage/CountyCompareGraph';
 import { DailyGraph } from './USPage/CountyDailyGraph';
 import { CountyVaccinationGraph } from './USPage/CountyVaccinationGraph';
 import { InfoTab } from './USPage/InfoTab';
-import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
+import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 
 export const CountyPage = () => {
   const { county_fips_code } = useParams<{ county_fips_code: string }>();
@@ -60,7 +60,15 @@ export const CountyPage = () => {
         tabs={[
           [
             "Nearby Counties",
-            <StateCountiesCasesTable countiesTable={nearby!} />,
+            <StateCountiesCasesTable
+              countiesTable={nearby! as CasesObject[]}
+            />,
+          ],
+          [
+            "Capita",
+            <StateCountiesCapitaTable
+              countiesTable={nearby! as Array<CasesObject>}
+            />,
           ],
         ]}
       />
