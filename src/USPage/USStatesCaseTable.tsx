@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useUsStatesCasesTableQuery } from '../generated/graphql';
-import { shortNumber, Table } from '../NewSortableTable';
+import { percentage1Decimal, shortNumber, Table } from '../NewSortableTable';
 
 export const stateLink = ({ cell }: any) => {
   return (
@@ -36,20 +36,20 @@ export const USStateCasesTable = () => {
         sortDescFirst: true,
       },
       {
+        Header: "#/Mil.",
+        accessor: ({ confirmedCases, population }: any) =>
+          (confirmedCases * 1000000) / population,
+        Cell: shortNumber,
+      },
+      {
         Header: "Deaths",
         accessor: "deaths",
         Cell: shortNumber,
       },
       {
-        Header: "Deaths+",
-        accessor: "deathIncrease",
-        Cell: shortNumber,
-      },
-      {
-        Header: "#/Mil.",
-        accessor: ({ confirmedCases, population }: any) =>
-          (confirmedCases * 1000000) / population,
-        Cell: shortNumber,
+        Header: "Fatality",
+        accessor: ({ confirmedCases, deaths }: any) => deaths / confirmedCases,
+        Cell: percentage1Decimal,
       },
     ],
     []

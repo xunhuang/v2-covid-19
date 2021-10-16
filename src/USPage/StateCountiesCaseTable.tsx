@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { shortNumber, Table } from '../NewSortableTable';
+import { percentage1Decimal, shortNumber, Table } from '../NewSortableTable';
 import { CasesObject } from './CasesGraph';
 
 export const StateDiv = styled.div`
@@ -59,9 +59,9 @@ export const StateCountiesCasesTable = ({ countiesTable }: CountyCasesProp) => {
         Cell: shortNumber,
       },
       {
-        Header: "Deaths+",
-        accessor: "deathIncrease",
-        Cell: shortNumber,
+        Header: "Fatality",
+        accessor: ({ confirmedCases, deaths }: any) => deaths / confirmedCases,
+        Cell: percentage1Decimal,
       },
     ],
     []
