@@ -9,6 +9,7 @@ import {
   useStateByFipsDetailsQuery,
 } from './generated/graphql';
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
+import { DailyGraph } from './USPage/CountyDailyGraph';
 import { InfoTab } from './USPage/InfoTab';
 import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
 import { StateHospitalizationGraph } from './USPage/StateHospitalizationGraph';
@@ -44,7 +45,8 @@ export const StatePage = () => {
       <InfoTab state_fips_code={state_fips_code} />
       <AppTabs
         tabs={[
-          ["Cases", <CasesGraph cases={cases} />],
+          ["At-A-Glance", <CasesGraph cases={cases} />],
+          ["Daily", <DailyGraph cases={cases} />],
           ["Sub Regions", <StateSubRegions state={state} />],
           ["Vaccination", <StateVaccinationGraph state={state} />],
           ["Testing", <StateTestingGraphs state={state!} testing={testing} />],

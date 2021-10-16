@@ -5,7 +5,7 @@ import { AppTabs } from './components/AppTab';
 import { CountySummaryView, useCountyDetailsByCountyFipsQuery } from './generated/graphql';
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
 import { CountyCompareGraph } from './USPage/CountyCompareGraph';
-import { CountyDailyGraph } from './USPage/CountyDailyGraph';
+import { DailyGraph } from './USPage/CountyDailyGraph';
 import { CountyVaccinationGraph } from './USPage/CountyVaccinationGraph';
 import { InfoTab } from './USPage/InfoTab';
 import { StateCountiesCasesTable } from './USPage/StateCountiesCaseTable';
@@ -50,7 +50,7 @@ export const CountyPage = () => {
       <AppTabs
         tabs={[
           ["At-A-Glance", <CasesGraph cases={cases} />],
-          ["Daily", <CountyDailyGraph county={county} cases={cases} />],
+          ["Daily", <DailyGraph cases={cases} />],
           ["Compare", <CountyCompareGraph county={county} />],
           ["Vaccination", <CountyVaccinationGraph county={county} />],
         ]}

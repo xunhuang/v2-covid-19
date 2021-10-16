@@ -1,6 +1,6 @@
-import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
-import { DataSeries } from '../components/DataSeries';
 import { useUsCasesQuery } from '../generated/graphql';
+import { CasesObject } from './CasesGraph';
+import { DailyGraph } from './CountyDailyGraph';
 
 export const UsDailyGraph = () => {
   const { data, loading } = useUsCasesQuery();
@@ -8,35 +8,9 @@ export const UsDailyGraph = () => {
     <div>
       {loading && <div>loading</div>}
       {data && (
-        <>
-          <AdvancedCovidGraph
-            title="US Daily"
-            serieses={[
-              {
-                series: DataSeries.fromGraphQLQueryNodes(
-                  "Confirmed",
-                  data.allUsCasesAlls?.nodes! as object[],
-                  "confirmedCases"
-                ).change(),
-                color: "green",
-                covidspecial: true,
-                showMovingAverage: true,
-              },
-              {
-                series: DataSeries.fromGraphQLQueryNodes(
-                  "Deaths",
-                  data.allUsCasesAlls?.nodes! as object[],
-                  "deaths"
-                ).change(),
-                color: "red",
-                rightAxis: true,
-                covidspecial: true,
-                showMovingAverage: true,
-              },
-            ]}
-            initNumberOfDays={360}
-          />
-        </>
+        <DailyGraph
+          cases={data.allUsCasesAlls?.nodes! as Array<CasesObject>}
+        ></DailyGraph>
       )}
     </div>
   );

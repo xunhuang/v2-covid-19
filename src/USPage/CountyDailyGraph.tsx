@@ -1,25 +1,26 @@
 import { AdvancedCovidGraph } from '../components/AdvanceGraphCovid';
 import { DataSeries } from '../components/DataSeries';
-import { CountyCasesAll, CountySummaryView } from '../generated/graphql';
+import { CasesObject } from './CasesGraph';
 import { CovidColor } from './CovidColor';
 
-type CountyDailyProp = {
-  county: CountySummaryView;
-  cases: Array<CountyCasesAll>;
+type DailyProp = {
+  cases: Array<CasesObject>;
 };
-export const CountyDailyGraph = ({ county, cases }: CountyDailyProp) => {
+export const DailyGraph = ({ cases }: DailyProp) => {
   return (
     <div>
       {cases && (
         <AdvancedCovidGraph
-          title={`${county.countyName} Confirmed Cases`}
+          title={``}
           serieses={[
             {
               series: DataSeries.fromGraphQLQueryNodes(
                 "Positives",
                 cases,
                 "confirmedCases"
-              ).change(),
+              )
+                .change()
+                .setLabel("Positives"),
               color: CovidColor.confirmedNew,
               covidspecial: true,
               showMovingAverage: true,
@@ -29,7 +30,9 @@ export const CountyDailyGraph = ({ county, cases }: CountyDailyProp) => {
                 "Deaths",
                 cases,
                 "deaths"
-              ).change(),
+              )
+                .change()
+                .setLabel("Deaths"),
               color: CovidColor.deathsNew,
               rightAxis: true,
               covidspecial: true,
