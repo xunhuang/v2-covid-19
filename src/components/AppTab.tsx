@@ -9,7 +9,7 @@ function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
   return (
     <FullDiv {...other}>
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box p={0.5}>{children}</Box>}
     </FullDiv>
   );
 }
