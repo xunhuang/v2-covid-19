@@ -1,4 +1,3 @@
-set -e
 # set your CONN in your env
 
 init_schema_meta () {

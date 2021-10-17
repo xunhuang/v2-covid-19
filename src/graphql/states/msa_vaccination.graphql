@@ -1,0 +1,17 @@
+query MsaVaccination($msaId: String = "") {
+  allMsaSummaryViews(condition: { msaId: $msaId }) {
+    nodes {
+      msaId
+      msaName
+      population
+      msaVaccinationsByMsaId {
+        nodes {
+          msaId
+          date
+          partial
+          full
+        }
+      }
+    }
+  }
+}
