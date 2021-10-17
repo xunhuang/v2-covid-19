@@ -2,7 +2,8 @@ import './App.css';
 
 import Disqus from 'disqus-react';
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import { BrowserRouter as Router, Link, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 import { CountyPage } from './CountyPage';
@@ -48,6 +49,20 @@ const routes: IRoute[] = [
   },
 ];
 
+function ErrorFallback({ error, resetErrorBoundary }: any) {
+  return (
+    <div role="alert">
+      <p>Oops something went wrong:</p>
+      <pre>{error.message}</pre>
+      <p>Likely due to URL format change </p>
+      <button onClick={resetErrorBoundary}>Try again</button>
+      <button onClick={resetErrorBoundary}>
+        <Link to="/">Home</Link>
+      </button>
+    </div>
+  );
+}
+
 export interface IApplicationProps {}
 const App: React.FunctionComponent<IApplicationProps> = (props) => {
   return (
@@ -57,19 +72,21 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
           <FullDiv>
             <Router>
               <AppHeaderSection />
-              <Switch>
-                {routes.map((route, index) => (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    exact={true}
-                    render={(routeProps: RouteComponentProps<any>) => {
-                      return <route.component {...routeProps} />;
-                    }}
-                  />
-                ))}
-                <Route render={() => <Redirect to="/" />} />
-              </Switch>
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <Switch>
+                  {routes.map((route, index) => (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      exact={true}
+                      render={(routeProps: RouteComponentProps<any>) => {
+                        return <route.component {...routeProps} />;
+                      }}
+                    />
+                  ))}
+                  <Route render={() => <Redirect to="/" />} />
+                </Switch>
+              </ErrorBoundary>
             </Router>
             <FooterSection />
           </FullDiv>
