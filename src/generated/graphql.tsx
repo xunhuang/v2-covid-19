@@ -3725,7 +3725,7 @@ export const MsaSubRegionDocument = gql`
           countyName
           countyFipsCode
           population
-          countyCasesAllsByCountyFipsCode {
+          countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC) {
             nodes {
               date
               confirmedCases
@@ -3938,7 +3938,7 @@ export const StateSubRegionDocument = gql`
           countyName
           countyFipsCode
           population
-          countyCasesAllsByCountyFipsCode {
+          countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC) {
             nodes {
               date
               confirmedCases

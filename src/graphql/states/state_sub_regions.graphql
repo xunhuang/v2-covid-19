@@ -10,7 +10,7 @@ query StateSubRegion($state_fips_code: String) {
           countyName
           countyFipsCode
           population
-          countyCasesAllsByCountyFipsCode {
+          countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC) {
             nodes {
               date
               confirmedCases

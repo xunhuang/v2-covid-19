@@ -9,7 +9,7 @@ query MsaSubRegion($msaId: String = "") {
           countyName
           countyFipsCode
           population
-          countyCasesAllsByCountyFipsCode {
+          countyCasesAllsByCountyFipsCode(orderBy: DATE_DESC) {
             nodes {
               date
               confirmedCases
