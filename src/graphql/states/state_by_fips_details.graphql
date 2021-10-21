@@ -1,45 +1,57 @@
 query StateByFipsDetails($state_fips_code: String) {
   allStateSummaryViews(condition: { stateFipsCode: $state_fips_code }) {
     nodes {
-      stateAbbr
+      ...state_details
+    }
+  }
+}
+
+query StateByAbbrFipsDetails($state_abbr: String) {
+  allStateSummaryViews(condition: { stateAbbr: $state_abbr }) {
+    nodes {
+      ...state_details
+    }
+  }
+}
+
+fragment state_details on StateSummaryView {
+  stateAbbr
+  stateName
+  stateFipsCode
+  countySummaryViewsByStateFipsCode {
+    nodes {
       stateName
+      countyName
+      countyFipsCode
       stateFipsCode
-      countiesTable: countySummaryViewsByStateFipsCode {
-        nodes {
-          stateName
-          countyName
-          countyFipsCode
-          stateFipsCode
-          confirmedCases
-          confirmedIncrease
-          deaths
-          deathIncrease
-          population
-        }
-      }
-      cases: stateCasesAllsByStateFipsCode {
-        nodes {
-          date
-          confirmedCases
-          deaths
-        }
-      }
-      hospitalization: statesHospitalizationsByStateFipsCode {
-        nodes {
-          date
-          inIcuCurrently
-          hospitalizedCurrently
-        }
-      }
-      testing: statesTestingsByStateFipsCode {
-        nodes {
-          date
-          totalTestResults
-          negative
-          positive
-          inconclusive
-        }
-      }
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      population
+    }
+  }
+  stateCasesAllsByStateFipsCode {
+    nodes {
+      date
+      confirmedCases
+      deaths
+    }
+  }
+  statesHospitalizationsByStateFipsCode {
+    nodes {
+      date
+      inIcuCurrently
+      hospitalizedCurrently
+    }
+  }
+  statesTestingsByStateFipsCode {
+    nodes {
+      date
+      totalTestResults
+      negative
+      positive
+      inconclusive
     }
   }
 }

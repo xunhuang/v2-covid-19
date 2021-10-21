@@ -6,6 +6,7 @@ import {
   StatesHospitalization,
   StatesTesting,
   StateSummaryView,
+  useStateByAbbrFipsDetailsQuery,
   useStateByFipsDetailsQuery,
 } from './generated/graphql';
 import { CasesGraph, CasesObject } from './USPage/CasesGraph';
@@ -19,33 +20,32 @@ import { StateVaccinationGraph } from './USPage/StateVaccination';
 
 export const StatePage = () => {
   const { state_fips_code } = useParams<{ state_fips_code: string }>();
-  const { data, loading } = useStateByFipsDetailsQuery({
-    variables: {
-      state_fips_code: state_fips_code,
-    },
-  });
-
-  // not very proud of this but, hey, 1 query to rule to all...
-  const state = data?.allStateSummaryViews
-    ?.nodes[0] as unknown as StateSummaryView;
-  const cases = data?.allStateSummaryViews?.nodes[0]?.cases
-    .nodes as unknown as Array<CasesObject>;
-  const counties = data?.allStateSummaryViews?.nodes[0]?.countiesTable
-    .nodes as unknown as Array<CountySummaryView>;
-  const hospitalization = data?.allStateSummaryViews?.nodes[0]?.hospitalization
-    .nodes as unknown as Array<StatesHospitalization>;
-  const testing = data?.allStateSummaryViews?.nodes[0]?.testing
-    .nodes as unknown as Array<StatesTesting>;
-
-  if (loading) {
-    return <div> loading </div>;
+  if (state_fips_code.match(/[a-zA-Z]/)) {
+    return <StatePageByAbbr state_abbr={state_fips_code} />;
   }
+  return <StatePageByFips state_fips_code={state_fips_code} />;
+};
+
+type StatePageRenderProp = {
+  state: StateSummaryView;
+};
+
+const CommonRender = ({ state }: StatePageRenderProp) => {
+  console.log(state);
+  const cases = state.stateCasesAllsByStateFipsCode
+    .nodes as unknown as Array<CasesObject>;
+  const counties = state.countySummaryViewsByStateFipsCode
+    .nodes as unknown as Array<CountySummaryView>;
+  const hospitalization = state.statesHospitalizationsByStateFipsCode
+    .nodes as unknown as Array<StatesHospitalization>;
+  const testing = state.statesTestingsByStateFipsCode
+    .nodes as unknown as Array<StatesTesting>;
 
   document.title = `${state.stateName} COVID-19 Information`;
 
   return (
     <div>
-      <InfoTab state_fips_code={state_fips_code} />
+      <InfoTab state_fips_code={state.stateFipsCode!} />
       <AppTabs
         tabs={[
           ["At-A-Glance", <CasesGraph cases={cases} />],
@@ -80,4 +80,46 @@ export const StatePage = () => {
       />
     </div>
   );
+};
+
+type StatePageByFipsProp = {
+  state_fips_code: string;
+};
+
+export const StatePageByFips = ({ state_fips_code }: StatePageByFipsProp) => {
+  const { data, loading } = useStateByFipsDetailsQuery({
+    variables: {
+      state_fips_code: state_fips_code,
+    },
+  });
+
+  if (loading) {
+    return <div> loading </div>;
+  }
+
+  const state = data?.allStateSummaryViews
+    ?.nodes[0] as unknown as StateSummaryView;
+
+  return <CommonRender state={state} />;
+};
+
+type StatePageByAbbrProp = {
+  state_abbr: string;
+};
+
+export const StatePageByAbbr = ({ state_abbr }: StatePageByAbbrProp) => {
+  const { data, loading } = useStateByAbbrFipsDetailsQuery({
+    variables: {
+      state_abbr: state_abbr,
+    },
+  });
+
+  if (loading) {
+    return <div> loading </div>;
+  }
+
+  const state = data?.allStateSummaryViews
+    ?.nodes[0] as unknown as StateSummaryView;
+
+  return <CommonRender state={state} />;
 };

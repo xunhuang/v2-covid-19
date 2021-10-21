@@ -2891,7 +2891,16 @@ export type StateByFipsDetailsQueryVariables = Exact<{
 }>;
 
 
-export type StateByFipsDetailsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countiesTable: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, cases: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, hospitalization: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, testing: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
+export type StateByFipsDetailsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, statesHospitalizationsByStateFipsCode: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, statesTestingsByStateFipsCode: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
+
+export type StateByAbbrFipsDetailsQueryVariables = Exact<{
+  state_abbr?: Maybe<Scalars['String']>;
+}>;
+
+
+export type StateByAbbrFipsDetailsQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, statesHospitalizationsByStateFipsCode: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, statesTestingsByStateFipsCode: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } }>> }> };
+
+export type State_DetailsFragment = { __typename?: 'StateSummaryView', stateAbbr?: Maybe<string>, stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, countySummaryViewsByStateFipsCode: { __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', stateName?: Maybe<string>, countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, confirmedIncrease?: Maybe<number>, deaths?: Maybe<number>, deathIncrease?: Maybe<number>, population?: Maybe<number> }>> }, stateCasesAllsByStateFipsCode: { __typename?: 'StateCasesAllsConnection', nodes: Array<Maybe<{ __typename?: 'StateCasesAll', date?: Maybe<string>, confirmedCases?: Maybe<number>, deaths?: Maybe<number> }>> }, statesHospitalizationsByStateFipsCode: { __typename?: 'StatesHospitalizationsConnection', nodes: Array<Maybe<{ __typename?: 'StatesHospitalization', date?: Maybe<string>, inIcuCurrently?: Maybe<number>, hospitalizedCurrently?: Maybe<number> }>> }, statesTestingsByStateFipsCode: { __typename?: 'StatesTestingsConnection', nodes: Array<Maybe<{ __typename?: 'StatesTesting', date?: Maybe<string>, totalTestResults?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, inconclusive?: Maybe<number> }>> } };
 
 export type StateSubRegionQueryVariables = Exact<{
   state_fips_code?: Maybe<Scalars['String']>;
@@ -2917,7 +2926,49 @@ export type UsStatesTestingTableQueryVariables = Exact<{ [key: string]: never; }
 
 export type UsStatesTestingTableQuery = { __typename?: 'Query', allStateSummaryViews?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, population?: Maybe<number>, negative?: Maybe<number>, positive?: Maybe<number>, positiveIncrease?: Maybe<number>, negativeIncrease?: Maybe<number>, totalTestResults?: Maybe<number> }>> }> };
 
-
+export const State_DetailsFragmentDoc = gql`
+    fragment state_details on StateSummaryView {
+  stateAbbr
+  stateName
+  stateFipsCode
+  countySummaryViewsByStateFipsCode {
+    nodes {
+      stateName
+      countyName
+      countyFipsCode
+      stateFipsCode
+      confirmedCases
+      confirmedIncrease
+      deaths
+      deathIncrease
+      population
+    }
+  }
+  stateCasesAllsByStateFipsCode {
+    nodes {
+      date
+      confirmedCases
+      deaths
+    }
+  }
+  statesHospitalizationsByStateFipsCode {
+    nodes {
+      date
+      inIcuCurrently
+      hospitalizedCurrently
+    }
+  }
+  statesTestingsByStateFipsCode {
+    nodes {
+      date
+      totalTestResults
+      negative
+      positive
+      inconclusive
+    }
+  }
+}
+    `;
 export const SearchBarDataDocument = gql`
     query SearchBarData {
   counties: allCountySummaryViews(condition: {}) {
@@ -3804,49 +3855,11 @@ export const StateByFipsDetailsDocument = gql`
     query StateByFipsDetails($state_fips_code: String) {
   allStateSummaryViews(condition: {stateFipsCode: $state_fips_code}) {
     nodes {
-      stateAbbr
-      stateName
-      stateFipsCode
-      countiesTable: countySummaryViewsByStateFipsCode {
-        nodes {
-          stateName
-          countyName
-          countyFipsCode
-          stateFipsCode
-          confirmedCases
-          confirmedIncrease
-          deaths
-          deathIncrease
-          population
-        }
-      }
-      cases: stateCasesAllsByStateFipsCode {
-        nodes {
-          date
-          confirmedCases
-          deaths
-        }
-      }
-      hospitalization: statesHospitalizationsByStateFipsCode {
-        nodes {
-          date
-          inIcuCurrently
-          hospitalizedCurrently
-        }
-      }
-      testing: statesTestingsByStateFipsCode {
-        nodes {
-          date
-          totalTestResults
-          negative
-          positive
-          inconclusive
-        }
-      }
+      ...state_details
     }
   }
 }
-    `;
+    ${State_DetailsFragmentDoc}`;
 
 /**
  * __useStateByFipsDetailsQuery__
@@ -3875,6 +3888,43 @@ export function useStateByFipsDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type StateByFipsDetailsQueryHookResult = ReturnType<typeof useStateByFipsDetailsQuery>;
 export type StateByFipsDetailsLazyQueryHookResult = ReturnType<typeof useStateByFipsDetailsLazyQuery>;
 export type StateByFipsDetailsQueryResult = Apollo.QueryResult<StateByFipsDetailsQuery, StateByFipsDetailsQueryVariables>;
+export const StateByAbbrFipsDetailsDocument = gql`
+    query StateByAbbrFipsDetails($state_abbr: String) {
+  allStateSummaryViews(condition: {stateAbbr: $state_abbr}) {
+    nodes {
+      ...state_details
+    }
+  }
+}
+    ${State_DetailsFragmentDoc}`;
+
+/**
+ * __useStateByAbbrFipsDetailsQuery__
+ *
+ * To run a query within a React component, call `useStateByAbbrFipsDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStateByAbbrFipsDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStateByAbbrFipsDetailsQuery({
+ *   variables: {
+ *      state_abbr: // value for 'state_abbr'
+ *   },
+ * });
+ */
+export function useStateByAbbrFipsDetailsQuery(baseOptions?: Apollo.QueryHookOptions<StateByAbbrFipsDetailsQuery, StateByAbbrFipsDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StateByAbbrFipsDetailsQuery, StateByAbbrFipsDetailsQueryVariables>(StateByAbbrFipsDetailsDocument, options);
+      }
+export function useStateByAbbrFipsDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StateByAbbrFipsDetailsQuery, StateByAbbrFipsDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StateByAbbrFipsDetailsQuery, StateByAbbrFipsDetailsQueryVariables>(StateByAbbrFipsDetailsDocument, options);
+        }
+export type StateByAbbrFipsDetailsQueryHookResult = ReturnType<typeof useStateByAbbrFipsDetailsQuery>;
+export type StateByAbbrFipsDetailsLazyQueryHookResult = ReturnType<typeof useStateByAbbrFipsDetailsLazyQuery>;
+export type StateByAbbrFipsDetailsQueryResult = Apollo.QueryResult<StateByAbbrFipsDetailsQuery, StateByAbbrFipsDetailsQueryVariables>;
 export const StateSubRegionDocument = gql`
     query StateSubRegion($state_fips_code: String) {
   allStateSummaryViews(condition: {stateFipsCode: $state_fips_code}) {
