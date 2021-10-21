@@ -66,6 +66,7 @@ reset_db() {
 }
 
 download_changes() {
+   vacc
    tables="\
  county_cases_all,official.county-cases-all\
  state_cases_all,official.state-cases-all\
@@ -86,11 +87,26 @@ download_changes() {
    done
 }
 
+
+processMe() {
+    table=$1 
+    bigquerytable=$2
+    outputfile=$3
+    echo ----
+    echo "processing ${bigquerytable} ${table}"
+   jsonfile="${DATADIR}/${bigquerytable}.json"
+   echo "delete from $table where date in (" >> ${DELTAFILE}
+   cat $jsonfile  | jq '[.[]  |.date ] |sort |unique |.[] ' |sed -e "s/\"/'/g" |paste -sd "," - >> ${DELTAFILE}
+   echo ");" >> ${DELTAFILE}
+   cat $jsonfile | jq -c " .[] | . + {date: .date.value, } " | json2csv  > ${DATADIR}/$table.csv
+   echo "\\\\copy $table from '${DATADIR}/$bigquerytable.csv' with delimiter as ',' csv header quote as '\"' " >> ${DELTAFILE}
+}
+
 update_db() {
    DELTAFILE="$DATADIR/changequery.sql"
    rm -rf ${DELTAFILE}
    echo "BEGIN; " > ${DELTAFILE}
-   tables="\
+   tablesOriginal="\
  county_cases_all,official.county-cases-all\
  state_cases_all,official.state-cases-all\
  us_cases_all,official.us-cases-all\
@@ -99,8 +115,8 @@ update_db() {
  us_hospitalization,official.us-hospitalization\
  states_testing,official.states-testing\
  us_testing,official.us-testing\
- "
-   for i in $tables; do 
+"
+   for i in $tablesOriginal; do 
     IFS=',' ;set -- $i;
     table=$1 
     bigquerytable=$2
@@ -113,6 +129,8 @@ update_db() {
    cat $jsonfile | jq -c " .[] | . + {date: .date.value, } " | json2csv  > ${DATADIR}/$table.csv
    echo "\\\\copy $table from '${DATADIR}/$table.csv' with delimiter as ',' csv header quote as '\"' " >> ${DELTAFILE}
    done
+
+   processMe county_vaccination newCountyVaccination ${DELTAFILE}
 
 cat <<EOF >> ${DELTAFILE}
  REFRESH MATERIALIZED VIEW county_summary_view;
@@ -131,6 +149,23 @@ EOF
 
 update_relationship() {
    time psql -Atx $CONN < relationship.sql
+}
+
+vacc() {
+  if [[ $OSTYPE == 'darwin'* ]]; then
+   DATE=`gdate  --date="10 days ago" +"%Y-%m-%d"`
+  else 
+   DATE=`date --date="10 days ago" +"%Y-%m-%d"`
+  fi
+
+   curl  'https://data.cdc.gov/resource/8xkx-amqh.json?$where=date>"'${DATE}'T00:00:00.000"&$limit=30000'  \
+   |jq '[.[] |  .date=.date[0:10] | .administered_dose1_recip = (.administered_dose1_recip | if .==null then "0" else . end) | select(.fips != "UNK") ] ' > ${DATADIR}/newCountyVaccination.json
+
+   echo "date,county_fips_code,state_fips_code,full,partial"> ${DATADIR}/newCountyVaccination.csv 
+
+   cat ${DATADIR}/newCountyVaccination.json \
+   | jq -r -nc --stream ' fromstream(1|truncate_stream(inputs)) | {date, fips, recip_county, series_complete_yes, administered_dose1_recip} | .date + "," + .fips +","+ .fips[0:2]+","+ .series_complete_yes + "," + .administered_dose1_recip'\
+   >> ${DATADIR}/newCountyVaccination.csv 
 }
 
 $1

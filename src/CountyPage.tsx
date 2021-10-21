@@ -12,6 +12,7 @@ import { StateCountiesCapitaTable, StateCountiesCasesTable } from './USPage/Stat
 
 export const CountyPage = () => {
   const { county_fips_code } = useParams<{ county_fips_code: string }>();
+
   const { data, loading } = useCountyDetailsByCountyFipsQuery({
     variables: {
       county_fips_code: county_fips_code,
