@@ -1,7 +1,9 @@
 # Setup
 
+```
 npm install --force
 npm start
+```
 
 
 It will connect to the prod db.
