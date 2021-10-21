@@ -1,5 +1,11 @@
+# Setup
 
 npm install --force
+npm start
+
+
+It will connect to the prod db.
+
 
 # Optional 
 To initialize a docker postgres container, the following will 
