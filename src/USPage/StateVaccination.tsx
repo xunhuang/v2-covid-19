@@ -29,28 +29,10 @@ export const StateVaccinationGraph = ({ state }: StateVaccinationProp) => {
                   "Fully Vaccinated",
                   nodes! as object[],
                   "full"
-                ).setLabel("Fully Vaccinated"),
-                color: "green",
-                covidspecial: true,
-              },
-              {
-                series: DataSeries.fromGraphQLQueryNodes(
-                  "1st dose",
-                  nodes! as object[],
-                  "partial"
-                ).setLabel("First Dose"),
-                color: "blue",
-                covidspecial: true,
-              },
-              {
-                series: DataSeries.fromGraphQLQueryNodes(
-                  "Fully Vaccinated",
-                  nodes! as object[],
-                  "full"
                 )
                   .change()
                   .nDayAverage(14)
-                  .setLabel("Fully Vaccinated - new "),
+                  .setLabel("Fully Vaccinated"),
                 color: "green",
                 rightAxis: true,
                 covidspecial: true,
@@ -64,7 +46,7 @@ export const StateVaccinationGraph = ({ state }: StateVaccinationProp) => {
                 )
                   .change()
                   .nDayAverage(14)
-                  .setLabel("First Dose - new "),
+                  .setLabel("First Dose"),
                 color: "blue",
                 rightAxis: true,
                 covidspecial: true,
