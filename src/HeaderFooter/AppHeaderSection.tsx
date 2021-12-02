@@ -77,7 +77,7 @@ export const AppHeaderSection = () => {
         <div className={classes.topleft}>
           <Link href={"https://covid-19.direct"}>
             <Typography noWrap className={classes.appName} variant="h6">
-              COVID-19.direct (v2)
+              COVID-19.direct
             </Typography>
           </Link>
 
@@ -88,7 +88,6 @@ export const AppHeaderSection = () => {
           {lastUpdated && `Updated : ${moment(lastUpdated).format("lll")}`}
         </div>
         <div className={classes.expander} />
-        {/* <div className={classes.actions}> */}
         <div>
           <Link
             target="_blank"
@@ -97,7 +96,6 @@ export const AppHeaderSection = () => {
           >
             Buy Us A Coffee
           </Link>
-          <Link href={"https://coviddatausa.com"}>v1 Site</Link>
         </div>
       </Toolbar>
       <AppSearchBar />

@@ -73,6 +73,10 @@ export function getRefDates(): RefLineType[] {
       label: "Labor Day",
     },
     {
+      date: unixMMDDYYYY("11/25/2021"),
+      label: "Thanksgiving",
+    },
+    {
       date: unixMMDDYYYY("12/25/2021"),
       label: "XMas",
     },
