@@ -57,7 +57,7 @@ const Footer = () => {
         <Grid container justifyContent="center" className={classes.iconRoot}>
           <Grid item xs={3} sm={6}>
             <MaterialLink
-              href="https://github.com/xunhuang/covid-19"
+              href="https://github.com/xunhuang/v2-covid-19"
               className={classes.githubIcon}
             >
               <GitHubIcon fontSize="large" />

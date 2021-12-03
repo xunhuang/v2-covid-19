@@ -49,7 +49,7 @@ const CreditPopover = () => {
       color="textSecondary"
       className={classes.typography}
     >
-      {list.toString().substring(1, list.toString().length - 1)}
+      {list.toString()}
     </Typography>
   );
 };
