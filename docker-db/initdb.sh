@@ -132,6 +132,11 @@ update_db() {
 
    processMe county_vaccination newCountyVaccination ${DELTAFILE}
 
+# errata, manually fixing data error
+cat <<EOF >> ${DELTAFILE}
+update us_cases_all set date = '2021-11-29', confirmed_cases = 48411494, deaths = 779293 where date = '2021-11-29';
+EOF
+
 cat <<EOF >> ${DELTAFILE}
  REFRESH MATERIALIZED VIEW county_summary_view;
  REFRESH MATERIALIZED VIEW state_summary_view;
