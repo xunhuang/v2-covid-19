@@ -3,6 +3,7 @@ import { DataSeries } from '../components/DataSeries';
 import { CovidColor } from './CovidColor';
 
 export interface CasesObject {
+  date?: string;
   confirmedCases: number;
   deaths: number;
 }
