@@ -105,7 +105,7 @@ processMe() {
 update_db() {
 
   sane_data=$(cat $DATADIR/official.us-cases-all.json |jq '.[0].confirmed_cases > 40000000')
-  if  [ $sane_data == "false" ]; then
+  if  [ $sane_data = "false" ]; then
      echo "bad data skip update"
      exit
   else 
