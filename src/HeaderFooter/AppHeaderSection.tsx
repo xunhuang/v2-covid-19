@@ -96,6 +96,13 @@ export const AppHeaderSection = () => {
           >
             Buy Us A Coffee
           </Link>
+          <Link
+            target="_blank"
+            href={"https://protect-public.hhs.gov/pages/hospital-utilization"}
+          >
+            Hospital Bed Utilization (HHS)
+          </Link>
+
         </div>
       </Toolbar>
       <AppSearchBar />
