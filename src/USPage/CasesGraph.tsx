@@ -18,7 +18,7 @@ export const CasesGraph = ({ cases }: CasesGraphProp) => {
       {cases && (
         <>
           <AdvancedCovidGraph
-            title={""}
+            title={"Confirmed Cases"}
             serieses={[
               {
                 series: DataSeries.fromGraphQLQueryNodes(

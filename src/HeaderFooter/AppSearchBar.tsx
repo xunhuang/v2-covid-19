@@ -10,6 +10,7 @@ import { fetchPrecisePoliticalLocation } from '../GeoLocation';
 export const AppSearchBar = () => {
   const [open, setOpen] = React.useState(false);
   const [runquery, { called, loading, data }] = useSearchBarDataLazyQuery();
+
   const history = useHistory();
 
   React.useEffect(() => {
