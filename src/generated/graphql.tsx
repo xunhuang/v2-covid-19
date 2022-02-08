@@ -2784,7 +2784,7 @@ export enum UsVaccinationsOrderBy {
 export type SearchBarDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, stateAbbr?: Maybe<string> }>> }>, states?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }> };
+export type SearchBarDataQuery = { __typename?: 'Query', counties?: Maybe<{ __typename?: 'CountySummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'CountySummaryView', countyName?: Maybe<string>, countyFipsCode?: Maybe<string>, confirmedCases?: Maybe<number>, stateAbbr?: Maybe<string> }>> }>, states?: Maybe<{ __typename?: 'StateSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'StateSummaryView', stateName?: Maybe<string>, stateFipsCode?: Maybe<string>, confirmedCases?: Maybe<number> }>> }>, metros?: Maybe<{ __typename?: 'MsaSummaryViewsConnection', nodes: Array<Maybe<{ __typename?: 'MsaSummaryView', msaName?: Maybe<string>, msaId?: Maybe<string>, confirmedCases?: Maybe<number>, stateMetaByStateFipsCode?: Maybe<{ __typename?: 'StateMeta', stateAbbr?: Maybe<string> }> }>> }> };
 
 export type UsCasesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2983,6 +2983,16 @@ export const SearchBarDataDocument = gql`
     nodes {
       stateName
       stateFipsCode
+      confirmedCases
+    }
+  }
+  metros: allMsaSummaryViews {
+    nodes {
+      msaName
+      msaId
+      stateMetaByStateFipsCode {
+        stateAbbr
+      }
       confirmedCases
     }
   }

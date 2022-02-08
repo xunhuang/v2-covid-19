@@ -66,6 +66,7 @@ export const AppSearchBar = () => {
       label: `${county?.countyName},${county?.stateAbbr}(${county?.confirmedCases})`,
       county_fips_code: county?.countyFipsCode,
       state_fips_code: null,
+      msa_id: null,
       confirmed: county?.confirmedCases,
     };
   });
@@ -75,11 +76,22 @@ export const AppSearchBar = () => {
       label: `${state?.stateName}(${state?.confirmedCases})`,
       county_fips_code: null,
       state_fips_code: state?.stateFipsCode,
+      msa_id: null,
       confirmed: state?.confirmedCases,
     };
   });
 
-  const list = [...counties!, ...states!].sort(
+  const metros = data?.metros?.nodes.map((metro) => {
+    return {
+      label: `${metro?.msaName}, ${metro?.stateMetaByStateFipsCode?.stateAbbr}(${metro?.confirmedCases})`,
+      county_fips_code: null,
+      state_fips_code: null,
+      msa_id: metro?.msaId,
+      confirmed: metro?.confirmedCases,
+    };
+  });
+
+  const list = [...counties!, ...states!, ...metros!].sort(
     (a, b) => b.confirmed! - a.confirmed!
   );
 
@@ -97,6 +109,9 @@ export const AppSearchBar = () => {
         }
         if (v?.state_fips_code) {
           history.push(`/state/${v?.state_fips_code}`);
+        }
+        if (v?.msa_id) {
+          history.push(`/metro/${v?.msa_id}`);
         }
       }}
     />

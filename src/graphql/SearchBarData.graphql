@@ -14,4 +14,14 @@ query SearchBarData {
       confirmedCases
     }
   }
+  metros: allMsaSummaryViews {
+    nodes {
+      msaName
+      msaId
+      stateMetaByStateFipsCode {
+        stateAbbr
+      }
+      confirmedCases
+    }
+  }
 }
