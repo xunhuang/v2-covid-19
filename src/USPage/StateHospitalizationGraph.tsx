@@ -20,7 +20,7 @@ export const StateHospitalizationGraph = ({
             "Hospitalized",
             hospitalization,
             "hospitalizedCurrently"
-          ).change(),
+          ),
           color: "blue",
           covidspecial: true,
           showMovingAverage: true,
@@ -30,7 +30,7 @@ export const StateHospitalizationGraph = ({
             "inICU",
             hospitalization,
             "inIcuCurrently"
-          ).change(),
+          ),
           color: "red",
           covidspecial: true,
           showMovingAverage: true,

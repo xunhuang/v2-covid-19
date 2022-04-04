@@ -17,7 +17,7 @@ export const UsHospitalizationGraph = () => {
                   "Hospitalized",
                   data.allUsHospitalizations?.nodes! as object[],
                   "hospitalizedCurrently"
-                ).change(),
+                ),
                 color: "blue",
                 covidspecial: true,
                 showMovingAverage: true,
@@ -27,7 +27,7 @@ export const UsHospitalizationGraph = () => {
                   "inICU",
                   data.allUsHospitalizations?.nodes! as object[],
                   "inIcuCurrently"
-                ).change(),
+                ),
                 color: "red",
                 covidspecial: true,
                 showMovingAverage: true,

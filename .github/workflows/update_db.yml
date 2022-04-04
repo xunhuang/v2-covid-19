@@ -35,8 +35,6 @@ jobs:
       env:
         GOOGLE_SVC_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_SVC_ACCOUNT_CREDENTIALS }}
       run: echo "${GOOGLE_SVC_ACCOUNT_CREDENTIALS}" > /tmp/.googleCredentials.json
-    # - run: sudo apt-get update -y
-    # - run: sudo apt-get install -y xmlstarlet
     - run: npm ci; npm install -g ts-node json2csv
     - run: cd docker-db; npm ci  ; cd ..
     - run: which psql
