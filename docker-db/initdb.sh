@@ -139,7 +139,8 @@ update_db() {
    echo "\\\\copy $table from '${DATADIR}/$table.csv' with delimiter as ',' csv header quote as '\"' " >> ${DELTAFILE}
    done
 
-   processMe county_vaccination newCountyVaccination ${DELTAFILE}
+   # FIXME: this is breaking. allow the rest of the pipeline update to run, and fix later
+   # processMe county_vaccination newCountyVaccination ${DELTAFILE}
 
 # errata, manually fixing data error
 cat <<EOF >> ${DELTAFILE}
