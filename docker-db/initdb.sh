@@ -125,6 +125,12 @@ update_db() {
  states_testing,official.states-testing\
  us_testing,official.us-testing\
 "
+   tablesOriginal="\
+ county_cases_all,official.county-cases-all\
+ state_cases_all,official.state-cases-all\
+ us_cases_all,official.us-cases-all\
+ msa_cases_all,official.msa-cases-all\
+"
    for i in $tablesOriginal; do 
     IFS=',' ;set -- $i;
     table=$1 
