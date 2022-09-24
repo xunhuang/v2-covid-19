@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appName: {
     overflow: "visible",
+    margin: "20px",
   },
   topleft: {
     display: "flex",
@@ -105,6 +106,16 @@ export const AppHeaderSection = () => {
 
         </div>
       </Toolbar>
+      <Typography className={classes.appName} variant="h6">
+      As Covid inches toward endemic and with the abundance of public data resources, it is time to end this project. 
+      We are grateful for the team that contributed to code, data, mindshare and financial support of this site since the beginning of the pandemic. 
+      We are thankful to the users of this site which stood at 135K daily active uses at its height. 
+      Thank you for your loyalty, pointing out data errors and bugs, and making suggestions to make the site better. 
+      This project has been a tremendous learning and public service opportunity for me personally.
+      </Typography>
+      <Typography className={classes.appName} variant="h6">
+       With gratitude, Wilson and Helen 
+            </Typography>
       <AppSearchBar />
     </FullDivPadded>
   );
