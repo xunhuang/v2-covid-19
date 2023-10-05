@@ -71,8 +71,12 @@ export const AdvancedGraph = (props: AdvancedGraphProps) => {
   };
 
   function filterData(data: any[]) {
-    const cutoff = moment().subtract(showPastDays, "days").unix();
-    const future = moment().add(14, "days").unix();
+    // const cutoff = moment().subtract(showPastDays, "days").unix();
+    const cutoff = moment("06/22/2022", "MM/DD/YYYY")
+      .subtract(showPastDays, "days")
+      .unix();
+    // const future = moment().add(14, "days").unix();
+    const future = moment("06/22/2022", "MM/DD/YYYY").unix();
     return data.filter((p) => p.timestamp >= cutoff && p.timestamp <= future);
   }
 
